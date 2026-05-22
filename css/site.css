@@ -446,6 +446,28 @@ strong,b{font-weight:800;}
 @media(max-width:900px){.archive-grid{grid-template-columns:1fr 1fr;}}
 @media(max-width:560px){.archive-grid{grid-template-columns:1fr;}}
 
+/* ---------- disclosure (collapses to a dropdown on mobile) ---------- */
+.disclose > summary{display:none;}
+@media(max-width:760px){
+  .disclose > summary{
+    display:flex;justify-content:space-between;align-items:center;gap:16px;
+    cursor:pointer;list-style:none;padding:18px 2px;
+    border-top:1px solid var(--line-2);border-bottom:1px solid var(--line-2);
+    font-size:12.5px;font-weight:800;letter-spacing:.08em;
+    text-transform:uppercase;color:var(--ink);
+  }
+  .disclose > summary::-webkit-details-marker{display:none;}
+  .disclose[open] > summary{border-bottom:0;}
+  .disclose-x{position:relative;width:22px;height:22px;flex:none;}
+  .disclose-x::before,.disclose-x::after{
+    content:"";position:absolute;left:50%;top:50%;background:var(--ink);
+  }
+  .disclose-x::before{width:14px;height:2px;transform:translate(-50%,-50%);}
+  .disclose-x::after{width:2px;height:14px;transform:translate(-50%,-50%);}
+  .disclose[open] .disclose-x::after{display:none;}
+  .disclose .archive-grid{margin-top:18px;}
+}
+
 /* ---------- people grid (speakers / team) ---------- */
 .people{display:grid;grid-template-columns:repeat(var(--pcols,4),1fr);gap:16px;}
 .people--3{--pcols:3;}
@@ -533,7 +555,10 @@ strong,b{font-weight:800;}
 .deets dd{margin:0;font-size:20px;font-weight:900;
   text-transform:uppercase;letter-spacing:-0.02em;}
 @media(max-width:560px){
-  .deets{grid-template-columns:1fr;}
+  .deets{gap:0 20px;}
+  .deets div{padding:13px 0;}
+  .deets dt{margin-bottom:4px;}
+  .deets dd{font-size:15px;}
 }
 
 /* ---------- sponsor tiers ---------- */

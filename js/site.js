@@ -63,6 +63,13 @@
     setInterval(update, 30000);
   }
 
+  // Collapse disclosures on small screens (open on desktop)
+  if (window.matchMedia('(max-width: 760px)').matches) {
+    document.querySelectorAll('.disclose').forEach(function (d) {
+      d.removeAttribute('open');
+    });
+  }
+
   // Multi-step intake wizard
   document.querySelectorAll('[data-intake]').forEach(function (form) {
     var steps = Array.prototype.slice.call(form.querySelectorAll('.intake-step'));
