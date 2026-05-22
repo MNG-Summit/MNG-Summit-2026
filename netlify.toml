@@ -1,0 +1,6 @@
+# Netlify configuration for the MNG Summit site
+[build]
+  publish = "."
+
+[functions]
+  directory = "netlify/functions"
