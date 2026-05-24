@@ -34,7 +34,7 @@
 *,*::before,*::after{box-sizing:border-box;}
 html{-webkit-text-size-adjust:100%;scroll-behavior:smooth;}
 body{
-  margin:0;background:var(--bg);color:var(--ink);
+  margin:0;background-color:var(--bg);color:var(--ink);
   font-family:var(--sans);font-size:16.5px;line-height:1.62;
   font-weight:500;-webkit-font-smoothing:antialiased;
   text-rendering:optimizeLegibility;overflow-x:hidden;
@@ -42,20 +42,23 @@ body{
 }
 
 /* ---------- matte paper texture ---------- */
-/* Two stacked SVG noise layers blended via multiply:
-   1) low-frequency 'fiber' for the paper grain (larger, blurred blobs)
-   2) higher-frequency 'tooth' for the matte surface microtexture
-   No animation — paper sits still. Multiply darkens slightly so highlights
-   never feel glossy, which is what gives the matte finish. */
-body::after{
-  content:"";position:fixed;inset:0;pointer-events:none;
-  z-index:9999;opacity:.18;mix-blend-mode:multiply;
-  background-color:transparent;
-  background-image:
-    url("data:image/svg+xml;charset=utf-8,%3Csvg xmlns='http://www.w3.org/2000/svg' width='480' height='480'%3E%3Cfilter id='p'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.55' numOctaves='3' stitchTiles='stitch' seed='4'/%3E%3CfeGaussianBlur stdDeviation='0.4'/%3E%3CfeColorMatrix values='0 0 0 0 0  0 0 0 0 0  0 0 0 0 0  0 0 0 0.55 0'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23p)'/%3E%3C/svg%3E"),
-    url("data:image/svg+xml;charset=utf-8,%3Csvg xmlns='http://www.w3.org/2000/svg' width='220' height='220'%3E%3Cfilter id='t'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='1.4' numOctaves='2' stitchTiles='stitch' seed='7'/%3E%3CfeColorMatrix values='0 0 0 0 0  0 0 0 0 0  0 0 0 0 0  0 0 0 0.4 0'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23t)'/%3E%3C/svg%3E");
+/* Two stacked SVG noise layers ('fiber' + 'tooth') painted as part of the
+   section's background-image so they sit BEHIND text, never multiplying
+   into glyphs. Each surface that owns its own background-color (body,
+   .sec--gold, .sec--blue, .sec--red, .sec--ink2, .marquee) opts in via
+   the .has-paper helper rules below. */
+:root{
+  --paper-fiber:url("data:image/svg+xml;charset=utf-8,%3Csvg xmlns='http://www.w3.org/2000/svg' width='480' height='480'%3E%3Cfilter id='p'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.55' numOctaves='3' stitchTiles='stitch' seed='4'/%3E%3CfeGaussianBlur stdDeviation='0.4'/%3E%3CfeColorMatrix values='0 0 0 0 0  0 0 0 0 0  0 0 0 0 0  0 0 0 0.09 0'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23p)'/%3E%3C/svg%3E");
+  --paper-tooth:url("data:image/svg+xml;charset=utf-8,%3Csvg xmlns='http://www.w3.org/2000/svg' width='220' height='220'%3E%3Cfilter id='t'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='1.4' numOctaves='2' stitchTiles='stitch' seed='7'/%3E%3CfeColorMatrix values='0 0 0 0 0  0 0 0 0 0  0 0 0 0 0  0 0 0 0.06 0'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23t)'/%3E%3C/svg%3E");
+}
+/* Mixin: paints fiber + tooth on top of the existing background-color via
+   background-blend-mode:multiply. Text & images are unaffected because
+   the texture is a background layer. */
+.paper,body,.sec--gold,.sec--blue,.sec--red,.sec--ink2,.marquee{
+  background-image:var(--paper-fiber),var(--paper-tooth);
   background-size:480px 480px,220px 220px;
   background-repeat:repeat,repeat;
+  background-blend-mode:multiply,multiply;
 }
 img,svg,video{max-width:100%;display:block;}
 button{font-family:inherit;cursor:pointer;}
@@ -98,10 +101,10 @@ strong,b{font-weight:800;}
 .measure{max-width:var(--max-text);}
 
 /* color-block section helpers */
-.sec--gold{background:var(--gold);color:var(--ink);}
-.sec--blue{background:var(--blue-d);color:var(--white);}
-.sec--red{background:var(--red);color:var(--white);}
-.sec--ink2{background:var(--bg-2);}
+.sec--gold{background-color:var(--gold);color:var(--ink);}
+.sec--blue{background-color:var(--blue-d);color:var(--white);}
+.sec--red{background-color:var(--red);color:var(--white);}
+.sec--ink2{background-color:var(--bg-2);}
 .sec--gold .tag,.sec--red .tag{color:var(--ink);}
 .sec--blue .tag{color:var(--gold);}
 .sec--gold .lead{color:rgba(16,16,20,.66);}
@@ -213,10 +216,10 @@ strong,b{font-weight:800;}
 
 /* ---------- marquee ---------- */
 .marquee{
-  background:var(--gold);color:var(--ink);overflow:hidden;
+  background-color:var(--gold);color:var(--ink);overflow:hidden;
   white-space:nowrap;padding:14px 0;
 }
-.marquee--blue{background:var(--blue-d);color:var(--white);}
+.marquee--blue{background-color:var(--blue-d);color:var(--white);}
 .marquee--blue .marquee-track .o{-webkit-text-stroke-color:var(--white);}
 .marquee-track{
   display:inline-block;animation:marquee 30s linear infinite;
