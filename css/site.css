@@ -474,26 +474,35 @@ strong,b{font-weight:800;}
 @media(max-width:560px){.archive-grid{grid-template-columns:1fr;}}
 
 /* ---------- horizontal timeline (years across a line) ---------- */
-.timeline{padding:24px 0 8px;}
+/* Layout is anchored to one variable: --line-y. The year occupies a fixed
+   slot of that height ending at the line, and the dot sits centered on the
+   line via translateY(-50%). This keeps dot-center == line-center at every
+   viewport size without manual pixel math. */
+.timeline{
+  --line-y:48px;
+  --dot:14px;
+  --dot-future:20px;
+  padding:24px 0 8px;
+}
 .timeline-track{
   position:relative;
   display:grid;grid-template-columns:repeat(10,1fr);
   align-items:start;
-  padding:0 24px 0 8px;
+  padding:0 28px 0 8px;
 }
 /* the line itself — dark for the past, gold for the trajectory to 2026 */
 .timeline-track::before{
-  content:"";position:absolute;left:0;right:0;top:64px;
-  height:4px;z-index:1;
+  content:"";position:absolute;left:0;right:0;top:var(--line-y);
+  height:3px;transform:translateY(-50%);z-index:1;
   background:linear-gradient(to right,var(--ink) 0 86%,var(--gold) 86% 100%);
 }
-/* arrowhead at the end, sitting on the gold portion */
+/* arrowhead sitting on the line's centerline */
 .timeline-track::after{
-  content:"";position:absolute;right:0;top:64px;
+  content:"";position:absolute;right:0;top:var(--line-y);
   width:0;height:0;
-  border-top:9px solid transparent;border-bottom:9px solid transparent;
-  border-left:14px solid var(--gold);
-  transform:translate(0,-7px);
+  border-top:7px solid transparent;border-bottom:7px solid transparent;
+  border-left:11px solid var(--gold);
+  transform:translateY(-50%);
   z-index:1;
 }
 .timeline-tick{
@@ -502,32 +511,38 @@ strong,b{font-weight:800;}
   text-align:center;color:var(--ink);padding:0 4px;
   transition:transform .35s var(--ease);
 }
-.timeline-tick:hover{transform:translateY(-5px);}
+.timeline-tick:hover{transform:translateY(-4px);}
+/* year container fully covers the line so it appears to pass behind the year;
+   text is pushed up by padding-bottom so it sits cleanly above the line. */
 .timeline-year{
-  font-size:clamp(28px,3vw,46px);font-weight:900;letter-spacing:-0.045em;
+  position:relative;z-index:2;
+  height:calc(var(--line-y) + 4px);
+  display:flex;align-items:flex-end;justify-content:center;
+  font-size:clamp(20px,2.1vw,28px);font-weight:700;letter-spacing:-0.025em;
   line-height:1;color:var(--ink);
-  /* halo punches a notch through the line behind each year for crispness */
-  background:var(--bg);box-shadow:0 0 0 6px var(--bg);
-  padding:0 4px;
+  background:var(--bg);padding:0 8px 16px;
 }
+/* dot is centered ON the line; negative margin pulls it back onto the line
+   despite the slightly-taller year box, then translate centers it perfectly. */
 .timeline-dot{
-  width:20px;height:20px;border-radius:50%;background:var(--ink);
-  margin-top:12px;box-shadow:0 0 0 6px var(--bg);
-  transition:transform .35s var(--ease);
+  width:var(--dot);height:var(--dot);border-radius:50%;background:var(--ink);
+  margin-top:-4px;transform:translateY(-50%);
+  box-shadow:0 0 0 5px var(--bg);
+  transition:transform .35s var(--ease),background .25s;
+  position:relative;z-index:3;
 }
-.timeline-tick:hover .timeline-dot{transform:scale(1.35);}
+.timeline-tick:hover .timeline-dot{transform:translateY(-50%) scale(1.45);}
 .timeline-city{
-  margin-top:18px;font-size:11.5px;font-weight:800;letter-spacing:.1em;
+  margin-top:14px;font-size:11px;font-weight:700;letter-spacing:.1em;
   text-transform:uppercase;color:var(--mute);max-width:118px;line-height:1.4;
 }
-.timeline-tick.is-future{transform:translateY(-2px);}
-.timeline-tick.is-future:hover{transform:translateY(-7px);}
-.timeline-tick.is-future .timeline-year{color:var(--gold);}
-.timeline-tick.is-future .timeline-city{color:var(--ink);font-weight:900;}
+.timeline-tick.is-future .timeline-year{color:var(--gold);font-weight:800;}
+.timeline-tick.is-future .timeline-city{color:var(--ink);font-weight:800;}
 .timeline-tick.is-future .timeline-dot{
-  background:var(--gold);width:24px;height:24px;margin-top:10px;
-  box-shadow:0 0 0 6px var(--bg),0 0 0 12px rgba(244,176,35,.22);
+  width:var(--dot-future);height:var(--dot-future);background:var(--gold);
+  box-shadow:0 0 0 5px var(--bg),0 0 0 10px rgba(251,173,24,.22);
 }
+.timeline-tick.is-future:hover .timeline-dot{transform:translateY(-50%) scale(1.25);}
 @media(max-width:760px){
   .timeline{padding:8px 0;}
   .timeline-track{
