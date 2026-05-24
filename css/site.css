@@ -41,30 +41,21 @@ body{
   position:relative;
 }
 
-/* ---------- film grain overlay (works on white + every colored section) ---------- */
-/* Single fixed SVG-noise layer with mix-blend-mode:overlay so it darkens
-   highlights and lightens shadows — reads correctly on white, gold, blue,
-   red, and ink2. Tuned for visibility without crossing into 'noisy'. */
+/* ---------- matte paper texture ---------- */
+/* Two stacked SVG noise layers blended via multiply:
+   1) low-frequency 'fiber' for the paper grain (larger, blurred blobs)
+   2) higher-frequency 'tooth' for the matte surface microtexture
+   No animation — paper sits still. Multiply darkens slightly so highlights
+   never feel glossy, which is what gives the matte finish. */
 body::after{
-  content:"";position:fixed;inset:-50%;pointer-events:none;
-  z-index:9999;opacity:.22;mix-blend-mode:overlay;
-  background-image:url("data:image/svg+xml;charset=utf-8,%3Csvg xmlns='http://www.w3.org/2000/svg' width='320' height='320'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.85' numOctaves='2' stitchTiles='stitch'/%3E%3CfeColorMatrix values='0 0 0 0 0  0 0 0 0 0  0 0 0 0 0  0 0 0 1 0'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23n)'/%3E%3C/svg%3E");
-  background-size:320px 320px;background-repeat:repeat;
-}
-@media (prefers-reduced-motion:no-preference){
-  body::after{animation:grain 1.6s steps(8) infinite;}
-  @keyframes grain{
-    0%,100%{transform:translate(0,0);}
-    10%{transform:translate(-3%,2%);}
-    20%{transform:translate(2%,-3%);}
-    30%{transform:translate(-2%,-2%);}
-    40%{transform:translate(3%,2%);}
-    50%{transform:translate(-2%,3%);}
-    60%{transform:translate(2%,2%);}
-    70%{transform:translate(-3%,-2%);}
-    80%{transform:translate(2%,-3%);}
-    90%{transform:translate(-2%,3%);}
-  }
+  content:"";position:fixed;inset:0;pointer-events:none;
+  z-index:9999;opacity:.18;mix-blend-mode:multiply;
+  background-color:transparent;
+  background-image:
+    url("data:image/svg+xml;charset=utf-8,%3Csvg xmlns='http://www.w3.org/2000/svg' width='480' height='480'%3E%3Cfilter id='p'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.55' numOctaves='3' stitchTiles='stitch' seed='4'/%3E%3CfeGaussianBlur stdDeviation='0.4'/%3E%3CfeColorMatrix values='0 0 0 0 0  0 0 0 0 0  0 0 0 0 0  0 0 0 0.55 0'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23p)'/%3E%3C/svg%3E"),
+    url("data:image/svg+xml;charset=utf-8,%3Csvg xmlns='http://www.w3.org/2000/svg' width='220' height='220'%3E%3Cfilter id='t'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='1.4' numOctaves='2' stitchTiles='stitch' seed='7'/%3E%3CfeColorMatrix values='0 0 0 0 0  0 0 0 0 0  0 0 0 0 0  0 0 0 0.4 0'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23t)'/%3E%3C/svg%3E");
+  background-size:480px 480px,220px 220px;
+  background-repeat:repeat,repeat;
 }
 img,svg,video{max-width:100%;display:block;}
 button{font-family:inherit;cursor:pointer;}
