@@ -43,21 +43,27 @@ body{
 
 /* ---------- film grain overlay (works on white + every colored section) ---------- */
 /* Single fixed SVG-noise layer with mix-blend-mode:overlay so it darkens
-   highlights and lightens shadows. Kept faint (~7%) so it's felt, not seen. */
+   highlights and lightens shadows — reads correctly on white, gold, blue,
+   red, and ink2. Tuned for visibility without crossing into 'noisy'. */
 body::after{
-  content:"";position:fixed;inset:0;pointer-events:none;
-  z-index:9999;opacity:.07;mix-blend-mode:overlay;
-  background-image:url("data:image/svg+xml;charset=utf-8,%3Csvg xmlns='http://www.w3.org/2000/svg' width='240' height='240'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.9' numOctaves='2' stitchTiles='stitch'/%3E%3CfeColorMatrix values='0 0 0 0 0  0 0 0 0 0  0 0 0 0 0  0 0 0 1 0'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23n)'/%3E%3C/svg%3E");
-  background-size:240px 240px;background-repeat:repeat;
+  content:"";position:fixed;inset:-50%;pointer-events:none;
+  z-index:9999;opacity:.22;mix-blend-mode:overlay;
+  background-image:url("data:image/svg+xml;charset=utf-8,%3Csvg xmlns='http://www.w3.org/2000/svg' width='320' height='320'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.85' numOctaves='2' stitchTiles='stitch'/%3E%3CfeColorMatrix values='0 0 0 0 0  0 0 0 0 0  0 0 0 0 0  0 0 0 1 0'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23n)'/%3E%3C/svg%3E");
+  background-size:320px 320px;background-repeat:repeat;
 }
 @media (prefers-reduced-motion:no-preference){
-  body::after{animation:grain 8s steps(6) infinite;}
+  body::after{animation:grain 1.6s steps(8) infinite;}
   @keyframes grain{
     0%,100%{transform:translate(0,0);}
-    20%{transform:translate(-2%,1%);}
-    40%{transform:translate(1%,-2%);}
-    60%{transform:translate(-1%,2%);}
-    80%{transform:translate(2%,-1%);}
+    10%{transform:translate(-3%,2%);}
+    20%{transform:translate(2%,-3%);}
+    30%{transform:translate(-2%,-2%);}
+    40%{transform:translate(3%,2%);}
+    50%{transform:translate(-2%,3%);}
+    60%{transform:translate(2%,2%);}
+    70%{transform:translate(-3%,-2%);}
+    80%{transform:translate(2%,-3%);}
+    90%{transform:translate(-2%,3%);}
   }
 }
 img,svg,video{max-width:100%;display:block;}
@@ -567,28 +573,6 @@ strong,b{font-weight:800;}
     max-width:none;color:var(--ink);
   }
   .timeline-tick.is-future .timeline-city{font-weight:900;}
-}
-
-/* ---------- disclosure (collapses to a dropdown on mobile) ---------- */
-.disclose > summary{display:none;}
-@media(max-width:760px){
-  .disclose > summary{
-    display:flex;justify-content:space-between;align-items:center;gap:16px;
-    cursor:pointer;list-style:none;padding:18px 2px;
-    border-top:1px solid var(--line-2);border-bottom:1px solid var(--line-2);
-    font-size:12.5px;font-weight:800;letter-spacing:.08em;
-    text-transform:uppercase;color:var(--ink);
-  }
-  .disclose > summary::-webkit-details-marker{display:none;}
-  .disclose[open] > summary{border-bottom:0;}
-  .disclose-x{position:relative;width:22px;height:22px;flex:none;}
-  .disclose-x::before,.disclose-x::after{
-    content:"";position:absolute;left:50%;top:50%;background:var(--ink);
-  }
-  .disclose-x::before{width:14px;height:2px;transform:translate(-50%,-50%);}
-  .disclose-x::after{width:2px;height:14px;transform:translate(-50%,-50%);}
-  .disclose[open] .disclose-x::after{display:none;}
-  .disclose .archive-grid{margin-top:18px;}
 }
 
 /* ---------- people grid (speakers / team) ---------- */
