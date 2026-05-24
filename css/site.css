@@ -41,25 +41,21 @@ body{
   position:relative;
 }
 
-/* ---------- woven paper texture ---------- */
-/* Two stretched noise layers crosshatch to read as woven fibers:
-   - WARP (horizontal threads): noise stretched along X, tight along Y
-   - WEFT (vertical threads):   noise stretched along Y, tight along X
-   Painted as background-image with background-blend-mode:multiply so the
-   weave only affects each surface's bg-color — text never sees it.
-   Plus a soft fractal 'tooth' for that hand-laid matte paper finish. */
+/* ---------- matte paper texture ---------- */
+/* Two stacked SVG noise layers ('fiber' + 'tooth') painted as background
+   layers via background-blend-mode:multiply, so they live BEHIND text and
+   never multiply into glyphs. Applied to every surface that owns its own
+   background-color (body, .sec--gold, .sec--blue, .sec--red, .sec--ink2,
+   .marquee). Low alphas keep it felt, not seen. */
 :root{
-  --paper-warp:url("data:image/svg+xml;charset=utf-8,%3Csvg xmlns='http://www.w3.org/2000/svg' width='260' height='260'%3E%3Cfilter id='w1'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.025 1.9' numOctaves='2' stitchTiles='stitch' seed='3'/%3E%3CfeColorMatrix values='0 0 0 0 0  0 0 0 0 0  0 0 0 0 0  0 0 0 0.13 0'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23w1)'/%3E%3C/svg%3E");
-  --paper-weft:url("data:image/svg+xml;charset=utf-8,%3Csvg xmlns='http://www.w3.org/2000/svg' width='260' height='260'%3E%3Cfilter id='w2'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='1.9 0.025' numOctaves='2' stitchTiles='stitch' seed='8'/%3E%3CfeColorMatrix values='0 0 0 0 0  0 0 0 0 0  0 0 0 0 0  0 0 0 0.13 0'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23w2)'/%3E%3C/svg%3E");
-  --paper-tooth:url("data:image/svg+xml;charset=utf-8,%3Csvg xmlns='http://www.w3.org/2000/svg' width='220' height='220'%3E%3Cfilter id='t'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='1.2' numOctaves='2' stitchTiles='stitch' seed='7'/%3E%3CfeColorMatrix values='0 0 0 0 0  0 0 0 0 0  0 0 0 0 0  0 0 0 0.05 0'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23t)'/%3E%3C/svg%3E");
+  --paper-fiber:url("data:image/svg+xml;charset=utf-8,%3Csvg xmlns='http://www.w3.org/2000/svg' width='480' height='480'%3E%3Cfilter id='p'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.55' numOctaves='3' stitchTiles='stitch' seed='4'/%3E%3CfeGaussianBlur stdDeviation='0.4'/%3E%3CfeColorMatrix values='0 0 0 0 0  0 0 0 0 0  0 0 0 0 0  0 0 0 0.09 0'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23p)'/%3E%3C/svg%3E");
+  --paper-tooth:url("data:image/svg+xml;charset=utf-8,%3Csvg xmlns='http://www.w3.org/2000/svg' width='220' height='220'%3E%3Cfilter id='t'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='1.4' numOctaves='2' stitchTiles='stitch' seed='7'/%3E%3CfeColorMatrix values='0 0 0 0 0  0 0 0 0 0  0 0 0 0 0  0 0 0 0.06 0'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23t)'/%3E%3C/svg%3E");
 }
-/* Apply weave to every surface that owns its own background-color. The
-   warp + weft crosshatch reads as woven; the tooth adds matte microtexture. */
 .paper,body,.sec--gold,.sec--blue,.sec--red,.sec--ink2,.marquee{
-  background-image:var(--paper-warp),var(--paper-weft),var(--paper-tooth);
-  background-size:260px 260px,260px 260px,220px 220px;
-  background-repeat:repeat,repeat,repeat;
-  background-blend-mode:multiply,multiply,multiply;
+  background-image:var(--paper-fiber),var(--paper-tooth);
+  background-size:480px 480px,220px 220px;
+  background-repeat:repeat,repeat;
+  background-blend-mode:multiply,multiply;
 }
 img,svg,video{max-width:100%;display:block;}
 button{font-family:inherit;cursor:pointer;}
