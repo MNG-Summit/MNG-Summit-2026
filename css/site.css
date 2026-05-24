@@ -59,6 +59,17 @@ body{
   background-repeat:repeat,repeat;
   background-blend-mode:multiply,multiply;
 }
+
+/* ---------- headline ink-grain (white sections only) ----------
+   SVG turbulence-displacement filter (injected by js/site.js as #text-grain)
+   gives big headlines a hint of rough-printed ink edges, so they feel inked
+   onto paper rather than rendered to a screen. Skipped on colored sections
+   because their backgrounds already carry the paper texture. */
+h1,h2{filter:url(#text-grain);}
+.sec--gold h1,.sec--gold h2,
+.sec--blue h1,.sec--blue h2,
+.sec--red h1,.sec--red h2,
+.sec--ink2 h1,.sec--ink2 h2{filter:none;}
 img,svg,video{max-width:100%;display:block;}
 button{font-family:inherit;cursor:pointer;}
 a{color:inherit;text-decoration:none;}

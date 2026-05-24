@@ -1,5 +1,19 @@
 // MNG Summit — site JS
 (function () {
+  // Inject the SVG turbulence-displacement filter used by .text-grain rules.
+  // Lives in one place so any page that loads site.js picks it up.
+  var grainSvg = document.createElement('div');
+  grainSvg.setAttribute('aria-hidden', 'true');
+  grainSvg.style.cssText = 'position:absolute;width:0;height:0;overflow:hidden';
+  grainSvg.innerHTML =
+    '<svg xmlns="http://www.w3.org/2000/svg">' +
+      '<filter id="text-grain">' +
+        '<feTurbulence type="fractalNoise" baseFrequency="0.75" numOctaves="1" seed="3"/>' +
+        '<feDisplacementMap in="SourceGraphic" scale="0.55"/>' +
+      '</filter>' +
+    '</svg>';
+  document.body.insertBefore(grainSvg, document.body.firstChild);
+
   // Header scroll state
   var header = document.querySelector('.header');
   if (header) {
