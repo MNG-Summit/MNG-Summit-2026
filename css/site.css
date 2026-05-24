@@ -51,7 +51,9 @@ body{
   --paper-fiber:url("data:image/svg+xml;charset=utf-8,%3Csvg xmlns='http://www.w3.org/2000/svg' width='480' height='480'%3E%3Cfilter id='p'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.55' numOctaves='3' stitchTiles='stitch' seed='4'/%3E%3CfeGaussianBlur stdDeviation='0.4'/%3E%3CfeColorMatrix values='0 0 0 0 0  0 0 0 0 0  0 0 0 0 0  0 0 0 0.09 0'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23p)'/%3E%3C/svg%3E");
   --paper-tooth:url("data:image/svg+xml;charset=utf-8,%3Csvg xmlns='http://www.w3.org/2000/svg' width='220' height='220'%3E%3Cfilter id='t'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='1.4' numOctaves='2' stitchTiles='stitch' seed='7'/%3E%3CfeColorMatrix values='0 0 0 0 0  0 0 0 0 0  0 0 0 0 0  0 0 0 0.06 0'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23t)'/%3E%3C/svg%3E");
 }
-.paper,body,.sec--gold,.sec--blue,.sec--red,.sec--ink2,.marquee{
+/* NOTE: body is intentionally NOT in this list — multiply over white
+   reads as 'dirty grey'. White sections stay pure white. */
+.paper,.sec--gold,.sec--blue,.sec--red,.sec--ink2,.marquee{
   background-image:var(--paper-fiber),var(--paper-tooth);
   background-size:480px 480px,220px 220px;
   background-repeat:repeat,repeat;
