@@ -492,11 +492,14 @@ strong,b{font-weight:800;}
   position:relative;
   display:grid;grid-template-columns:repeat(10,1fr);
   align-items:start;
-  padding:0 28px 0 8px;
+  padding:0 28px 0 0;
 }
-/* the line itself — dark for the past, gold for the trajectory to 2026 */
+/* the line itself — dark for the past, gold for the trajectory to 2026.
+   Starts at the FIRST dot's center (calc(--dot/2)) so it never extends
+   to the left of 2014. */
 .timeline-track::before{
-  content:"";position:absolute;left:0;right:0;top:var(--line-y);
+  content:"";position:absolute;
+  left:calc(var(--dot) / 2);right:0;top:var(--line-y);
   height:3px;transform:translateY(-50%);z-index:1;
   background:linear-gradient(to right,var(--ink) 0 86%,var(--gold) 86% 100%);
 }
@@ -511,20 +514,21 @@ strong,b{font-weight:800;}
 }
 .timeline-tick{
   position:relative;z-index:2;
-  display:flex;flex-direction:column;align-items:center;
-  text-align:center;color:var(--ink);padding:0 4px;
+  display:flex;flex-direction:column;align-items:flex-start;
+  text-align:left;color:var(--ink);padding:0;
   transition:transform .35s var(--ease);
 }
 .timeline-tick:hover{transform:translateY(-4px);}
 /* year container fully covers the line so it appears to pass behind the year;
-   text is pushed up by padding-bottom so it sits cleanly above the line. */
+   text is pushed up by padding-bottom so it sits cleanly above the line.
+   Left-aligned: justify-content:flex-start, no left padding. */
 .timeline-year{
   position:relative;z-index:2;
   height:calc(var(--line-y) + 4px);
-  display:flex;align-items:flex-end;justify-content:center;
+  display:flex;align-items:flex-end;justify-content:flex-start;
   font-size:clamp(20px,2.1vw,28px);font-weight:700;letter-spacing:-0.025em;
   line-height:1;color:var(--ink);
-  background:var(--bg);padding:0 8px 16px;
+  background:var(--bg);padding:0 8px 16px 0;
 }
 /* dot is centered ON the line; negative margin pulls it back onto the line
    despite the slightly-taller year box, then translate centers it perfectly. */
