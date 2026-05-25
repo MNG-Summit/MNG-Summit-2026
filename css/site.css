@@ -460,56 +460,105 @@ strong,b{font-weight:800;}
   font-style:italic;letter-spacing:.02em;color:var(--mute);
 }
 
-/* ---------- chapter grid: horizontal timeline in 4 columns ---------- */
-/* 4×3 grid where each cell has its own top border (the timeline line) plus
-   a dot. The 2026 cell spans 3 columns and switches to dark bg + gold dot,
-   giving the row a clear destination. Gaps between cells create rhythm
-   without losing the timeline feel. */
-.chapter-grid{
-  display:grid;grid-template-columns:repeat(4,1fr);
-  gap:48px 24px;
+/* ---------- arc-edition: editorial 5×2 chapter grid ---------- */
+/* Dark-blue section with serif typography. Two-up head (title left, intro
+   right), then a 5-column × 2-row grid of chapters with hairline dividers.
+   Years in italic-leaning serif; cities in tight uppercase sans; notes in
+   italic serif. The 2026 cell switches its year to red. */
+.arc-edition{
+  background-color:#0A1230;
+  background-image:
+    radial-gradient(ellipse at top right,rgba(120,30,90,.22),transparent 60%),
+    radial-gradient(ellipse at bottom left,rgba(20,30,80,.55),transparent 65%);
+  color:var(--paper);
 }
-.chapter-cell{
-  position:relative;
-  display:flex;flex-direction:column;gap:8px;
-  padding-top:22px;
-  color:var(--ink);
-  border-top:1px solid var(--ink);
-  transition:transform .25s var(--ease);
+.arc-edition-head{
+  display:grid;grid-template-columns:1fr 1fr;
+  gap:clamp(40px,5vw,80px);
+  margin-bottom:clamp(56px,7vw,92px);
 }
-.chapter-cell:hover{transform:translateY(-3px);}
-.chapter-year{
-  font-size:clamp(28px,3vw,46px);font-weight:900;
-  letter-spacing:-0.04em;line-height:1;
-  color:var(--blue-d);
+.arc-edition-title{
+  font-family:'Playfair Display',Georgia,serif;
+  font-size:clamp(40px,5.6vw,80px);
+  font-weight:500;line-height:1.04;
+  letter-spacing:-0.01em;
+  text-transform:none;
+  color:var(--paper);
 }
-.chapter-cell:hover .chapter-year{color:var(--ink);}
-.chapter-city{
-  font-size:14px;font-weight:800;letter-spacing:.05em;
-  text-transform:uppercase;
+.arc-edition-title em{
+  font-style:italic;
+  color:var(--gold);
+  font-weight:500;
 }
-.chapter-note{
-  font-size:12.5px;font-weight:500;color:var(--mute);
+.arc-edition-intro{
+  align-self:end;
+  font-size:17px;line-height:1.6;
+  color:rgba(246,243,234,.82);
+  max-width:48ch;
 }
-/* Featured 2026 cell — spans the remaining 3 columns, dark bg, gold accent */
-.chapter-cell--featured{
-  grid-column:span 3;
-  border-top:2px solid var(--gold);
-  background:var(--ink);color:var(--paper);
-  padding:28px 32px 26px;gap:10px;
+.arc-edition-intro strong{color:var(--paper);font-weight:700;}
+.arc-edition-grid{
+  display:grid;grid-template-columns:repeat(5,1fr);
+  border-top:1px solid rgba(246,243,234,.22);
+  border-bottom:1px solid rgba(246,243,234,.22);
 }
-.chapter-cell--featured .chapter-year{color:var(--gold);}
-.chapter-cell--featured:hover .chapter-year{color:var(--gold);}
-.chapter-cell--featured .chapter-city{color:var(--paper);}
-.chapter-cell--featured .chapter-note{color:rgba(246,243,234,.7);}
-.chapter-cell--featured .arrow{display:inline-block;margin-left:6px;}
-@media(max-width:900px){
-  .chapter-grid{grid-template-columns:repeat(2,1fr);gap:40px 20px;}
-  .chapter-cell--featured{grid-column:span 2;padding:24px 22px 22px;}
+.arc-edition-cell{
+  padding:clamp(28px,3vw,42px) clamp(20px,1.8vw,26px);
+  display:flex;flex-direction:column;gap:14px;
+  color:var(--paper);
+  border-left:1px solid rgba(246,243,234,.16);
+  border-bottom:1px solid rgba(246,243,234,.16);
+  transition:background .3s var(--ease);
+  min-height:240px;
 }
-@media(max-width:520px){
-  .chapter-grid{grid-template-columns:1fr;gap:32px;}
-  .chapter-cell--featured{grid-column:span 1;}
+.arc-edition-cell:hover{background:rgba(246,243,234,.04);}
+/* Skip left border on first column of each row */
+.arc-edition-cell:nth-child(5n+1){border-left:none;}
+/* Skip bottom border on the last row (cells 6–10) */
+.arc-edition-cell:nth-last-child(-n+5){border-bottom:none;}
+.arc-edition-year{
+  font-family:'Playfair Display',Georgia,serif;
+  font-size:clamp(34px,3.4vw,52px);
+  font-weight:500;line-height:1;
+  letter-spacing:0;
+  color:var(--gold);
+}
+.arc-edition-city{
+  font-size:13px;font-weight:800;letter-spacing:.08em;
+  text-transform:uppercase;color:var(--paper);
+}
+.arc-edition-note{
+  font-family:'Playfair Display',Georgia,serif;
+  font-style:italic;font-weight:400;
+  font-size:14.5px;line-height:1.5;
+  color:rgba(246,243,234,.7);
+  margin-top:auto;
+}
+/* Future (2026) — red year to call out the destination */
+.arc-edition-cell.is-future .arc-edition-year{color:var(--red);}
+
+@media(max-width:1100px){
+  .arc-edition-grid{grid-template-columns:repeat(3,1fr);}
+  .arc-edition-cell:nth-child(5n+1){border-left:1px solid rgba(246,243,234,.16);}
+  .arc-edition-cell:nth-child(3n+1){border-left:none;}
+  .arc-edition-cell:nth-last-child(-n+5){border-bottom:1px solid rgba(246,243,234,.16);}
+  .arc-edition-cell:nth-last-child(-n+3){border-bottom:none;}
+}
+@media(max-width:760px){
+  .arc-edition-head{grid-template-columns:1fr;}
+  .arc-edition-grid{grid-template-columns:repeat(2,1fr);}
+  .arc-edition-cell{min-height:200px;}
+  .arc-edition-cell:nth-child(3n+1){border-left:1px solid rgba(246,243,234,.16);}
+  .arc-edition-cell:nth-child(2n+1){border-left:none;}
+  .arc-edition-cell:nth-last-child(-n+5){border-bottom:1px solid rgba(246,243,234,.16);}
+  .arc-edition-cell:nth-last-child(-n+2){border-bottom:none;}
+}
+@media(max-width:480px){
+  .arc-edition-grid{grid-template-columns:1fr;}
+  .arc-edition-cell:nth-child(2n+1){border-left:none;}
+  .arc-edition-cell{border-left:none;min-height:0;padding:24px 0;}
+  .arc-edition-cell:nth-last-child(-n+2){border-bottom:1px solid rgba(246,243,234,.16);}
+  .arc-edition-cell:last-child{border-bottom:none;}
 }
 
 /* ---------- archive grid ---------- */
