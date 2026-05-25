@@ -512,6 +512,11 @@ strong,b{font-weight:800;}
 .arc-edition-cell:nth-child(5n+1){border-left:none;}
 /* Skip bottom border on the last row (cells 6–10) */
 .arc-edition-cell:nth-last-child(-n+5){border-bottom:none;}
+.arc-edition-num{
+  font-size:11px;font-weight:700;letter-spacing:.14em;
+  text-transform:uppercase;color:rgba(246,243,234,.42);
+  margin-bottom:-4px;
+}
 .arc-edition-year{
   font-family:var(--sans);
   font-size:clamp(34px,3.4vw,52px);
@@ -532,6 +537,13 @@ strong,b{font-weight:800;}
 }
 /* Future (2026) — red year to call out the destination */
 .arc-edition-cell.is-future .arc-edition-year{color:var(--red);}
+
+/* 3-column variant — used on archive.html for the 9 past summits (3x3 exact) */
+.arc-edition-grid--3{grid-template-columns:repeat(3,1fr);}
+.arc-edition-grid--3 .arc-edition-cell:nth-child(5n+1){border-left:1px solid rgba(246,243,234,.16);}
+.arc-edition-grid--3 .arc-edition-cell:nth-child(3n+1){border-left:none;}
+.arc-edition-grid--3 .arc-edition-cell:nth-last-child(-n+5){border-bottom:1px solid rgba(246,243,234,.16);}
+.arc-edition-grid--3 .arc-edition-cell:nth-last-child(-n+3){border-bottom:none;}
 
 @media(max-width:1100px){
   .arc-edition-grid{grid-template-columns:repeat(3,1fr);}
