@@ -286,9 +286,12 @@ strong,b{font-weight:800;}
   margin-bottom:clamp(38px,5vw,64px);
 }
 .sec-head .tag{margin-bottom:18px;}
-.sec-head h2{max-width:20ch;}
 .sec-head > p{max-width:46ch;margin:0;}
-.sec-head-col{max-width:60ch;}
+/* .sec-head-col: single-column section header. Children stay full-width
+   so big headlines don't wrap into a narrow column; .lead paragraphs
+   underneath self-cap via .lead's own max-width. */
+.sec-head-col{}
+.sec-head-col .lead{max-width:60ch;}
 @media(min-width:900px){
   .sec-head{
     flex-direction:row;justify-content:space-between;
