@@ -1,15 +1,23 @@
 // MNG Summit — site JS
 (function () {
-  // Inject the SVG turbulence-displacement filter used by .text-grain rules.
-  // Lives in one place so any page that loads site.js picks it up.
+  // Inject the SVG ink-grain filter used by headline rules.
+  // Two effects stacked:
+  //  1) feDisplacementMap roughens the text edges (ink bleed)
+  //  2) feComposite punches micro-specks of noise through the letters
+  //     using the noise as a mask, so grain shows INSIDE the letterforms.
   var grainSvg = document.createElement('div');
   grainSvg.setAttribute('aria-hidden', 'true');
   grainSvg.style.cssText = 'position:absolute;width:0;height:0;overflow:hidden';
   grainSvg.innerHTML =
     '<svg xmlns="http://www.w3.org/2000/svg">' +
       '<filter id="text-grain">' +
-        '<feTurbulence type="fractalNoise" baseFrequency="0.75" numOctaves="1" seed="3"/>' +
-        '<feDisplacementMap in="SourceGraphic" scale="0.55"/>' +
+        // Coarser noise for edge roughness — visible at headline scale.
+        '<feTurbulence type="fractalNoise" baseFrequency="0.65" numOctaves="2" seed="3" result="edge"/>' +
+        '<feDisplacementMap in="SourceGraphic" in2="edge" scale="1.6" result="rough"/>' +
+        // Finer noise punched INTO the displaced text to add interior speckle.
+        '<feTurbulence type="fractalNoise" baseFrequency="2.4" numOctaves="1" seed="9" result="speck"/>' +
+        '<feColorMatrix in="speck" values="0 0 0 0 1  0 0 0 0 1  0 0 0 0 1  0 0 0 -1.6 1.4" result="speckMask"/>' +
+        '<feComposite in="rough" in2="speckMask" operator="in"/>' +
       '</filter>' +
     '</svg>';
   document.body.insertBefore(grainSvg, document.body.firstChild);
