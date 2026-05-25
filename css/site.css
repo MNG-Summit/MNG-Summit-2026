@@ -446,6 +446,16 @@ strong,b{font-weight:800;}
   .arc-row{grid-template-columns:auto 1fr;gap:20px;}
   .arc-note{display:none;}
 }
+/* Pandemic pause row — a non-clickable divider in the chapter list */
+.arc-row--pause{
+  grid-template-columns:1fr;justify-items:center;
+  padding:14px 0;pointer-events:none;
+  border-top:1px solid var(--line);
+}
+.arc-row--pause .arc-note{
+  text-align:center;max-width:none;
+  font-style:italic;letter-spacing:.02em;color:var(--mute);
+}
 
 /* ---------- archive grid ---------- */
 .archive-grid{
@@ -476,127 +486,6 @@ strong,b{font-weight:800;}
 .arc-card.is-future:hover .arc-card-theme{color:rgba(16,16,20,.75);}
 @media(max-width:900px){.archive-grid{grid-template-columns:1fr 1fr;}}
 @media(max-width:560px){.archive-grid{grid-template-columns:1fr;}}
-
-/* ---------- horizontal timeline (years across a line) ---------- */
-/* Layout is anchored to one variable: --line-y. The year occupies a fixed
-   slot of that height ending at the line, and the dot sits centered on the
-   line via translateY(-50%). This keeps dot-center == line-center at every
-   viewport size without manual pixel math. */
-.timeline{
-  --line-y:48px;
-  --dot:14px;
-  --dot-future:20px;
-  padding:24px 0 8px;
-}
-.timeline-track{
-  position:relative;
-  display:grid;grid-template-columns:repeat(10,1fr);
-  align-items:start;
-  padding:0 28px 0 0;
-}
-/* the line itself — dark for the past, gold for the trajectory to 2026.
-   Starts at the FIRST dot's center (calc(--dot/2)) so it never extends
-   to the left of 2014. */
-.timeline-track::before{
-  content:"";position:absolute;
-  left:calc(var(--dot) / 2);right:0;top:var(--line-y);
-  height:3px;transform:translateY(-50%);z-index:1;
-  background:linear-gradient(to right,var(--ink) 0 86%,var(--gold) 86% 100%);
-}
-/* arrowhead sitting on the line's centerline */
-.timeline-track::after{
-  content:"";position:absolute;right:0;top:var(--line-y);
-  width:0;height:0;
-  border-top:7px solid transparent;border-bottom:7px solid transparent;
-  border-left:11px solid var(--gold);
-  transform:translateY(-50%);
-  z-index:1;
-}
-.timeline-tick{
-  position:relative;z-index:2;
-  display:flex;flex-direction:column;align-items:flex-start;
-  text-align:left;color:var(--ink);padding:0;
-  transition:transform .35s var(--ease);
-}
-.timeline-tick:hover{transform:translateY(-4px);}
-/* year container fully covers the line so it appears to pass behind the year;
-   text is pushed up by padding-bottom so it sits cleanly above the line.
-   Left-aligned: justify-content:flex-start, no left padding. */
-.timeline-year{
-  position:relative;z-index:2;
-  height:calc(var(--line-y) + 4px);
-  display:flex;align-items:flex-end;justify-content:flex-start;
-  font-size:clamp(20px,2.1vw,28px);font-weight:700;letter-spacing:-0.025em;
-  line-height:1;color:var(--ink);
-  background:var(--bg);padding:0 8px 16px 0;
-}
-/* dot is centered ON the line; negative margin pulls it back onto the line
-   despite the slightly-taller year box, then translate centers it perfectly. */
-.timeline-dot{
-  width:var(--dot);height:var(--dot);border-radius:50%;background:var(--ink);
-  margin-top:-4px;transform:translateY(-50%);
-  box-shadow:0 0 0 5px var(--bg);
-  transition:transform .35s var(--ease),background .25s;
-  position:relative;z-index:3;
-}
-.timeline-tick:hover .timeline-dot{transform:translateY(-50%) scale(1.45);}
-.timeline-city{
-  margin-top:14px;font-size:11px;font-weight:700;letter-spacing:.1em;
-  text-transform:uppercase;color:var(--mute);max-width:118px;line-height:1.4;
-}
-.timeline-tick.is-future .timeline-year{color:var(--gold);font-weight:800;}
-.timeline-tick.is-future .timeline-city{color:var(--ink);font-weight:800;}
-.timeline-tick.is-future .timeline-dot{
-  width:var(--dot-future);height:var(--dot-future);background:var(--gold);
-  box-shadow:0 0 0 5px var(--bg),0 0 0 10px rgba(251,173,24,.22);
-}
-.timeline-tick.is-future:hover .timeline-dot{transform:translateY(-50%) scale(1.25);}
-@media(max-width:760px){
-  .timeline{padding:8px 0;}
-  .timeline-track{
-    display:flex;flex-direction:column;
-    padding:0 0 22px 34px;
-  }
-  /* vertical two-tone line: dark for past, gold for the run-up to 2026 */
-  .timeline-track::before{
-    left:6px;right:auto;top:0;bottom:0;
-    width:4px;height:auto;
-    background:linear-gradient(to bottom,var(--ink) 0 86%,var(--gold) 86% 100%);
-  }
-  /* arrowhead pointing down to 2026 */
-  .timeline-track::after{
-    right:auto;top:auto;bottom:0;left:8px;
-    border-left:9px solid transparent;border-right:9px solid transparent;
-    border-top:14px solid var(--gold);border-bottom:0;
-    transform:translate(-50%,0);
-  }
-  .timeline-tick{
-    flex-direction:row;align-items:center;text-align:left;
-    padding:14px 0;gap:18px;
-  }
-  .timeline-tick:hover{transform:none;}
-  .timeline-tick.is-future{transform:none;}
-  .timeline-tick:hover .timeline-dot{transform:translate(-50%,-50%) scale(1.25);}
-  .timeline-year{
-    width:74px;flex:none;font-size:30px;
-    background:transparent;box-shadow:none;padding:0;
-  }
-  .timeline-dot{
-    position:absolute;left:-28px;top:50%;
-    transform:translate(-50%,-50%);
-    width:16px;height:16px;margin:0;
-    box-shadow:0 0 0 4px var(--bg);
-  }
-  .timeline-tick.is-future .timeline-dot{
-    width:22px;height:22px;margin:0;
-    box-shadow:0 0 0 4px var(--bg),0 0 0 10px rgba(244,176,35,.22);
-  }
-  .timeline-city{
-    flex:1;margin:0;font-size:13px;letter-spacing:.05em;
-    max-width:none;color:var(--ink);
-  }
-  .timeline-tick.is-future .timeline-city{font-weight:900;}
-}
 
 /* ---------- people grid (speakers / team) ---------- */
 .people{display:grid;grid-template-columns:repeat(var(--pcols,4),1fr);gap:16px;}
