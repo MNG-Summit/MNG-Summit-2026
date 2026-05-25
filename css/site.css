@@ -53,7 +53,7 @@ body{
 }
 /* NOTE: body is intentionally NOT in this list — multiply over white
    reads as 'dirty grey'. White sections stay pure white. */
-.paper,.sec--gold,.sec--blue,.sec--red,.sec--ink2,.marquee{
+.paper,.sec--gold,.sec--blue,.sec--red,.sec--ink2,.marquee,.arc-edition{
   background-image:var(--paper-fiber),var(--paper-tooth);
   background-size:480px 480px,220px 220px;
   background-repeat:repeat,repeat;
@@ -466,10 +466,7 @@ strong,b{font-weight:800;}
    Years in italic-leaning serif; cities in tight uppercase sans; notes in
    italic serif. The 2026 cell switches its year to red. */
 .arc-edition{
-  background-color:#0A1230;
-  background-image:
-    radial-gradient(ellipse at top right,rgba(120,30,90,.22),transparent 60%),
-    radial-gradient(ellipse at bottom left,rgba(20,30,80,.55),transparent 65%);
+  background-color:var(--ink);
   color:var(--paper);
 }
 .arc-edition-head{
