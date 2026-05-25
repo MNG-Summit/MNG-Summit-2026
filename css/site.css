@@ -448,13 +448,64 @@ strong,b{font-weight:800;}
 }
 /* Pandemic pause row — a non-clickable divider in the chapter list */
 .arc-row--pause{
-  grid-template-columns:1fr;justify-items:center;
+  grid-template-columns:1fr;justify-items:start;
   padding:14px 0;pointer-events:none;
   border-top:1px solid var(--line);
 }
 .arc-row--pause .arc-note{
-  text-align:center;max-width:none;
+  text-align:left;max-width:none;
   font-style:italic;letter-spacing:.02em;color:var(--mute);
+}
+
+/* ---------- chapters: vertical timeline ---------- */
+/* Two-column grid: a narrow rail on the left that holds the vertical line
+   + dots + arrow, and the wide column on the right holding the .arc-rows.
+   The line is dark for the past summits and transitions to gold for the
+   stretch into 2026; an arrow points down to the future row. */
+.chapters{
+  position:relative;
+  display:grid;grid-template-columns:36px 1fr;
+}
+.chapters::before{
+  content:"";grid-column:1;grid-row:1 / -1;
+  width:3px;justify-self:center;
+  margin:8px 0 28px;
+  background:linear-gradient(to bottom,var(--ink) 0 86%,var(--gold) 86% 100%);
+}
+.chapters::after{
+  content:"";grid-column:1;grid-row:1 / -1;
+  align-self:end;justify-self:center;
+  width:0;height:0;margin-bottom:8px;
+  border-left:7px solid transparent;border-right:7px solid transparent;
+  border-top:11px solid var(--gold);
+}
+.chapters .arc-row{
+  grid-column:2;position:relative;
+  border-top:1px solid var(--line);
+}
+.chapters .arc-row:last-child{border-bottom:none;}
+/* dot for each chapter, anchored to the vertical line on the left */
+.chapters .arc-row::before{
+  content:"";position:absolute;
+  left:-18px;top:50%;
+  width:14px;height:14px;border-radius:50%;
+  background:var(--ink);
+  transform:translate(-50%,-50%);
+  box-shadow:0 0 0 5px var(--bg);
+  z-index:2;
+  transition:transform .25s var(--ease),background .25s,box-shadow .25s;
+}
+.chapters .arc-row:hover::before{transform:translate(-50%,-50%) scale(1.4);}
+.chapters .arc-row.is-future::before{
+  width:20px;height:20px;background:var(--gold);
+  box-shadow:0 0 0 5px var(--bg),0 0 0 10px rgba(251,173,24,.22);
+}
+.chapters .arc-row--pause::before{display:none;}
+@media(max-width:680px){
+  .chapters{grid-template-columns:28px 1fr;}
+  .chapters::before{margin:6px 0 24px;}
+  .chapters .arc-row::before{width:11px;height:11px;left:-14px;}
+  .chapters .arc-row.is-future::before{width:15px;height:15px;}
 }
 
 /* ---------- archive grid ---------- */
