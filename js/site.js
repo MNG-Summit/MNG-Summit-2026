@@ -1,130 +1,223 @@
-// MNG Summit — site JS
+// MNG Summit · Experiment build · App-shell JS
 (function () {
-  // Inject the SVG ink-grain filter used by headline rules.
-  // Just a soft turbulence + tiny displacement — gives the text a barely-
-  // there hand-printed edge without punching interior holes. Subtle.
-  var grainSvg = document.createElement('div');
-  grainSvg.setAttribute('aria-hidden', 'true');
-  grainSvg.style.cssText = 'position:absolute;width:0;height:0;overflow:hidden';
-  grainSvg.innerHTML =
-    '<svg xmlns="http://www.w3.org/2000/svg">' +
-      '<filter id="text-grain">' +
-        '<feTurbulence type="fractalNoise" baseFrequency="0.95" numOctaves="2" seed="3"/>' +
-        '<feDisplacementMap in="SourceGraphic" scale="0.7"/>' +
-      '</filter>' +
-    '</svg>';
-  document.body.insertBefore(grainSvg, document.body.firstChild);
 
-  // Header scroll state
-  var header = document.querySelector('.header');
-  if (header) {
-    var onScroll = function () {
-      header.classList.toggle('is-scrolled', window.scrollY > 24);
-    };
-    window.addEventListener('scroll', onScroll, { passive: true });
-    onScroll();
-  }
-
-  // Mobile nav toggle
-  var toggle = document.querySelector('.nav-toggle');
-  var navList = document.querySelector('.nav-list');
-  if (toggle && navList) {
-    toggle.addEventListener('click', function () {
-      var open = navList.classList.toggle('is-open');
-      toggle.textContent = open ? 'Close' : 'Menu';
-      toggle.setAttribute('aria-expanded', open ? 'true' : 'false');
-    });
-    navList.addEventListener('click', function (e) {
-      if (e.target.tagName === 'A') {
-        navList.classList.remove('is-open');
-        toggle.textContent = 'Menu';
-      }
-    });
-  }
-
-  // Reveal on scroll
-  var reveals = document.querySelectorAll('[data-rev]');
-  if ('IntersectionObserver' in window) {
-    var io = new IntersectionObserver(
-      function (entries) {
-        entries.forEach(function (e) {
-          if (e.isIntersecting) {
-            e.target.classList.add('is-in');
-            io.unobserve(e.target);
-          }
-        });
-      },
-      { threshold: 0.12, rootMargin: '0px 0px -40px 0px' }
-    );
-    reveals.forEach(function (el) { io.observe(el); });
-  } else {
-    reveals.forEach(function (el) { el.classList.add('is-in'); });
-  }
-
-  // Countdown to Oct 11, 2026
-  var cd = document.querySelector('[data-countdown]');
-  if (cd) {
-    var target = new Date('2026-10-11T09:00:00-04:00').getTime();
+  // ---------- countdown (compact: days only) ----------
+  var dayTargets = document.querySelectorAll('[data-countdown-days]');
+  if (dayTargets.length) {
+    var target = new Date('2026-10-09T09:00:00-04:00').getTime();
     var update = function () {
       var diff = Math.max(0, target - Date.now());
       var d = Math.floor(diff / 86400000);
-      var h = Math.floor((diff % 86400000) / 3600000);
-      var m = Math.floor((diff % 3600000) / 60000);
-      cd.querySelectorAll('[data-cd-d]').forEach(function (n) { n.textContent = String(d); });
-      cd.querySelectorAll('[data-cd-h]').forEach(function (n) { n.textContent = String(h).padStart(2, '0'); });
-      cd.querySelectorAll('[data-cd-m]').forEach(function (n) { n.textContent = String(m).padStart(2, '0'); });
+      dayTargets.forEach(function (n) { n.textContent = String(d); });
     };
     update();
-    setInterval(update, 30000);
+    setInterval(update, 60000);
   }
 
-  // Multi-step intake wizard
-  document.querySelectorAll('[data-intake]').forEach(function (form) {
-    var steps = Array.prototype.slice.call(form.querySelectorAll('.intake-step'));
-    var bars = form.querySelectorAll('.intake-bar span');
-    var done = form.querySelector('.intake-done');
-    var i = 0;
-    var render = function () {
-      steps.forEach(function (s, n) { s.classList.toggle('is-active', n === i); });
-      bars.forEach(function (b, n) { b.classList.toggle('is-done', n <= i); });
-      var back = steps[i].querySelector('.intake-back');
-      if (back) back.classList.toggle('is-hidden', i === 0);
-      var f = steps[i].querySelector('input, select, textarea');
-      if (f) setTimeout(function () { f.focus(); }, 60);
-    };
-    form.addEventListener('click', function (e) {
-      if (e.target.closest('[data-next]')) {
-        var f = steps[i].querySelector('input[required], textarea[required]');
-        if (f && !f.value.trim()) { f.focus(); f.style.borderBottomColor = '#E0243B'; return; }
-        if (i < steps.length - 1) { i++; render(); }
-      } else if (e.target.closest('[data-back]') && i > 0) {
-        i--; render();
-      }
-    });
-    form.addEventListener('input', function (e) {
-      e.target.style.borderBottomColor = '';
-    });
-    form.addEventListener('submit', function (e) {
-      e.preventDefault();
-      var finish = function () {
-        if (!done) return;
-        var bar = form.querySelector('.intake-bar');
-        if (bar) bar.style.display = 'none';
-        steps.forEach(function (s) { s.classList.remove('is-active'); });
-        done.classList.add('is-active');
-      };
-      var payload = { form: form.getAttribute('data-intake') || 'application' };
-      form.querySelectorAll('input, select, textarea').forEach(function (f) {
-        if (f.id) payload[f.id] = f.value;
+  // ---------- day tabs (schedule view) ----------
+  var dayTabs = document.querySelectorAll('.day-tab');
+  var schedules = document.querySelectorAll('[data-schedule]');
+  if (dayTabs.length && schedules.length) {
+    dayTabs.forEach(function (tab) {
+      tab.addEventListener('click', function () {
+        var day = tab.getAttribute('data-day');
+        dayTabs.forEach(function (t) { t.classList.toggle('is-active', t === tab); });
+        schedules.forEach(function (s) {
+          if (s.getAttribute('data-schedule') === day) s.removeAttribute('hidden');
+          else s.setAttribute('hidden', '');
+        });
       });
-      var submit = form.querySelector('[type="submit"]');
-      if (submit) submit.disabled = true;
-      fetch('/.netlify/functions/apply', {
-        method: 'POST',
-        headers: { 'Content-Type': 'application/json' },
-        body: JSON.stringify(payload)
-      }).then(finish, finish);
     });
-    render();
+  }
+
+  // ---------- filter chips (track filter) ----------
+  // Helper: hide a session AND the .schedule-time label immediately before it
+  // (otherwise the grid auto-flow pulls leftover time labels into the session column).
+  var setSessionVisible = function (s, show) {
+    s.style.display = show ? '' : 'none';
+    var prev = s.previousElementSibling;
+    if (prev && prev.classList.contains('schedule-time')) {
+      prev.style.display = show ? '' : 'none';
+    }
+  };
+
+  var chips = document.querySelectorAll('.app-filterbar .chip');
+  var sessions = document.querySelectorAll('.session');
+  if (chips.length) {
+    chips.forEach(function (chip) {
+      chip.addEventListener('click', function () {
+        var track = chip.getAttribute('data-track');
+        chips.forEach(function (c) { c.classList.toggle('is-on', c === chip); });
+        sessions.forEach(function (s) {
+          setSessionVisible(s, track === 'all' || s.classList.contains(track));
+        });
+      });
+    });
+  }
+
+  // ---------- search (live filter sessions) ----------
+  var searchInput = document.getElementById('schedule-search');
+  if (searchInput) {
+    searchInput.addEventListener('input', function () {
+      var q = searchInput.value.trim().toLowerCase();
+      sessions.forEach(function (s) {
+        if (!q) { setSessionVisible(s, true); return; }
+        var hay = s.textContent.toLowerCase();
+        setSessionVisible(s, hay.indexOf(q) > -1);
+      });
+    });
+  }
+
+  // ---------- drawer (session detail) ----------
+  var drawer = document.getElementById('drawer');
+  var scrim = document.getElementById('drawer-scrim');
+  var closeBtn = document.getElementById('drawer-close');
+  var drawerTop = document.getElementById('drawer-top');
+  var drawerTitle = document.getElementById('drawer-title');
+  var drawerMeta = document.getElementById('drawer-meta');
+  var drawerBody = document.getElementById('drawer-body');
+
+  var openDrawer = function (data) {
+    if (!drawer) return;
+    drawerTop.textContent = data.track || 'Session';
+    drawerTitle.textContent = data.title || '';
+    drawerMeta.innerHTML = '';
+    (data.meta || []).forEach(function (pair) {
+      var dt = document.createElement('dt'); dt.textContent = pair[0];
+      var dd = document.createElement('dd'); dd.textContent = pair[1];
+      drawerMeta.appendChild(dt); drawerMeta.appendChild(dd);
+    });
+    drawerBody.innerHTML = data.body || '';
+    drawer.classList.add('is-open');
+    scrim.classList.add('is-open');
+    drawer.setAttribute('aria-hidden', 'false');
+    document.body.style.overflow = 'hidden';
+  };
+  var closeDrawer = function () {
+    if (!drawer) return;
+    drawer.classList.remove('is-open');
+    scrim.classList.remove('is-open');
+    drawer.setAttribute('aria-hidden', 'true');
+    document.body.style.overflow = '';
+  };
+  if (scrim) scrim.addEventListener('click', closeDrawer);
+  if (closeBtn) closeBtn.addEventListener('click', closeDrawer);
+  document.addEventListener('keydown', function (e) {
+    if (e.key === 'Escape') closeDrawer();
   });
+
+  // Wire sessions to the drawer
+  sessions.forEach(function (s) {
+    s.addEventListener('click', function (e) {
+      e.preventDefault();
+      var title = s.querySelector('.session-title') ? s.querySelector('.session-title').textContent.trim() : '';
+      var track = s.querySelector('.session-track') ? s.querySelector('.session-track').textContent.trim() : 'Session';
+      var time = s.querySelector('.session-top span:last-child') ? s.querySelector('.session-top span:last-child').textContent.trim() : '';
+      var speakers = s.querySelector('.session-speakers') ? s.querySelector('.session-speakers').innerHTML : '';
+      var metaSpans = s.querySelectorAll('.session-meta span');
+      var meta = [['Time', time]];
+      metaSpans.forEach(function (m, i) {
+        meta.push([i === 0 ? 'Venue / Format' : 'Notes', m.textContent.trim()]);
+      });
+      openDrawer({
+        track: track,
+        title: title,
+        meta: meta,
+        body: '<p>' + speakers + '</p><p style="color:var(--mute);font-size:13px;margin-top:18px;">Full speaker list and read-ahead materials will publish closer to the event. Join the early list to be notified.</p>'
+      });
+    });
+  });
+
+  // ---------- modal popup (intake forms) ----------
+  var mScrim = document.getElementById('modal-scrim');
+  var mModal = document.getElementById('involve-modal');
+  if (mScrim && mModal) {
+    var mClose = document.getElementById('modal-close');
+    var mContents = mModal.querySelectorAll('.modal-content');
+
+    var openModal = function (name) {
+      mContents.forEach(function (c) {
+        c.hidden = c.getAttribute('data-content') !== name;
+      });
+      mModal.classList.add('is-open');
+      mModal.setAttribute('aria-hidden', 'false');
+      mScrim.classList.add('is-open');
+      document.body.style.overflow = 'hidden';
+      var first = mModal.querySelector('.modal-content:not([hidden]) input, .modal-content:not([hidden]) select, .modal-content:not([hidden]) textarea');
+      if (first) setTimeout(function () { first.focus(); }, 150);
+    };
+
+    var closeModal = function () {
+      mModal.classList.remove('is-open');
+      mModal.setAttribute('aria-hidden', 'true');
+      mScrim.classList.remove('is-open');
+      document.body.style.overflow = '';
+    };
+
+    document.querySelectorAll('[data-modal]').forEach(function (el) {
+      el.addEventListener('click', function (e) {
+        e.preventDefault();
+        openModal(el.getAttribute('data-modal'));
+      });
+    });
+
+    if (mClose) mClose.addEventListener('click', closeModal);
+    mScrim.addEventListener('click', closeModal);
+    document.addEventListener('keydown', function (e) {
+      if (e.key === 'Escape' && mModal.classList.contains('is-open')) closeModal();
+    });
+
+    // Form submissions → pre-filled mailto so user reviews + sends from their own client
+    mModal.querySelectorAll('.modal-form').forEach(function (form) {
+      form.addEventListener('submit', function (e) {
+        e.preventDefault();
+        var subject = form.getAttribute('data-subject') || 'MNG Summit inquiry';
+        var parts = [];
+        var data = new FormData(form);
+        data.forEach(function (value, key) {
+          if (!value) return;
+          var label = key.charAt(0).toUpperCase() + key.slice(1).replace(/_/g, ' ');
+          parts.push(label + ':\n' + value);
+        });
+        var body = parts.join('\n\n') + '\n\n— Sent via mngsummit.org';
+        var href = 'mailto:contact@mngsummit.org?subject=' + encodeURIComponent(subject) + '&body=' + encodeURIComponent(body);
+        window.location.href = href;
+      });
+    });
+  }
+
+  // ---------- footer newsletter: enable submit when input has a valid-looking value ----------
+  var nlForm = document.getElementById('footer-newsletter');
+  if (nlForm) {
+    var nlInput = nlForm.querySelector('input[type="email"]');
+    var nlBtn = nlForm.querySelector('.l-footer-newsletter-btn');
+    if (nlInput && nlBtn) {
+      var update = function () {
+        var v = nlInput.value.trim();
+        nlBtn.disabled = !(v.length > 3 && v.indexOf('@') > 0 && v.indexOf('.') > -1);
+      };
+      nlInput.addEventListener('input', update);
+      update();
+    }
+  }
+
+  // ---------- mobile nav toggle ----------
+  var navToggle = document.querySelector('.app-nav-toggle');
+  var navLinks = document.querySelector('.app-nav-links');
+  if (navToggle && navLinks) {
+    navToggle.addEventListener('click', function () {
+      var open = navLinks.style.display === 'flex';
+      navLinks.style.display = open ? '' : 'flex';
+      navLinks.style.position = open ? '' : 'absolute';
+      navLinks.style.top = open ? '' : 'var(--nav-h)';
+      navLinks.style.left = open ? '' : '0';
+      navLinks.style.right = open ? '' : '0';
+      navLinks.style.flexDirection = open ? '' : 'column';
+      navLinks.style.background = open ? '' : 'var(--bg)';
+      navLinks.style.borderBottom = open ? '' : '1px solid var(--line)';
+      navLinks.style.padding = open ? '' : '16px var(--pad)';
+      navLinks.style.gap = open ? '' : '0';
+    });
+  }
+
 })();

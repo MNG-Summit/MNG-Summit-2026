@@ -1,0 +1,709 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1" />
+<title>Speakers directory · MNG Summit</title>
+<meta name="description" content="Every speaker who has taken the MNG Summit stage from 2014 to 2024. Search, filter by year and track, browse alphabetically." />
+<link rel="preconnect" href="https://fonts.googleapis.com" />
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+<link href="https://fonts.googleapis.com/css2?family=Montserrat:ital,wght@0,400;0,500;0,600;0,700;0,800;0,900;1,500;1,700;1,900&display=swap" rel="stylesheet" />
+<link rel="stylesheet" href="css/site.css?v=exp13" />
+<link rel="icon" type="image/x-icon" href="assets/favicons/favicon.ico" />
+<meta name="theme-color" content="#FFFFFF" />
+</head>
+<body class="page-light">
+
+<header class="app-nav">
+  <div class="app-nav-tier1">
+    <a href="index.html" class="app-nav-logo"><img src="assets/mng-summit-logo-white.png" alt="MNG Summit" class="app-nav-logo-full" /></a>
+    <div class="app-nav-sponsor"><span>VOLUNTEER-RUN</span> · <b>501(C)(3)</b></div>
+    <div class="app-nav-right">
+      <a href="mailto:contact@mngsummit.org?subject=Add%20me%20to%20the%20MNG%20Summit%202026%20early%20list" class="app-nav-pill app-nav-pill--hot">Join early list</a>
+      <a href="schedule.html" class="app-nav-pill app-nav-pill--ghost">Schedule</a>
+      <button class="app-nav-pill app-nav-pill--icon" aria-label="Search">⌕</button>
+      <button class="app-nav-toggle" aria-label="Menu">≡</button>
+    </div>
+  </div>
+  <div class="app-nav-tier2">
+    <nav class="app-nav-links">
+      <a href="index.html" class="app-nav-link">Home</a>
+      <a href="summit-2026.html" class="app-nav-link">Summit 2026 <span class="app-nav-link-arrow">▾</span></a>
+      <a href="programs.html" class="app-nav-link">Programs <span class="app-nav-link-arrow">▾</span></a>
+      <a href="archive.html" class="app-nav-link is-active">Archive</a>
+      <a href="about.html" class="app-nav-link">About</a>
+      <a href="sponsor.html" class="app-nav-link">Partner</a>
+      <a href="get-involved.html" class="app-nav-link">Get involved</a>
+    </nav>
+    <div class="app-nav-when">
+      <span>Oct 9–11, 2026</span>
+      <span class="sep">|</span>
+      <span>New York City</span>
+    </div>
+  </div>
+</header>
+
+<section class="page-head">
+  <div class="page-head-eyebrow"><a href="archive.html" style="color:#1A3B8B;">← Archive</a> · The directory</div>
+  <h1 class="page-head-title">Speakers.</h1>
+  <p class="page-head-lead">Every name who has taken the MNG Summit stage from <b>2014 Chicago</b> to <b>2024 San Francisco</b>. Search by name or company, filter by year or track, jump by letter. People who returned across multiple summits live in one consolidated profile.</p>
+</section>
+
+<!-- TOOLBAR · search + filters -->
+<div class="directory-toolbar">
+  <label class="directory-search">
+    <span class="directory-search-ico" aria-hidden="true">⌕</span>
+    <input type="search" id="speaker-search" placeholder="Search by name, company, or topic" />
+  </label>
+  <div class="directory-filters" id="speaker-filters">
+    <button class="chip" data-role="all">All</button>
+    <button class="chip is-on" data-role="keynote">Keynote</button>
+    <button class="chip" data-role="panel">Panel</button>
+    <button class="chip" data-role="workshop">Workshop</button>
+    <button class="chip" data-role="nhub">NHUB / Open Mic</button>
+    <label class="directory-year-wrap">
+      <span class="directory-year-label">Year</span>
+      <select id="speaker-year" class="directory-year-select">
+        <option value="all">All years</option>
+        <option value="2024">2024</option>
+        <option value="2023">2023</option>
+        <option value="2022">2022</option>
+        <option value="2019">2019</option>
+        <option value="2018">2018</option>
+        <option value="2017">2017</option>
+        <option value="2016">2016</option>
+        <option value="2014">2014</option>
+      </select>
+    </label>
+  </div>
+</div>
+
+<!-- SPEAKER GRID · keynotes float to the top via JS -->
+<div id="speaker-list">
+
+  <section class="speaker-grid">
+    <a href="#" class="speaker-card" id="altantsetseg-batsaikhan" data-name="Altantsetseg Batsaikhan" data-years="2017" data-tracks="tour" data-company="Amazon">
+      <div class="speaker-photo speaker-photo--cyan">A</div>
+      <div class="speaker-name">Altantsetseg Batsaikhan</div>
+      <div class="speaker-role">Amazon · Mongolian network. Co-led the Saturday tour.</div>
+      <div class="speaker-tags"><span class="is-year">2017</span><span class="is-track">Tour</span></div>
+    </a>
+    <a href="#" class="speaker-card" id="amarbayar-amarsanaa" data-name="Amarbayar Amarsanaa" data-years="2017,2019" data-tracks="tour,panel" data-company="GitLab Amazon">
+      <div class="speaker-photo speaker-photo--cyan">A</div>
+      <div class="speaker-name">Amarbayar Amarsanaa</div>
+      <div class="speaker-role">Senior SRE, GitLab · prev. Amazon. Career talk on top Mongolian companies.</div>
+      <div class="speaker-tags"><span class="is-year">2017</span><span class="is-year">2019</span><span class="is-track">Panel</span></div>
+    </a>
+    <a href="#" class="speaker-card" id="amarlin-anand" data-name="Amarlin Anand" data-years="2024" data-tracks="panel" data-company="TikTok">
+      <div class="speaker-photo speaker-photo--yellow">A</div>
+      <div class="speaker-name">Amarlin Anand</div>
+      <div class="speaker-role">Seller & Governance Specialist, TikTok. Moderator · Lead the Journey panel.</div>
+      <div class="speaker-tags"><span class="is-year">2024</span><span class="is-track">Panel</span></div>
+    </a>
+    <a href="#" class="speaker-card" id="anar-chinbaatar" data-name="Anar Chinbaatar" data-years="2022" data-tracks="talk" data-company="Mongolian IT">
+      <div class="speaker-photo speaker-photo--orange">A</div>
+      <div class="speaker-name">Anar Chinbaatar</div>
+      <div class="speaker-role">Mongolian IT industry leader · firewalls + mobile-network infra. Founder, 2016.</div>
+      <div class="speaker-tags"><span class="is-year">2022</span><span class="is-track">Talk</span></div>
+    </a>
+    <a href="#" class="speaker-card" id="ariunzayat-yunren" data-name="Ariunzayat Yunren" data-years="2024" data-tracks="nhub" data-company="esportsnews.mn">
+      <div class="speaker-photo speaker-photo--lilac">A</div>
+      <div class="speaker-name">Ariunzayat Yunren</div>
+      <div class="speaker-role">Founder & CEO, esportsnews.mn. Open Mic · Day 1.</div>
+      <div class="speaker-tags"><span class="is-year">2024</span><span class="is-track">Open Mic</span></div>
+    </a>
+    <a href="#" class="speaker-card" id="azjargal-tsogtsaikhan" data-name="Azjargal Tsogtsaikhan" data-years="2024" data-tracks="panel" data-company="Breathe Mongolia">
+      <div class="speaker-photo speaker-photo--green">A</div>
+      <div class="speaker-name">Azjargal Tsogtsaikhan</div>
+      <div class="speaker-role">Founder & CEO, Breathe Mongolia. Panelist · Future of Sustainability.</div>
+      <div class="speaker-tags"><span class="is-year">2024</span><span class="is-track">Panel</span></div>
+    </a>
+    <a href="#" class="speaker-card" id="b-belgutei" data-name="B. Belgutei" data-years="2016" data-tracks="panel" data-company="Youth Employment Central Bureau">
+      <div class="speaker-photo speaker-photo--cream">B</div>
+      <div class="speaker-name">B. Belgutei</div>
+      <div class="speaker-role">Director, Youth Employment Central Bureau. Panelist · Employment in Mongolia.</div>
+      <div class="speaker-tags"><span class="is-year">2016</span><span class="is-track">Panel</span></div>
+    </a>
+    <a href="#" class="speaker-card" id="badmaa-purevjav" data-name="Badmaa Purevjav" data-years="2023,2024" data-tracks="panel" data-company="PwC Chicago">
+      <div class="speaker-photo speaker-photo--lilac">B</div>
+      <div class="speaker-name">Badmaa Purevjav</div>
+      <div class="speaker-role">CPA · Assurance Manager, PwC Chicago. Panelist (2023) · Panel moderator (2024).</div>
+      <div class="speaker-tags"><span class="is-year">2023</span><span class="is-year">2024</span><span class="is-track">Panel</span></div>
+    </a>
+    <a href="#" class="speaker-card" id="badmaasambuu-tsendayush" data-name="Badmaasambuu Tsendayush" data-years="2024" data-tracks="nhub" data-company="Vivi">
+      <div class="speaker-photo speaker-photo--cyan">B</div>
+      <div class="speaker-name">Badmaasambuu Tsendayush</div>
+      <div class="speaker-role">Financial Controller, Vivi. Open Mic · Day 2.</div>
+      <div class="speaker-tags"><span class="is-year">2024</span><span class="is-track">Open Mic</span></div>
+    </a>
+    <a href="#" class="speaker-card" id="baigalmaa-chinbat" data-name="Baigalmaa Chinbat" data-years="2024" data-tracks="panel" data-company="UC Davis Humphrey Fellow / Clean Energy LLC">
+      <div class="speaker-photo speaker-photo--green">B</div>
+      <div class="speaker-name">Baigalmaa Chinbat</div>
+      <div class="speaker-role">Hubert H. Humphrey Fellow, UC Davis · Head of Finance, Clean Energy LLC.</div>
+      <div class="speaker-tags"><span class="is-year">2024</span><span class="is-track">Panel</span></div>
+    </a>
+    <a href="#" class="speaker-card" id="batchimeg-ganbaatar" data-name="Batchimeg Ganbaatar" data-years="2014,2019,2024" data-tracks="welcome,workshop,panel" data-company="Nomadic Venture Partners">
+      <div class="speaker-photo speaker-photo--cyan">B</div>
+      <div class="speaker-name">Batchimeg Ganbaatar</div>
+      <div class="speaker-role">Co-Founder & Managing Partner, Nomadic Venture Partners · Board Chair, MNG Summit. Three appearances · announced MNG Hub for the first time in 2019.</div>
+      <div class="speaker-tags"><span class="is-year">2014</span><span class="is-year">2019</span><span class="is-year">2024</span><span class="is-track">Welcome</span></div>
+    </a>
+    <a href="#" class="speaker-card" id="batkhaan-namshir" data-name="Batkhaan Namshir" data-years="2019" data-tracks="panel" data-company="Microsoft">
+      <div class="speaker-photo speaker-photo--yellow">B</div>
+      <div class="speaker-name">Batkhaan Namshir</div>
+      <div class="speaker-role">International Trade Analyst, Microsoft. Career talk · Top US companies.</div>
+      <div class="speaker-tags"><span class="is-year">2019</span><span class="is-track">Talk</span></div>
+    </a>
+    <a href="#" class="speaker-card" id="batkhuyag-batsaikhan" data-name="Batkhuyag Batsaikhan" data-years="2017" data-tracks="tour" data-company="Google">
+      <div class="speaker-photo speaker-photo--orange">B</div>
+      <div class="speaker-name">Batkhuyag Batsaikhan</div>
+      <div class="speaker-role">Google · Fremont office host. Saturday campus tour.</div>
+      <div class="speaker-tags"><span class="is-year">2017</span><span class="is-track">Tour</span></div>
+    </a>
+    <a href="#" class="speaker-card" id="batsoyombo-ts" data-name="Batsoyombo Ts." data-years="2024" data-tracks="nhub" data-company="Bay Area Mongolian Community Association">
+      <div class="speaker-photo speaker-photo--lilac">B</div>
+      <div class="speaker-name">Batsoyombo Ts.</div>
+      <div class="speaker-role">President, Bay Area Mongolian Community Association. Open Mic · Day 2.</div>
+      <div class="speaker-tags"><span class="is-year">2024</span><span class="is-track">Open Mic</span></div>
+    </a>
+    <a href="#" class="speaker-card" id="bayarjargal-chogsom" data-name="Bayarjargal Chogsom" data-years="2019" data-tracks="performance" data-company="">
+      <div class="speaker-photo speaker-photo--cyan">B</div>
+      <div class="speaker-name">Bayarjargal Chogsom</div>
+      <div class="speaker-role">Morin Khuur performance · Mongolian national anthem.</div>
+      <div class="speaker-tags"><span class="is-year">2019</span><span class="is-track">Performance</span></div>
+    </a>
+    <a href="#" class="speaker-card" id="bil-g" data-name="Bil G" data-years="2019" data-tracks="workshop" data-company="">
+      <div class="speaker-photo speaker-photo--cream">B</div>
+      <div class="speaker-name">Bil G</div>
+      <div class="speaker-role">Beatmaker & Social Media Manager. Workshop facilitator.</div>
+      <div class="speaker-tags"><span class="is-year">2019</span><span class="is-track">Workshop</span></div>
+    </a>
+    <a href="#" class="speaker-card" id="bold-baatar" data-name="Bold Baatar" data-years="2024" data-tracks="keynote,welcome" data-company="Rio Tinto">
+      <div class="speaker-photo speaker-photo--yellow">B</div>
+      <div class="speaker-name">Bold Baatar</div>
+      <div class="speaker-role">CE Copper · Member of the Executive Committee, Rio Tinto. Virtual address.</div>
+      <div class="speaker-tags"><span class="is-year">2024</span><span class="is-track">Keynote</span></div>
+    </a>
+    <a href="#" class="speaker-card" id="bolormaa-tumurbat" data-name="Bolormaa Tumurbat" data-years="2014" data-tracks="founding" data-company="MNG Summit">
+      <div class="speaker-photo speaker-photo--cyan">B</div>
+      <div class="speaker-name">Bolormaa Tumurbat</div>
+      <div class="speaker-role">Founding board member, with MNG Summit since its inception.</div>
+      <div class="speaker-tags"><span class="is-year">2014</span><span class="is-track">Founding</span></div>
+    </a>
+    <a href="#" class="speaker-card" id="bulgan-khaltar" data-name="Bulgan Khaltar" data-years="2024" data-tracks="panel" data-company="Arcadis">
+      <div class="speaker-photo speaker-photo--yellow">B</div>
+      <div class="speaker-name">Bulgan Khaltar</div>
+      <div class="speaker-role">Management Consultant, Arcadis. Panelist · Future of Sustainability.</div>
+      <div class="speaker-tags"><span class="is-year">2024</span><span class="is-track">Panel</span></div>
+    </a>
+    <a href="#" class="speaker-card" id="d-khulan" data-name="D. Khulan" data-years="2016,2018" data-tracks="keynote" data-company="Lhamour · Natural Essentials">
+      <div class="speaker-photo speaker-photo--blue">D</div>
+      <div class="speaker-name">D. Khulan</div>
+      <div class="speaker-role">Founder, Lhamour · Director, Natural Essentials LLC. Beamed in live from Ulaanbaatar across a 14-hour time difference.</div>
+      <div class="speaker-tags"><span class="is-year">2016</span><span class="is-year">2018</span><span class="is-track">Keynote</span></div>
+    </a>
+    <a href="#" class="speaker-card" id="dj-beme" data-name="DJ BEME" data-years="2024" data-tracks="closing" data-company="">
+      <div class="speaker-photo speaker-photo--yellow">D</div>
+      <div class="speaker-name">DJ BEME</div>
+      <div class="speaker-role">10th Anniversary gala headliner · Dark techno × Mongolian fusion.</div>
+      <div class="speaker-tags"><span class="is-year">2024</span><span class="is-track">Closing</span></div>
+    </a>
+    <a href="#" class="speaker-card" id="duka-baatarchuluun" data-name="Duka Baatarchuluun" data-years="2019" data-tracks="talk" data-company="DB Associates LTD.">
+      <div class="speaker-photo speaker-photo--lilac">D</div>
+      <div class="speaker-name">Duka Baatarchuluun</div>
+      <div class="speaker-role">Immigration Attorney, DB Associates LTD. "Life Post-F1" Q&A.</div>
+      <div class="speaker-tags"><span class="is-year">2019</span><span class="is-track">Talk</span></div>
+    </a>
+    <a href="#" class="speaker-card" id="e-bolormaa" data-name="E. Bolormaa" data-years="2017" data-tracks="panel" data-company="World Bank">
+      <div class="speaker-photo speaker-photo--cyan">E</div>
+      <div class="speaker-name">E. Bolormaa</div>
+      <div class="speaker-role">World Bank, Climate Change Department. MA Int'l Relations & Econ, GWU.</div>
+      <div class="speaker-tags"><span class="is-year">2017</span><span class="is-track">Panel</span></div>
+    </a>
+    <a href="#" class="speaker-card" id="e-khongor" data-name="E. Khongor" data-years="2016" data-tracks="tour" data-company="Facebook">
+      <div class="speaker-photo speaker-photo--cream">E</div>
+      <div class="speaker-name">E. Khongor</div>
+      <div class="speaker-role">Software Engineer, Facebook. Menlo Park campus tour.</div>
+      <div class="speaker-tags"><span class="is-year">2016</span><span class="is-track">Tour</span></div>
+    </a>
+    <a href="#" class="speaker-card" id="e-saruul" data-name="E. Saruul" data-years="2016" data-tracks="nhub" data-company="Indiana University">
+      <div class="speaker-photo speaker-photo--cyan">E</div>
+      <div class="speaker-name">E. Saruul</div>
+      <div class="speaker-role">Indiana University. NHUB 6th edition winner · 191/200 points.</div>
+      <div class="speaker-tags"><span class="is-year">2016</span><span class="is-track">NHUB</span></div>
+    </a>
+    <a href="#" class="speaker-card" id="enkhhuslen-baterdene" data-name="Enkhhuslen Baterdene" data-years="2024" data-tracks="nhub" data-company="Duke University">
+      <div class="speaker-photo speaker-photo--orange">E</div>
+      <div class="speaker-name">Enkhhuslen Baterdene</div>
+      <div class="speaker-role">Public Policy, Duke University. Open Mic · Day 2.</div>
+      <div class="speaker-tags"><span class="is-year">2024</span><span class="is-track">Open Mic</span></div>
+    </a>
+    <a href="#" class="speaker-card" id="enkhtaivan-oyunbazar" data-name="Enkhtaivan Oyunbazar" data-years="2019" data-tracks="panel" data-company="GlobeTax Services">
+      <div class="speaker-photo speaker-photo--yellow">E</div>
+      <div class="speaker-name">Enkhtaivan Oyunbazar</div>
+      <div class="speaker-role">Financial Analyst, GlobeTax Services. Panelist · My Career Journey.</div>
+      <div class="speaker-tags"><span class="is-year">2019</span><span class="is-track">Panel</span></div>
+    </a>
+    <a href="#" class="speaker-card" id="enkhtur-narantungalag" data-name="Enkhtur Narantungalag" data-years="2024" data-tracks="workshop" data-company="Google">
+      <div class="speaker-photo speaker-photo--green">E</div>
+      <div class="speaker-name">Enkhtur Narantungalag</div>
+      <div class="speaker-role">Software Engineer, Google. Technical interview workshop.</div>
+      <div class="speaker-tags"><span class="is-year">2024</span><span class="is-track">Workshop</span></div>
+    </a>
+    <a href="#" class="speaker-card" id="enkhtuya-enkh-erdene" data-name="Enkhtuya Enkh-Erdene" data-years="2019" data-tracks="panel" data-company="Walgreens / MNG Summit Treasurer">
+      <div class="speaker-photo speaker-photo--lilac">E</div>
+      <div class="speaker-name">Enkhtuya Enkh-Erdene</div>
+      <div class="speaker-role">Senior Accountant, Walgreens · MNG Summit Treasurer. Moderator · My Career Journey panel.</div>
+      <div class="speaker-tags"><span class="is-year">2019</span><span class="is-track">Panel</span></div>
+    </a>
+    <a href="#" class="speaker-card" id="frank-meehan" data-name="Frank Meehan" data-years="2024" data-tracks="keynote" data-company="Improvability AI">
+      <div class="speaker-photo speaker-photo--blue">F</div>
+      <div class="speaker-name">Frank Meehan</div>
+      <div class="speaker-role">CPO, Improvability AI. Keynote · AI & the green transition.</div>
+      <div class="speaker-tags"><span class="is-year">2024</span><span class="is-track">Keynote</span></div>
+    </a>
+    <a href="#" class="speaker-card" id="g-gerelmaa" data-name="G. Gerelmaa" data-years="2016" data-tracks="panel" data-company="Capital City Department of Labor">
+      <div class="speaker-photo speaker-photo--cyan">G</div>
+      <div class="speaker-name">G. Gerelmaa</div>
+      <div class="speaker-role">Director, Capital City Department of Labor. Panelist · Employment in Mongolia.</div>
+      <div class="speaker-tags"><span class="is-year">2016</span><span class="is-track">Panel</span></div>
+    </a>
+    <a href="#" class="speaker-card" id="galbadrakh-gombosuren" data-name="Galbadrakh Gombosuren" data-years="2019" data-tracks="nhub" data-company="MNG Summit">
+      <div class="speaker-photo speaker-photo--orange">G</div>
+      <div class="speaker-name">Galbadrakh Gombosuren</div>
+      <div class="speaker-role">Author. Head Judge of the NHUB project competition.</div>
+      <div class="speaker-tags"><span class="is-year">2019</span><span class="is-track">NHUB</span></div>
+    </a>
+    <a href="#" class="speaker-card" id="gerelmaa-batchuluun" data-name="Gerelmaa Batchuluun" data-years="2024" data-tracks="panel" data-company="Steppe Group">
+      <div class="speaker-photo speaker-photo--cyan">G</div>
+      <div class="speaker-name">Gerelmaa Batchuluun</div>
+      <div class="speaker-role">CEO, Steppe Group. Panelist · Lead the Journey.</div>
+      <div class="speaker-tags"><span class="is-year">2024</span><span class="is-track">Panel</span></div>
+    </a>
+    <a href="#" class="speaker-card" id="guen" data-name="Guen" data-years="2016" data-tracks="tour" data-company="Cisco">
+      <div class="speaker-photo speaker-photo--cream">G</div>
+      <div class="speaker-name">Guen</div>
+      <div class="speaker-role">Cisco engineer. Hosted campus walk, data center, career Q&A.</div>
+      <div class="speaker-tags"><span class="is-year">2016</span><span class="is-track">Tour</span></div>
+    </a>
+    <a href="#" class="speaker-card" id="ider-batbayar" data-name="Ider Batbayar" data-years="2019" data-tracks="panel" data-company="UNDP">
+      <div class="speaker-photo speaker-photo--yellow">I</div>
+      <div class="speaker-name">Ider Batbayar</div>
+      <div class="speaker-role">Research Analyst Consultant, UNDP. Panelist · My Career Journey.</div>
+      <div class="speaker-tags"><span class="is-year">2019</span><span class="is-track">Panel</span></div>
+    </a>
+    <a href="#" class="speaker-card" id="ideruugan-galbaatar" data-name="Ideruugan Galbaatar" data-years="2023" data-tracks="panel" data-company="Georgetown / World Bank">
+      <div class="speaker-photo speaker-photo--cyan">I</div>
+      <div class="speaker-name">Ideruugan Galbaatar</div>
+      <div class="speaker-role">Master of Public Policy, Georgetown McCourt · Consultant, World Bank. Panelist · Cultural Transition.</div>
+      <div class="speaker-tags"><span class="is-year">2023</span><span class="is-track">Panel</span></div>
+    </a>
+    <a href="#" class="speaker-card" id="jantsankhorol-damdinsuren" data-name="Jantsankhorol Damdinsuren" data-years="2019" data-tracks="nhub" data-company="MNG Summit">
+      <div class="speaker-photo speaker-photo--lilac">J</div>
+      <div class="speaker-name">Jantsankhorol Damdinsuren</div>
+      <div class="speaker-role">NHUB Committee Lead, MNG Summit. Project competition 2019.</div>
+      <div class="speaker-tags"><span class="is-year">2019</span><span class="is-track">NHUB</span></div>
+    </a>
+    <a href="#" class="speaker-card" id="kevin-francis" data-name="Kevin Francis" data-years="2024" data-tracks="keynote" data-company="Salesforce">
+      <div class="speaker-photo speaker-photo--blue">K</div>
+      <div class="speaker-name">Kevin Francis</div>
+      <div class="speaker-role">Vice President, Salesforce. Keynote · 2024 SF.</div>
+      <div class="speaker-tags"><span class="is-year">2024</span><span class="is-track">Keynote</span></div>
+    </a>
+    <a href="#" class="speaker-card" id="khaliun-jargalsaikhan" data-name="Khaliun Jargalsaikhan" data-years="2024" data-tracks="workshop" data-company="Licensed therapist">
+      <div class="speaker-photo speaker-photo--green">K</div>
+      <div class="speaker-name">Khaliun Jargalsaikhan</div>
+      <div class="speaker-role">Licensed therapist. Wellbeing session · mental health & mindfulness for the diaspora.</div>
+      <div class="speaker-tags"><span class="is-year">2024</span><span class="is-track">Workshop</span></div>
+    </a>
+    <a href="#" class="speaker-card" id="khatantuul-khat-zorig" data-name="Khatantuul Khat Zorig" data-years="2022" data-tracks="keynote" data-company="Innospark Ventures">
+      <div class="speaker-photo speaker-photo--yellow">K</div>
+      <div class="speaker-name">Khatantuul "Khat" Zorig</div>
+      <div class="speaker-role">Investor, Innospark Ventures · Boston VC backing AI startups. MBA, MIT Sloan. First Mongolian VC.</div>
+      <div class="speaker-tags"><span class="is-year">2022</span><span class="is-track">Keynote</span></div>
+    </a>
+    <a href="#" class="speaker-card" id="khishigbayar-tomorbaatar" data-name="Khishigbayar Tomorbaatar" data-years="2017" data-tracks="panel" data-company="Pico Greetings · Anura Music">
+      <div class="speaker-photo speaker-photo--orange">K</div>
+      <div class="speaker-name">Khishigbayar Tomorbaatar</div>
+      <div class="speaker-role">Founder, Pico Greetings · Anura Music. Board member, Lantuun Dohio NGO.</div>
+      <div class="speaker-tags"><span class="is-year">2017</span><span class="is-track">Panel</span></div>
+    </a>
+    <a href="#" class="speaker-card" id="khongorzul-bat-ireedui" data-name="Khongorzul Bat-Ireedui" data-years="2024" data-tracks="panel" data-company="Stanford">
+      <div class="speaker-photo speaker-photo--cream">K</div>
+      <div class="speaker-name">Khongorzul Bat-Ireedui</div>
+      <div class="speaker-role">MSc., Learning Design & Technology, Stanford. Panelist · Navigating the Digital Frontier.</div>
+      <div class="speaker-tags"><span class="is-year">2024</span><span class="is-track">Panel</span></div>
+    </a>
+    <a href="#" class="speaker-card" id="l-ulziidelger" data-name="L. Ulziidelger" data-years="2017" data-tracks="panel" data-company="Microsoft">
+      <div class="speaker-photo speaker-photo--yellow">L</div>
+      <div class="speaker-name">L. Ulziidelger</div>
+      <div class="speaker-role">Senior Software Engineer, Microsoft (since 2004). MS Eng. Excellence Award · three patents.</div>
+      <div class="speaker-tags"><span class="is-year">2017</span><span class="is-track">Panel</span></div>
+    </a>
+    <a href="#" class="speaker-card" id="luvsanbyamba-buyankhuu" data-name="Luvsanbyamba Buyankhuu" data-years="2024" data-tracks="panel" data-company="Boost">
+      <div class="speaker-photo speaker-photo--cyan">L</div>
+      <div class="speaker-name">Luvsanbyamba Buyankhuu</div>
+      <div class="speaker-role">Founder, Boost. Panelist · Lead the Journey.</div>
+      <div class="speaker-tags"><span class="is-year">2024</span><span class="is-track">Panel</span></div>
+    </a>
+    <a href="#" class="speaker-card" id="m-bolortsetseg" data-name="M. Bolortsetseg" data-years="2014" data-tracks="keynote" data-company="American Museum of Natural History">
+      <div class="speaker-photo speaker-photo--lilac">M</div>
+      <div class="speaker-name">M. Bolortsetseg</div>
+      <div class="speaker-role">Paleontologist, American Museum of Natural History. 2014 Chicago keynote.</div>
+      <div class="speaker-tags"><span class="is-year">2014</span><span class="is-track">Keynote</span></div>
+    </a>
+    <a href="#" class="speaker-card" id="marla-munkh-achit" data-name="Marla Munkh-Achit" data-years="2022" data-tracks="panel" data-company="MNG Summit / Obama Foundation Scholar">
+      <div class="speaker-photo speaker-photo--orange">M</div>
+      <div class="speaker-name">Marla Munkh-Achit</div>
+      <div class="speaker-role">MNG Summit Marketing & Communications Director · Obama Foundation Scholar, Columbia. Moderator · My Career Journey panel.</div>
+      <div class="speaker-tags"><span class="is-year">2022</span><span class="is-track">Panel</span></div>
+    </a>
+    <a href="#" class="speaker-card" id="munkhbaatar-begzjav" data-name="Munkhbaatar Begzjav" data-years="2024" data-tracks="welcome" data-company="Consul General of Mongolia">
+      <div class="speaker-photo speaker-photo--blue">M</div>
+      <div class="speaker-name">Munkhbaatar Begzjav</div>
+      <div class="speaker-role">Consul General of Mongolia in San Francisco. Welcome address · 2024.</div>
+      <div class="speaker-tags"><span class="is-year">2024</span><span class="is-track">Welcome</span></div>
+    </a>
+    <a href="#" class="speaker-card" id="munkhzul-bayanmunkh" data-name="Munkhzul Bayanmunkh" data-years="2019" data-tracks="panel" data-company="Retoch LLC">
+      <div class="speaker-photo speaker-photo--cyan">M</div>
+      <div class="speaker-name">Munkhzul Bayanmunkh</div>
+      <div class="speaker-role">COO, Retoch LLC. Career talk · Top Mongolian companies.</div>
+      <div class="speaker-tags"><span class="is-year">2019</span><span class="is-track">Talk</span></div>
+    </a>
+    <a href="#" class="speaker-card" id="namuun-purevdorj" data-name="Namuun Purevdorj" data-years="2022" data-tracks="panel" data-company="Heyday">
+      <div class="speaker-photo speaker-photo--cream">N</div>
+      <div class="speaker-name">Namuun Purevdorj</div>
+      <div class="speaker-role">Sr. Manager · Supply Chain & Ops, Heyday (unicorn consumer-products startup).</div>
+      <div class="speaker-tags"><span class="is-year">2022</span><span class="is-track">Panel</span></div>
+    </a>
+    <a href="#" class="speaker-card" id="nomi-ganbold" data-name="Nomi Ganbold" data-years="2019" data-tracks="panel" data-company="">
+      <div class="speaker-photo speaker-photo--yellow">N</div>
+      <div class="speaker-name">Nomi Ganbold</div>
+      <div class="speaker-role">Entrepreneur & Producer. Panelist · My Career Journey.</div>
+      <div class="speaker-tags"><span class="is-year">2019</span><span class="is-track">Panel</span></div>
+    </a>
+    <a href="#" class="speaker-card" id="nomin-jargalsaikhan" data-name="Nomin Jargalsaikhan" data-years="2022" data-tracks="talk" data-company="Whitstable Consulting">
+      <div class="speaker-photo speaker-photo--cyan">N</div>
+      <div class="speaker-name">Nomin Jargalsaikhan</div>
+      <div class="speaker-role">Founder & ED, Whitstable Consulting. ICF PCC coach · prev BTS Coach, Shackleton Group.</div>
+      <div class="speaker-tags"><span class="is-year">2022</span><span class="is-track">Talk</span></div>
+    </a>
+    <a href="#" class="speaker-card" id="nominsuren-munkhuu" data-name="Nominsuren Munkhuu" data-years="2019" data-tracks="welcome" data-company="MNG Summit">
+      <div class="speaker-photo speaker-photo--lilac">N</div>
+      <div class="speaker-name">Nominsuren Munkhuu</div>
+      <div class="speaker-role">President, MNG Summit. Welcome remarks + career mentorship program intro.</div>
+      <div class="speaker-tags"><span class="is-year">2019</span><span class="is-track">Welcome</span></div>
+    </a>
+    <a href="#" class="speaker-card" id="nyamjargal-lhagva" data-name="Nyamjargal Lhagva" data-years="2024" data-tracks="nhub" data-company="Amina Project">
+      <div class="speaker-photo speaker-photo--orange">N</div>
+      <div class="speaker-name">Nyamjargal Lhagva</div>
+      <div class="speaker-role">Filmmaker, Amina Project. Open Mic · Day 2.</div>
+      <div class="speaker-tags"><span class="is-year">2024</span><span class="is-track">Open Mic</span></div>
+    </a>
+    <a href="#" class="speaker-card" id="o-ulziibayar" data-name="O. Ulziibayar" data-years="2016" data-tracks="tour" data-company="Facebook">
+      <div class="speaker-photo speaker-photo--cyan">O</div>
+      <div class="speaker-name">O. Ulziibayar</div>
+      <div class="speaker-role">Software Engineer, Facebook. Menlo Park campus tour + working lunch.</div>
+      <div class="speaker-tags"><span class="is-year">2016</span><span class="is-track">Tour</span></div>
+    </a>
+    <a href="#" class="speaker-card" id="otgo-erhemjamts" data-name="Otgo Erhemjamts" data-years="2024" data-tracks="keynote" data-company="USF School of Management">
+      <div class="speaker-photo speaker-photo--yellow">O</div>
+      <div class="speaker-name">Otgo Erhemjamts</div>
+      <div class="speaker-role">Dean, School of Management, University of San Francisco. Leadership keynote.</div>
+      <div class="speaker-tags"><span class="is-year">2024</span><span class="is-track">Keynote</span></div>
+    </a>
+    <a href="#" class="speaker-card" id="sodontuya-nerguidavaa" data-name="Sodontuya Nerguidavaa" data-years="2023" data-tracks="panel" data-company="UC Davis MBA / CFA">
+      <div class="speaker-photo speaker-photo--cyan">S</div>
+      <div class="speaker-name">Sodontuya Nerguidavaa</div>
+      <div class="speaker-role">UC Davis MBA · CFA charter holder · entrepreneur, publisher. Named 100 Best & Brightest MBAs.</div>
+      <div class="speaker-tags"><span class="is-year">2023</span><span class="is-track">Panel</span></div>
+    </a>
+    <a href="#" class="speaker-card" id="sukhbat-lkhagvadorj" data-name="Sukhbat Lkhagvadorj" data-years="2019" data-tracks="keynote" data-company="Coinseed · AMSA">
+      <div class="speaker-photo speaker-photo--blue">S</div>
+      <div class="speaker-name">Sukhbat Lkhagvadorj</div>
+      <div class="speaker-role">Co-founder, Coinseed (fintech) · Founder, Association of Mongolian Students in America. Keynote on personal tech advancement.</div>
+      <div class="speaker-tags"><span class="is-year">2019</span><span class="is-track">Keynote</span></div>
+    </a>
+    <a href="#" class="speaker-card" id="sukhbold-sukhee" data-name="Sukhbold Sukhee" data-years="2019" data-tracks="welcome" data-company="UN Mission of Mongolia">
+      <div class="speaker-photo speaker-photo--lilac">S</div>
+      <div class="speaker-name">H.E. Sukhbold Sukhee</div>
+      <div class="speaker-role">Ambassador and Permanent Representative of Mongolia to the United Nations. Welcome remarks · 2019.</div>
+      <div class="speaker-tags"><span class="is-year">2019</span><span class="is-track">Welcome</span></div>
+    </a>
+    <a href="#" class="speaker-card" id="surenmaa" data-name="Surenmaa" data-years="2023" data-tracks="workshop" data-company="Brown University Mindfulness Center">
+      <div class="speaker-photo speaker-photo--green">S</div>
+      <div class="speaker-name">Surenmaa</div>
+      <div class="speaker-role">MBSR meditation teacher, Brown Mindfulness Center. MPH Epidemiology, Brown. Goal-setting + mindfulness across both days.</div>
+      <div class="speaker-tags"><span class="is-year">2023</span><span class="is-track">Workshop</span></div>
+    </a>
+    <a href="#" class="speaker-card" id="t-bilegee" data-name="T. Bilegee" data-years="2016" data-tracks="panel" data-company="Erdenes Tavan Tolgoi">
+      <div class="speaker-photo speaker-photo--orange">T</div>
+      <div class="speaker-name">T. Bilegee</div>
+      <div class="speaker-role">CEO, Erdenes Tavan Tolgoi. Panelist · Employment in Mongolia.</div>
+      <div class="speaker-tags"><span class="is-year">2016</span><span class="is-track">Panel</span></div>
+    </a>
+    <a href="#" class="speaker-card" id="tana-jambaldorj" data-name="Tana Jambaldorj" data-years="2022" data-tracks="panel" data-company="McKinsey">
+      <div class="speaker-photo speaker-photo--cream">T</div>
+      <div class="speaker-name">Tana Jambaldorj</div>
+      <div class="speaker-role">Engagement Manager, McKinsey & Co (metals, mining, sustainability). MBA, Oxford Saïd · AB Harvard.</div>
+      <div class="speaker-tags"><span class="is-year">2022</span><span class="is-track">Panel</span></div>
+    </a>
+    <a href="#" class="speaker-card" id="tegshee-baasan" data-name="Tegshee Baasan" data-years="2024" data-tracks="nhub" data-company="Unlock Podcast">
+      <div class="speaker-photo speaker-photo--yellow">T</div>
+      <div class="speaker-name">Tegshee Baasan</div>
+      <div class="speaker-role">Founder & Host, Unlock Podcast. Open Mic · Day 1.</div>
+      <div class="speaker-tags"><span class="is-year">2024</span><span class="is-track">Open Mic</span></div>
+    </a>
+    <a href="#" class="speaker-card" id="temuulen-tumurbat" data-name="Temuulen Tumurbat" data-years="2014,2017" data-tracks="panel,founding" data-company="Resource Capital Funds / MNG Summit">
+      <div class="speaker-photo speaker-photo--cyan">T</div>
+      <div class="speaker-name">Temuulen Tumurbat</div>
+      <div class="speaker-role">Financial Analyst, Resource Capital Funds. BS Mining Eng., Colorado School of Mines. MNG Summit founding member · later VP & Vice Chair through 2024.</div>
+      <div class="speaker-tags"><span class="is-year">2014</span><span class="is-year">2017</span><span class="is-track">Panel</span></div>
+    </a>
+    <a href="#" class="speaker-card" id="tsenguun-tsogbadrakh" data-name="Tsenguun Tsogbadrakh" data-years="2024" data-tracks="panel,workshop" data-company="Pypup · TikTok">
+      <div class="speaker-photo speaker-photo--cyan">T</div>
+      <div class="speaker-name">Tsenguun Tsogbadrakh</div>
+      <div class="speaker-role">Founder & CEO, Pypup · Senior Engineer, TikTok. Panelist + resume workshop lead.</div>
+      <div class="speaker-tags"><span class="is-year">2024</span><span class="is-track">Panel</span><span class="is-track">Workshop</span></div>
+    </a>
+    <a href="#" class="speaker-card" id="ts-erdenebaatar" data-name="Ts. Erdenebaatar" data-years="2016" data-tracks="panel" data-company="Mongolian Employers' Federation">
+      <div class="speaker-photo speaker-photo--lilac">T</div>
+      <div class="speaker-name">Ts. Erdenebaatar</div>
+      <div class="speaker-role">Mongolian Employers' Federation. Panelist · Employment in Mongolia.</div>
+      <div class="speaker-tags"><span class="is-year">2016</span><span class="is-track">Panel</span></div>
+    </a>
+    <a href="#" class="speaker-card" id="tserenna-erdenebileg" data-name="Tserenna Erdenebileg" data-years="2023" data-tracks="keynote" data-company="Morgan Stanley">
+      <div class="speaker-photo speaker-photo--blue">T</div>
+      <div class="speaker-name">Tserenna Erdenebileg</div>
+      <div class="speaker-role">Managing Director · CFO Global Institutional Equity Division, Morgan Stanley. BA Baruch · MBA NYU.</div>
+      <div class="speaker-tags"><span class="is-year">2023</span><span class="is-track">Keynote</span></div>
+    </a>
+    <a href="#" class="speaker-card" id="tsolmon-jargalsaikhan" data-name="Tsolmon Jargalsaikhan" data-years="2024" data-tracks="panel" data-company="Kindred Ventures">
+      <div class="speaker-photo speaker-photo--green">T</div>
+      <div class="speaker-name">Tsolmon Jargalsaikhan</div>
+      <div class="speaker-role">Director of Finance, Kindred Ventures. Panelist · Lead the Journey.</div>
+      <div class="speaker-tags"><span class="is-year">2024</span><span class="is-track">Panel</span></div>
+    </a>
+    <a href="#" class="speaker-card" id="u-delgerjargal" data-name="U. Delgerjargal" data-years="2014" data-tracks="keynote" data-company="University of Wisconsin">
+      <div class="speaker-photo speaker-photo--orange">U</div>
+      <div class="speaker-name">U. Delgerjargal</div>
+      <div class="speaker-role">PhD candidate, Politics & Public Administration, University of Wisconsin. 2014 Chicago keynote.</div>
+      <div class="speaker-tags"><span class="is-year">2014</span><span class="is-track">Keynote</span></div>
+    </a>
+    <a href="#" class="speaker-card" id="uuganbayar-ugi-otgonbaatar" data-name="Uuganbayar Ugi Otgonbaatar" data-years="2022" data-tracks="panel" data-company="Exelon Corporation">
+      <div class="speaker-photo speaker-photo--cream">U</div>
+      <div class="speaker-name">Uuganbayar "Ugi" Otgonbaatar</div>
+      <div class="speaker-role">Sr. Corporate Strategy Mgr, Exelon. PhD Nuclear Science & Engineering, MIT. Clean hydrogen + energy storage R&D.</div>
+      <div class="speaker-tags"><span class="is-year">2022</span><span class="is-track">Panel</span></div>
+    </a>
+    <a href="#" class="speaker-card" id="ulzii" data-name="Ulzii" data-years="2017" data-tracks="tour" data-company="Microsoft">
+      <div class="speaker-photo speaker-photo--yellow">U</div>
+      <div class="speaker-name">Ulzii</div>
+      <div class="speaker-role">Senior Programming Manager, Microsoft. Led the largest tour of the 2017 weekend (~30 attendees).</div>
+      <div class="speaker-tags"><span class="is-year">2017</span><span class="is-track">Tour</span></div>
+    </a>
+    <a href="#" class="speaker-card" id="undram-boldbat" data-name="Undram Boldbat" data-years="2022" data-tracks="workshop" data-company="International Monetary Fund">
+      <div class="speaker-photo speaker-photo--cyan">U</div>
+      <div class="speaker-name">Undram Boldbat</div>
+      <div class="speaker-role">HR + Project Management Pro, IMF. Workshop · "Begin Your Career with the End in Mind."</div>
+      <div class="speaker-tags"><span class="is-year">2022</span><span class="is-track">Workshop</span></div>
+    </a>
+    <a href="#" class="speaker-card" id="urga-azat" data-name="Urga Azat" data-years="2024" data-tracks="nhub" data-company="DEM Foundation">
+      <div class="speaker-photo speaker-photo--lilac">U</div>
+      <div class="speaker-name">Urga Azat</div>
+      <div class="speaker-role">Board Member, DEM Foundation. Open Mic · Day 1.</div>
+      <div class="speaker-tags"><span class="is-year">2024</span><span class="is-track">Open Mic</span></div>
+    </a>
+    <a href="#" class="speaker-card" id="urgamal-azat" data-name="Urgamal Azat" data-years="2019" data-tracks="panel" data-company="Oddariya Foundation">
+      <div class="speaker-photo speaker-photo--cyan">U</div>
+      <div class="speaker-name">Urgamal Azat</div>
+      <div class="speaker-role">Founder, Oddariya Foundation. Panelist · My Career Journey.</div>
+      <div class="speaker-tags"><span class="is-year">2019</span><span class="is-track">Panel</span></div>
+    </a>
+    <a href="#" class="speaker-card" id="uyanga-ayurzana" data-name="Uyanga Ayurzana" data-years="2022" data-tracks="workshop,nhub" data-company="Harvard">
+      <div class="speaker-photo speaker-photo--green">U</div>
+      <div class="speaker-name">Uyanga Ayurzana</div>
+      <div class="speaker-role">Future of Education student-club organizer, Harvard. Design-thinking workshop · NHUB team competition facilitator + judge.</div>
+      <div class="speaker-tags"><span class="is-year">2022</span><span class="is-track">Workshop</span><span class="is-track">NHUB</span></div>
+    </a>
+    <a href="#" class="speaker-card" id="v-bayarsaikhan" data-name="V. Bayarsaikhan" data-years="2017,2018" data-tracks="keynote" data-company="Dell · And Global · Lend.mn">
+      <div class="speaker-photo speaker-photo--blue">V</div>
+      <div class="speaker-name">V. Bayarsaikhan</div>
+      <div class="speaker-role">Product Manager, Dell Technologies → CEO, And Global / Lend.mn. BS Ege U · MBA UW Foster. 2017 keynote.</div>
+      <div class="speaker-tags"><span class="is-year">2017</span><span class="is-year">2018</span><span class="is-track">Keynote</span></div>
+    </a>
+    <a href="#" class="speaker-card" id="zaya-delgerjargal" data-name="Zaya Delgerjargal" data-years="2024" data-tracks="panel" data-company="Yale">
+      <div class="speaker-photo speaker-photo--cyan">Z</div>
+      <div class="speaker-name">Zaya Delgerjargal</div>
+      <div class="speaker-role">M.A. Environmental Management, Yale. Moderator · Future of Sustainability panel.</div>
+      <div class="speaker-tags"><span class="is-year">2024</span><span class="is-track">Panel</span></div>
+    </a>
+    <a href="#" class="speaker-card" id="zolbayar-enkhbaatar" data-name="Zolbayar Enkhbaatar" data-years="2022" data-tracks="talk" data-company="Lemon Press · Inside Mongolia">
+      <div class="speaker-photo speaker-photo--orange">Z</div>
+      <div class="speaker-name">Zolbayar Enkhbaatar</div>
+      <div class="speaker-role">Co-Founder & Editor-in-Chief, Lemon Press. Founded Mongolia's first mutual fund (2020). Econ MA, NYU.</div>
+      <div class="speaker-tags"><span class="is-year">2022</span><span class="is-track">Talk</span></div>
+    </a>
+  
+    <a href="#" class="speaker-card" id="tuya" data-name="Tuya" data-years="2014" data-tracks="welcome" data-company="MNG Summit · Finance lead">
+      <div class="speaker-photo speaker-photo--cyan">T</div>
+      <div class="speaker-name">Tuya</div>
+      <div class="speaker-role">Finance lead and co-organizer of the inaugural 2014 Chicago career fair. Stayed on the founding team through the early years.</div>
+      <div class="speaker-tags"><span class="is-year">2014</span><span class="is-track">Welcome</span></div>
+    </a>
+    <a href="#" class="speaker-card" id="erdemt" data-name="Erdemt" data-years="2018" data-tracks="nhub" data-company="NHUB finalist">
+      <div class="speaker-photo speaker-photo--yellow">E</div>
+      <div class="speaker-name">Erdemt</div>
+      <div class="speaker-role">NHUB project competition finalist. Pitch on Ulaanbaatar's social-impact pipeline.</div>
+      <div class="speaker-tags"><span class="is-year">2018</span><span class="is-track">Nhub</span></div>
+    </a>
+    <a href="#" class="speaker-card" id="uuganbayar-quot-ugi-quot-otgonbaatar" data-name="Uuganbayar &quot;Ugi&quot; Otgonbaatar" data-years="2022" data-tracks="panel" data-company="Exelon Corporation">
+      <div class="speaker-photo speaker-photo--yellow">U</div>
+      <div class="speaker-name">Uuganbayar "Ugi" Otgonbaatar</div>
+      <div class="speaker-role">Sr. Corporate Strategy Manager at Exelon. MIT PhD in Nuclear Science. Panelist · My Career Journey.</div>
+      <div class="speaker-tags"><span class="is-year">2022</span><span class="is-track">Panel</span></div>
+    </a>
+    <a href="#" class="speaker-card" id="tselmeg" data-name="Tselmeg" data-years="2024" data-tracks="nhub" data-company="Seattle">
+      <div class="speaker-photo speaker-photo--cream">T</div>
+      <div class="speaker-name">Tselmeg</div>
+      <div class="speaker-role">Seattle-based participant. Open Mic · Day 2 · learning focus.</div>
+      <div class="speaker-tags"><span class="is-year">2024</span><span class="is-track">Nhub</span></div>
+    </a>
+    <a href="#" class="speaker-card" id="gombo-batsukh" data-name="Gombo Batsukh" data-years="2024" data-tracks="nhub" data-company="Sales · Michigan">
+      <div class="speaker-photo speaker-photo--orange">G</div>
+      <div class="speaker-name">Gombo Batsukh</div>
+      <div class="speaker-role">Sales professional based in Michigan. Open Mic · Day 2.</div>
+      <div class="speaker-tags"><span class="is-year">2024</span><span class="is-track">Nhub</span></div>
+    </a>
+    <a href="#" class="speaker-card" id="suvd-davaadorj" data-name="Suvd Davaadorj" data-years="2024" data-tracks="nhub" data-company="Medical Devices · Tuna Scholarship">
+      <div class="speaker-photo speaker-photo--green">S</div>
+      <div class="speaker-name">Suvd Davaadorj</div>
+      <div class="speaker-role">Medical Devices industry · Tuna Scholarship. Open Mic · Day 2.</div>
+      <div class="speaker-tags"><span class="is-year">2024</span><span class="is-track">Nhub</span></div>
+    </a>
+  
+    <a href="#" class="speaker-card" id="enkhtuvshin-dashtseren" data-name="Enkhtuvshin Dashtseren" data-years="2022" data-tracks="talk" data-company="MCS Holding LLC · Shark Tank Mongolia">
+      <div class="speaker-photo speaker-photo--cyan">E</div>
+      <div class="speaker-name">Enkhtuvshin Dashtseren</div>
+      <div class="speaker-role">Vice President, MCS Holding LLC. Angel investor and "shark" on NBC's Shark Tank Mongolia. Guest talk on the startup investment scene in Mongolia and corporate-startup culture.</div>
+      <div class="speaker-tags"><span class="is-year">2022</span><span class="is-track">Talk</span></div>
+    </a>
+  </section>
+
+</div>
+
+<!-- empty state -->
+<div class="directory-empty" id="speaker-empty">
+  No speakers match that search. Try a different name or clear the filters.
+</div>
+
+<!-- CTA -->
+<section class="page-cta page-cta--cream" style="margin-top:48px;">
+  <h2>Spoke at MNG Summit and don't see your name?</h2>
+  <p>Email <a href="mailto:archive@mngsummit.org" style="text-decoration:underline;">archive@mngsummit.org</a> with the year + topic + LinkedIn. We're still reconstructing the <b>2014 Chicago</b>, <b>2015 D.C.</b>, <b>2018 LA</b>, and parts of the <b>2023 Miami</b> lineups.</p>
+  <div style="display:flex;flex-wrap:wrap;gap:12px;">
+    <a href="mailto:archive@mngsummit.org?subject=Speaker%20directory%20update" class="l-event-hero-cta">Email the archive →</a>
+    <a href="archive.html" class="btn-pill-ghost">Back to archive</a>
+  </div>
+</section>
+
+<footer class="l-footer">
+  <div class="l-footer-grid">
+    <div class="l-footer-brand">
+      <div class="l-footer-brand-mark">MNG SUMMIT</div>
+      <div style="font-size:13px;color:#9A9A9A;margin-top:8px;max-width:280px;line-height:1.5;">A community of programs for the global Mongolian diaspora. Volunteer-run, 501(c)(3) non-profit, since 2014.</div>
+    </div>
+    <div class="l-footer-col"><h4>Summit 2026</h4><ul><li><a href="summit-2026.html">Overview</a></li><li><a href="schedule.html">Schedule</a></li><li><a href="get-involved.html#speak">Apply to speak</a></li></ul></div>
+    <div class="l-footer-col"><h4>Directory</h4><ul><li><a href="directory-speakers.html">Past speakers</a></li><li><a href="directory-board.html">Working boards</a></li><li><a href="directory-volunteers.html">Volunteers</a></li></ul></div>
+    <div class="l-footer-col"><h4>Organization</h4><ul><li><a href="about.html">About</a></li><li><a href="archive.html">Archive</a></li><li><a href="sponsor.html">Partner</a></li><li><a href="mailto:contact@mngsummit.org">Contact</a></li></ul></div>
+  </div>
+  <div class="l-footer-bot"><span>© 2014–2026 MNG Summit · 501(c)(3) non-profit · Volunteer-run</span><span>Subject to change. Final schedule publishes summer 2026.</span></div>
+</footer>
+
+<script>
+// Auto-load real headshots from assets/people/{slug}.jpg — drops in silently when the file exists
+(function() {
+  function slug(s){return (s||'').toLowerCase().replace(/[^a-z0-9]+/g,'-').replace(/(^-|-$)/g,'');}
+  document.querySelectorAll('.speaker-card').forEach(function(card) {
+    var name = card.getAttribute('data-name');
+    if (!name) return;
+    var photo = card.querySelector('.speaker-photo');
+    if (!photo) return;
+    var img = new Image();
+    img.onload = function() {
+      photo.innerHTML = '';
+      img.alt = name;
+      photo.appendChild(img);
+      photo.style.backgroundImage = 'none';
+    };
+    img.src = 'assets/people/' + slug(name) + '.jpg';
+  });
+})();
+
+// Reorder: keynote speakers first
+(function() {
+  var grid = document.querySelector('#speaker-list .speaker-grid');
+  if (!grid) return;
+  var cards = Array.from(grid.querySelectorAll('.speaker-card'));
+  cards.sort(function(a, b) {
+    var ka = (a.getAttribute('data-tracks') || '').indexOf('keynote') > -1 ? 0 : 1;
+    var kb = (b.getAttribute('data-tracks') || '').indexOf('keynote') > -1 ? 0 : 1;
+    if (ka !== kb) return ka - kb;
+    // stable-ish secondary sort by name
+    var na = (a.getAttribute('data-name') || '').toLowerCase();
+    var nb = (b.getAttribute('data-name') || '').toLowerCase();
+    return na.localeCompare(nb);
+  });
+  cards.forEach(function(c) { grid.appendChild(c); });
+})();
+
+// Search + dual filter (role chip + year dropdown · AND logic)
+(function() {
+  var search = document.getElementById('speaker-search');
+  var chips = document.querySelectorAll('#speaker-filters .chip');
+  var yearSel = document.getElementById('speaker-year');
+  var cards = document.querySelectorAll('.speaker-card');
+  var empty = document.getElementById('speaker-empty');
+  var activeRole = 'keynote';     // default: show keynote speakers on page load
+  var activeYear = 'all';
+  var activeQuery = '';
+
+  function apply() {
+    var anyVisible = false;
+    cards.forEach(function(c) {
+      var years = (c.getAttribute('data-years') || '').split(',');
+      var tracks = (c.getAttribute('data-tracks') || '').split(',');
+      var matchesRole = activeRole === 'all' || tracks.indexOf(activeRole) > -1;
+      var matchesYear = activeYear === 'all' || years.indexOf(activeYear) > -1;
+      var hay = (c.getAttribute('data-name') + ' ' + c.getAttribute('data-company') + ' ' + c.textContent).toLowerCase();
+      var matchesQuery = activeQuery === '' || hay.indexOf(activeQuery) > -1;
+      var show = matchesRole && matchesYear && matchesQuery;
+      c.style.display = show ? '' : 'none';
+      if (show) anyVisible = true;
+    });
+    empty.classList.toggle('is-visible', !anyVisible);
+  }
+
+  chips.forEach(function(chip) {
+    chip.addEventListener('click', function() {
+      chips.forEach(function(c) { c.classList.toggle('is-on', c === chip); });
+      activeRole = chip.getAttribute('data-role');
+      apply();
+    });
+  });
+  yearSel.addEventListener('change', function() {
+    activeYear = yearSel.value;
+    apply();
+  });
+  search.addEventListener('input', function() {
+    activeQuery = search.value.trim().toLowerCase();
+    apply();
+  });
+
+  // Apply keynote default on load
+  apply();
+})();
+</script>
+<script src="js/site.js?v=exp11"></script>
+</body>
+</html>
