@@ -581,6 +581,23 @@ strong,b{font-weight:800;}
   max-width:var(--max);margin:0 auto;
   color:#FFF;
 }
+/* Mobile: portrait aspect + darker bottom gradient so the text has room and never overlaps the subject */
+@media(max-width:760px){
+  .l-hero-photo{
+    aspect-ratio:auto;
+    min-height:520px;
+  }
+  .l-hero-photo img{opacity:.55;}
+  .l-hero-photo-overlay{
+    background:linear-gradient(180deg,rgba(0,0,0,.1) 0%,rgba(0,0,0,.55) 50%,rgba(0,0,0,.92) 100%);
+  }
+  .l-hero-photo-content{padding:24px var(--pad) 32px;}
+  .l-hero-photo-title,
+  .page-light .l-hero-photo-title{
+    font-size:clamp(28px,8vw,40px);
+    letter-spacing:-0.03em;
+  }
+}
 .l-hero-photo-content .micro{color:#FFE500;}
 .l-hero-photo-title,
 .page-light .l-hero-photo-title{
@@ -670,13 +687,14 @@ strong,b{font-weight:800;}
   .l-reasons-grid{grid-template-columns:1fr;}
   .l-reasons-cell:not(:first-child){padding-left:0;padding-top:24px;}
 }
+/* Mobile: keep all stats in a single horizontal row (4-up) — smaller text and tighter padding so they fit */
 @media(max-width:760px){
-  .l-bynumbers-grid{grid-template-columns:1fr 1fr;}
-  .l-bynumbers-cell:nth-child(3){padding-left:0;}
-}
-@media(max-width:480px){
-  .l-bynumbers-grid{grid-template-columns:1fr;}
-  .l-bynumbers-cell{padding-left:0;}
+  .l-bynumbers-grid{grid-template-columns:repeat(4,1fr) !important;gap:1px;}
+  .l-bynumbers-cell{padding:18px 8px 18px 8px;gap:4px;}
+  .l-bynumbers-cell:not(:first-child){padding-left:8px;}
+  .l-bynumbers-num{font-size:clamp(28px,7vw,42px);letter-spacing:-.03em;}
+  .l-bynumbers-label-cell{font-size:10px;letter-spacing:.06em;line-height:1.2;}
+  .l-bynumbers-sub{font-size:11px;line-height:1.3;}
 }
 .l-hero-foot{
   max-width:var(--max);margin:0 auto;
@@ -2704,7 +2722,17 @@ strong,b{font-weight:800;}
 }
 @media(max-width:560px){
   .l-programs{grid-template-columns:1fr;}
-  .l-archive-strip{grid-template-columns:1fr;}
+  /* Archive strip: compact 3-thumb row on mobile (year + photo only, body text hidden) */
+  .l-archive-strip{grid-template-columns:repeat(3,1fr);gap:8px;}
+  .l-archive-card{min-height:0;background:transparent;border-radius:14px;}
+  .l-archive-card:hover{transform:none;}
+  .l-archive-photo{min-height:0;aspect-ratio:1/1;border-radius:14px;flex:none;}
+  .l-archive-year{
+    font-size:22px;letter-spacing:-.02em;
+    bottom:8px;left:10px;
+    text-shadow:0 1px 8px rgba(0,0,0,.7);
+  }
+  .l-archive-body{display:none;}
   .l-quicklinks{grid-template-columns:1fr;}
   .l-footer-grid{grid-template-columns:1fr;}
   .l-entry-grid{grid-template-columns:1fr;}
@@ -2727,11 +2755,42 @@ strong,b{font-weight:800;}
   :root{--nav-h:64px;}
   .app-nav-tier2{display:none;}
   .app-nav-pill--ghost{display:none;}
+  /* Shrink the navigation pills on mobile so the Join Early List doesn't dominate the bar */
+  .app-nav-pill{height:32px;padding:0 12px;font-size:10.5px;letter-spacing:.06em;}
+  .app-nav-pill--icon{width:32px;height:32px;font-size:14px;}
+  .app-nav-sponsor{display:none;}
+  /* Section headers slim down on mobile so they don't wrap as widely */
+  .l-programs-h h2{font-size:clamp(24px,6vw,32px);}
+  .l-presale-pill{padding:8px 14px;font-size:10.5px;}
   .app-nav-toggle{
     display:flex;align-items:center;justify-content:center;
-    width:38px;height:38px;border-radius:50%;
-    background:#3A3A3A;color:#FFF;font-size:16px;font-weight:800;
+    width:32px;height:32px;border-radius:50%;
+    background:#3A3A3A;color:#FFF;font-size:14px;font-weight:800;
+    cursor:pointer;border:0;
   }
+  /* When the burger is tapped, body gets .nav-open — reveal tier2 as a full-width dropdown */
+  body.nav-open .app-nav-tier2{
+    display:flex;flex-direction:column;
+    position:fixed;top:64px;left:0;right:0;z-index:50;
+    background:#0A0A0A;
+    padding:20px var(--pad) 24px;
+    gap:16px;border-top:1px solid #262626;
+    box-shadow:0 12px 32px rgba(0,0,0,.4);
+  }
+  body.nav-open .app-nav-links{
+    display:flex;flex-direction:column;gap:0;
+  }
+  body.nav-open .app-nav-link{
+    padding:14px 0;border-bottom:1px solid #262626;
+    font-size:16px;
+  }
+  body.nav-open .app-nav-link:last-child{border-bottom:0;}
+  body.nav-open .app-nav-when{
+    flex-direction:column;align-items:flex-start;gap:2px;font-size:12px;
+    padding-top:4px;
+  }
+  body.nav-open .app-nav-when .sep{display:none;}
+  body.nav-open{overflow:hidden;}
 }
 @media(max-width:600px){
   :root{--pad:16px;}

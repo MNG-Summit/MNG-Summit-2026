@@ -700,7 +700,19 @@
     apply();
   });
 
-  // Apply keynote default on load
+  // Apply keynote default on load — and if URL has #q=... from the global search, prefill the box
+  var hashQ = (location.hash.match(/[#&]q=([^&]+)/) || [])[1];
+  if (hashQ) {
+    var decoded = decodeURIComponent(hashQ.replace(/\+/g,' '));
+    search.value = decoded;
+    activeQuery = decoded.toLowerCase();
+    // also bump to "All" role so global search isn't filtered down to keynote
+    var allBtn = document.querySelector('#speaker-filters .chip[data-role="all"]');
+    if (allBtn) {
+      chips.forEach(function(c){c.classList.toggle('is-on', c===allBtn);});
+      activeRole = 'all';
+    }
+  }
   apply();
 })();
 </script>

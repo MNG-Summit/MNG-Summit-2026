@@ -203,21 +203,31 @@
 
   // ---------- mobile nav toggle ----------
   var navToggle = document.querySelector('.app-nav-toggle');
-  var navLinks = document.querySelector('.app-nav-links');
-  if (navToggle && navLinks) {
+  var navTier2 = document.querySelector('.app-nav-tier2');
+  if (navToggle && navTier2) {
     navToggle.addEventListener('click', function () {
-      var open = navLinks.style.display === 'flex';
-      navLinks.style.display = open ? '' : 'flex';
-      navLinks.style.position = open ? '' : 'absolute';
-      navLinks.style.top = open ? '' : 'var(--nav-h)';
-      navLinks.style.left = open ? '' : '0';
-      navLinks.style.right = open ? '' : '0';
-      navLinks.style.flexDirection = open ? '' : 'column';
-      navLinks.style.background = open ? '' : 'var(--bg)';
-      navLinks.style.borderBottom = open ? '' : '1px solid var(--line)';
-      navLinks.style.padding = open ? '' : '16px var(--pad)';
-      navLinks.style.gap = open ? '' : '0';
+      document.body.classList.toggle('nav-open');
+      navToggle.textContent = document.body.classList.contains('nav-open') ? '✕' : '≡';
+    });
+    // close on any nav link click
+    navTier2.addEventListener('click', function (e) {
+      if (e.target.closest('a')) {
+        document.body.classList.remove('nav-open');
+        navToggle.textContent = '≡';
+      }
     });
   }
+
+  // ---------- search button ----------
+  var searchBtns = document.querySelectorAll('.app-nav-pill--icon');
+  searchBtns.forEach(function (btn) {
+    btn.addEventListener('click', function () {
+      var q = prompt('Search speakers, board, programs, summits:');
+      if (q && q.trim()) {
+        // Send to the speaker directory with the query — the directory has filter logic that picks up #q
+        window.location.href = 'directory-speakers.html#q=' + encodeURIComponent(q.trim());
+      }
+    });
+  });
 
 })();
