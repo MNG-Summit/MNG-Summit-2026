@@ -186,11 +186,20 @@
     });
   }
 
-  // ---------- footer newsletter: enable submit when input has a valid-looking value ----------
+  // ---------- footer newsletter: live validation + POST to Resend subscribe function ----------
   var nlForm = document.getElementById('footer-newsletter');
   if (nlForm) {
     var nlInput = nlForm.querySelector('input[type="email"]');
     var nlBtn = nlForm.querySelector('.l-footer-newsletter-btn');
+    // Status element appended below the form for inline feedback
+    var nlStatus = nlForm.querySelector('.l-footer-newsletter-status');
+    if (!nlStatus) {
+      nlStatus = document.createElement('div');
+      nlStatus.className = 'l-footer-newsletter-status';
+      nlStatus.setAttribute('role', 'status');
+      nlStatus.setAttribute('aria-live', 'polite');
+      nlForm.appendChild(nlStatus);
+    }
     if (nlInput && nlBtn) {
       var update = function () {
         var v = nlInput.value.trim();
@@ -199,6 +208,53 @@
       nlInput.addEventListener('input', update);
       update();
     }
+    nlForm.addEventListener('submit', function (e) {
+      e.preventDefault();
+      if (!nlInput) return;
+      var email = nlInput.value.trim();
+      if (!email) { nlInput.focus(); return; }
+      // Lock UI while sending
+      nlBtn.disabled = true;
+      var originalBtnText = nlBtn.textContent;
+      nlBtn.textContent = 'Sending…';
+      nlStatus.textContent = '';
+      nlStatus.classList.remove('is-ok', 'is-err');
+      fetch('/.netlify/functions/subscribe', {
+        method: 'POST',
+        headers: { 'Content-Type': 'application/json' },
+        body: JSON.stringify({
+          email: email,
+          source: 'footer · ' + (document.title || location.pathname),
+          referrer: document.referrer || ''
+        })
+      })
+        .then(function (r) { return r.json().catch(function () { return { ok: r.ok }; }); })
+        .then(function (res) {
+          if (res && res.ok) {
+            nlStatus.textContent = "You're on the list. Check your inbox for a welcome note.";
+            nlStatus.classList.add('is-ok');
+            nlInput.value = '';
+            nlBtn.textContent = 'Subscribed ✓';
+            // Re-enable after a beat so they can subscribe another address if they want
+            setTimeout(function () {
+              nlBtn.textContent = originalBtnText;
+              nlBtn.disabled = true;
+            }, 2400);
+          } else {
+            var msg = (res && res.error) || 'Could not subscribe right now. Please try again.';
+            nlStatus.textContent = msg;
+            nlStatus.classList.add('is-err');
+            nlBtn.textContent = originalBtnText;
+            nlBtn.disabled = false;
+          }
+        })
+        .catch(function () {
+          nlStatus.textContent = 'Network error. Please try again.';
+          nlStatus.classList.add('is-err');
+          nlBtn.textContent = originalBtnText;
+          nlBtn.disabled = false;
+        });
+    });
   }
 
   // ---------- mobile nav toggle ----------
@@ -218,16 +274,73 @@
     });
   }
 
-  // ---------- search button ----------
+  // ---------- search button → inline overlay ----------
   var searchBtns = document.querySelectorAll('.app-nav-pill--icon');
-  searchBtns.forEach(function (btn) {
-    btn.addEventListener('click', function () {
-      var q = prompt('Search speakers, board, programs, summits:');
-      if (q && q.trim()) {
-        // Send to the speaker directory with the query — the directory has filter logic that picks up #q
-        window.location.href = 'directory-speakers.html#q=' + encodeURIComponent(q.trim());
+  if (searchBtns.length) {
+    // Build the overlay once and reuse
+    var overlay = document.createElement('div');
+    overlay.className = 'site-search-overlay';
+    overlay.setAttribute('aria-hidden', 'true');
+    overlay.innerHTML = ''
+      + '<div class="site-search-scrim"></div>'
+      + '<div class="site-search-panel" role="dialog" aria-modal="true" aria-label="Search">'
+      +   '<form class="site-search-form" autocomplete="off">'
+      +     '<span class="site-search-ico" aria-hidden="true">⌕</span>'
+      +     '<input type="search" class="site-search-input" placeholder="Search speakers, board, programs, summits…" aria-label="Search the site" />'
+      +     '<button type="button" class="site-search-close" aria-label="Close search">✕</button>'
+      +   '</form>'
+      +   '<div class="site-search-hint">'
+      +     '<span>Try:</span>'
+      +     '<a href="directory-speakers.html" class="site-search-chip">All speakers</a>'
+      +     '<a href="directory-board.html" class="site-search-chip">Board</a>'
+      +     '<a href="programs.html" class="site-search-chip">Programs</a>'
+      +     '<a href="archive.html" class="site-search-chip">Past summits</a>'
+      +     '<a href="summit-2026.html" class="site-search-chip">Summit 2026</a>'
+      +   '</div>'
+      + '</div>';
+    document.body.appendChild(overlay);
+
+    var sScrim = overlay.querySelector('.site-search-scrim');
+    var sForm = overlay.querySelector('.site-search-form');
+    var sInput = overlay.querySelector('.site-search-input');
+    var sClose = overlay.querySelector('.site-search-close');
+
+    var openSearch = function () {
+      overlay.classList.add('is-open');
+      overlay.setAttribute('aria-hidden', 'false');
+      document.body.style.overflow = 'hidden';
+      // Also close the burger if open
+      if (document.body.classList.contains('nav-open')) {
+        document.body.classList.remove('nav-open');
+        var nt = document.querySelector('.app-nav-toggle');
+        if (nt) nt.textContent = '≡';
       }
+      setTimeout(function () { sInput.focus(); }, 80);
+    };
+    var closeSearch = function () {
+      overlay.classList.remove('is-open');
+      overlay.setAttribute('aria-hidden', 'true');
+      document.body.style.overflow = '';
+      sInput.value = '';
+    };
+
+    searchBtns.forEach(function (btn) {
+      btn.addEventListener('click', function (e) {
+        e.preventDefault();
+        openSearch();
+      });
     });
-  });
+    if (sScrim) sScrim.addEventListener('click', closeSearch);
+    if (sClose) sClose.addEventListener('click', closeSearch);
+    document.addEventListener('keydown', function (e) {
+      if (e.key === 'Escape' && overlay.classList.contains('is-open')) closeSearch();
+    });
+    sForm.addEventListener('submit', function (e) {
+      e.preventDefault();
+      var q = sInput.value.trim();
+      if (!q) { sInput.focus(); return; }
+      window.location.href = 'directory-speakers.html#q=' + encodeURIComponent(q);
+    });
+  }
 
 })();
