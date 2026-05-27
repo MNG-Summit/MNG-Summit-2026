@@ -2781,10 +2781,15 @@ strong,b{font-weight:800;}
     display:flex;flex-direction:column;gap:0;
   }
   body.nav-open .app-nav-link{
-    padding:14px 0;border-bottom:1px solid #262626;
+    padding:16px 0;border-bottom:1px solid #262626;
     font-size:16px;
+    color:#FFFFFF !important;
+    height:auto;
+    width:100%;display:flex;align-items:center;
   }
+  body.nav-open .app-nav-link.is-active{color:#F5B71A !important;}
   body.nav-open .app-nav-link:last-child{border-bottom:0;}
+  body.nav-open .app-nav-link-arrow{color:#9A9A9A !important;}
   body.nav-open .app-nav-when{
     flex-direction:column;align-items:flex-start;gap:2px;font-size:12px;
     padding-top:4px;
