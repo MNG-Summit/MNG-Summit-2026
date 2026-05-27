@@ -2566,32 +2566,36 @@ strong,b{font-weight:800;}
 .modal-close:hover,.modal-close:focus-visible{background:#D32F3E;transform:scale(1.05);outline:none;}
 
 /* Each modal-content block is the scrollable child. Padding lives here so the
-   close button (outside this area) never overlaps content. */
+   close button (outside this area) never overlaps content. Generous spacing. */
 .modal .modal-content{
   overflow-y:auto;-webkit-overflow-scrolling:touch;
   scroll-behavior:smooth;
-  padding:56px clamp(24px,4vw,40px) clamp(28px,4vw,40px);
+  padding:68px clamp(28px,4vw,44px) clamp(32px,4vw,44px);
   flex:1 1 auto;min-height:0;
 }
 .modal .modal-content[hidden]{display:none;}
+.modal .modal-content > h2{margin-bottom:14px;}
+.modal .modal-content > .modal-lead{margin-bottom:28px;}
+.modal .modal-content > .modal-foot{margin-top:18px;}
 
-/* Phone: full-width bottom-sheet, larger close target, keyboard-safe height */
+/* Phone: bottom-sheet style, fixed in viewport, internal scroll only.
+   Generous padding + 90svh max-height so keyboard never buries the active field. */
 @media(max-width:560px){
   .modal{
     width:100%;
     top:auto;left:0;right:0;
     bottom:0;
-    transform:translateY(100%);  /* fully off-screen initially for proper slide-up */
+    transform:translateY(100%);
     max-height:90svh; max-height:90vh;
-    border-radius:20px 20px 0 0;
+    border-radius:24px 24px 0 0;
   }
   .modal.is-open{transform:translateY(0);}
   .modal-close{
-    top:12px;right:12px;
-    width:40px;height:40px;font-size:15px;
+    top:14px;right:14px;
+    width:44px;height:44px;font-size:16px;
   }
   .modal .modal-content{
-    padding:56px 20px 24px;
+    padding:72px 22px 32px;
   }
 }
 /* Active form field auto-scrolls into view (keyboard friendly) */
@@ -2612,7 +2616,7 @@ strong,b{font-weight:800;}
   margin:0 0 24px;
 }
 .modal-lead b{color:#0A0A0A;font-weight:900;}
-.modal-form{display:flex;flex-direction:column;gap:14px;}
+.modal-form{display:flex;flex-direction:column;gap:16px;}
 .modal-form label{
   display:flex;flex-direction:column;gap:6px;
   font-size:10.5px;font-weight:800;letter-spacing:.1em;text-transform:uppercase;
@@ -2621,12 +2625,25 @@ strong,b{font-weight:800;}
 .modal-form input,
 .modal-form select,
 .modal-form textarea{
-  padding:12px 14px;
-  font-family:inherit;font-size:14px;font-weight:500;
+  padding:14px 16px;
+  font-family:inherit;font-size:16px;font-weight:500;
+  /* 16px prevents iOS Safari from auto-zooming on focus. Critical for mobile. */
   background:#F5F5F5;border:1px solid #E5E5E5;border-radius:10px;
   color:#0A0A0A;
   transition:border-color .15s var(--ease),background .15s var(--ease);
+  -webkit-appearance:none;appearance:none;
 }
+/* Custom select chevron — native one is ugly across browsers */
+.modal-form select{
+  background-image:url("data:image/svg+xml;charset=utf-8,%3Csvg xmlns='http://www.w3.org/2000/svg' width='14' height='14' viewBox='0 0 24 24' fill='%235A5A5A'%3E%3Cpath d='M7 10l5 5 5-5z'/%3E%3C/svg%3E");
+  background-repeat:no-repeat;background-position:right 14px center;
+  padding-right:38px;
+}
+/* "Other" reveal — hidden text input that appears when a dropdown selects "__other" */
+.modal-form .other-reveal{
+  display:none;margin-top:8px;
+}
+.modal-form .other-reveal.is-on{display:flex;}
 .modal-form input:focus,
 .modal-form select:focus,
 .modal-form textarea:focus{

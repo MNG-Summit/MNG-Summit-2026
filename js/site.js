@@ -136,6 +136,72 @@
   // can trigger any form type (speak, mentor, volunteer, contact, attend)
   // without HTML duplication. The page only needs the modal shell.
   if (mModal) {
+    // Reusable dropdown options
+    // Mongolian-population priority order — biggest diaspora hubs first
+    var CITY_OPTIONS = ''
+      + '<option value="">Choose your city…</option>'
+      + '<optgroup label="Largest Mongolian communities">'
+      +   '<option>Ulaanbaatar, Mongolia</option>'
+      +   '<option>Chicago, IL</option>'
+      +   '<option>New York City, NY</option>'
+      +   '<option>San Francisco Bay Area, CA</option>'
+      +   '<option>Los Angeles, CA</option>'
+      +   '<option>Denver, CO</option>'
+      +   '<option>Washington, DC</option>'
+      +   '<option>Seattle, WA</option>'
+      +   '<option>Boston, MA</option>'
+      +   '<option>Houston, TX</option>'
+      + '</optgroup>'
+      + '<optgroup label="Other US cities">'
+      +   '<option>Atlanta, GA</option>'
+      +   '<option>Austin, TX</option>'
+      +   '<option>Dallas, TX</option>'
+      +   '<option>Miami, FL</option>'
+      +   '<option>Minneapolis, MN</option>'
+      +   '<option>Philadelphia, PA</option>'
+      +   '<option>Phoenix, AZ</option>'
+      +   '<option>Portland, OR</option>'
+      +   '<option>San Diego, CA</option>'
+      + '</optgroup>'
+      + '<optgroup label="International">'
+      +   '<option>Berlin, Germany</option>'
+      +   '<option>London, UK</option>'
+      +   '<option>Seoul, South Korea</option>'
+      +   '<option>Sydney, Australia</option>'
+      +   '<option>Tokyo, Japan</option>'
+      +   '<option>Toronto, Canada</option>'
+      + '</optgroup>'
+      + '<option value="__other">Other (type yours)</option>';
+
+    var INDUSTRY_OPTIONS = ''
+      + '<option value="">Choose your industry…</option>'
+      + '<option>Tech / Software</option>'
+      + '<option>Finance / Banking</option>'
+      + '<option>Consulting</option>'
+      + '<option>Healthcare / Medical</option>'
+      + '<option>Education / Academia</option>'
+      + '<option>Design / Creative</option>'
+      + '<option>Media / Communications</option>'
+      + '<option>Government / Policy</option>'
+      + '<option>Mining / Resources</option>'
+      + '<option>Legal</option>'
+      + '<option>Real estate</option>'
+      + '<option>Non-profit / NGO</option>'
+      + '<option>Arts / Culture</option>'
+      + '<option>Student</option>'
+      + '<option value="__other">Other (type yours)</option>';
+
+    // Helper: build a select with an "Other" reveal text input that shows when __other is picked
+    var dropdownWithOther = function (name, label, options, isRequired) {
+      var req = isRequired ? ' required' : '';
+      return '<label>' + label
+        + '<select name="' + name + '" data-other-target="' + name + '_other"' + req + '>' + options + '</select>'
+        + '</label>'
+        + '<label class="other-reveal" data-reveal-for="' + name + '">'
+        +   '<input name="' + name + '_other" type="text" placeholder="Type your ' + name + '" autocomplete="off" />'
+        + '</label>';
+    };
+
     var MODAL_CONTENT_TEMPLATES = {
       'attend': ''
         + '<div class="modal-eyebrow">Attend Summit 2026</div>'
@@ -145,8 +211,8 @@
         +   '<label>Your name <input name="name" required /></label>'
         +   '<label>Email <input name="email" type="email" required /></label>'
         +   '<label>LinkedIn<div class="input-prefixed"><span class="input-prefix">linkedin.com/in/</span><input name="linkedin" type="text" placeholder="yourhandle" autocomplete="off" /></div></label>'
-        +   '<label>City <input name="city" placeholder="e.g. New York, San Francisco, Ulaanbaatar" /></label>'
-        +   '<label>Industry <input name="industry" placeholder="e.g. Finance, Tech, Design, Policy" /></label>'
+        +   dropdownWithOther('city', 'City', CITY_OPTIONS, false)
+        +   dropdownWithOther('industry', 'Industry', INDUSTRY_OPTIONS, false)
         +   '<label>One thing you\'re hoping to find at the summit (optional) <textarea name="hoping" rows="2" placeholder="e.g. The right co-founder, a job, a community."></textarea></label>'
         +   '<button type="submit" class="modal-submit">Hold my spot →</button>'
         + '</form>'
@@ -160,6 +226,7 @@
         +   '<label>Email <input name="email" type="email" required /></label>'
         +   '<label>LinkedIn<div class="input-prefixed"><span class="input-prefix">linkedin.com/in/</span><input name="linkedin" type="text" placeholder="yourhandle" autocomplete="off" required /></div></label>'
         +   '<label>Format <select name="format"><option>Keynote (20 min)</option><option>Panel (60 min)</option><option>Workshop (90 min)</option><option>Open to any</option></select></label>'
+        +   dropdownWithOther('industry', 'Industry', INDUSTRY_OPTIONS, false)
         +   '<label>Topic <input name="topic" placeholder="e.g. Building agentic AI tools in Mongolia" /></label>'
         +   '<label>1-line pitch <textarea name="pitch" rows="3" placeholder="What you\'ll say. The payoff for the audience."></textarea></label>'
         +   '<button type="submit" class="modal-submit">Apply to speak →</button>'
@@ -172,9 +239,9 @@
         +   '<label>Your name <input name="name" required /></label>'
         +   '<label>Email <input name="email" type="email" required /></label>'
         +   '<label>LinkedIn<div class="input-prefixed"><span class="input-prefix">linkedin.com/in/</span><input name="linkedin" type="text" placeholder="yourhandle" autocomplete="off" required /></div></label>'
-        +   '<label>Industry <input name="industry" placeholder="e.g. Finance, Tech, Design, Policy, Health" /></label>'
+        +   dropdownWithOther('industry', 'Industry', INDUSTRY_OPTIONS, false)
         +   '<label>Career stage <select name="stage"><option>Senior (10+ years)</option><option>Mid (5–10 years)</option><option>Early (under 5 years)</option></select></label>'
-        +   '<label>City / time-zone <input name="location" placeholder="e.g. NYC · ET" /></label>'
+        +   dropdownWithOther('city', 'City / time-zone', CITY_OPTIONS, false)
         +   '<button type="submit" class="modal-submit">Sign me up to mentor →</button>'
         + '</form>',
       'volunteer': ''
@@ -185,7 +252,9 @@
         +   '<label>Your name <input name="name" required /></label>'
         +   '<label>Email <input name="email" type="email" required /></label>'
         +   '<label>LinkedIn<div class="input-prefixed"><span class="input-prefix">linkedin.com/in/</span><input name="linkedin" type="text" placeholder="yourhandle" autocomplete="off" required /></div></label>'
-        +   '<label>Skills / areas <input name="skills" placeholder="e.g. graphic design, production, sponsor outreach, comms" /></label>'
+        +   dropdownWithOther('city', 'City', CITY_OPTIONS, false)
+        +   '<label>Area of help <select name="area"><option>Production / logistics</option><option>Content / writing</option><option>Design</option><option>Engineering / tech</option><option>Partnerships / sponsor outreach</option><option>Communications / social</option><option>Photography / video</option><option value="__other">Other (type below)</option></select></label>'
+        +   '<label class="other-reveal" data-reveal-for="area"><input name="area_other" type="text" placeholder="What kind of help?" autocomplete="off" /></label>'
         +   '<label>Hours per week <select name="hours"><option>2–4 hrs/week</option><option>4–8 hrs/week</option><option>8+ hrs/week</option></select></label>'
         +   '<label>Anything else we should know (optional) <textarea name="notes" rows="2"></textarea></label>'
         +   '<button type="submit" class="modal-submit">Volunteer with us →</button>'
@@ -201,7 +270,7 @@
         +   '<label>What\'s on your mind <textarea name="message" rows="4" required></textarea></label>'
         +   '<button type="submit" class="modal-submit">Send →</button>'
         + '</form>',
-      'waitlist': ''  // alias for attend (legacy summit-2026 ticket card)
+      'waitlist': ''
     };
     MODAL_CONTENT_TEMPLATES.waitlist = MODAL_CONTENT_TEMPLATES.attend;
 
@@ -220,24 +289,70 @@
     var mClose = document.getElementById('modal-close');
     var mContents = mModal.querySelectorAll('.modal-content');
 
+    // iOS Safari scroll-lock helpers — overflow:hidden alone doesn't lock on iOS.
+    // We save scrollY, fix the body to that position, restore on close.
+    var savedScrollY = 0;
+    var lockBodyScroll = function () {
+      savedScrollY = window.scrollY || window.pageYOffset || 0;
+      document.body.style.position = 'fixed';
+      document.body.style.top = '-' + savedScrollY + 'px';
+      document.body.style.left = '0';
+      document.body.style.right = '0';
+      document.body.style.overflow = 'hidden';
+    };
+    var unlockBodyScroll = function () {
+      document.body.style.position = '';
+      document.body.style.top = '';
+      document.body.style.left = '';
+      document.body.style.right = '';
+      document.body.style.overflow = '';
+      window.scrollTo(0, savedScrollY);
+    };
+
     var openModal = function (name) {
+      mContents = mModal.querySelectorAll('.modal-content'); // re-query in case JS-injected after init
       mContents.forEach(function (c) {
         c.hidden = c.getAttribute('data-content') !== name;
       });
       mModal.classList.add('is-open');
       mModal.setAttribute('aria-hidden', 'false');
       mScrim.classList.add('is-open');
-      document.body.style.overflow = 'hidden';
-      var first = mModal.querySelector('.modal-content:not([hidden]) input, .modal-content:not([hidden]) select, .modal-content:not([hidden]) textarea');
-      if (first) setTimeout(function () { first.focus(); }, 150);
+      lockBodyScroll();
+      // Don't auto-focus on phone — autofocus opens the keyboard, which is jarring.
+      // Desktop only.
+      if (window.innerWidth > 760) {
+        var first = mModal.querySelector('.modal-content:not([hidden]) input, .modal-content:not([hidden]) select, .modal-content:not([hidden]) textarea');
+        if (first) setTimeout(function () { first.focus(); }, 150);
+      }
     };
 
     var closeModal = function () {
       mModal.classList.remove('is-open');
       mModal.setAttribute('aria-hidden', 'true');
       mScrim.classList.remove('is-open');
-      document.body.style.overflow = '';
+      unlockBodyScroll();
     };
+
+    // "Other" reveal — when a dropdown picks __other, show the paired text input
+    mModal.addEventListener('change', function (e) {
+      var sel = e.target.closest('select[data-other-target], select[name]');
+      if (!sel) return;
+      // Find the matching .other-reveal (data-reveal-for matches the select name)
+      var name = sel.getAttribute('name');
+      var content = sel.closest('.modal-content');
+      if (!content) return;
+      var reveal = content.querySelector('.other-reveal[data-reveal-for="' + name + '"]');
+      if (!reveal) return;
+      if (sel.value === '__other') {
+        reveal.classList.add('is-on');
+        var input = reveal.querySelector('input');
+        if (input) setTimeout(function () { input.focus(); }, 80);
+      } else {
+        reveal.classList.remove('is-on');
+        var input2 = reveal.querySelector('input');
+        if (input2) input2.value = '';
+      }
+    });
 
     document.querySelectorAll('[data-modal]').forEach(function (el) {
       el.addEventListener('click', function (e) {
@@ -273,10 +388,23 @@
 
         var fd = new FormData(form);
         var data = { form: formType };
+        // First pass — collect everything
+        var raw = {};
         fd.forEach(function (value, key) {
           var v = String(value || '').trim();
+          raw[key] = v;
+        });
+        // Merge "__other" picks with their paired _other text input
+        Object.keys(raw).forEach(function (key) {
+          if (key.endsWith('_other')) return;
+          var v = raw[key];
+          if (v === '__other') {
+            var otherKey = key + '_other';
+            var otherVal = raw[otherKey];
+            v = otherVal && otherVal.trim() ? otherVal.trim() : '';
+          }
           if (!v) return;
-          // Reconstruct LinkedIn URL from handle-only input (or accept full URL paste)
+          // LinkedIn → reconstruct full URL from handle
           if (key === 'linkedin') {
             v = v.replace(/^https?:\/\/(www\.)?linkedin\.com\/in\//i, '')
                  .replace(/^linkedin\.com\/in\//i, '')
@@ -508,6 +636,40 @@
     var modal = document.createElement('div');
     modal.className = 'early-modal';
     modal.setAttribute('aria-hidden', 'true');
+    // Shared dropdown options (also used by the standard modal templates below)
+    var EM_CITY_OPTIONS = ''
+      + '<option value="">Choose your city…</option>'
+      + '<optgroup label="Largest Mongolian communities">'
+      +   '<option>Ulaanbaatar, Mongolia</option>'
+      +   '<option>Chicago, IL</option>'
+      +   '<option>New York City, NY</option>'
+      +   '<option>San Francisco Bay Area, CA</option>'
+      +   '<option>Los Angeles, CA</option>'
+      +   '<option>Denver, CO</option>'
+      +   '<option>Washington, DC</option>'
+      +   '<option>Seattle, WA</option>'
+      +   '<option>Boston, MA</option>'
+      +   '<option>Houston, TX</option>'
+      + '</optgroup>'
+      + '<optgroup label="Other US cities">'
+      +   '<option>Atlanta, GA</option><option>Austin, TX</option><option>Dallas, TX</option>'
+      +   '<option>Miami, FL</option><option>Minneapolis, MN</option><option>Philadelphia, PA</option>'
+      +   '<option>Phoenix, AZ</option><option>Portland, OR</option><option>San Diego, CA</option>'
+      + '</optgroup>'
+      + '<optgroup label="International">'
+      +   '<option>Berlin, Germany</option><option>London, UK</option><option>Seoul, South Korea</option>'
+      +   '<option>Sydney, Australia</option><option>Tokyo, Japan</option><option>Toronto, Canada</option>'
+      + '</optgroup>'
+      + '<option value="__other">Other (type yours)</option>';
+    var EM_INDUSTRY_OPTIONS = ''
+      + '<option value="">Choose your industry…</option>'
+      + '<option>Tech / Software</option><option>Finance / Banking</option><option>Consulting</option>'
+      + '<option>Healthcare / Medical</option><option>Education / Academia</option><option>Design / Creative</option>'
+      + '<option>Media / Communications</option><option>Government / Policy</option><option>Mining / Resources</option>'
+      + '<option>Legal</option><option>Real estate</option><option>Non-profit / NGO</option>'
+      + '<option>Arts / Culture</option><option>Student</option>'
+      + '<option value="__other">Other (type yours)</option>';
+
     modal.innerHTML = ''
       + '<div class="early-modal-scrim"></div>'
       + '<div class="early-modal-panel" role="dialog" aria-modal="true" aria-label="Join the MNG Summit 2026 early list">'
@@ -525,8 +687,10 @@
       +           '<input name="linkedin" type="text" placeholder="yourhandle" autocomplete="off" />'
       +         '</div>'
       +       '</label>'
-      +       '<label>City <input name="city" placeholder="e.g. New York, San Francisco, Ulaanbaatar" autocomplete="address-level2" /></label>'
-      +       '<label>Industry <input name="industry" placeholder="e.g. Finance, Tech, Design, Policy" /></label>'
+      +       '<label>City<select name="city">' + EM_CITY_OPTIONS + '</select></label>'
+      +       '<label class="other-reveal" data-reveal-for="city"><input name="city_other" type="text" placeholder="Type your city" autocomplete="off" /></label>'
+      +       '<label>Industry<select name="industry">' + EM_INDUSTRY_OPTIONS + '</select></label>'
+      +       '<label class="other-reveal" data-reveal-for="industry"><input name="industry_other" type="text" placeholder="Type your industry" autocomplete="off" /></label>'
       +       '<label>One thing you\'re hoping to find at the summit (optional) <textarea name="hoping" rows="2" placeholder="e.g. The right co-founder, a job, a community."></textarea></label>'
       +       '<button type="submit" class="modal-submit">Hold my spot →</button>'
       +       '<div class="early-modal-status" role="status" aria-live="polite"></div>'
@@ -536,23 +700,63 @@
       + '</div>';
     document.body.appendChild(modal);
 
+    // Wire the "Other" reveal toggles for this modal's selects
+    modal.addEventListener('change', function (e) {
+      var sel = e.target.closest('select[name]');
+      if (!sel) return;
+      var name = sel.getAttribute('name');
+      var reveal = modal.querySelector('.other-reveal[data-reveal-for="' + name + '"]');
+      if (!reveal) return;
+      if (sel.value === '__other') {
+        reveal.classList.add('is-on');
+        var input = reveal.querySelector('input');
+        if (input) setTimeout(function () { input.focus(); }, 80);
+      } else {
+        reveal.classList.remove('is-on');
+        var inp = reveal.querySelector('input');
+        if (inp) inp.value = '';
+      }
+    });
+
     var scrim = modal.querySelector('.early-modal-scrim');
     var closeBtn = modal.querySelector('.early-modal-close');
     var form = modal.querySelector('.early-modal-form');
     var submitBtn = form.querySelector('.modal-submit');
     var status = form.querySelector('.early-modal-status');
 
+    // iOS-safe scroll lock — saves scrollY, fixes body, restores on close.
+    var emSavedY = 0;
+    var emLock = function () {
+      emSavedY = window.scrollY || window.pageYOffset || 0;
+      document.body.style.position = 'fixed';
+      document.body.style.top = '-' + emSavedY + 'px';
+      document.body.style.left = '0';
+      document.body.style.right = '0';
+      document.body.style.overflow = 'hidden';
+    };
+    var emUnlock = function () {
+      document.body.style.position = '';
+      document.body.style.top = '';
+      document.body.style.left = '';
+      document.body.style.right = '';
+      document.body.style.overflow = '';
+      window.scrollTo(0, emSavedY);
+    };
+
     var openModal = function () {
       modal.classList.add('is-open');
       modal.setAttribute('aria-hidden', 'false');
-      document.body.style.overflow = 'hidden';
-      var first = form.querySelector('input[name="name"]');
-      if (first) setTimeout(function () { first.focus(); }, 100);
+      emLock();
+      // Don't auto-focus on phone — keyboard-popping-up is jarring
+      if (window.innerWidth > 760) {
+        var first = form.querySelector('input[name="name"]');
+        if (first) setTimeout(function () { first.focus(); }, 100);
+      }
     };
     var closeModal = function () {
       modal.classList.remove('is-open');
       modal.setAttribute('aria-hidden', 'true');
-      document.body.style.overflow = '';
+      emUnlock();
     };
     if (scrim) scrim.addEventListener('click', closeModal);
     if (closeBtn) closeBtn.addEventListener('click', closeModal);
@@ -576,8 +780,19 @@
     form.addEventListener('submit', function (e) {
       e.preventDefault();
       var fd = new FormData(form);
+      var raw = {};
+      fd.forEach(function (v, k) { raw[k] = String(v).trim(); });
+      // Merge "__other" picks with their paired _other text input
       var data = {};
-      fd.forEach(function (v, k) { data[k] = String(v).trim(); });
+      Object.keys(raw).forEach(function (k) {
+        if (k.endsWith('_other')) return;
+        var v = raw[k];
+        if (v === '__other') {
+          var o = raw[k + '_other'];
+          v = o && o.trim() ? o.trim() : '';
+        }
+        if (v) data[k] = v;
+      });
       // Reconstruct LinkedIn URL from handle-only input
       if (data.linkedin) {
         data.linkedin = data.linkedin
