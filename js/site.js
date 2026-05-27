@@ -131,6 +131,91 @@
   // ---------- modal popup (intake forms) ----------
   var mScrim = document.getElementById('modal-scrim');
   var mModal = document.getElementById('involve-modal');
+
+  // Auto-populate missing modal-content blocks so any page with #involve-modal
+  // can trigger any form type (speak, mentor, volunteer, contact, attend)
+  // without HTML duplication. The page only needs the modal shell.
+  if (mModal) {
+    var MODAL_CONTENT_TEMPLATES = {
+      'attend': ''
+        + '<div class="modal-eyebrow">Attend Summit 2026</div>'
+        + '<h2>Get on the early list</h2>'
+        + '<p class="modal-lead">Three days · 100 seats · NYC · Oct 9–11, 2026. We\'ll send the ticket link to the <b>early list first</b>.</p>'
+        + '<form class="modal-form">'
+        +   '<label>Your name <input name="name" required /></label>'
+        +   '<label>Email <input name="email" type="email" required /></label>'
+        +   '<label>LinkedIn<div class="input-prefixed"><span class="input-prefix">linkedin.com/in/</span><input name="linkedin" type="text" placeholder="yourhandle" autocomplete="off" /></div></label>'
+        +   '<label>City <input name="city" placeholder="e.g. New York, San Francisco, Ulaanbaatar" /></label>'
+        +   '<label>Industry <input name="industry" placeholder="e.g. Finance, Tech, Design, Policy" /></label>'
+        +   '<label>One thing you\'re hoping to find at the summit (optional) <textarea name="hoping" rows="2" placeholder="e.g. The right co-founder, a job, a community."></textarea></label>'
+        +   '<button type="submit" class="modal-submit">Hold my spot →</button>'
+        + '</form>'
+        + '<div class="modal-foot">We send weekly on Wednesdays. Unsubscribe any time.</div>',
+      'speak': ''
+        + '<div class="modal-eyebrow">Speak on a panel</div>'
+        + '<h2>Apply to speak</h2>'
+        + '<p class="modal-lead">Keynote 20 min · Panel 60 min · Workshop 90 min. We close the call <b>by June 2026</b>.</p>'
+        + '<form class="modal-form">'
+        +   '<label>Your name <input name="name" required /></label>'
+        +   '<label>Email <input name="email" type="email" required /></label>'
+        +   '<label>LinkedIn<div class="input-prefixed"><span class="input-prefix">linkedin.com/in/</span><input name="linkedin" type="text" placeholder="yourhandle" autocomplete="off" required /></div></label>'
+        +   '<label>Format <select name="format"><option>Keynote (20 min)</option><option>Panel (60 min)</option><option>Workshop (90 min)</option><option>Open to any</option></select></label>'
+        +   '<label>Topic <input name="topic" placeholder="e.g. Building agentic AI tools in Mongolia" /></label>'
+        +   '<label>1-line pitch <textarea name="pitch" rows="3" placeholder="What you\'ll say. The payoff for the audience."></textarea></label>'
+        +   '<button type="submit" class="modal-submit">Apply to speak →</button>'
+        + '</form>',
+      'mentor': ''
+        + '<div class="modal-eyebrow">Mentor someone</div>'
+        + '<h2>Mentor intake</h2>'
+        + '<p class="modal-lead"><b>2 hrs/month for 3 months.</b> We hand-match mentors and mentees by industry, career stage, and time-zone.</p>'
+        + '<form class="modal-form">'
+        +   '<label>Your name <input name="name" required /></label>'
+        +   '<label>Email <input name="email" type="email" required /></label>'
+        +   '<label>LinkedIn<div class="input-prefixed"><span class="input-prefix">linkedin.com/in/</span><input name="linkedin" type="text" placeholder="yourhandle" autocomplete="off" required /></div></label>'
+        +   '<label>Industry <input name="industry" placeholder="e.g. Finance, Tech, Design, Policy, Health" /></label>'
+        +   '<label>Career stage <select name="stage"><option>Senior (10+ years)</option><option>Mid (5–10 years)</option><option>Early (under 5 years)</option></select></label>'
+        +   '<label>City / time-zone <input name="location" placeholder="e.g. NYC · ET" /></label>'
+        +   '<button type="submit" class="modal-submit">Sign me up to mentor →</button>'
+        + '</form>',
+      'volunteer': ''
+        + '<div class="modal-eyebrow">Volunteer with us</div>'
+        + '<h2>Volunteer intake</h2>'
+        + '<p class="modal-lead"><b>~4 hrs/week.</b> Production, content, partnerships, design, tech. Whatever you\'re great at.</p>'
+        + '<form class="modal-form">'
+        +   '<label>Your name <input name="name" required /></label>'
+        +   '<label>Email <input name="email" type="email" required /></label>'
+        +   '<label>LinkedIn<div class="input-prefixed"><span class="input-prefix">linkedin.com/in/</span><input name="linkedin" type="text" placeholder="yourhandle" autocomplete="off" required /></div></label>'
+        +   '<label>Skills / areas <input name="skills" placeholder="e.g. graphic design, production, sponsor outreach, comms" /></label>'
+        +   '<label>Hours per week <select name="hours"><option>2–4 hrs/week</option><option>4–8 hrs/week</option><option>8+ hrs/week</option></select></label>'
+        +   '<label>Anything else we should know (optional) <textarea name="notes" rows="2"></textarea></label>'
+        +   '<button type="submit" class="modal-submit">Volunteer with us →</button>'
+        + '</form>',
+      'contact': ''
+        + '<div class="modal-eyebrow">Not sure where you fit?</div>'
+        + '<h2>Email the working board</h2>'
+        + '<p class="modal-lead">One reply, one human, no funnel. We answer <b>within 48 hours</b>.</p>'
+        + '<form class="modal-form">'
+        +   '<label>Your name <input name="name" required /></label>'
+        +   '<label>Email <input name="email" type="email" required /></label>'
+        +   '<label>LinkedIn (optional)<div class="input-prefixed"><span class="input-prefix">linkedin.com/in/</span><input name="linkedin" type="text" placeholder="yourhandle" autocomplete="off" /></div></label>'
+        +   '<label>What\'s on your mind <textarea name="message" rows="4" required></textarea></label>'
+        +   '<button type="submit" class="modal-submit">Send →</button>'
+        + '</form>',
+      'waitlist': ''  // alias for attend (legacy summit-2026 ticket card)
+    };
+    MODAL_CONTENT_TEMPLATES.waitlist = MODAL_CONTENT_TEMPLATES.attend;
+
+    Object.keys(MODAL_CONTENT_TEMPLATES).forEach(function (key) {
+      if (mModal.querySelector('.modal-content[data-content="' + key + '"]')) return;
+      var node = document.createElement('div');
+      node.className = 'modal-content';
+      node.setAttribute('data-content', key);
+      node.hidden = true;
+      node.innerHTML = MODAL_CONTENT_TEMPLATES[key];
+      mModal.appendChild(node);
+    });
+  }
+
   if (mScrim && mModal) {
     var mClose = document.getElementById('modal-close');
     var mContents = mModal.querySelectorAll('.modal-content');
@@ -169,19 +254,93 @@
 
     // Form submissions → pre-filled mailto so user reviews + sends from their own client
     mModal.querySelectorAll('.modal-form').forEach(function (form) {
+      // Status element appended below the submit button for inline feedback
+      var statusEl = form.querySelector('.modal-form-status');
+      if (!statusEl) {
+        statusEl = document.createElement('div');
+        statusEl.className = 'modal-form-status';
+        statusEl.setAttribute('role', 'status');
+        statusEl.setAttribute('aria-live', 'polite');
+        form.appendChild(statusEl);
+      }
+
       form.addEventListener('submit', function (e) {
         e.preventDefault();
-        var subject = form.getAttribute('data-subject') || 'MNG Summit inquiry';
-        var parts = [];
-        var data = new FormData(form);
-        data.forEach(function (value, key) {
-          if (!value) return;
-          var label = key.charAt(0).toUpperCase() + key.slice(1).replace(/_/g, ' ');
-          parts.push(label + ':\n' + value);
+        // Form type comes from the parent .modal-content[data-content]
+        var content = form.closest('.modal-content');
+        var formType = content ? content.getAttribute('data-content') : '';
+        if (!formType) return;
+
+        var fd = new FormData(form);
+        var data = { form: formType };
+        fd.forEach(function (value, key) {
+          var v = String(value || '').trim();
+          if (!v) return;
+          // Reconstruct LinkedIn URL from handle-only input (or accept full URL paste)
+          if (key === 'linkedin') {
+            v = v.replace(/^https?:\/\/(www\.)?linkedin\.com\/in\//i, '')
+                 .replace(/^linkedin\.com\/in\//i, '')
+                 .replace(/^\/+/, '')
+                 .replace(/\/+$/, '');
+            if (!v) return;
+            v = 'https://www.linkedin.com/in/' + v;
+          }
+          data[key] = v;
         });
-        var body = parts.join('\n\n') + '\n\n— Sent via mngsummit.org';
-        var href = 'mailto:contact@mngsummit.org?subject=' + encodeURIComponent(subject) + '&body=' + encodeURIComponent(body);
-        window.location.href = href;
+        data.referrer = document.referrer || '';
+        data.source = formType + ' · ' + (document.title || location.pathname);
+
+        if (!data.email) {
+          var emailIn = form.querySelector('input[type="email"]');
+          if (emailIn) emailIn.focus();
+          return;
+        }
+
+        var submitBtn = form.querySelector('.modal-submit');
+        var originalText = submitBtn ? submitBtn.textContent : '';
+        if (submitBtn) { submitBtn.disabled = true; submitBtn.textContent = 'Sending…'; }
+        statusEl.textContent = '';
+        statusEl.classList.remove('is-ok', 'is-err');
+
+        // Route the "attend" form through subscribe.mjs (it's an early-list signup),
+        // everything else through apply.mjs (speak / mentor / volunteer / contact).
+        var endpoint = (formType === 'attend')
+          ? '/.netlify/functions/subscribe'
+          : '/.netlify/functions/apply';
+        // subscribe.mjs expects email + optional richer fields; apply.mjs needs form type
+        var payload = (formType === 'attend')
+          ? Object.assign({}, data, { source: 'early-list · ' + (document.title || location.pathname) })
+          : data;
+
+        fetch(endpoint, {
+          method: 'POST',
+          headers: { 'Content-Type': 'application/json' },
+          body: JSON.stringify(payload)
+        })
+          .then(function (r) { return r.json().catch(function () { return { ok: r.ok }; }); })
+          .then(function (res) {
+            if (res && res.ok) {
+              statusEl.textContent = "Submitted. Check your inbox — we sent a confirmation.";
+              statusEl.classList.add('is-ok');
+              form.reset();
+              if (submitBtn) { submitBtn.textContent = 'Sent ✓'; }
+              setTimeout(function () {
+                closeModal();
+                if (submitBtn) { submitBtn.disabled = false; submitBtn.textContent = originalText; }
+                statusEl.textContent = '';
+                statusEl.classList.remove('is-ok', 'is-err');
+              }, 2000);
+            } else {
+              statusEl.textContent = (res && res.error) || 'Could not submit right now. Please try again.';
+              statusEl.classList.add('is-err');
+              if (submitBtn) { submitBtn.disabled = false; submitBtn.textContent = originalText; }
+            }
+          })
+          .catch(function () {
+            statusEl.textContent = 'Network error. Please try again.';
+            statusEl.classList.add('is-err');
+            if (submitBtn) { submitBtn.disabled = false; submitBtn.textContent = originalText; }
+          });
       });
     });
   }
@@ -342,6 +501,133 @@
       window.location.href = 'directory-speakers.html#q=' + encodeURIComponent(q);
     });
   }
+
+  // ---------- early-list modal · replaces every "Join early list" mailto with
+  // a proper Resend-wired signup form. Modal is built once and reused. -------
+  (function () {
+    var modal = document.createElement('div');
+    modal.className = 'early-modal';
+    modal.setAttribute('aria-hidden', 'true');
+    modal.innerHTML = ''
+      + '<div class="early-modal-scrim"></div>'
+      + '<div class="early-modal-panel" role="dialog" aria-modal="true" aria-label="Join the MNG Summit 2026 early list">'
+      +   '<button class="early-modal-close" type="button" aria-label="Close">✕</button>'
+      +   '<div class="early-modal-body">'
+      +     '<div class="early-modal-eyebrow">Tickets · MNG Summit 2026</div>'
+      +     '<h2 class="early-modal-title">Get on the<br/><em>early list.</em></h2>'
+      +     '<p class="early-modal-lead">Three days · 100 seats · NYC · Oct 9–11, 2026. We send the ticket link to the <b>early list first</b>, before public release.</p>'
+      +     '<form class="modal-form early-modal-form" novalidate>'
+      +       '<label>Your name <input name="name" required autocomplete="name" /></label>'
+      +       '<label>Email <input name="email" type="email" required autocomplete="email" /></label>'
+      +       '<label>LinkedIn'
+      +         '<div class="input-prefixed">'
+      +           '<span class="input-prefix">linkedin.com/in/</span>'
+      +           '<input name="linkedin" type="text" placeholder="yourhandle" autocomplete="off" />'
+      +         '</div>'
+      +       '</label>'
+      +       '<label>City <input name="city" placeholder="e.g. New York, San Francisco, Ulaanbaatar" autocomplete="address-level2" /></label>'
+      +       '<label>Industry <input name="industry" placeholder="e.g. Finance, Tech, Design, Policy" /></label>'
+      +       '<label>One thing you\'re hoping to find at the summit (optional) <textarea name="hoping" rows="2" placeholder="e.g. The right co-founder, a job, a community."></textarea></label>'
+      +       '<button type="submit" class="modal-submit">Hold my spot →</button>'
+      +       '<div class="early-modal-status" role="status" aria-live="polite"></div>'
+      +     '</form>'
+      +     '<div class="early-modal-foot">We send weekly on Wednesdays. Unsubscribe any time.</div>'
+      +   '</div>'
+      + '</div>';
+    document.body.appendChild(modal);
+
+    var scrim = modal.querySelector('.early-modal-scrim');
+    var closeBtn = modal.querySelector('.early-modal-close');
+    var form = modal.querySelector('.early-modal-form');
+    var submitBtn = form.querySelector('.modal-submit');
+    var status = form.querySelector('.early-modal-status');
+
+    var openModal = function () {
+      modal.classList.add('is-open');
+      modal.setAttribute('aria-hidden', 'false');
+      document.body.style.overflow = 'hidden';
+      var first = form.querySelector('input[name="name"]');
+      if (first) setTimeout(function () { first.focus(); }, 100);
+    };
+    var closeModal = function () {
+      modal.classList.remove('is-open');
+      modal.setAttribute('aria-hidden', 'true');
+      document.body.style.overflow = '';
+    };
+    if (scrim) scrim.addEventListener('click', closeModal);
+    if (closeBtn) closeBtn.addEventListener('click', closeModal);
+    document.addEventListener('keydown', function (e) {
+      if (e.key === 'Escape' && modal.classList.contains('is-open')) closeModal();
+    });
+
+    // Intercept legacy "Join early list" mailto links across the site.
+    // (data-modal="waitlist" / "attend" go through the standard modal flow
+    // instead, so they get their full intake form via apply.mjs/subscribe.mjs.)
+    document.addEventListener('click', function (e) {
+      var el = e.target.closest(
+        'a[href*="mailto:"][href*="early"],' +
+        'a[href*="mailto:"][href*="Early"]'
+      );
+      if (!el) return;
+      e.preventDefault();
+      openModal();
+    });
+
+    form.addEventListener('submit', function (e) {
+      e.preventDefault();
+      var fd = new FormData(form);
+      var data = {};
+      fd.forEach(function (v, k) { data[k] = String(v).trim(); });
+      // Reconstruct LinkedIn URL from handle-only input
+      if (data.linkedin) {
+        data.linkedin = data.linkedin
+          .replace(/^https?:\/\/(www\.)?linkedin\.com\/in\//i, '')
+          .replace(/^linkedin\.com\/in\//i, '')
+          .replace(/^\/+/, '')
+          .replace(/\/+$/, '');
+        if (data.linkedin) {
+          data.linkedin = 'https://www.linkedin.com/in/' + data.linkedin;
+        }
+      }
+      data.source = 'early-list modal · ' + (document.title || location.pathname);
+      data.referrer = document.referrer || '';
+
+      if (!data.email) { form.querySelector('input[name="email"]').focus(); return; }
+
+      var originalBtn = submitBtn.textContent;
+      submitBtn.disabled = true;
+      submitBtn.textContent = 'Sending…';
+      status.textContent = '';
+      status.classList.remove('is-ok', 'is-err');
+
+      fetch('/.netlify/functions/subscribe', {
+        method: 'POST',
+        headers: { 'Content-Type': 'application/json' },
+        body: JSON.stringify(data)
+      })
+        .then(function (r) { return r.json().catch(function () { return { ok: r.ok }; }); })
+        .then(function (res) {
+          if (res && res.ok) {
+            status.textContent = "You're on the list. Check your inbox for the welcome note.";
+            status.classList.add('is-ok');
+            form.reset();
+            submitBtn.textContent = 'On the list ✓';
+            setTimeout(function () { closeModal(); submitBtn.disabled = false; submitBtn.textContent = originalBtn; }, 1800);
+          } else {
+            status.textContent = (res && res.error) || 'Could not sign you up right now. Please try again.';
+            status.classList.add('is-err');
+            submitBtn.disabled = false;
+            submitBtn.textContent = originalBtn;
+          }
+        })
+        .catch(function () {
+          status.textContent = 'Network error. Please try again.';
+          status.classList.add('is-err');
+          submitBtn.disabled = false;
+          submitBtn.textContent = originalBtn;
+        });
+    });
+  })();
 
   // ---------- auto-assign IDs to speaker-cards from data-name ----------
   // Inbound links like directory-board.html#yanjaa-munkhbat depend on this — the

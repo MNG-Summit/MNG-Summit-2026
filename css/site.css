@@ -2536,11 +2536,14 @@ strong,b{font-weight:800;}
   transform:translate(-50%,-50%) scale(.96);
   z-index:91;
   width:min(560px,calc(100vw - 32px));
-  max-height:calc(100vh - 64px);
+  /* svh = small viewport height — adjusts for mobile keyboards properly.
+     Fallback to vh for older browsers. */
+  max-height:min(calc(100vh - 64px), calc(100svh - 32px));
   background:#FFFFFF;color:#0A0A0A;
   border-radius:24px;
-  padding:clamp(28px,4vw,40px);
-  overflow-y:auto;
+  padding:60px clamp(24px,4vw,40px) clamp(28px,4vw,40px); /* top-padding leaves room for the sticky X */
+  overflow-y:auto;-webkit-overflow-scrolling:touch;
+  scroll-behavior:smooth;
   opacity:0;pointer-events:none;
   transition:opacity .25s var(--ease), transform .25s var(--ease);
   box-shadow:0 24px 60px rgba(0,0,0,.28);
@@ -2549,16 +2552,40 @@ strong,b{font-weight:800;}
   opacity:1;pointer-events:auto;
   transform:translate(-50%,-50%) scale(1);
 }
+/* Close button — sticky to the modal's viewport so it stays accessible while scrolling.
+   Larger tap target, high-contrast dark chip so it never blends with the form. */
 .modal-close{
-  position:absolute;top:16px;right:16px;
-  width:36px;height:36px;border-radius:50%;
-  border:1px solid #E5E5E5;
+  position:sticky;top:14px;float:right;z-index:5;
+  margin:-46px -8px 0 0; /* pulls into the top-padding zone without overlapping content */
+  width:42px;height:42px;border-radius:50%;
+  border:0;
   display:flex;align-items:center;justify-content:center;
-  font-size:16px;color:#0A0A0A;font-family:inherit;
-  cursor:pointer;background:#FFFFFF;
-  transition:border-color .15s var(--ease),background .15s var(--ease);
+  font-size:16px;color:#FFFFFF;font-family:inherit;font-weight:900;
+  cursor:pointer;background:#0A0A0A;
+  transition:background .15s var(--ease),transform .15s var(--ease);
+  box-shadow:0 4px 12px rgba(0,0,0,.18);
 }
-.modal-close:hover{border-color:#0A0A0A;background:#0A0A0A;color:#FFFFFF;}
+.modal-close:hover,.modal-close:focus-visible{background:#D32F3E;transform:scale(1.05);outline:none;}
+/* Phone: full-width bottom-sheet so the keyboard doesn't bury the form */
+@media(max-width:560px){
+  .modal{
+    width:100%;
+    top:auto;bottom:0;left:0;right:0;
+    transform:translateY(20px);
+    max-height:92svh;max-height:92vh;
+    border-radius:20px 20px 0 0;
+    padding:54px 22px 28px;
+  }
+  .modal.is-open{transform:translateY(0);}
+  .modal-close{
+    margin:-42px -4px 0 0;
+    width:36px;height:36px;font-size:14px;
+  }
+}
+/* Active form field auto-scrolls into view inside the modal (keyboard friendly) */
+.modal-form input:focus,
+.modal-form textarea:focus,
+.modal-form select:focus{scroll-margin-top:64px;scroll-margin-bottom:120px;}
 .modal-eyebrow{
   font-size:11px;font-weight:800;letter-spacing:.14em;text-transform:uppercase;
   color:#1A3B8B;margin-bottom:10px;
@@ -2594,6 +2621,37 @@ strong,b{font-weight:800;}
   outline:none;border-color:#1A3B8B;background:#FFFFFF;
 }
 .modal-form textarea{resize:vertical;min-height:84px;}
+/* Prefixed input — used for LinkedIn so users just type their handle.
+   The prefix label sits inside the same chrome as the input. */
+.modal-form .input-prefixed{
+  display:flex;align-items:stretch;
+  background:#F5F5F5;border:1px solid #E5E5E5;border-radius:10px;
+  overflow:hidden;
+  transition:border-color .15s var(--ease),background .15s var(--ease);
+}
+.modal-form .input-prefixed:focus-within{
+  border-color:#1A3B8B;background:#FFFFFF;
+}
+.modal-form .input-prefix{
+  display:flex;align-items:center;
+  padding:0 12px;
+  font-size:13px;font-weight:600;color:#5A5A5A;
+  background:rgba(0,0,0,.04);
+  border-right:1px solid #E5E5E5;
+  white-space:nowrap;letter-spacing:0;text-transform:none;
+}
+.modal-form .input-prefixed input{
+  flex:1 1 auto;min-width:0;
+  border:0;border-radius:0;background:transparent;padding:12px 14px;
+}
+.modal-form .input-prefixed input:focus{background:transparent;}
+/* Inline status message shown after submit (replaces old mailto behavior) */
+.modal-form-status{
+  font-size:12.5px;font-weight:600;color:#5A5A5A;
+  line-height:1.4;min-height:1em;margin-top:4px;
+}
+.modal-form-status.is-ok{color:#0A8F3E;}
+.modal-form-status.is-err{color:#D32F3E;}
 .modal-submit{
   align-self:flex-start;margin-top:8px;
   display:inline-flex;align-items:center;gap:8px;
@@ -2842,34 +2900,74 @@ strong,b{font-weight:800;}
   .l-stats-wrap{margin:36px auto;}
   .l-stats{font-size:18px;line-height:1.45;}
   .l-stats-cta-row{margin-top:18px;}
-  .l-entry-grid{grid-template-columns:1fr;gap:6px;}
-  /* Phone: cards collapse to a tight title-and-arrow ROW — list-row height, not card height */
-  .l-entry-card{
-    min-height:0;padding:7px 14px;
-    flex-direction:row;align-items:center;justify-content:space-between;
-    gap:10px;border-radius:10px;
+  /* Phone: default 2-up grid (so 4 cards become 2×2, 5 cards become 2x3 etc.).
+     :has() overrides:
+       - exactly 3 cards → 3-up (single tight row, no orphan)
+       - exactly 6 cards → 3-up (clean 3×2 grid)
+       - exactly 9 cards → 3-up (clean 3×3)
+     The ticket card spans the full row regardless of grid columns. */
+  .l-entry-grid{
+    grid-template-columns:repeat(2,1fr) !important;
+    gap:8px !important;grid-auto-flow:dense;
   }
+  .l-entry-grid:has(> a:nth-child(3):last-child),
+  .l-entry-grid:has(> a:nth-child(6):last-child),
+  .l-entry-grid:has(> a:nth-child(9):last-child){
+    grid-template-columns:repeat(3,1fr) !important;
+  }
+  .l-entry-card{
+    min-height:96px !important;padding:12px 14px !important;
+    flex-direction:column;align-items:flex-start;justify-content:space-between;
+    gap:6px;border-radius:12px;
+  }
+  /* All size variants collapse to the same square cell on phone — consistent grid */
   .l-entry-card--xl,
   .l-entry-card--tall,
   .l-entry-card--wide{
-    grid-column:span 1;grid-row:auto;min-height:0;padding:7px 14px;
+    grid-column:span 1 !important;grid-row:auto !important;
+    min-height:96px !important;padding:12px 14px !important;
   }
-  /* Phone: strip cards down to just title + arrow so the list scans like a menu */
+  /* Drop everything except title + arrow */
   .l-entry-sub{display:none;}
   .l-entry-cat{display:none;}
-  .l-entry-foot{flex:0 0 auto;align-items:center;}
-  .l-entry-title{
-    flex:1 1 auto;min-width:0;
-    font-size:13px;letter-spacing:-.01em;max-width:none;
+  .l-entry-foot{
+    align-self:stretch;align-items:flex-end;justify-content:flex-end;
+    flex:0 0 auto;
+  }
+  /* Consistent type size across all cards (no XL override) — text scans uniformly */
+  .l-entry-title,
+  .l-entry-card--xl .l-entry-title,
+  .l-entry-card--tall .l-entry-title{
+    font-size:12px !important;letter-spacing:-.01em;max-width:none;
     word-break:break-word;line-height:1.15;
   }
-  .l-entry-card--xl .l-entry-title{font-size:14px;letter-spacing:-.02em;}
+  .l-entry-arrow{font-size:14px;}
   /* Section heads that pair with these cards — keep them in scale */
   .l-programs-h{padding:20px var(--pad) 12px;}
   .l-programs-h h2{font-size:18px !important;letter-spacing:-.01em;line-height:1.15;}
   .l-programs-h a{font-size:10px;padding:6px 12px;}
   .l-entry-arrow{font-size:14px;}
-  .ticket-card-stub{display:none;}  /* Hide barcode stub — ticket card is XL on phone, stub is wasted vertical space */
+  /* Ticket card · special-cased to span the full grid row on phone so its
+     internal ticket design (date/venue/theme + barcode stub) stays legible. */
+  .ticket-card{
+    grid-column:1 / -1 !important;
+    display:grid !important;grid-template-columns:1fr 56px !important;
+    min-height:0 !important;padding:0 !important;
+    border-radius:16px !important;
+  }
+  .ticket-card .ticket-card-main{padding:20px 18px 18px;gap:12px;display:flex;flex-direction:column;}
+  .ticket-card .ticket-card-eyebrow{font-size:10px;}
+  .ticket-card .ticket-card-number{font-size:10px;padding:3px 8px;}
+  .ticket-card .ticket-card-title{font-size:36px !important;line-height:.95;}
+  .ticket-card .ticket-card-meta{padding-top:10px;gap:5px;}
+  .ticket-card .ticket-card-meta-row{font-size:12px;gap:8px;}
+  .ticket-card .ticket-card-meta-label{font-size:9.5px;min-width:38px;}
+  .ticket-card .ticket-card-cta{
+    padding:10px 14px;font-size:11px;align-self:flex-start;
+  }
+  .ticket-card-stub{display:flex !important;padding:14px 0;}
+  .ticket-card-stub-label{font-size:9px;letter-spacing:.18em;}
+  .ticket-card-barcode{width:22px;height:90px;}
   .l-event-hero-title{font-size:clamp(32px,9vw,48px);}
 }
 
@@ -3029,4 +3127,66 @@ strong,b{font-weight:800;}
     flex:1 1 100%;margin-top:2px;
   }
   .speaker-tags{display:none;}
+}
+
+/* ============ EARLY-LIST MODAL · Resend-wired signup, replaces mailto CTAs ============ */
+.early-modal{
+  position:fixed;inset:0;z-index:300;
+  opacity:0;pointer-events:none;
+  transition:opacity .2s ease;
+}
+.early-modal.is-open{opacity:1;pointer-events:auto;}
+.early-modal-scrim{
+  position:absolute;inset:0;
+  background:rgba(10,10,10,.62);backdrop-filter:blur(3px);
+}
+.early-modal-panel{
+  position:absolute;top:50%;left:50%;transform:translate(-50%, -50%) scale(.96);
+  width:min(520px, calc(100vw - 32px));
+  max-height:calc(100vh - 32px);overflow:auto;
+  background:#FFFFFF;border-radius:20px;
+  box-shadow:0 32px 64px rgba(0,0,0,.32);
+  transition:transform .22s ease;
+}
+.early-modal.is-open .early-modal-panel{transform:translate(-50%, -50%) scale(1);}
+.early-modal-close{
+  position:absolute;top:14px;right:14px;z-index:1;
+  width:32px;height:32px;border-radius:50%;
+  background:#F5F5F5;color:#0A0A0A;border:0;cursor:pointer;
+  font-size:14px;font-weight:800;
+  display:flex;align-items:center;justify-content:center;
+}
+.early-modal-close:hover{background:#0A0A0A;color:#FFF;}
+.early-modal-body{padding:32px 28px 28px;}
+.early-modal-eyebrow{
+  font-size:11px;font-weight:800;letter-spacing:.14em;text-transform:uppercase;
+  color:#D32F3E;margin-bottom:8px;
+}
+.early-modal-title{
+  font-size:clamp(28px,3.4vw,38px);font-weight:900;letter-spacing:-.02em;
+  line-height:1.05;color:#0A0A0A;margin:0 0 12px;
+}
+.early-modal-title em{font-style:italic;color:#F5B71A;background:#0A0A0A;padding:0 6px;}
+.early-modal-lead{
+  font-size:14px;line-height:1.55;color:#3A3A3A;margin:0 0 22px;
+}
+.early-modal-foot{
+  font-size:11px;color:#9A9A9A;margin-top:14px;letter-spacing:.04em;
+}
+.early-modal-status{
+  font-size:12.5px;font-weight:600;color:#5A5A5A;
+  line-height:1.4;min-height:1em;margin-top:4px;
+}
+.early-modal-status.is-ok{color:#0A8F3E;}
+.early-modal-status.is-err{color:#D32F3E;}
+@media(max-width:560px){
+  .early-modal-panel{
+    top:auto;bottom:0;left:0;right:0;
+    width:100%;max-height:92vh;
+    transform:translateY(20px);
+    border-radius:20px 20px 0 0;
+  }
+  .early-modal.is-open .early-modal-panel{transform:translateY(0);}
+  .early-modal-body{padding:24px 22px 22px;}
+  .early-modal-title{font-size:26px;}
 }

@@ -43,6 +43,13 @@ export default async (req) => {
   const source = String(data.source || 'website footer').slice(0, 120);
   const referrer = String(data.referrer || '').slice(0, 200);
 
+  // Optional richer fields collected from the early-list modal
+  const name = String(data.name || '').trim().slice(0, 120);
+  const linkedin = String(data.linkedin || '').trim().slice(0, 200);
+  const city = String(data.city || '').trim().slice(0, 120);
+  const industry = String(data.industry || '').trim().slice(0, 120);
+  const hoping = String(data.hoping || '').trim().slice(0, 500);
+
   if (!isLikelyEmail(email)) {
     return json({ ok: false, error: 'A valid email is required' }, 400);
   }
@@ -64,34 +71,74 @@ export default async (req) => {
     + 'The MNG Summit team\n\n'
     + 'mngsummit.org · 501(c)(3) non-profit · volunteer-run since 2014';
 
+  // Branded shell — yellow header bar + dark headline + body + footer
+  // (matches apply.mjs and the website design system)
+  const welcomeTitle = isEarlyList
+    ? 'You\'re on <em style="font-style:italic;color:#1A3B8B;font-weight:900;">the early list.</em>'
+    : 'You\'re on <em style="font-style:italic;color:#1A3B8B;font-weight:900;">the list.</em>';
   const welcomeHtml = ''
-    + '<div style="font-family:-apple-system,BlinkMacSystemFont,Segoe UI,Roboto,sans-serif;color:#0A0A0A;max-width:560px;line-height:1.55;">'
-    +   '<h1 style="font-size:24px;font-weight:900;letter-spacing:-.02em;margin:0 0 16px;">You are on the list.</h1>'
-    +   '<p style="margin:0 0 16px;font-size:15px;">MNG Summit is a year-round community of programs for the global Mongolian diaspora — a flagship summit every fall, a speech competition over a decade old, a digital platform, and a permanent NYC chapter from 2026.</p>'
-    +   '<p style="margin:0 0 16px;font-size:15px;">You will hear from us <b>weekly on Wednesdays</b>. We keep it short — events, opportunities, and the people building it. Unsubscribe anytime by replying.</p>'
-    +   '<p style="margin:24px 0 0;font-size:13px;color:#5A5A5A;">Until next time,<br/>The MNG Summit team</p>'
-    +   '<hr style="border:0;border-top:1px solid #E5E5E5;margin:24px 0;" />'
-    +   '<p style="margin:0;font-size:11px;color:#9A9A9A;letter-spacing:.04em;">'
-    +     '<a href="https://mngsummit.org" style="color:#9A9A9A;text-decoration:none;">mngsummit.org</a> · '
-    +     '501(c)(3) non-profit · volunteer-run since 2014'
-    +   '</p>'
-    + '</div>';
+    + '<!doctype html><html><body style="margin:0;padding:0;background:#F4ECD8;">'
+    + '<table role="presentation" cellpadding="0" cellspacing="0" border="0" width="100%" style="background:#F4ECD8;padding:32px 16px;">'
+    +   '<tr><td align="center">'
+    +     '<table role="presentation" cellpadding="0" cellspacing="0" border="0" width="560" style="max-width:560px;width:100%;background:#FFFFFF;border-radius:20px;overflow:hidden;font-family:-apple-system,BlinkMacSystemFont,\'Segoe UI\',Roboto,sans-serif;">'
+    +       '<tr><td style="background:#F5B71A;padding:24px 32px;">'
+    +         '<table role="presentation" cellpadding="0" cellspacing="0" border="0" width="100%">'
+    +           '<tr>'
+    +             '<td style="font-size:13px;font-weight:900;letter-spacing:.14em;text-transform:uppercase;color:#0A0A0A;">MNG Summit</td>'
+    +             '<td align="right" style="font-size:11px;font-weight:700;letter-spacing:.1em;text-transform:uppercase;color:#0A0A0A;">Vol. XII · 2026</td>'
+    +           '</tr>'
+    +         '</table>'
+    +       '</td></tr>'
+    +       '<tr><td style="padding:36px 32px 12px;">'
+    +         '<h1 style="margin:0;font-size:30px;font-weight:900;line-height:1.05;letter-spacing:-.02em;color:#0A0A0A;">' + welcomeTitle + '</h1>'
+    +       '</td></tr>'
+    +       '<tr><td style="padding:8px 32px 24px;font-size:15px;line-height:1.65;color:#3A3A3A;">'
+    +         '<p style="margin:0 0 14px;">MNG Summit is a year-round community of programs for the global Mongolian diaspora — a flagship summit every fall, a speech competition over a decade old, a digital platform, and a permanent NYC chapter from 2026.</p>'
+    +         '<p style="margin:0 0 14px;">You\'ll hear from us <b style="color:#0A0A0A;">weekly on Wednesdays</b>. We keep it short — events, opportunities, and the people building the room. Unsubscribe any time by replying.</p>'
+    +         '<p style="margin:18px 0 0;color:#5A5A5A;">Until next time,<br/>The MNG Summit team</p>'
+    +       '</td></tr>'
+    +       '<tr><td style="padding:0 32px;"><div style="border-top:1px solid #E5E5E5;"></div></td></tr>'
+    +       '<tr><td style="padding:18px 32px 28px;font-size:11px;color:#9A9A9A;letter-spacing:.04em;line-height:1.6;">'
+    +         '<a href="https://mngsummit.org" style="color:#9A9A9A;text-decoration:none;">mngsummit.org</a>'
+    +         ' · 501(c)(3) non-profit · volunteer-run since 2014<br/>'
+    +         'NYC · Oct 9–11, 2026 · Human Intelligence over Artificial Intelligence'
+    +       '</td></tr>'
+    +     '</table>'
+    +   '</td></tr>'
+    + '</table>'
+    + '</body></html>';
 
-  const teamText = 'New newsletter signup\n\n'
-    + 'Email: ' + email + '\n'
-    + 'Source: ' + source + '\n'
-    + (referrer ? 'Referrer: ' + referrer + '\n' : '')
-    + 'When: ' + new Date().toISOString() + '\n\n'
-    + '— mngsummit.org';
+  const isEarlyList = /early/i.test(source);
+  const headline = isEarlyList ? 'New early-list signup' : 'New newsletter signup';
+
+  // Build text lines + HTML rows from whatever fields the user filled in
+  const fields = [
+    ['Name', name],
+    ['Email', email],
+    ['LinkedIn', linkedin],
+    ['City', city],
+    ['Industry', industry],
+    ['Hoping to find', hoping],
+    ['Source', source],
+    ['Referrer', referrer],
+    ['When', new Date().toISOString()]
+  ].filter(([, v]) => v);
+
+  const teamText = headline + '\n\n'
+    + fields.map(([k, v]) => k + ': ' + v).join('\n')
+    + '\n\n— mngsummit.org';
 
   const teamHtml = ''
     + '<div style="font-family:-apple-system,BlinkMacSystemFont,Segoe UI,Roboto,sans-serif;color:#0A0A0A;font-size:14px;line-height:1.5;">'
-    +   '<p style="margin:0 0 12px;"><b>New newsletter signup</b></p>'
+    +   '<p style="margin:0 0 12px;"><b>' + headline + '</b></p>'
     +   '<table style="border-collapse:collapse;font-size:13px;">'
-    +     '<tr><td style="padding:4px 12px 4px 0;color:#5A5A5A;">Email</td><td style="padding:4px 0;"><a href="mailto:' + escapeHtml(email) + '">' + escapeHtml(email) + '</a></td></tr>'
-    +     '<tr><td style="padding:4px 12px 4px 0;color:#5A5A5A;">Source</td><td style="padding:4px 0;">' + escapeHtml(source) + '</td></tr>'
-    +     (referrer ? '<tr><td style="padding:4px 12px 4px 0;color:#5A5A5A;">Referrer</td><td style="padding:4px 0;">' + escapeHtml(referrer) + '</td></tr>' : '')
-    +     '<tr><td style="padding:4px 12px 4px 0;color:#5A5A5A;">When</td><td style="padding:4px 0;">' + new Date().toISOString() + '</td></tr>'
+    +     fields.map(([k, v]) => {
+            const val = (k === 'Email')
+              ? '<a href="mailto:' + escapeHtml(v) + '">' + escapeHtml(v) + '</a>'
+              : escapeHtml(v);
+            return '<tr><td style="padding:4px 12px 4px 0;color:#5A5A5A;vertical-align:top;">' + k + '</td>'
+                 + '<td style="padding:4px 0;">' + val + '</td></tr>';
+          }).join('')
     +   '</table>'
     + '</div>';
 
@@ -100,7 +147,9 @@ export default async (req) => {
     await send({
       from: FROM,
       to: [email],
-      subject: 'Welcome to MNG Summit',
+      subject: isEarlyList
+        ? "You're on the MNG Summit 2026 early list"
+        : 'Welcome to MNG Summit',
       text: welcomeText,
       html: welcomeHtml
     });
@@ -109,7 +158,7 @@ export default async (req) => {
       from: FROM,
       to: [TEAM],
       reply_to: email,
-      subject: 'New newsletter signup: ' + email,
+      subject: (isEarlyList ? 'Early list: ' : 'Subscribe: ') + (name || email),
       text: teamText,
       html: teamHtml
     });
