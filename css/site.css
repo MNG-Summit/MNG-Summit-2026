@@ -2767,11 +2767,16 @@ strong,b{font-weight:800;}
   .l-entry-card--xl{grid-column:span 1;grid-row:auto;min-height:0;}
   .l-entry-card--tall{grid-column:span 1;grid-row:auto;min-height:0;}
   .l-entry-card--wide{grid-column:span 1;}
-  /* Phone: drop the detail line, keep just eyebrow + title + arrow so the list scans like a menu */
+  /* Phone: strip cards down to just title + arrow so the list scans like a menu */
   .l-entry-sub{display:none;}
+  .l-entry-cat{display:none;}
   .l-entry-foot{align-items:center;}
-  .l-entry-title{font-size:20px;max-width:none;}
-  .l-entry-card--xl .l-entry-title{font-size:24px;letter-spacing:-.02em;}
+  .l-entry-title{font-size:17px;letter-spacing:-.01em;max-width:none;word-break:break-word;}
+  .l-entry-card--xl .l-entry-title{font-size:22px;letter-spacing:-.02em;}
+  /* Section heads that pair with these cards — keep them in scale */
+  .l-programs-h{padding:20px var(--pad) 12px;}
+  .l-programs-h h2{font-size:18px !important;letter-spacing:-.01em;line-height:1.15;}
+  .l-programs-h a{font-size:10px;padding:6px 12px;}
   .l-entry-arrow{font-size:18px;}
   .ticket-card-stub{display:none;}  /* Hide barcode stub — ticket card is XL on phone, stub is wasted vertical space */
   .l-event-hero-title{font-size:clamp(32px,9vw,48px);}
@@ -2913,4 +2918,24 @@ strong,b{font-weight:800;}
   .site-search-close{width:32px;height:32px;}
   .site-search-hint{font-size:12px;gap:6px;}
   .site-search-chip{padding:5px 10px;font-size:11px;}
+
+  /* Phone: compact speaker cards — hide tag eyebrows, shrink photo, tighter name/role.
+     Affects board/advisory on about.html, all 3 directory pages, and summit-year lineups. */
+  .speaker-card{
+    min-height:0;padding:14px 16px;gap:4px;border-radius:14px;
+    flex-direction:row;flex-wrap:wrap;align-items:center;
+  }
+  .speaker-photo{
+    width:44px;height:44px;margin-bottom:0;flex:0 0 44px;
+    background-size:72%;
+  }
+  .speaker-name{
+    font-size:14px;letter-spacing:-.01em;line-height:1.2;
+    flex:1 1 0;min-width:0;margin-left:10px;
+  }
+  .speaker-role{
+    font-size:11.5px;line-height:1.35;color:#5A5A5A;
+    flex:1 1 100%;margin-top:2px;
+  }
+  .speaker-tags{display:none;}
 }
