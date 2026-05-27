@@ -274,8 +274,15 @@
     };
     MODAL_CONTENT_TEMPLATES.waitlist = MODAL_CONTENT_TEMPLATES.attend;
 
+    // Single source of truth — JS templates always win. If a page hardcodes
+    // a modal-content block (legacy), overwrite its innards with the canonical
+    // template so dropdowns + LinkedIn prefix etc. all stay consistent sitewide.
     Object.keys(MODAL_CONTENT_TEMPLATES).forEach(function (key) {
-      if (mModal.querySelector('.modal-content[data-content="' + key + '"]')) return;
+      var existing = mModal.querySelector('.modal-content[data-content="' + key + '"]');
+      if (existing) {
+        existing.innerHTML = MODAL_CONTENT_TEMPLATES[key];
+        return;
+      }
       var node = document.createElement('div');
       node.className = 'modal-content';
       node.setAttribute('data-content', key);

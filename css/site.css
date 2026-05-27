@@ -2565,38 +2565,39 @@ strong,b{font-weight:800;}
 }
 .modal-close:hover,.modal-close:focus-visible{background:#D32F3E;transform:scale(1.05);outline:none;}
 
-/* Each modal-content block is the scrollable child. Padding lives here so the
-   close button (outside this area) never overlaps content. Generous spacing. */
+/* Each modal-content block is the scrollable child. Generous padding so
+   fields breathe and the close button never overlaps content. */
 .modal .modal-content{
   overflow-y:auto;-webkit-overflow-scrolling:touch;
   scroll-behavior:smooth;
-  padding:68px clamp(28px,4vw,44px) clamp(32px,4vw,44px);
+  padding:76px clamp(32px,5vw,52px) clamp(36px,5vw,52px);
   flex:1 1 auto;min-height:0;
 }
 .modal .modal-content[hidden]{display:none;}
-.modal .modal-content > h2{margin-bottom:14px;}
-.modal .modal-content > .modal-lead{margin-bottom:28px;}
-.modal .modal-content > .modal-foot{margin-top:18px;}
+.modal .modal-content > h2{margin-bottom:16px;}
+.modal .modal-content > .modal-lead{margin-bottom:32px;}
+.modal .modal-content > .modal-foot{margin-top:22px;}
 
-/* Phone: bottom-sheet style, fixed in viewport, internal scroll only.
-   Generous padding + 90svh max-height so keyboard never buries the active field. */
+/* Phone: stay as a centered floating popup with visible gaps around it
+   (NOT a bottom sheet) — feels like a proper dialog, not a stuck panel.
+   Centered via the base .modal positioning; just trim sizing. */
 @media(max-width:560px){
   .modal{
-    width:100%;
-    top:auto;left:0;right:0;
-    bottom:0;
-    transform:translateY(100%);
-    max-height:90svh; max-height:90vh;
-    border-radius:24px 24px 0 0;
+    width:calc(100vw - 24px);
+    /* Generous side gap so the scrim is clearly visible around the popup */
+    max-height:calc(100svh - 56px);
+    max-height:calc(100vh - 56px);
+    border-radius:22px;
   }
-  .modal.is-open{transform:translateY(0);}
   .modal-close{
     top:14px;right:14px;
-    width:44px;height:44px;font-size:16px;
+    width:42px;height:42px;font-size:15px;
   }
   .modal .modal-content{
-    padding:72px 22px 32px;
+    padding:72px 24px 32px;
   }
+  .modal .modal-content > h2{margin-bottom:14px;font-size:26px;}
+  .modal .modal-content > .modal-lead{margin-bottom:26px;}
 }
 /* Active form field auto-scrolls into view (keyboard friendly) */
 .modal-form input:focus,
@@ -3210,12 +3211,13 @@ strong,b{font-weight:800;}
 .early-modal-status.is-err{color:#D32F3E;}
 @media(max-width:560px){
   .early-modal-panel{
-    top:auto;bottom:0;left:0;right:0;
-    width:100%;max-height:92vh;
-    transform:translateY(20px);
-    border-radius:20px 20px 0 0;
+    /* Stay centered with visible gap around (matches .modal sibling) */
+    width:calc(100vw - 24px);
+    max-height:calc(100svh - 56px);
+    max-height:calc(100vh - 56px);
+    border-radius:22px;
   }
-  .early-modal.is-open .early-modal-panel{transform:translateY(0);}
-  .early-modal-body{padding:24px 22px 22px;}
+  .early-modal-body{padding:28px 24px 24px;}
   .early-modal-title{font-size:26px;}
+  .early-modal-close{top:14px;right:14px;width:34px;height:34px;}
 }
