@@ -343,4 +343,38 @@
     });
   }
 
+  // ---------- auto-assign IDs to speaker-cards from data-name ----------
+  // Inbound links like directory-board.html#yanjaa-munkhbat depend on this — the
+  // card markup uses data-name but no explicit id. We slugify the name and set
+  // it as the id so cross-page anchor links land and scroll to the right card.
+  var slugify = function (s) {
+    return String(s).toLowerCase()
+      .replace(/[À-ÿ]/g, function (c) {
+        // Strip common diacritics (cyrillic stays as-is since we lowercase later)
+        return c.normalize('NFD').replace(/[̀-ͯ]/g, '');
+      })
+      .normalize('NFD').replace(/[̀-ͯ]/g, '')
+      .replace(/[^a-z0-9]+/g, '-')
+      .replace(/^-+|-+$/g, '');
+  };
+  document.querySelectorAll('.speaker-card[data-name]').forEach(function (card) {
+    if (card.id) return;
+    var name = card.getAttribute('data-name') || '';
+    var slug = slugify(name);
+    if (slug) card.id = slug;
+  });
+  // If the page loaded with a hash matching a now-assigned speaker, re-trigger
+  // the browser's scroll-to-anchor (the original anchor jump fired before the
+  // ids were set, so the page didn't scroll).
+  if (location.hash && location.hash.length > 1) {
+    var hashId = decodeURIComponent(location.hash.slice(1));
+    var target = document.getElementById(hashId);
+    if (target && target.classList.contains('speaker-card')) {
+      // Defer until layout settles
+      setTimeout(function () {
+        target.scrollIntoView({ behavior: 'smooth', block: 'center' });
+      }, 80);
+    }
+  }
+
 })();
