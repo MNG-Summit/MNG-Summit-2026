@@ -162,7 +162,13 @@ export default async (req) => {
   if (req.method !== 'POST') return json({ ok: false, error: 'Method not allowed' }, 405);
 
   const key = process.env.RESEND_API_KEY;
-  if (!key) return json({ ok: false, error: 'RESEND_API_KEY is not set' }, 500);
+  if (!key) {
+    console.error('RESEND_API_KEY env var not set in Netlify — function cannot send mail');
+    return json({
+      ok: false,
+      error: "We couldn't send right now. Please email contact@mngsummit.org directly."
+    }, 503);
+  }
 
   let data = {};
   try { data = await req.json(); } catch (e) { /* empty body */ }
