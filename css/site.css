@@ -2531,42 +2531,48 @@ strong,b{font-weight:800;}
   transition:opacity .25s var(--ease);
 }
 .modal-scrim.is-open{opacity:1;pointer-events:auto;}
-/* Modal · flex column container. z-index very high to win against any sticky
-   nav. Outer .modal doesn't scroll; .modal-content does. */
+/* Modal · top-anchored fixed dialog. No transform (so the close-button child
+   stays viewport-positioned). Use left/right + auto margin for centering. */
 .modal{
-  position:fixed;top:50%;left:50%;
-  transform:translate(-50%,-50%) scale(.96);
+  position:fixed;
+  top:max(16px, env(safe-area-inset-top));
+  left:12px;right:12px;
+  margin:0 auto;
   z-index:9999;
-  width:min(560px, calc(100vw - 32px));
-  /* dvh = dynamic viewport (adjusts as keyboard appears/disappears on iOS).
-     Fallback to svh, then vh. */
-  max-height:calc(100dvh - 48px);
-  max-height:calc(100svh - 48px);
-  max-height:calc(100vh - 48px);
+  width:auto;max-width:560px;
+  max-height:calc(100dvh - 32px - env(safe-area-inset-top));
+  max-height:calc(100svh - 32px);
+  max-height:calc(100vh - 32px);
   background:#FFFFFF;color:#0A0A0A;
-  border-radius:24px;
+  border-radius:20px;
   padding:0; overflow:hidden;
   display:flex;flex-direction:column;
   opacity:0;pointer-events:none;
-  transition:opacity .25s var(--ease), transform .25s var(--ease);
+  transition:opacity .22s var(--ease);
   box-shadow:0 24px 60px rgba(0,0,0,.28);
 }
 .modal.is-open{
   opacity:1;pointer-events:auto;
-  transform:translate(-50%,-50%) scale(1);
 }
-/* Close button — absolutely anchored to the modal's top-right.
-   Sits OUTSIDE the scroll area so it stays put while content scrolls. */
+/* Close button — now genuinely fixed to viewport because the modal has no
+   transform. Always visible at viewport top-right regardless of scroll/keyboard. */
 .modal-close{
-  position:absolute;top:14px;right:14px;z-index:10;
-  width:42px;height:42px;border-radius:50%;
+  position:fixed;
+  top:max(20px, calc(env(safe-area-inset-top) + 12px));
+  right:max(20px, calc(env(safe-area-inset-right) + 12px));
+  z-index:10001;
+  width:40px;height:40px;border-radius:50%;
   border:0;padding:0;
   display:flex;align-items:center;justify-content:center;
   font-size:16px;color:#FFFFFF;font-family:inherit;font-weight:900;
   cursor:pointer;background:#0A0A0A;
   transition:background .15s var(--ease),transform .15s var(--ease);
-  box-shadow:0 4px 12px rgba(0,0,0,.22);
+  box-shadow:0 4px 12px rgba(0,0,0,.32);
+  opacity:0;pointer-events:none;
+  transition:opacity .22s var(--ease),background .15s var(--ease),transform .15s var(--ease);
 }
+.modal.is-open .modal-close{opacity:1;pointer-events:auto;}
+.modal-close:hover,.modal-close:focus-visible{background:#D32F3E;transform:scale(1.05);outline:none;}
 .modal-close:hover,.modal-close:focus-visible{background:#D32F3E;transform:scale(1.05);outline:none;}
 
 /* Each modal-content block is the scrollable child. Generous padding so
@@ -2586,19 +2592,10 @@ strong,b{font-weight:800;}
    (NOT a bottom sheet) — feels like a proper dialog, not a stuck panel.
    Centered via the base .modal positioning; just trim sizing. */
 @media(max-width:560px){
-  .modal{
-    width:calc(100vw - 20px);
-    max-height:calc(100dvh - 32px);
-    max-height:calc(100svh - 32px);
-    max-height:calc(100vh - 32px);
-    border-radius:20px;
-  }
-  .modal-close{
-    top:12px;right:12px;
-    width:40px;height:40px;font-size:15px;
-  }
+  /* Base modal already top-anchored with left/right gaps; just trim padding for narrow viewport */
+  .modal{left:10px;right:10px;}
   .modal .modal-content{
-    padding:64px 22px 28px;
+    padding:64px 20px 28px;
   }
   .modal .modal-content > h2{margin-bottom:12px;font-size:24px;}
   .modal .modal-content > .modal-lead{margin-bottom:22px;}
@@ -3180,17 +3177,20 @@ strong,b{font-weight:800;}
   background:rgba(10,10,10,.62);backdrop-filter:blur(3px);
 }
 .early-modal-panel{
-  position:absolute;top:50%;left:50%;transform:translate(-50%, -50%) scale(.96);
-  width:min(520px, calc(100vw - 32px));
-  max-height:calc(100dvh - 32px);
+  position:absolute;
+  top:max(16px, env(safe-area-inset-top));
+  left:12px;right:12px;margin:0 auto;
+  width:auto;max-width:520px;
+  max-height:calc(100dvh - 32px - env(safe-area-inset-top));
   max-height:calc(100svh - 32px);
   max-height:calc(100vh - 32px);
   overflow:auto;
   background:#FFFFFF;border-radius:20px;
   box-shadow:0 32px 64px rgba(0,0,0,.32);
-  transition:transform .22s ease;
+  transition:opacity .22s ease;
 }
-.early-modal.is-open .early-modal-panel{transform:translate(-50%, -50%) scale(1);}
+.early-modal .early-modal-panel{opacity:.96;}
+.early-modal.is-open .early-modal-panel{opacity:1;}
 .early-modal-close{
   position:absolute;top:14px;right:14px;z-index:1;
   width:32px;height:32px;border-radius:50%;
