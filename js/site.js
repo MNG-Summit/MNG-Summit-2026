@@ -296,24 +296,16 @@
     var mClose = document.getElementById('modal-close');
     var mContents = mModal.querySelectorAll('.modal-content');
 
-    // iOS Safari scroll-lock helpers — overflow:hidden alone doesn't lock on iOS.
-    // We save scrollY, fix the body to that position, restore on close.
-    var savedScrollY = 0;
+    // Simple scroll lock — overflow:hidden on html + body. The previous
+    // position:fixed approach caused iOS to break click targets in subtle
+    // ways (Volunteer card unclickable, X off-screen with keyboard).
     var lockBodyScroll = function () {
-      savedScrollY = window.scrollY || window.pageYOffset || 0;
-      document.body.style.position = 'fixed';
-      document.body.style.top = '-' + savedScrollY + 'px';
-      document.body.style.left = '0';
-      document.body.style.right = '0';
+      document.documentElement.style.overflow = 'hidden';
       document.body.style.overflow = 'hidden';
     };
     var unlockBodyScroll = function () {
-      document.body.style.position = '';
-      document.body.style.top = '';
-      document.body.style.left = '';
-      document.body.style.right = '';
+      document.documentElement.style.overflow = '';
       document.body.style.overflow = '';
-      window.scrollTo(0, savedScrollY);
     };
 
     var openModal = function (name) {
@@ -731,23 +723,14 @@
     var submitBtn = form.querySelector('.modal-submit');
     var status = form.querySelector('.early-modal-status');
 
-    // iOS-safe scroll lock — saves scrollY, fixes body, restores on close.
-    var emSavedY = 0;
+    // Simple scroll lock — the position:fixed pattern broke click targets on iOS
     var emLock = function () {
-      emSavedY = window.scrollY || window.pageYOffset || 0;
-      document.body.style.position = 'fixed';
-      document.body.style.top = '-' + emSavedY + 'px';
-      document.body.style.left = '0';
-      document.body.style.right = '0';
+      document.documentElement.style.overflow = 'hidden';
       document.body.style.overflow = 'hidden';
     };
     var emUnlock = function () {
-      document.body.style.position = '';
-      document.body.style.top = '';
-      document.body.style.left = '';
-      document.body.style.right = '';
+      document.documentElement.style.overflow = '';
       document.body.style.overflow = '';
-      window.scrollTo(0, emSavedY);
     };
 
     var openModal = function () {

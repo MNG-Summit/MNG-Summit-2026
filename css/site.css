@@ -2531,14 +2531,18 @@ strong,b{font-weight:800;}
   transition:opacity .25s var(--ease);
 }
 .modal-scrim.is-open{opacity:1;pointer-events:auto;}
-/* Modal · flex column container. Outer .modal is non-scrolling so the close
-   button can be absolutely positioned. Inner .modal-content does the scrolling. */
+/* Modal · flex column container. z-index very high to win against any sticky
+   nav. Outer .modal doesn't scroll; .modal-content does. */
 .modal{
   position:fixed;top:50%;left:50%;
   transform:translate(-50%,-50%) scale(.96);
-  z-index:91;
+  z-index:9999;
   width:min(560px, calc(100vw - 32px));
-  max-height:min(calc(100vh - 64px), calc(100svh - 32px));
+  /* dvh = dynamic viewport (adjusts as keyboard appears/disappears on iOS).
+     Fallback to svh, then vh. */
+  max-height:calc(100dvh - 48px);
+  max-height:calc(100svh - 48px);
+  max-height:calc(100vh - 48px);
   background:#FFFFFF;color:#0A0A0A;
   border-radius:24px;
   padding:0; overflow:hidden;
@@ -2583,21 +2587,21 @@ strong,b{font-weight:800;}
    Centered via the base .modal positioning; just trim sizing. */
 @media(max-width:560px){
   .modal{
-    width:calc(100vw - 24px);
-    /* Generous side gap so the scrim is clearly visible around the popup */
-    max-height:calc(100svh - 56px);
-    max-height:calc(100vh - 56px);
-    border-radius:22px;
+    width:calc(100vw - 20px);
+    max-height:calc(100dvh - 32px);
+    max-height:calc(100svh - 32px);
+    max-height:calc(100vh - 32px);
+    border-radius:20px;
   }
   .modal-close{
-    top:14px;right:14px;
-    width:42px;height:42px;font-size:15px;
+    top:12px;right:12px;
+    width:40px;height:40px;font-size:15px;
   }
   .modal .modal-content{
-    padding:72px 24px 32px;
+    padding:64px 22px 28px;
   }
-  .modal .modal-content > h2{margin-bottom:14px;font-size:26px;}
-  .modal .modal-content > .modal-lead{margin-bottom:26px;}
+  .modal .modal-content > h2{margin-bottom:12px;font-size:24px;}
+  .modal .modal-content > .modal-lead{margin-bottom:22px;}
 }
 /* Active form field auto-scrolls into view (keyboard friendly) */
 .modal-form input:focus,
@@ -2625,10 +2629,15 @@ strong,b{font-weight:800;}
 }
 .modal-form input,
 .modal-form select,
-.modal-form textarea{
+.modal-form textarea,
+.modal-form .input-prefixed input{
   padding:14px 16px;
-  font-family:inherit;font-size:16px;font-weight:500;
-  /* 16px prevents iOS Safari from auto-zooming on focus. Critical for mobile. */
+  font-family:inherit;
+  /* 16px MINIMUM prevents iOS Safari from auto-zooming on focus.
+     !important because the LinkedIn prefixed-input wrapper has its own override
+     and the early-list modal-form also needs to be defended. */
+  font-size:16px !important;
+  font-weight:500;
   background:#F5F5F5;border:1px solid #E5E5E5;border-radius:10px;
   color:#0A0A0A;
   transition:border-color .15s var(--ease),background .15s var(--ease);
@@ -3161,7 +3170,7 @@ strong,b{font-weight:800;}
 
 /* ============ EARLY-LIST MODAL · Resend-wired signup, replaces mailto CTAs ============ */
 .early-modal{
-  position:fixed;inset:0;z-index:300;
+  position:fixed;inset:0;z-index:9999;
   opacity:0;pointer-events:none;
   transition:opacity .2s ease;
 }
@@ -3173,7 +3182,10 @@ strong,b{font-weight:800;}
 .early-modal-panel{
   position:absolute;top:50%;left:50%;transform:translate(-50%, -50%) scale(.96);
   width:min(520px, calc(100vw - 32px));
-  max-height:calc(100vh - 32px);overflow:auto;
+  max-height:calc(100dvh - 32px);
+  max-height:calc(100svh - 32px);
+  max-height:calc(100vh - 32px);
+  overflow:auto;
   background:#FFFFFF;border-radius:20px;
   box-shadow:0 32px 64px rgba(0,0,0,.32);
   transition:transform .22s ease;
