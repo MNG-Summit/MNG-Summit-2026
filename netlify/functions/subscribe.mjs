@@ -56,6 +56,11 @@ export default async (req) => {
   const industry = String(data.industry || '').trim().slice(0, 120);
   const hoping = String(data.hoping || '').trim().slice(0, 500);
 
+  // Whether this signup came from an "early list" entry point (vs. the footer
+  // newsletter). Declared here so it's available to the welcome-email builder
+  // below as well as the team-notification builder further down.
+  const isEarlyList = /early/i.test(source);
+
   if (!isLikelyEmail(email)) {
     return json({ ok: false, error: 'A valid email is required' }, 400);
   }
@@ -114,7 +119,6 @@ export default async (req) => {
     + '</table>'
     + '</body></html>';
 
-  const isEarlyList = /early/i.test(source);
   const headline = isEarlyList ? 'New early-list signup' : 'New newsletter signup';
 
   // Build text lines + HTML rows from whatever fields the user filled in
