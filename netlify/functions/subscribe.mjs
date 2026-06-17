@@ -3,12 +3,81 @@
    email to the subscriber and a notification to the team via Resend so
    signups land in the team inbox for tracking. Runs as a Netlify Function.
 
-   Requires the environment variable RESEND_API_KEY (already set in the
-   Netlify dashboard for the apply.mjs function — reused here).
+   Also appends every signup as a row to a Google Sheet (best-effort), so
+   there's a durable, deduplicatable list beyond the inbox.
+
+   Required env var:
+     RESEND_API_KEY            — Resend key for sending mail
+   Optional env vars (enable Google Sheet logging when all are set):
+     GOOGLE_SERVICE_ACCOUNT_EMAIL — service account address (…@….iam.gserviceaccount.com)
+     GOOGLE_PRIVATE_KEY           — that account's private key (PEM; \n-escaped is fine)
+     GOOGLE_SHEET_ID              — target sheet id (defaults to the 2026 early-list sheet)
+     GOOGLE_SHEET_RANGE           — append range / tab (defaults to "A:J")
+   If the Google vars are absent, sheet logging is skipped silently and mail
+   still sends as normal.
 */
+
+import { createSign } from 'node:crypto';
 
 const FROM = 'MNG Summit <noreply@mngsummit.org>';
 const TEAM = 'contact@mngsummit.org';
+
+// ---- Google Sheets logging (service-account auth, no external deps) --------
+const SHEET_ID = process.env.GOOGLE_SHEET_ID || '1wC0t_YCShDz2Bq3IuHGWm3idkEzeLVuiEN0W1ENb4lo';
+const SHEET_RANGE = process.env.GOOGLE_SHEET_RANGE || 'A:J';
+
+function b64url(input) {
+  return Buffer.from(input).toString('base64')
+    .replace(/=/g, '').replace(/\+/g, '-').replace(/\//g, '_');
+}
+
+// Mint a short-lived Google API access token from the service-account key.
+// Returns null (not throw) when the integration isn't configured.
+async function getGoogleAccessToken() {
+  const email = process.env.GOOGLE_SERVICE_ACCOUNT_EMAIL;
+  let privateKey = process.env.GOOGLE_PRIVATE_KEY;
+  if (!email || !privateKey) return null;
+  privateKey = privateKey.replace(/\\n/g, '\n'); // env vars often store \n literally
+
+  const now = Math.floor(Date.now() / 1000);
+  const header = b64url(JSON.stringify({ alg: 'RS256', typ: 'JWT' }));
+  const claim = b64url(JSON.stringify({
+    iss: email,
+    scope: 'https://www.googleapis.com/auth/spreadsheets',
+    aud: 'https://oauth2.googleapis.com/token',
+    iat: now,
+    exp: now + 3600
+  }));
+  const signer = createSign('RSA-SHA256');
+  signer.update(header + '.' + claim);
+  const signature = signer.sign(privateKey).toString('base64')
+    .replace(/=/g, '').replace(/\+/g, '-').replace(/\//g, '_');
+  const assertion = header + '.' + claim + '.' + signature;
+
+  const res = await fetch('https://oauth2.googleapis.com/token', {
+    method: 'POST',
+    headers: { 'Content-Type': 'application/x-www-form-urlencoded' },
+    body: 'grant_type=urn:ietf:params:oauth:grant-type:jwt-bearer&assertion=' + assertion
+  });
+  if (!res.ok) throw new Error('Google token request failed: ' + res.status + ' ' + (await res.text()));
+  return (await res.json()).access_token;
+}
+
+// Append one row to the sheet. Returns true on write, false when not configured.
+async function appendToSheet(row) {
+  const token = await getGoogleAccessToken();
+  if (!token) return false;
+  const url = 'https://sheets.googleapis.com/v4/spreadsheets/' + SHEET_ID
+    + '/values/' + encodeURIComponent(SHEET_RANGE)
+    + ':append?valueInputOption=USER_ENTERED&insertDataOption=INSERT_ROWS';
+  const res = await fetch(url, {
+    method: 'POST',
+    headers: { 'Authorization': 'Bearer ' + token, 'Content-Type': 'application/json' },
+    body: JSON.stringify({ values: [row] })
+  });
+  if (!res.ok) throw new Error('Sheets append failed: ' + res.status + ' ' + (await res.text()));
+  return true;
+}
 
 function json(body, status) {
   return new Response(JSON.stringify(body), {
@@ -151,6 +220,18 @@ export default async (req) => {
           }).join('')
     +   '</table>'
     + '</div>';
+
+  // Persist to the Google Sheet first (best-effort — a sheet failure must
+  // never stop the signup from completing or the emails from sending).
+  try {
+    await appendToSheet([
+      new Date().toISOString(),
+      isEarlyList ? 'early-list' : 'newsletter',
+      name, email, linkedin, city, industry, hoping, source, referrer
+    ]);
+  } catch (sheetErr) {
+    console.error('Google Sheet append error:', sheetErr.message);
+  }
 
   try {
     // 1. Welcome to the subscriber
