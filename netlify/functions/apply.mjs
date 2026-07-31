@@ -44,7 +44,7 @@ const FORM_CONFIG = {
     label: 'speaker application',
     confirmSubject: 'We received your speaker application — MNG Summit',
     confirmTitle: 'Speaker application <em>received.</em>',
-    confirmBody: "Thanks for raising your hand to take the stage at MNG Summit 2026. We close the call for speakers by June 2026, and the program committee reviews every application personally.\n\nYou'll hear back from us with next steps — whether that's a follow-up call, a request for more material, or scheduling. Expect a reply within two weeks of submission.\n\nIf you've got supporting material (deck, recording, prior talks), feel free to reply to this email with it.\n\nGratefully,\nThe MNG Summit program committee",
+    confirmBody: "Thanks for raising your hand to take the stage at MNG Summit 2026. We close the call for speakers by August 2026, and the program committee reviews every application personally.\n\nYou'll hear back from us with next steps — whether that's a follow-up call, a request for more material, or scheduling. Expect a reply within two weeks of submission.\n\nIf you've got supporting material (deck, recording, prior talks), feel free to reply to this email with it.\n\nGratefully,\nThe MNG Summit program committee",
     teamSubject: function (n) { return 'Speaker app: ' + n; }
   },
   mentor: {

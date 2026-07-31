@@ -220,7 +220,7 @@
       'speak': ''
         + '<div class="modal-eyebrow">Speak on a panel</div>'
         + '<h2>Apply to speak</h2>'
-        + '<p class="modal-lead">Keynote 20 min · Panel 60 min · Workshop 90 min. We close the call <b>by June 2026</b>.</p>'
+        + '<p class="modal-lead">Keynote 20 min · Panel 60 min · Workshop 90 min. We close the call <b>by August 2026</b>.</p>'
         + '<form class="modal-form">'
         +   '<label>Your name <input name="name" required /></label>'
         +   '<label>Email <input name="email" type="email" required /></label>'
