@@ -8,9 +8,117 @@
 <link rel="preconnect" href="https://fonts.googleapis.com" />
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
 <link href="https://fonts.googleapis.com/css2?family=Montserrat:ital,wght@0,400;0,500;0,600;0,700;0,800;0,900;1,500;1,700;1,900&display=swap" rel="stylesheet" />
+<link href="https://fonts.googleapis.com/css2?family=Caveat:wght@700&display=swap" rel="stylesheet" />
 <link rel="stylesheet" href="css/site.css?v=exp50" />
 <link rel="icon" type="image/x-icon" href="assets/favicons/favicon.ico" />
-<meta name="theme-color" content="#FFFFFF" />
+<meta name="theme-color" content="#0B1A2E" />
+
+<!-- ============ MNG SUMMIT 2026 · BRAND V2 SKIN — colors, fonts & visuals only ============ -->
+<!-- Same page structure as before; this block only re-themes existing components. -->
+<style>
+  :root{
+    --midnight:#0B1A2E; --panel:#10233C; --panel-2:#0E1E33;
+    --paper:#EAF1FA; --cream:#F4ECD8; --mute:rgba(234,241,250,.60); --faint:rgba(234,241,250,.40);
+    --vermilion:#DC3F1B; --hi:#F0793F; --signal:#4DB1FF; --steppe:#F2A65B;
+    --hairline:#16304F;
+    --grad-signal:linear-gradient(90deg,#9FE8FF,#3D3AFF);
+    --grad-steppe:linear-gradient(90deg,#F2A65B,#2E6FB8);
+    /* Keep the site's original typeface (Montserrat); Caveat only for the Hi × AI mark */
+    --display:'Montserrat',sans-serif; --text:'Montserrat',sans-serif;
+    --mono:'Montserrat',sans-serif; --script:'Caveat',cursive;
+  }
+  /* ---- page ground ---- */
+  body.page-light{background:var(--midnight);color:var(--paper);font-family:var(--text);}
+  body.page-light ::selection{background:var(--vermilion);color:#fff;}
+
+  /* ---- Hi × AI lockup (type-based accent) ---- */
+  .hiai{display:inline-flex;align-items:center;gap:.14em;line-height:1;white-space:nowrap;}
+  .hiai .hi{font-family:var(--script);font-weight:700;color:var(--hi);transform:rotate(-3deg);display:inline-block;}
+  .hiai .x{color:var(--vermilion);font-family:var(--display);font-weight:700;font-size:.6em;margin:0 .04em;}
+  .hiai .ai{font-family:var(--display);font-weight:800;color:var(--signal);letter-spacing:-.01em;}
+
+  /* ---- Nav ---- */
+  .app-nav{background:rgba(11,26,46,.90)!important;border-bottom:1px solid var(--hairline);}
+  .app-nav-sponsor,.app-nav-when{color:var(--mute)!important;}
+  .app-nav-when .sep{color:var(--hairline);}
+  .app-nav-link{color:var(--paper)!important;font-family:var(--mono);font-size:12px;letter-spacing:.06em;text-transform:uppercase;}
+  .app-nav-link.is-active{color:var(--signal)!important;}
+  .app-nav-pill--hot{background:var(--vermilion)!important;color:#fff!important;font-family:var(--mono);text-transform:uppercase;letter-spacing:.06em;font-size:12px;}
+  .app-nav-pill--ghost,.app-nav-pill--icon{background:transparent!important;border:1px solid var(--hairline)!important;color:var(--paper)!important;font-family:var(--mono);text-transform:uppercase;letter-spacing:.06em;font-size:12px;}
+  .app-nav-toggle{color:var(--paper);}
+
+  /* ---- Event hero card ---- */
+  .l-event-hero-card{position:relative;overflow:hidden;background:var(--panel)!important;border:1px solid var(--hairline);color:var(--paper)!important;}
+  .l-event-hero-lockup{position:relative;z-index:2;margin-bottom:14px;}
+  .l-event-hero-lockup .hiai{font-size:34px;}
+  .l-event-hero-eyebrow{position:relative;z-index:2;color:var(--hi)!important;font-family:var(--mono);letter-spacing:.16em;}
+  .l-event-hero-title{position:relative;z-index:2;font-family:var(--display)!important;font-weight:800;letter-spacing:-.02em;color:var(--paper)!important;}
+  .l-event-hero-search{position:relative;z-index:2;background:rgba(234,241,250,.06)!important;border:1px solid rgba(234,241,250,.16)!important;backdrop-filter:blur(2px);}
+  .l-event-hero-search input{background:transparent!important;color:var(--paper)!important;font-family:var(--text);}
+  .l-event-hero-search input::placeholder{color:var(--faint)!important;}
+  .l-event-hero-search-ico{color:var(--mute)!important;}
+  .l-event-hero-cta{position:relative;z-index:2;color:var(--signal)!important;font-family:var(--mono);letter-spacing:.04em;background:rgba(234,241,250,.05)!important;border:1px solid rgba(234,241,250,.14)!important;backdrop-filter:blur(2px);}
+  .l-event-hero-meta{position:relative;z-index:2;color:var(--mute)!important;font-family:var(--mono);letter-spacing:.08em;}
+  .l-event-hero-meta .sep{color:var(--hairline)!important;}
+  /* hero decorative visuals */
+  .b26-deco-circuit{position:absolute;top:-16px;right:-8px;height:min(52%,240px);width:auto;opacity:.85;z-index:1;pointer-events:none;}
+  .b26-deco-sky{position:absolute;left:0;right:0;bottom:-2px;width:108%;height:auto;opacity:.20;z-index:0;pointer-events:none;}
+
+  /* ---- Entry cards (same grid, new palette) ---- */
+  .l-entry-card{}
+  .l-entry-cat{font-family:var(--mono)!important;letter-spacing:.12em;text-transform:uppercase;}
+  .l-entry-title{font-family:var(--display)!important;font-weight:800;letter-spacing:-.01em;}
+  .l-entry-sub{font-family:var(--text);}
+  /* Tickets — cream "stub" */
+  .l-entry-card--yellow{background:var(--cream)!important;color:var(--midnight)!important;}
+  .l-entry-card--yellow .ticket-card-eyebrow,.l-entry-card--yellow .ticket-card-cta{color:var(--vermilion)!important;}
+  .l-entry-card--yellow .ticket-card-meta-label,.l-entry-card--yellow .ticket-card-stub-label{color:#7a6f57!important;}
+  .l-entry-card--yellow .ticket-card-stub{border-color:rgba(11,26,46,.25)!important;}
+  .l-entry-card--yellow .ticket-card-barcode{background:repeating-linear-gradient(90deg,#0B1A2E 0 2px,transparent 2px 5px)!important;}
+  /* Apply to speak — vermilion */
+  .l-entry-card--red{background:var(--vermilion)!important;color:#fff!important;}
+  .l-entry-card--red .l-entry-cat{color:rgba(255,255,255,.85)!important;}
+  /* Speakers — signal panel */
+  .l-entry-card--blue{background:var(--panel)!important;border:1px solid var(--signal)!important;color:var(--paper)!important;}
+  .l-entry-card--blue .l-entry-cat,.l-entry-card--blue .l-entry-arrow{color:var(--signal)!important;}
+  /* Partner — outline */
+  .l-entry-card--outline-blue{background:transparent!important;border:1px solid var(--hairline)!important;color:var(--paper)!important;}
+  .l-entry-card--outline-blue .l-entry-cat{color:var(--steppe)!important;}
+  /* Volunteer — steppe-accent panel */
+  .l-entry-card--cream{background:var(--panel-2)!important;border:1px solid var(--hairline)!important;border-top:4px solid var(--steppe)!important;color:var(--paper)!important;}
+  .l-entry-card--cream .l-entry-cat{color:var(--steppe)!important;}
+  /* Partner + Volunteer: force white title/sub/arrow (site.css left them dark → unreadable on the dark theme) */
+  .l-entry-card--outline-blue .l-entry-title,.l-entry-card--outline-blue h3,
+  .l-entry-card--outline-blue .l-entry-sub,.l-entry-card--outline-blue .l-entry-arrow,
+  .l-entry-card--cream .l-entry-title,.l-entry-card--cream h3,
+  .l-entry-card--cream .l-entry-sub,.l-entry-card--cream .l-entry-arrow{color:#FFFFFF!important;}
+  .l-entry-sub{color:var(--mute);}
+  .l-entry-card--red .l-entry-sub,.l-entry-card--yellow .l-entry-sub{color:inherit;}
+
+  /* ---- Stat band ---- */
+  .l-stats-wrap{position:relative;}
+  .l-stats{font-family:var(--display)!important;color:var(--paper)!important;font-weight:600;}
+  .l-stats b{color:var(--signal)!important;}
+  .l-stats em{color:var(--hi)!important;font-style:normal;}
+  .btn-pill-ghost{border:1px solid var(--hairline)!important;color:var(--paper)!important;font-family:var(--mono);text-transform:uppercase;letter-spacing:.06em;font-size:12px;}
+
+  /* ---- Driven-by band ---- */
+  .l-driven{background:var(--panel-2)!important;color:var(--paper)!important;font-family:var(--display);}
+  .l-driven-mark{color:var(--mute)!important;font-family:var(--mono);letter-spacing:.1em;}
+
+  /* ---- Footer (dark + skyline band) ---- */
+  .l-footer{position:relative;background:var(--midnight)!important;color:var(--paper)!important;border-top:1px solid var(--hairline);}
+  .l-footer-brand-mark{font-family:var(--display)!important;font-weight:800;color:var(--paper)!important;}
+  .l-footer h4{font-family:var(--mono)!important;color:var(--mute)!important;letter-spacing:.1em;}
+  .l-footer-col a{color:var(--paper)!important;opacity:.85;}
+  .l-footer-col a:hover{color:var(--signal)!important;opacity:1;}
+  .l-footer-newsletter label{color:var(--mute)!important;font-family:var(--mono);}
+  .l-footer-newsletter input{background:var(--panel)!important;border:1px solid var(--hairline)!important;color:var(--paper)!important;}
+  .l-footer-newsletter-btn{background:var(--vermilion)!important;color:#fff!important;font-family:var(--mono);}
+  .l-footer-social a{border:1px solid var(--hairline)!important;color:var(--paper)!important;}
+  .l-footer-social a:hover{border-color:var(--signal)!important;color:var(--signal)!important;}
+  .l-footer-bot{color:var(--faint)!important;font-family:var(--mono);letter-spacing:.06em;border-top:1px solid var(--hairline);}
+</style>
 </head>
 <body class="page-light">
 
@@ -48,11 +156,14 @@
   </div>
 </header>
 
-<!-- ============ EVENT HERO · big green rounded card ============ -->
+<!-- ============ EVENT HERO · big rounded card (now Midnight + skyline + circuit) ============ -->
 <section class="l-event-hero">
   <div class="l-event-hero-card">
-    <div class="l-event-hero-eyebrow">MNG SUMMIT 2026 · VOL. XII</div>
-    <h1 class="l-event-hero-title">Explore speakers,<br/>sessions, and events<br/>with the MNG Summit<br/>2026 Schedule.</h1>
+    <img class="b26-deco-circuit" src="assets/brand-2026/corner-signal.svg" alt="" aria-hidden="true" />
+    <img class="b26-deco-sky" src="assets/brand-2026/skyline-cream.png" alt="" aria-hidden="true" />
+    <div class="l-event-hero-lockup"><span class="hiai"><span class="hi">Hi</span><span class="x">×</span><span class="ai">AI</span></span></div>
+    <div class="l-event-hero-eyebrow">MNG SUMMIT 2026 · VOL. X · HUMAN INTELLIGENCE OVER AI</div>
+    <h1 class="l-event-hero-title">Explore speakers, sessions, and the schedule.</h1>
     <form class="l-event-hero-search" onsubmit="window.location.href='schedule.html'; return false;">
       <span class="l-event-hero-search-ico" aria-hidden="true">⌕</span>
       <input type="search" placeholder="Search the schedule" aria-label="Search the schedule" />
@@ -63,7 +174,7 @@
       <span class="sep">|</span>
       <span>New York City</span>
       <span class="sep">|</span>
-      <span>Human Intelligence</span>
+      <span>#StayHuman</span>
     </div>
   </div>
 </section>
@@ -72,12 +183,12 @@
 <section class="l-entry">
   <div class="l-entry-grid">
 
-    <!-- ============ TICKETS · XL yellow, styled as a real event ticket (2×2 c1-2 r1-2) ============ -->
+    <!-- ============ TICKETS · XL, styled as a real event ticket (2×2 c1-2 r1-2) ============ -->
     <a href="#" data-modal="waitlist"
        class="l-entry-card l-entry-card--yellow l-entry-card--xl ticket-card">
       <div class="ticket-card-main">
         <div class="ticket-card-top">
-          <div class="ticket-card-eyebrow">Admit one · Vol. XII</div>
+          <div class="ticket-card-eyebrow">Admit one · Vol. X</div>
           <div class="ticket-card-number">№ 2026</div>
         </div>
         <h3 class="ticket-card-title">Tickets<br/><em>coming soon</em></h3>
@@ -92,7 +203,7 @@
           </div>
           <div class="ticket-card-meta-row">
             <span class="ticket-card-meta-label">Theme</span>
-            <span class="ticket-card-meta-value">Human Intelligence</span>
+            <span class="ticket-card-meta-value">Human Intelligence over AI</span>
           </div>
         </div>
         <div class="ticket-card-cta">Get on the early list →</div>
@@ -104,7 +215,7 @@
       </div>
     </a>
 
-    <!-- ============ APPLY TO SPEAK · red small (c3 r1) ============ -->
+    <!-- ============ APPLY TO SPEAK · small (c3 r1) ============ -->
     <a href="#" data-modal="speak" class="l-entry-card l-entry-card--red">
       <div class="l-entry-cat">Open call</div>
       <h3 class="l-entry-title">Apply to speak</h3>
@@ -114,7 +225,7 @@
       </div>
     </a>
 
-    <!-- ============ SPEAKERS · navy small (c4 r1, paired with Apply across the top right) ============ -->
+    <!-- ============ SPEAKERS · small (c4 r1) ============ -->
     <a href="schedule.html#speakers" class="l-entry-card l-entry-card--blue">
       <div class="l-entry-cat">People</div>
       <h3 class="l-entry-title">Speakers</h3>
@@ -124,7 +235,7 @@
       </div>
     </a>
 
-    <!-- ============ PARTNER · outlined navy stroke (c3 r2 · breaks up the cream pair on the diagonal) ============ -->
+    <!-- ============ PARTNER · outlined (c3 r2) ============ -->
     <a href="sponsor.html" class="l-entry-card l-entry-card--outline-blue">
       <div class="l-entry-cat">Sponsorship</div>
       <h3 class="l-entry-title">Partner with us</h3>
@@ -134,7 +245,7 @@
       </div>
     </a>
 
-    <!-- ============ VOLUNTEER · cream small (c4 r2 · diagonal from Apply, no longer adjacent) ============ -->
+    <!-- ============ VOLUNTEER · small (c4 r2) ============ -->
     <a href="#" data-modal="volunteer" class="l-entry-card l-entry-card--cream">
       <div class="l-entry-cat">Get involved</div>
       <h3 class="l-entry-title">Volunteer with us</h3>
@@ -150,7 +261,7 @@
 <!-- ============ THIS YEAR'S THEME · stat band ============ -->
 <section class="l-stats-wrap" id="venue">
   <p class="l-stats">
-    Three days in Manhattan, <b>one hundred</b> people, <em>one theme</em>, <b>Human Intelligence over Artificial Intelligence</b>. Final venue, headliner, and 14-session program publishing summer 2026.
+    Three days in Manhattan, <b>one hundred</b> people, <em>one theme</em>, <b>Human Intelligence over Artificial Intelligence</b>. Final program publishing in the coming days.
   </p>
   <div class="l-stats-cta-row">
     <a href="archive.html" class="l-event-hero-cta">View past summits →</a>
@@ -196,7 +307,7 @@
   <div class="l-footer-grid">
     <div class="l-footer-brand">
       <div class="l-footer-brand-mark">MNG Summit ↗</div>
-      <div style="font-size:13px;color:#9A9A9A;margin-top:8px;max-width:280px;line-height:1.5;">A community of programs for the global Mongolian diaspora. Volunteer-run, 501(c)(3) non-profit, since 2014.</div>
+      <div style="font-size:13px;color:var(--mute);margin-top:8px;max-width:280px;line-height:1.5;">A community of programs for the global Mongolian diaspora. Volunteer-run, 501(c)(3) non-profit, since 2014.</div>
       <form class="l-footer-newsletter" id="footer-newsletter" novalidate>
         <label for="ml">Sign up for event updates</label>
         <div class="l-footer-newsletter-row">

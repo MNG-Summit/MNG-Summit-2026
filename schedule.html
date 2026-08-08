@@ -8,9 +8,115 @@
 <link rel="preconnect" href="https://fonts.googleapis.com" />
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
 <link href="https://fonts.googleapis.com/css2?family=Montserrat:ital,wght@0,400;0,500;0,600;0,700;0,800;0,900;1,500;1,700;1,900&display=swap" rel="stylesheet" />
+<link href="https://fonts.googleapis.com/css2?family=Caveat:wght@700&display=swap" rel="stylesheet" />
 <link rel="stylesheet" href="css/site.css?v=exp50" />
 <link rel="icon" type="image/x-icon" href="assets/favicons/favicon.ico" />
-<meta name="theme-color" content="#FFFFFF" />
+<meta name="theme-color" content="#0B1A2E" />
+
+<!-- ============ MNG SUMMIT 2026 · BRAND V2 SKIN — colors & visuals only (same structure) ============ -->
+<style>
+  :root{
+    --midnight:#0B1A2E; --panel:#10233C; --panel-2:#0E1E33;
+    --paper:#EAF1FA; --cream:#F4ECD8; --mute:rgba(234,241,250,.60); --faint:rgba(234,241,250,.40);
+    --vermilion:#DC3F1B; --hi:#F0793F; --signal:#4DB1FF; --steppe:#F2A65B;
+    --hairline:#16304F; --script:'Caveat',cursive;
+    /* on-brand track accents */
+    --t-keynote:#DC3F1B; --t-panel:#4DB1FF; --t-workshop:#F2A65B; --t-network:#F0793F; --t-social:#8B7BEA;
+  }
+  body.page-light{background:var(--midnight);color:var(--paper);}
+  body.page-light ::selection{background:var(--vermilion);color:#fff;}
+
+  /* Hi × AI lockup */
+  .hiai{display:inline-flex;align-items:center;gap:.14em;line-height:1;white-space:nowrap;}
+  .hiai .hi{font-family:var(--script);font-weight:700;color:var(--hi);transform:rotate(-3deg);display:inline-block;}
+  .hiai .x{color:var(--vermilion);font-weight:800;font-size:.6em;margin:0 .04em;}
+  .hiai .ai{font-weight:800;color:var(--signal);letter-spacing:-.01em;}
+
+  /* Nav */
+  .app-nav{background:rgba(11,26,46,.92)!important;border-bottom:1px solid var(--hairline);}
+  .app-nav-sponsor,.app-nav-when{color:var(--mute)!important;}
+  .app-nav-when .sep{color:var(--hairline);}
+  .app-nav-link{color:var(--paper)!important;}
+  .app-nav-link.is-active{color:var(--signal)!important;}
+  .app-nav-pill--hot{background:var(--vermilion)!important;color:#fff!important;}
+  .app-nav-pill--ghost,.app-nav-pill--icon{background:transparent!important;border:1px solid var(--hairline)!important;color:var(--paper)!important;}
+  .app-nav-toggle{color:var(--paper);}
+
+  /* Filter bar */
+  .app-filterbar{background:rgba(11,26,46,.92)!important;border-bottom:1px solid var(--hairline);}
+  .app-filterbar-label{color:var(--mute)!important;}
+  .chip{background:var(--panel)!important;border:1px solid var(--hairline)!important;color:var(--paper)!important;}
+  .chip.is-on{background:var(--paper)!important;color:var(--midnight)!important;border-color:var(--paper)!important;}
+
+  /* Page header */
+  .schedule-head{position:relative;overflow:hidden;}
+  .schedule-head-eyebrow{color:var(--hi)!important;}
+  .schedule-head-title{color:var(--paper)!important;}
+  .schedule-head-title em{color:var(--hi)!important;font-style:normal;}
+  .schedule-head-meta{color:var(--mute)!important;}
+  .schedule-head-meta b{color:var(--paper)!important;}
+  .schedule-head-status{color:var(--signal)!important;}
+  .sch-lockup{margin-bottom:14px;} .sch-lockup .hiai{font-size:30px;}
+  .sch-circuit{position:absolute;top:-24px;right:-12px;height:min(46vw,200px);width:auto;opacity:.5;z-index:0;pointer-events:none;}
+  .schedule-head > *{position:relative;z-index:1;}
+
+  /* Day tabs */
+  .day-tab{background:var(--panel)!important;border:1px solid var(--hairline)!important;color:var(--paper)!important;}
+  .day-tab.is-active{background:var(--panel-2)!important;border-color:var(--signal)!important;}
+  .day-tab-num{color:var(--signal)!important;}
+  .day-tab-day{color:var(--paper)!important;}
+  .day-tab-date{color:var(--mute)!important;}
+
+  /* Schedule list */
+  .schedule-time{color:var(--mute)!important;}
+  .session{background:var(--panel)!important;border:1px solid var(--hairline)!important;color:var(--paper)!important;}
+  .session:hover{border-color:var(--signal)!important;}
+  .session-track{color:var(--mute)!important;}
+  .session-top > span:last-child{color:var(--mute)!important;}
+  .session-title{color:var(--paper)!important;}
+  .session-speakers{color:var(--mute)!important;}
+  .session-speakers b{color:var(--paper)!important;}
+  .session-meta{color:var(--mute)!important;}
+  .session-meta span{border-color:var(--hairline)!important;}
+  /* track accents (strip + label) */
+  .t-keynote  .session-strip{background:var(--t-keynote)!important;}  .t-keynote  .session-track{color:var(--t-keynote)!important;}
+  .t-panel    .session-strip{background:var(--t-panel)!important;}    .t-panel    .session-track{color:var(--t-panel)!important;}
+  .t-workshop .session-strip{background:var(--t-workshop)!important;} .t-workshop .session-track{color:var(--t-workshop)!important;}
+  .t-network  .session-strip{background:var(--t-network)!important;}  .t-network  .session-track{color:var(--t-network)!important;}
+  .t-social   .session-strip{background:var(--t-social)!important;}   .t-social   .session-track{color:var(--t-social)!important;}
+
+  /* Speakers preview */
+  .sec-h h2{color:var(--paper)!important;}
+  .sec-h-link{color:var(--signal)!important;}
+  .card{background:var(--panel)!important;border:1px solid var(--hairline)!important;color:var(--paper)!important;}
+  .card .hot{background:var(--vermilion)!important;color:#fff!important;}
+  .card-top{color:var(--mute)!important;}
+  .card-title{color:var(--paper)!important;}
+  .card-meta{color:var(--mute)!important;}
+  .card-cta{color:var(--signal)!important;}
+
+  /* Drawer */
+  .drawer{background:var(--panel)!important;color:var(--paper)!important;border-left:1px solid var(--hairline);}
+  .drawer-top{color:var(--hi)!important;}
+  .drawer-title{color:var(--paper)!important;}
+  .drawer-meta dt{color:var(--mute)!important;} .drawer-meta dd{color:var(--paper)!important;}
+  .drawer-body{color:var(--mute)!important;}
+  .btn--hot{background:var(--vermilion)!important;color:#fff!important;}
+  .btn--ghost{background:transparent!important;border:1px solid var(--hairline)!important;color:var(--paper)!important;}
+
+  /* Footer */
+  .l-footer{background:var(--midnight)!important;color:var(--paper)!important;border-top:1px solid var(--hairline);}
+  .l-footer-brand-mark{color:var(--paper)!important;}
+  .l-footer h4{color:var(--mute)!important;}
+  .l-footer-col a{color:var(--paper)!important;opacity:.85;}
+  .l-footer-col a:hover{color:var(--signal)!important;opacity:1;}
+  .l-footer-newsletter label{color:var(--mute)!important;}
+  .l-footer-newsletter input{background:var(--panel)!important;border:1px solid var(--hairline)!important;color:var(--paper)!important;}
+  .l-footer-newsletter-btn{background:var(--vermilion)!important;color:#fff!important;}
+  .l-footer-social a{border:1px solid var(--hairline)!important;color:var(--paper)!important;}
+  .l-footer-social a:hover{border-color:var(--signal)!important;color:var(--signal)!important;}
+  .l-footer-bot{color:var(--faint)!important;border-top:1px solid var(--hairline);}
+</style>
 </head>
 <body class="page-light page-schedule">
 
@@ -65,10 +171,12 @@
 
 <!-- ============ PAGE HEADER (tight, left-aligned) ============ -->
 <section class="schedule-head">
-  <div class="schedule-head-eyebrow">The 2026 program · Subject to change</div>
-  <h1 class="schedule-head-title">Three days. <em>One hundred</em> people.<br/>One city.</h1>
+  <img class="sch-circuit" src="assets/brand-2026/corner-signal.svg" alt="" aria-hidden="true" />
+  <div class="sch-lockup"><span class="hiai"><span class="hi">Hi</span><span class="x">×</span><span class="ai">AI</span></span></div>
+  <div class="schedule-head-eyebrow">The 2026 program · Human Intelligence over AI · Subject to change</div>
+  <h1 class="schedule-head-title">Three days. <em>One hundred</em> people. One city.</h1>
   <div class="schedule-head-meta">
-    <span><b>Manhattan</b> · venue TBC</span>
+    <span><b>New York</b> · Midtown · DUMBO</span>
     <span><b>Capacity 100</b> · seats limited</span>
     <span>Status <b class="schedule-head-status">Tickets coming soon</b></span>
   </div>
@@ -79,95 +187,203 @@
   <button class="day-tab is-active" data-day="1" role="tab">
     <span class="day-tab-num">Day 1 · Fri</span>
     <span class="day-tab-day">Oct 9</span>
-    <span class="day-tab-date">Welcome night</span>
+    <span class="day-tab-date">#StayHuman · HI</span>
   </button>
   <button class="day-tab" data-day="2" role="tab">
     <span class="day-tab-num">Day 2 · Sat</span>
     <span class="day-tab-day">Oct 10</span>
-    <span class="day-tab-date">Hackathon + workshops</span>
+    <span class="day-tab-date">#StayCreative · AI</span>
   </button>
   <button class="day-tab" data-day="3" role="tab">
     <span class="day-tab-num">Day 3 · Sun</span>
     <span class="day-tab-day">Oct 11</span>
-    <span class="day-tab-date">Flagship + closing</span>
+    <span class="day-tab-date">#StayConnected · AI/HI</span>
   </button>
 </div>
 
-<!-- ============ SCHEDULE (Day 1) ============ -->
+<!-- ============ SCHEDULE (Day 1 · #StayHuman · 10/09) ============ -->
 <section class="schedule" data-schedule="1">
-  <div class="schedule-time">5:00 PM</div>
-  <a href="#" class="session t-network" data-session="d1-s1">
+  <div class="schedule-time">12:00 PM</div>
+  <a href="#" class="session t-network">
     <span class="session-strip"></span>
     <div class="session-top">
-      <span class="session-track">Network</span>
+      <span class="session-track">Network · Tours</span>
+      <span>12:00–2:00 PM</span>
+    </div>
+    <div class="session-title">Office tours across the city</div>
+    <div class="session-speakers">Big tech and major finance companies.</div>
+    <div class="session-meta"><span>Small groups</span><span>TBD</span></div>
+  </a>
+
+  <div class="schedule-time">3:00 PM</div>
+  <a href="#" class="session t-network">
+    <span class="session-strip"></span>
+    <div class="session-top">
+      <span class="session-track">Network · Walk</span>
+      <span>3:00–4:00 PM</span>
+    </div>
+    <div class="session-title">Neighborhood tour</div>
+    <div class="session-speakers">Guided tour of New York's streets.</div>
+    <div class="session-meta"><span>Outdoor</span><span>Weather permitting</span></div>
+  </a>
+
+  <div class="schedule-time">5:00 PM</div>
+  <a href="#" class="session t-social">
+    <span class="session-strip"></span>
+    <div class="session-top">
+      <span class="session-track">Social · Reception</span>
       <span>5:00–6:00 PM</span>
     </div>
-    <div class="session-title">Registration + welcome cocktail</div>
-    <div class="session-speakers">Walk in, meet the working board, get your badge.</div>
-    <div class="session-meta"><span>Manhattan venue TBC</span><span>Open to all 100</span></div>
+    <div class="session-title">Opening night</div>
+    <div class="session-speakers">Meet the board, speakers, and fellow attendees.</div>
+    <div class="session-meta"><span>Fabrik Dumbo</span><span>Tickets available for non-attendees</span></div>
   </a>
 
   <div class="schedule-time">6:00 PM</div>
-  <a href="#" class="session t-keynote" data-session="d1-s2">
+  <a href="#" class="session t-keynote">
     <span class="session-strip"></span>
     <div class="session-top">
       <span class="session-track">Keynote · Opening</span>
-      <span>6:00–7:30 PM</span>
+      <span>6:00–6:15 PM</span>
     </div>
-    <div class="session-title">Why we built this. Where we're going.</div>
-    <div class="session-speakers"><b>Anu-Ujin Gereltod</b>, <b>Zanabazar Khatanbaatar</b>, Working Board, MNG Summit 2026</div>
-    <div class="session-meta"><span>Theater-style</span><span>90 min</span></div>
+    <div class="session-title">Welcome remarks</div>
+    <div class="session-speakers"><b>Anu G</b>, <b>Zana Kh</b>, Working Board, MNG Summit 2026</div>
+    <div class="session-meta"><span>Fabrik Dumbo</span><span>15 min</span></div>
   </a>
 
-  <div class="schedule-time">7:30 PM</div>
-  <a href="#" class="session t-panel" data-session="d1-s3">
+  <!-- <div class="schedule-time">6:15 PM</div>
+  <a href="#" class="session t-social">
     <span class="session-strip"></span>
     <div class="session-top">
-      <span class="session-track">Panel</span>
-      <span>7:30–9:00 PM</span>
+      <span class="session-track">Social · Music</span>
+      <span>6:15–6:30 PM</span>
     </div>
-    <div class="session-title">What the diaspora got right. What we got wrong.</div>
-    <div class="session-speakers">5 nomad speakers · Q&amp;A · moderated by the working board</div>
-    <div class="session-meta"><span>Theater + Q&amp;A</span><span>90 min</span></div>
-  </a>
+    <div class="session-title">Live set: Ochiroo.</div>
+    <div class="session-speakers">Morin khuur into the evening.</div>
+    <div class="session-meta"><span>Fabrik Dumbo</span></div>
+  </a> -->
 
-  <div class="schedule-time">9:00 PM</div>
-  <a href="#" class="session t-social" data-session="d1-s4">
-    <span class="session-strip"></span>
-    <div class="session-top">
-      <span class="session-track">Social</span>
-      <span>9:00 PM–late</span>
-    </div>
-    <div class="session-title">After-party, opening night.</div>
-    <div class="session-speakers">Open bar · DJ TBA · networking pods</div>
-    <div class="session-meta"><span>Same venue</span><span>21+</span></div>
-  </a>
-</section>
-
-<!-- ============ SCHEDULE (Day 2) ============ -->
-<section class="schedule" data-schedule="2" hidden>
-  <div class="schedule-time">9:00 AM</div>
-  <a href="#" class="session t-workshop">
-    <span class="session-strip"></span>
-    <div class="session-top">
-      <span class="session-track">Hackathon · Day 1</span>
-      <span>9:00 AM–6:00 PM</span>
-    </div>
-    <div class="session-title">First-of-its-kind agentic-AI build sprint.</div>
-    <div class="session-speakers">Teams of 3 · No-code welcomed · Mentors on-site</div>
-    <div class="session-meta"><span>All-day track</span><span>30 builders</span></div>
-  </a>
-
-  <div class="schedule-time">10:30 AM</div>
+  <div class="schedule-time">6:30 PM</div>
   <a href="#" class="session t-panel">
     <span class="session-strip"></span>
     <div class="session-top">
-      <span class="session-track">Workshop</span>
-      <span>10:30 AM–12:00 PM</span>
+      <span class="session-track">Fireside · HI</span>
+      <span>6:30–7:00 PM</span>
     </div>
-    <div class="session-title">Resume rebuilding for the post-AI hiring market.</div>
-    <div class="session-speakers"><b>Recruiters from Morgan Stanley, McKinsey, Anthropic</b></div>
-    <div class="session-meta"><span>Hands-on</span><span>Limit 40</span></div>
+    <div class="session-title">Fireside chat: Human Intelligence</div>
+    <div class="session-speakers">On experience, creativity, and the immigrant road.</div>
+    <div class="session-meta"><span>Fabrik Dumbo</span><span>30 min</span></div>
+  </a>
+
+  <!-- <div class="schedule-time">7:00 PM</div>
+  <a href="#" class="session t-network">
+    <span class="session-strip"></span>
+    <div class="session-top">
+      <span class="session-track">Network · Mixer</span>
+      <span>7:00–7:15 PM</span>
+    </div>
+    <div class="session-title">Icebreakers</div>
+    <div class="session-speakers">Get to know each other.</div>
+    <div class="session-meta"><span>Fast rounds</span></div>
+  </a> -->
+
+  <div class="schedule-time">7:20 PM</div>
+  <a href="#" class="session t-panel">
+    <span class="session-strip"></span>
+    <div class="session-top">
+      <span class="session-track">Panel · Creatives</span>
+      <span>7:20–8:00 PM</span>
+    </div>
+    <div class="session-title">Panel: creatives</div>
+    <div class="session-speakers">Designers, artists, and creators on using tech to elevate the everyday.</div>
+    <div class="session-meta"><span>Theater + Q&amp;A</span><span>40 min</span></div>
+  </a>
+
+  <div class="schedule-time">8:00 PM</div>
+  <a href="#" class="session t-workshop">
+    <span class="session-strip"></span>
+    <div class="session-top">
+      <span class="session-track">Hackathon</span>
+      <span>8:00 PM</span>
+    </div>
+    <div class="session-title">Hackathon team formation</div>
+    <div class="session-speakers">Mixed teams form tonight — tech, business, marketing.</div>
+    <div class="session-meta"><span>Teams of 3</span><span>No-code welcomed</span></div>
+  </a>
+
+  <div class="schedule-time">8:00 PM</div>
+  <a href="#" class="session t-social">
+    <span class="session-strip"></span>
+    <div class="session-top">
+      <span class="session-track">Social · Happy hour</span>
+      <span>8:00–9:00 PM</span>
+    </div>
+    <div class="session-title">Opening-night happy hour</div>
+    <div class="session-speakers">Networking pods, the connections start here.</div>
+    <div class="session-meta"><span>Fabrik Dumbo</span></div>
+  </a>
+</section>
+
+<!-- ============ SCHEDULE (Day 2 · #StayCreative · 10/10 · Luma Studios) ============ -->
+<section class="schedule" data-schedule="2" hidden>
+  <div class="schedule-time">10:00 AM</div>
+  <a href="#" class="session t-network">
+    <span class="session-strip"></span>
+    <div class="session-top">
+      <span class="session-track">Network · Welcome</span>
+      <span>10:00–10:30 AM</span>
+    </div>
+    <div class="session-title">Breakfast and check-in</div>
+    <div class="session-speakers">Ease in and find your table.</div>
+    <div class="session-meta"><span>Luma Studios</span></div>
+  </a>
+
+  <div class="schedule-time">10:30 AM</div>
+  <a href="#" class="session t-keynote">
+    <span class="session-strip"></span>
+    <div class="session-top">
+      <span class="session-track">Keynote · Welcome</span>
+      <span>10:30–10:40 AM</span>
+    </div>
+    <div class="session-title">Welcome remarks</div>
+    <div class="session-speakers">The frame for the day.</div>
+    <div class="session-meta"><span>Luma Studios</span></div>
+  </a>
+
+  <div class="schedule-time">10:40 AM</div>
+  <a href="#" class="session t-keynote">
+    <span class="session-strip"></span>
+    <div class="session-top">
+      <span class="session-track">Keynote · HI</span>
+      <span>10:40–11:20 AM</span>
+    </div>
+    <div class="session-title">Keynote: Human Intelligence.</div>
+    <div class="session-speakers">Speakers TBD</div>
+    <div class="session-meta"><span>Theater-style</span><span>40 min</span></div>
+  </a>
+
+  <div class="schedule-time">11:20 AM</div>
+  <a href="#" class="session t-network">
+    <span class="session-strip"></span>
+    <div class="session-top">
+      <span class="session-track">Network · Icebreaker</span>
+      <span>11:20–11:30 AM</span>
+    </div>
+    <div class="session-title">Icebreaker session</div>
+    <div class="session-speakers">Reset the room before the workshop.</div>
+    <div class="session-meta"><span>Luma Studios</span></div>
+  </a>
+
+  <div class="schedule-time">11:30 AM</div>
+  <a href="#" class="session t-workshop">
+    <span class="session-strip"></span>
+    <div class="session-top">
+      <span class="session-track">Workshop · Craft</span>
+      <span>11:30 AM–12:00 PM</span>
+    </div>
+    <div class="session-title">Interactive workshop</div>
+    <div class="session-speakers">Flex your creative muscles.</div>
+    <div class="session-meta"><span>Hands-on</span></div>
   </a>
 
   <div class="schedule-time">12:00 PM</div>
@@ -175,122 +391,182 @@
     <span class="session-strip"></span>
     <div class="session-top">
       <span class="session-track">Network · Lunch</span>
-      <span>12:00–2:00 PM</span>
+      <span>12:00–1:00 PM</span>
     </div>
-    <div class="session-title">Industry tables · 10 careers, 10 tables.</div>
-    <div class="session-speakers">Finance · Tech · Mining · Policy · Climate · Film · Health · Law · Design · Founders</div>
-    <div class="session-meta"><span>Sit anywhere</span><span>Switch tables 2×</span></div>
+    <div class="session-title">Lunch break</div>
+    <div class="session-speakers">Eat, mingle, switch tables.</div>
+    <div class="session-meta"><span>Luma Studios</span></div>
+  </a>
+
+  <div class="schedule-time">1:00 PM</div>
+  <a href="#" class="session t-panel">
+    <span class="session-strip"></span>
+    <div class="session-top">
+      <span class="session-track">Panel · Tech</span>
+      <span>1:10–1:40 PM</span>
+    </div>
+    <div class="session-title">The immigrant experience, in tech</div>
+    <div class="session-speakers">Speakers TBD</div>
+    <div class="session-meta"><span>Theater + Q&amp;A</span><span>40 min</span></div>
   </a>
 
   <div class="schedule-time">2:00 PM</div>
   <a href="#" class="session t-panel">
     <span class="session-strip"></span>
     <div class="session-top">
-      <span class="session-track">Panel</span>
-      <span>2:00–3:30 PM</span>
+      <span class="session-track">Panel · Work</span>
+      <span>2:00–2:30 PM</span>
     </div>
-    <div class="session-title">Working with AI without becoming AI.</div>
-    <div class="session-speakers">5 panelists across product, research, and policy</div>
-    <div class="session-meta"><span>Theater</span><span>90 min · Q&amp;A</span></div>
+    <div class="session-title">AI in the workplace</div>
+    <div class="session-speakers">Taking over, layoffs, and looking for a new job — said plainly.</div>
+    <div class="session-meta"><span>Theater</span><span>Speakers TBD</span></div>
   </a>
 
-  <div class="schedule-time">6:00 PM</div>
-  <a href="#" class="session t-keynote">
-    <span class="session-strip"></span>
-    <div class="session-top">
-      <span class="session-track">NHUB Finals</span>
-      <span>6:00–9:00 PM</span>
-    </div>
-    <div class="session-title">NHUB Vol. IX · The speech returns.</div>
-    <div class="session-speakers">9 finalists · live judging · the speech that started it all</div>
-    <div class="session-meta"><span>Theater</span><span>3 hrs</span></div>
-  </a>
-</section>
-
-<!-- ============ SCHEDULE (Day 3) ============ -->
-<section class="schedule" data-schedule="3" hidden>
-  <div class="schedule-time">9:00 AM</div>
-  <a href="#" class="session t-network">
-    <span class="session-strip"></span>
-    <div class="session-top">
-      <span class="session-track">Doors</span>
-      <span>9:00–10:00 AM</span>
-    </div>
-    <div class="session-title">Coffee, kickoff, and the day's frame.</div>
-    <div class="session-speakers">Theater opens · scripts and badges out</div>
-    <div class="session-meta"><span>Lobby</span></div>
-  </a>
-
-  <div class="schedule-time">10:00 AM</div>
-  <a href="#" class="session t-keynote">
-    <span class="session-strip"></span>
-    <div class="session-top">
-      <span class="session-track">Keynote · Flagship</span>
-      <span>10:00 AM–12:30 PM</span>
-    </div>
-    <div class="session-title">The flagship session.<br/>Human intelligence over AI.</div>
-    <div class="session-speakers"><b>Headliner TBA</b> · plus 3 chosen voices from the diaspora</div>
-    <div class="session-meta"><span>Theater · 2.5 hrs</span><span>The reason you came</span></div>
-  </a>
-
-  <div class="schedule-time">12:30 PM</div>
-  <a href="#" class="session t-network">
-    <span class="session-strip"></span>
-    <div class="session-top">
-      <span class="session-track">Network · Lunch</span>
-      <span>12:30–2:00 PM</span>
-    </div>
-    <div class="session-title">Curated networking tables (round 2).</div>
-    <div class="session-speakers">By career stage · by industry · by city</div>
-    <div class="session-meta"><span>Open tables</span></div>
-  </a>
-
-  <div class="schedule-time">2:00 PM</div>
+  <div class="schedule-time">2:45 PM</div>
   <a href="#" class="session t-workshop">
     <span class="session-strip"></span>
     <div class="session-top">
-      <span class="session-track">Breakouts</span>
-      <span>2:00–4:00 PM</span>
+      <span class="session-track">Workshop · Craft</span>
+      <span>2:45–3:15 PM</span>
     </div>
-    <div class="session-title">Three rooms. Pick one.</div>
-    <div class="session-speakers">A) Build a startup · B) Bridge to Mongolia · C) Leadership in your 30s</div>
-    <div class="session-meta"><span>Choose-your-own</span><span>2 hrs</span></div>
+    <div class="session-title">Creative tech workshop</div>
+    <div class="session-speakers">Where the hand meets the machine.</div>
+    <div class="session-meta"><span>Hands-on</span><span>30 min</span></div>
   </a>
 
-  <div class="schedule-time">4:00 PM</div>
-  <a href="#" class="session t-panel">
+  <div class="schedule-time">3:30 PM</div>
+  <a href="#" class="session t-workshop">
     <span class="session-strip"></span>
     <div class="session-top">
-      <span class="session-track">Panel · Closing</span>
-      <span>4:00–6:00 PM</span>
+      <span class="session-track">Hackathon</span>
+      <span>3:30–3:45 PM</span>
     </div>
-    <div class="session-title">What the next 10 years look like.</div>
-    <div class="session-speakers">Working board + advisors + 2 alums + 1 wildcard</div>
-    <div class="session-meta"><span>Theater</span><span>2 hrs</span></div>
+    <div class="session-title">Workshop &amp; hackathon info</div>
+    <div class="session-speakers">Where the build stands, what Sunday looks like.</div>
+    <div class="session-meta"><span>Luma Studios</span></div>
   </a>
 
-  <div class="schedule-time">7:00 PM</div>
-  <a href="#" class="session t-keynote">
+  <div class="schedule-time">3:45 PM</div>
+  <a href="#" class="session t-network">
     <span class="session-strip"></span>
     <div class="session-top">
-      <span class="session-track">Gala dinner</span>
-      <span>7:00–10:00 PM</span>
+      <span class="session-track">Network · Wrap</span>
+      <span>3:45–4:00 PM</span>
     </div>
-    <div class="session-title">The anniversary gala.</div>
-    <div class="session-speakers">Dinner · awards · toasts · the room you remember for years</div>
-    <div class="session-meta"><span>Seated</span><span>Cocktail attire</span></div>
+    <div class="session-title">Wrap up</div>
+    <div class="session-speakers">Close the day, keep building.</div>
+    <div class="session-meta"><span>Luma Studios</span></div>
   </a>
 
-  <div class="schedule-time">10:00 PM</div>
+  <div class="schedule-time">6:00 PM</div>
   <a href="#" class="session t-social">
     <span class="session-strip"></span>
     <div class="session-top">
-      <span class="session-track">After-party</span>
-      <span>10:00 PM–late</span>
+      <span class="session-track">Social · Happy hour</span>
+      <span>6:00–10:00 PM</span>
     </div>
-    <div class="session-title">After-party. The room remembers you.</div>
-    <div class="session-speakers">DJ TBA · open bar · the part where the connections compound</div>
-    <div class="session-meta"><span>21+</span></div>
+    <div class="session-title">Happy hour</div>
+    <div class="session-speakers">The part where the connections compound.</div>
+    <div class="session-meta"><span>Fabrik Tribeca</span><span>Tickets available for non-attendees</span></div>
+  </a>
+</section>
+
+<!-- ============ SCHEDULE (Day 3 · #StayConnected · 10/11) ============ -->
+<section class="schedule" data-schedule="3" hidden>
+  <div class="schedule-time">AM</div>
+  <a href="#" class="session t-social">
+    <span class="session-strip"></span>
+    <div class="session-top">
+      <span class="session-track">Social · Outdoors</span>
+      <span>Morning</span>
+    </div>
+    <div class="session-title">Running &amp; bird watching</div>
+    <div class="session-speakers">A slow start in the park before the finale.</div>
+    <div class="session-meta"><span>Central Park</span></div>
+  </a>
+
+  <div class="schedule-time">12:00 PM</div>
+  <a href="#" class="session t-network">
+    <span class="session-strip"></span>
+    <div class="session-top">
+      <span class="session-track">Network · Breakfast</span>
+      <span>12:00–12:15 PM</span>
+    </div>
+    <div class="session-title">Check-in</div>
+    <div class="session-speakers">Regroup for the last day.</div>
+    <div class="session-meta"><span>Luma Studios</span></div>
+  </a>
+
+  <div class="schedule-time">12:30 PM</div>
+  <a href="#" class="session t-workshop">
+    <span class="session-strip"></span>
+    <div class="session-top">
+      <span class="session-track">Hackathon</span>
+      <span>12:30–1:00 PM</span>
+    </div>
+    <div class="session-title">Hackathon presentations #1</div>
+    <div class="session-speakers">First teams pitch their AI build to the judges.</div>
+    <div class="session-meta"><span>Theater</span><span>Live judging</span></div>
+  </a>
+
+  <div class="schedule-time">1:00 PM</div>
+  <a href="#" class="session t-workshop">
+    <span class="session-strip"></span>
+    <div class="session-top">
+      <span class="session-track">Workshops · Parallel</span>
+      <span>1:00–1:30 PM</span>
+    </div>
+    <div class="session-title">Three rooms, different topics</div>
+    <div class="session-speakers">A) Opportunities back home · B) Navigating US immigration · C) Interview &amp; job search</div>
+    <div class="session-meta"><span>Choose-your-own</span><span>30 min</span></div>
+  </a>
+
+  <div class="schedule-time">1:45 PM</div>
+  <a href="#" class="session t-workshop">
+    <span class="session-strip"></span>
+    <div class="session-top">
+      <span class="session-track">Hackathon</span>
+      <span>1:45–2:15 PM</span>
+    </div>
+    <div class="session-title">Hackathon presentations #2</div>
+    <div class="session-speakers">The rest of the teams take the stage.</div>
+    <div class="session-meta"><span>Theater</span><span>Live judging</span></div>
+  </a>
+
+  <div class="schedule-time">2:30 PM</div>
+  <a href="#" class="session t-panel">
+    <span class="session-strip"></span>
+    <div class="session-top">
+      <span class="session-track">Panel · Creativity</span>
+      <span>2:30–3:30 PM</span>
+    </div>
+    <div class="session-title">Closing panel</div>
+    <div class="session-speakers">Where human intelligence goes from here.</div>
+    <div class="session-meta"><span>Theater</span><span>60 min</span></div>
+  </a>
+
+  <div class="schedule-time">3:30 PM</div>
+  <a href="#" class="session t-keynote">
+    <span class="session-strip"></span>
+    <div class="session-top">
+      <span class="session-track">Keynote · Awards</span>
+      <span>3:30–3:45 PM</span>
+    </div>
+    <div class="session-title">Award ceremony</div>
+    <div class="session-speakers">Hackathon winners and the people who made it.</div>
+    <div class="session-meta"><span>Theater</span></div>
+  </a>
+
+  <div class="schedule-time">3:45 PM</div>
+  <a href="#" class="session t-keynote">
+    <span class="session-strip"></span>
+    <div class="session-top">
+      <span class="session-track">Keynote · Closing</span>
+      <span>3:45–4:00 PM</span>
+    </div>
+    <div class="session-title">Closing remarks</div>
+    <div class="session-speakers">The room you remember for years.</div>
+    <div class="session-meta"><span>Theater</span></div>
   </a>
 </section>
 
@@ -307,7 +583,7 @@
   </div>
   <div class="card">
     <div class="card-top"><span class="hot">Working board</span><span>2026</span></div>
-    <div class="card-title">Anu-Ujin Gereltod</div>
+    <div class="card-title">Anu-Ujin Gerelt-Od</div>
     <div class="card-meta"><span>Co-lead</span></div>
   </div>
   <div class="card">
@@ -316,7 +592,7 @@
     <div class="card-meta"><span>Co-lead</span></div>
   </div>
   <div class="card">
-    <div class="card-top"><span class="hot">Open call</span><span>Until June</span></div>
+    <div class="card-top"><span class="hot">Open call</span><span>Until August</span></div>
     <div class="card-title">Your name here.<br/>Apply to speak.</div>
     <div class="card-cta">Open speaker call →</div>
   </div>
@@ -341,7 +617,7 @@
   <div class="l-footer-grid">
     <div class="l-footer-brand">
       <div class="l-footer-brand-mark">MNG Summit ↗</div>
-      <div style="font-size:13px;color:#9A9A9A;margin-top:8px;max-width:280px;line-height:1.5;">A community of programs for the global Mongolian diaspora. Volunteer-run, 501(c)(3) non-profit, since 2014.</div>
+      <div style="font-size:13px;color:var(--mute);margin-top:8px;max-width:280px;line-height:1.5;">A community of programs for the global Mongolian diaspora. Volunteer-run, 501(c)(3) non-profit, since 2014.</div>
       <form class="l-footer-newsletter" id="footer-newsletter" novalidate>
         <label for="ml">Sign up for event updates</label>
         <div class="l-footer-newsletter-row">
@@ -378,7 +654,7 @@
   </div>
   <div class="l-footer-bot">
     <span>© 2014–2026 MNG Summit · 501(c)(3) non-profit · Volunteer-run</span>
-    <span>Schedule subject to change. Final agenda publishes summer 2026.</span>
+    <span>Schedule subject to change. Final agenda publishes closer to the event.</span>
   </div>
 </footer>
 

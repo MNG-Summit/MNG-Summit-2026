@@ -165,7 +165,7 @@ export default async (req) => {
     +         '<table role="presentation" cellpadding="0" cellspacing="0" border="0" width="100%">'
     +           '<tr>'
     +             '<td style="font-size:13px;font-weight:900;letter-spacing:.14em;text-transform:uppercase;color:#0A0A0A;">MNG Summit</td>'
-    +             '<td align="right" style="font-size:11px;font-weight:700;letter-spacing:.1em;text-transform:uppercase;color:#0A0A0A;">Vol. XII · 2026</td>'
+    +             '<td align="right" style="font-size:11px;font-weight:700;letter-spacing:.1em;text-transform:uppercase;color:#0A0A0A;">Vol. X · 2026</td>'
     +           '</tr>'
     +         '</table>'
     +       '</td></tr>'
