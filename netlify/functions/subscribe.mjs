@@ -130,6 +130,25 @@ export default async (req) => {
   // below as well as the team-notification builder further down.
   const isEarlyList = /early/i.test(source);
 
+  // ---- EARLY LIST · CLOSED (Aug 18, 2026) --------------------------------
+  // The 2026 early list is retired. The front-end entry points are already
+  // deactivated by the EARLY_LIST_OPEN flag in js/site.js; this is the
+  // server-side half — refuse anything still arriving tagged as an
+  // early-list signup (stale tab, cached page, direct POST) so no new names
+  // reach the inbox or the Google Sheet. Footer-newsletter signups are
+  // unaffected and keep working. Set this to false to reopen.
+  // Match on the form type too, not just the source string — a page cached
+  // from an older deploy can post the attend/waitlist form without the
+  // "early-list" source tag.
+  const EARLY_LIST_CLOSED = true;
+  const isEarlyListForm = /^(attend|waitlist)$/i.test(String(data.form || '').trim());
+  if (EARLY_LIST_CLOSED && (isEarlyList || isEarlyListForm)) {
+    return json({
+      ok: false,
+      error: "Early-list signups are closed. Email contact@mngsummit.org and we'll help."
+    }, 403);
+  }
+
   if (!isLikelyEmail(email)) {
     return json({ ok: false, error: 'A valid email is required' }, 400);
   }

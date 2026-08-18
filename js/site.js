@@ -1,6 +1,96 @@
 // MNG Summit · Experiment build · App-shell JS
 (function () {
 
+  // ---------- EARLY LIST · CLOSED (Aug 18, 2026) --------------------------
+  // The 2026 early list is retired. This one flag deactivates every entry
+  // point site-wide — the "Join early list" nav pill on all pages, the hero
+  // and section CTAs, the summit-2026 ticket card, the "Attend Summit 2026"
+  // door on get-involved, and the JS early-list modal — and swaps their copy
+  // for a plain "Early list closed" note. Nothing is deleted, so page layout
+  // stays intact. The footer newsletter signup is untouched and still works.
+  //
+  // The server-side half of this switch is the EARLY_LIST_CLOSED guard in
+  // netlify/functions/subscribe.mjs. To reopen the list, flip both.
+  var EARLY_LIST_OPEN = false;
+
+  // Shown in place of the early-list intake form (the attend/waitlist modal
+  // templates further down) while the list is closed.
+  var EARLY_LIST_CLOSED_HTML = ''
+    + '<div class="modal-eyebrow">Tickets · MNG Summit 2026</div>'
+    + '<h2>Early list closed</h2>'
+    + '<p class="modal-lead is-early-closed-note">Early-list signups are closed. '
+    + 'For anything ticket-related, email '
+    + '<a href="mailto:contact@mngsummit.org">contact@mngsummit.org</a> '
+    + '— one reply, one human, no funnel.</p>';
+
+  if (!EARLY_LIST_OPEN) (function () {
+    var CLOSED = 'Early list closed';
+    var NOTE = 'Early-list signups are closed.';
+
+    var deactivate = function (el) {
+      if (!el) return;
+      el.classList.add('is-early-closed');
+      el.setAttribute('aria-disabled', 'true');
+      el.setAttribute('tabindex', '-1');
+      el.setAttribute('title', NOTE);
+      el.removeAttribute('href');
+      el.removeAttribute('data-modal');
+    };
+
+    // 1 · Legacy mailto CTAs — the nav pill on every page plus the hero,
+    //     banner and section buttons that pointed at the early-list inbox.
+    var mailtos = document.querySelectorAll(
+      'a[href*="mailto:"][href*="early"], a[href*="mailto:"][href*="Early"]'
+    );
+    Array.prototype.forEach.call(mailtos, function (a) {
+      a.textContent = CLOSED;
+      deactivate(a);
+    });
+
+    // 2 · Modal doors that opened the early-list intake form. data-modal is
+    //     stripped here, before the modal wiring further down runs, so these
+    //     never get a click handler in the first place.
+    var doors = document.querySelectorAll('[data-modal="waitlist"], [data-modal="attend"]');
+    Array.prototype.forEach.call(doors, function (door) { deactivate(door); });
+
+    // 3 · Remaining plain-text copy that advertises the list (schedule's
+    //     "Join early list to know first", the ticket-card CTA, entry-card
+    //     subtitles). Rewritten in place so surrounding copy survives.
+    var PHRASES = [
+      [/Tickets coming soon,?\s*the early list hears first\.?/gi, NOTE],
+      [/Join early list to know first\s*→?/gi, CLOSED],
+      [/Get on the early list to be notified first/gi, CLOSED],
+      [/Claim your early-list spot\s*→?/gi, CLOSED],
+      [/Get on the early list\s*→?/gi, CLOSED],
+      [/Join early list/gi, CLOSED]
+    ];
+    var walker = document.createTreeWalker(document.body, NodeFilter.SHOW_TEXT, null);
+    var textNodes = [];
+    while (walker.nextNode()) textNodes.push(walker.currentNode);
+    textNodes.forEach(function (node) {
+      var text = node.nodeValue;
+      if (!text || !/early/i.test(text)) return;
+      var parent = node.parentElement;
+      if (!parent || parent.closest('script, style')) return;
+      var out = text;
+      PHRASES.forEach(function (p) { out = out.replace(p[0], p[1]); });
+      if (out !== text) node.nodeValue = out;
+    });
+
+    // (The early-list intake form itself is swapped for a closed notice at the
+    //  modal-template layer below — those templates are the single source of
+    //  truth and overwrite any hardcoded modal markup on the page.)
+
+    // Belt-and-braces: swallow clicks on anything marked closed, in case the
+    // stylesheet's pointer-events rule hasn't applied yet.
+    document.addEventListener('click', function (e) {
+      if (!e.target || !e.target.closest) return;
+      if (!e.target.closest('.is-early-closed')) return;
+      e.preventDefault();
+      e.stopImmediatePropagation();
+    }, true);
+  })();
+
   // ---------- countdown (compact: days only) ----------
   var dayTargets = document.querySelectorAll('[data-countdown-days]');
   if (dayTargets.length) {
@@ -273,6 +363,16 @@
       'waitlist': ''
     };
     MODAL_CONTENT_TEMPLATES.waitlist = MODAL_CONTENT_TEMPLATES.attend;
+
+    // EARLY LIST · CLOSED — "attend" and "waitlist" are both the early-list
+    // intake form, so swap them for the closed notice. Doing it here (rather
+    // than in the DOM) matters: these templates always win over hardcoded
+    // page markup, so this is the only place that can't be overwritten.
+    // See EARLY_LIST_OPEN at the top of this file.
+    if (!EARLY_LIST_OPEN) {
+      MODAL_CONTENT_TEMPLATES.attend = EARLY_LIST_CLOSED_HTML;
+      MODAL_CONTENT_TEMPLATES.waitlist = EARLY_LIST_CLOSED_HTML;
+    }
 
     // Single source of truth — JS templates always win. If a page hardcodes
     // a modal-content block (legacy), overwrite its innards with the canonical
@@ -632,6 +732,10 @@
   // ---------- early-list modal · replaces every "Join early list" mailto with
   // a proper Resend-wired signup form. Modal is built once and reused. -------
   (function () {
+    // EARLY LIST · CLOSED — skip building this modal entirely while the list
+    // is closed. See EARLY_LIST_OPEN at the top of this file.
+    if (!EARLY_LIST_OPEN) return;
+
     var modal = document.createElement('div');
     modal.className = 'early-modal';
     modal.setAttribute('aria-hidden', 'true');

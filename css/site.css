@@ -3233,3 +3233,24 @@ strong,b{font-weight:800;}
   .early-modal-title{font-size:26px;}
   .early-modal-close{top:14px;right:14px;width:34px;height:34px;}
 }
+
+/* ============ EARLY LIST · CLOSED (Aug 18, 2026) ========================
+   Pairs with the EARLY_LIST_OPEN flag at the top of js/site.js. The retired
+   early-list CTAs are styled inert rather than removed, so every page keeps
+   its layout. Delete this block when the list reopens. */
+.is-early-closed{
+  pointer-events:none !important;
+  cursor:default !important;
+  opacity:.5;
+  filter:grayscale(1);
+  text-decoration:none !important;
+  box-shadow:none !important;
+}
+.is-early-closed:hover,
+.is-early-closed:focus{
+  transform:none !important;
+  background-image:none;
+}
+.is-early-closed-note{
+  color:var(--mute);
+}
