@@ -51,6 +51,14 @@
   .l-tickets-lead b{color:var(--paper);font-weight:800;}
   .l-tickets-facts{display:flex;flex-wrap:wrap;gap:20px;margin-bottom:30px;font-size:12px;font-weight:700;letter-spacing:.08em;text-transform:uppercase;color:var(--mute);}
   .l-tickets-facts b{color:var(--paper);font-weight:900;}
+  .l-tickets-note-wrap{max-width:1000px;margin:0 auto;padding:0 24px 18px;}
+  .l-tickets-note{
+    padding:14px 16px;background:var(--panel);
+    border-left:3px solid var(--steppe);
+    color:var(--mute);font-size:14px;line-height:1.6;
+  }
+  .l-tickets-note b{color:var(--paper);font-weight:800;}
+  .l-tickets-note q{color:var(--paper);font-style:italic;}
   .l-tickets-embed-wrap{max-width:1000px;margin:0 auto;padding:0 24px 40px;}
   /* Seamless: the embed sits directly on the page ground, no white card */
   .l-tickets-embed{background:transparent;padding:0;overflow:hidden;min-height:460px;color:var(--paper);}
@@ -121,6 +129,17 @@
     <span><b>Tag</b> #StayHuman</span>
   </div>
 </section>
+
+<!-- ============ ZEFFY TIP NOTE ============ -->
+<div class="l-tickets-note-wrap">
+  <p class="l-tickets-note">
+    <b>One note on the checkout.</b> Zeffy asks for a contribution of its own —
+    <q>Help keep Zeffy free for MNG Summit 💜</q> — with a suggested amount attached.
+    That tip goes to <b>Zeffy, not to MNG Summit</b>; it's how they keep the platform free for
+    non-profits. Setting it to <b>$0</b> is completely fine and changes nothing about your
+    ticket — 100% of the ticket price reaches us either way.
+  </p>
+</div>
 
 <!-- ============ ZEFFY EMBED ============ -->
 <div class="l-tickets-embed-wrap">
