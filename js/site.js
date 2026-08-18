@@ -213,7 +213,7 @@
         track: track,
         title: title,
         meta: meta,
-        body: '<p>' + speakers + '</p><p style="color:var(--mute);font-size:13px;margin-top:18px;">Full speaker list and read-ahead materials will publish closer to the event. Join the early list to be notified.</p>'
+        body: '<p>' + speakers + '</p><p style="color:var(--mute);font-size:13px;margin-top:18px;">Full speaker list and read-ahead materials will publish closer to the event. <a href="tickets.html" style="text-decoration:underline;font-weight:700;">Tickets are on sale now →</a></p>'
       });
     });
   });

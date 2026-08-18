@@ -3,3 +3,8 @@
 .claude/
 proposal/
 *.zip
+
+# Spreadsheets are never published — Netlify serves the repo root, so a
+# committed .xlsx would be downloadable at mngsummit.org/<name>.xlsx.
+*.xlsx
+_to_delete/
