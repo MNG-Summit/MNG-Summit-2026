@@ -106,6 +106,32 @@
   .l-driven{background:var(--panel-2)!important;color:var(--paper)!important;font-family:var(--display);}
   .l-driven-mark{color:var(--mute)!important;font-family:var(--mono);letter-spacing:.1em;}
 
+  /* ---- Agenda Preview ---- */
+  .l-agenda-preview{padding:clamp(40px,6vw,80px) var(--pad,clamp(16px,3vw,40px));max-width:1300px;margin:0 auto;}
+  .l-agenda-header{display:flex;align-items:baseline;gap:16px;flex-wrap:wrap;margin-bottom:32px;}
+  .l-agenda-eyebrow{font-family:var(--mono);letter-spacing:.14em;text-transform:uppercase;font-size:11px;color:var(--hi);}
+  .l-agenda-title{font-family:var(--display);font-weight:800;font-size:clamp(20px,3vw,28px);color:var(--paper);letter-spacing:-.02em;margin:0;}
+  .l-agenda-full-link{margin-left:auto;color:var(--signal);font-size:13px;white-space:nowrap;font-family:var(--mono);}
+  .l-agenda-full-link:hover{color:var(--hi);}
+  .l-agenda-grid{display:grid;grid-template-columns:repeat(3,1fr);gap:16px;}
+  @media(max-width:700px){.l-agenda-grid{grid-template-columns:1fr;}}
+  .l-agenda-day{background:var(--panel);border:1px solid var(--hairline);border-radius:4px;overflow:hidden;display:flex;flex-direction:column;}
+  .l-agenda-day-head{padding:16px 20px 14px;border-bottom:1px solid var(--hairline);}
+  .l-agenda-day-num{display:block;font-family:var(--mono);font-size:10px;letter-spacing:.16em;text-transform:uppercase;color:var(--signal);margin-bottom:4px;}
+  .l-agenda-day-name{display:block;font-family:var(--display);font-weight:800;font-size:15px;color:var(--paper);}
+  .l-agenda-day-theme{display:block;font-family:var(--mono);font-size:11px;color:var(--mute);letter-spacing:.08em;margin-top:4px;}
+  .l-agenda-sessions{padding:8px 0;flex:1;}
+  .l-agenda-row{display:flex;align-items:baseline;gap:10px;padding:7px 20px;border-left:3px solid transparent;}
+  .l-agenda-row.t-keynote{border-left-color:var(--vermilion);}
+  .l-agenda-row.t-panel{border-left-color:var(--signal);}
+  .l-agenda-row.t-workshop{border-left-color:var(--steppe);}
+  .l-agenda-row.t-network{border-left-color:var(--hi);}
+  .l-agenda-row.t-social{border-left-color:#8B7BEA;}
+  .l-agenda-time{flex-shrink:0;font-family:var(--mono);font-size:11px;color:var(--mute);letter-spacing:.04em;width:58px;}
+  .l-agenda-session{font-size:13px;color:var(--paper);line-height:1.35;}
+  .l-agenda-venue{padding:12px 20px;border-top:1px solid var(--hairline);font-family:var(--mono);font-size:11px;letter-spacing:.1em;text-transform:uppercase;color:var(--mute);}
+  .l-agenda-footer{margin-top:28px;text-align:center;}
+
   /* ---- Footer (dark + skyline band) ---- */
   .l-footer{position:relative;background:var(--midnight)!important;color:var(--paper)!important;border-top:1px solid var(--hairline);}
   .l-footer-brand-mark{font-family:var(--display)!important;font-weight:800;color:var(--paper)!important;}
@@ -168,7 +194,7 @@
       <span class="l-event-hero-search-ico" aria-hidden="true">⌕</span>
       <input type="search" placeholder="Search the schedule" aria-label="Search the schedule" />
     </form>
-    <a href="schedule.html" class="l-event-hero-cta">Full schedule · coming soon →</a>
+    <a href="schedule.html" class="l-event-hero-cta">View the full schedule →</a>
     <div class="l-event-hero-meta">
       <span>Oct 9–11, 2026</span>
       <span class="sep">|</span>
@@ -255,6 +281,157 @@
       </div>
     </a>
 
+  </div>
+</section>
+
+<!-- ============ AGENDA PREVIEW · 3-day overview ============ -->
+<section class="l-agenda-preview" id="schedule">
+  <div class="l-agenda-header">
+    <div class="l-agenda-eyebrow">The Program</div>
+    <h2 class="l-agenda-title">Three days in New York City</h2>
+    <a href="schedule.html" class="l-agenda-full-link">Full schedule →</a>
+  </div>
+  <div class="l-agenda-grid">
+
+    <!-- Day 1 -->
+    <div class="l-agenda-day">
+      <div class="l-agenda-day-head">
+        <span class="l-agenda-day-num">Day 1 · Fri</span>
+        <span class="l-agenda-day-name">October 9</span>
+        <span class="l-agenda-day-theme">#StayHuman · HI</span>
+      </div>
+      <div class="l-agenda-sessions">
+        <div class="l-agenda-row t-network">
+          <span class="l-agenda-time">12 PM</span>
+          <span class="l-agenda-session">Office tours across NYC</span>
+        </div>
+        <div class="l-agenda-row t-network">
+          <span class="l-agenda-time">3 PM</span>
+          <span class="l-agenda-session">Neighborhood tour</span>
+        </div>
+        <div class="l-agenda-row t-social">
+          <span class="l-agenda-time">5 PM</span>
+          <span class="l-agenda-session">Opening night reception</span>
+        </div>
+        <div class="l-agenda-row t-keynote">
+          <span class="l-agenda-time">6 PM</span>
+          <span class="l-agenda-session">Welcome remarks</span>
+        </div>
+        <div class="l-agenda-row t-panel">
+          <span class="l-agenda-time">6:30 PM</span>
+          <span class="l-agenda-session">Fireside chat: Human Intelligence</span>
+        </div>
+        <div class="l-agenda-row t-panel">
+          <span class="l-agenda-time">7:20 PM</span>
+          <span class="l-agenda-session">Panel: Creatives</span>
+        </div>
+        <div class="l-agenda-row t-workshop">
+          <span class="l-agenda-time">8 PM</span>
+          <span class="l-agenda-session">Hackathon team formation</span>
+        </div>
+        <div class="l-agenda-row t-social">
+          <span class="l-agenda-time">8 PM</span>
+          <span class="l-agenda-session">Opening-night happy hour</span>
+        </div>
+      </div>
+      <div class="l-agenda-venue">Fabrik Dumbo · Brooklyn</div>
+    </div>
+
+    <!-- Day 2 -->
+    <div class="l-agenda-day">
+      <div class="l-agenda-day-head">
+        <span class="l-agenda-day-num">Day 2 · Sat</span>
+        <span class="l-agenda-day-name">October 10</span>
+        <span class="l-agenda-day-theme">#StayCreative · AI</span>
+      </div>
+      <div class="l-agenda-sessions">
+        <div class="l-agenda-row t-network">
+          <span class="l-agenda-time">10 AM</span>
+          <span class="l-agenda-session">Breakfast &amp; check-in</span>
+        </div>
+        <div class="l-agenda-row t-keynote">
+          <span class="l-agenda-time">10:40 AM</span>
+          <span class="l-agenda-session">Keynote: Human Intelligence</span>
+        </div>
+        <div class="l-agenda-row t-workshop">
+          <span class="l-agenda-time">11:30 AM</span>
+          <span class="l-agenda-session">Interactive workshop</span>
+        </div>
+        <div class="l-agenda-row t-network">
+          <span class="l-agenda-time">12 PM</span>
+          <span class="l-agenda-session">Lunch break</span>
+        </div>
+        <div class="l-agenda-row t-panel">
+          <span class="l-agenda-time">1 PM</span>
+          <span class="l-agenda-session">Panel: Immigrant experience in tech</span>
+        </div>
+        <div class="l-agenda-row t-panel">
+          <span class="l-agenda-time">2 PM</span>
+          <span class="l-agenda-session">Panel: AI in the workplace</span>
+        </div>
+        <div class="l-agenda-row t-workshop">
+          <span class="l-agenda-time">2:45 PM</span>
+          <span class="l-agenda-session">Creative tech workshop</span>
+        </div>
+        <div class="l-agenda-row t-workshop">
+          <span class="l-agenda-time">3:30 PM</span>
+          <span class="l-agenda-session">Hackathon check-in &amp; info</span>
+        </div>
+        <div class="l-agenda-row t-social">
+          <span class="l-agenda-time">6 PM</span>
+          <span class="l-agenda-session">Happy hour</span>
+        </div>
+      </div>
+      <div class="l-agenda-venue">Luma Studios · Fabrik Tribeca</div>
+    </div>
+
+    <!-- Day 3 -->
+    <div class="l-agenda-day">
+      <div class="l-agenda-day-head">
+        <span class="l-agenda-day-num">Day 3 · Sun</span>
+        <span class="l-agenda-day-name">October 11</span>
+        <span class="l-agenda-day-theme">#StayConnected · AI/HI</span>
+      </div>
+      <div class="l-agenda-sessions">
+        <div class="l-agenda-row t-social">
+          <span class="l-agenda-time">AM</span>
+          <span class="l-agenda-session">Running &amp; bird watching · Central Park</span>
+        </div>
+        <div class="l-agenda-row t-network">
+          <span class="l-agenda-time">12 PM</span>
+          <span class="l-agenda-session">Check-in &amp; regroup</span>
+        </div>
+        <div class="l-agenda-row t-workshop">
+          <span class="l-agenda-time">12:30 PM</span>
+          <span class="l-agenda-session">Hackathon presentations #1</span>
+        </div>
+        <div class="l-agenda-row t-workshop">
+          <span class="l-agenda-time">1 PM</span>
+          <span class="l-agenda-session">Parallel workshops (3 tracks)</span>
+        </div>
+        <div class="l-agenda-row t-workshop">
+          <span class="l-agenda-time">1:45 PM</span>
+          <span class="l-agenda-session">Hackathon presentations #2</span>
+        </div>
+        <div class="l-agenda-row t-panel">
+          <span class="l-agenda-time">2:30 PM</span>
+          <span class="l-agenda-session">Closing panel</span>
+        </div>
+        <div class="l-agenda-row t-keynote">
+          <span class="l-agenda-time">3:30 PM</span>
+          <span class="l-agenda-session">Award ceremony</span>
+        </div>
+        <div class="l-agenda-row t-keynote">
+          <span class="l-agenda-time">3:45 PM</span>
+          <span class="l-agenda-session">Closing remarks</span>
+        </div>
+      </div>
+      <div class="l-agenda-venue">Central Park · Luma Studios</div>
+    </div>
+
+  </div>
+  <div class="l-agenda-footer">
+    <a href="schedule.html" class="l-event-hero-cta">Full schedule with sessions and speakers →</a>
   </div>
 </section>
 
@@ -355,7 +532,7 @@
   </div>
   <div class="l-footer-bot">
     <span>© 2014–2026 MNG Summit · 501(c)(3) non-profit · Volunteer-run</span>
-    <span>Schedule subject to change. Final agenda publishes summer 2026.</span>
+    <span>Schedule subject to change. Speaker announcements rolling.</span>
   </div>
 </footer>
 
