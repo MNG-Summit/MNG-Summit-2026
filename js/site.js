@@ -118,6 +118,19 @@
         });
       });
     });
+
+    // Deep links — summit-2026.html's program cards point at #day1/#day2/#day3,
+    // so open that day instead of always landing on Day 1.
+    var openDayFromHash = function () {
+      var m = (location.hash || '').match(/^#day([1-3])$/);
+      if (!m) return;
+      var wanted = Array.prototype.filter.call(dayTabs, function (t) {
+        return t.getAttribute('data-day') === m[1];
+      })[0];
+      if (wanted) wanted.click();
+    };
+    openDayFromHash();
+    window.addEventListener('hashchange', openDayFromHash);
   }
 
   // ---------- filter chips (track filter) ----------
@@ -310,7 +323,7 @@
       'speak': ''
         + '<div class="modal-eyebrow">Speak on a panel</div>'
         + '<h2>Apply to speak</h2>'
-        + '<p class="modal-lead">Keynote 20 min · Panel 60 min · Workshop 90 min. We close the call <b>by August 2026</b>.</p>'
+        + '<p class="modal-lead">Keynote 20 min · Panel 60 min · Workshop 90 min. We close the call <b>by September 2026</b>.</p>'
         + '<form class="modal-form">'
         +   '<label>Your name <input name="name" required /></label>'
         +   '<label>Email <input name="email" type="email" required /></label>'

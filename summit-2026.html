@@ -4,7 +4,7 @@
 <meta charset="utf-8" />
 <meta name="viewport" content="width=device-width, initial-scale=1" />
 <title>MNG Summit 2026 · New York City · Oct 9–11</title>
-<meta name="description" content="MNG Summit 2026 entry page. Program, speakers, venue, tickets, apply to speak, hackathon, and NHUB, all in one place. New York City, October 9–11." />
+<meta name="description" content="MNG Summit 2026 · New York City, October 9–11. The three-day program, the speakers, the Brooklyn and Midtown venues, and tickets, all in one place." />
 <link rel="preconnect" href="https://fonts.googleapis.com" />
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
 <link href="https://fonts.googleapis.com/css2?family=Montserrat:ital,wght@0,400;0,500;0,600;0,700;0,800;0,900;1,500;1,700;1,900&display=swap" rel="stylesheet" />
@@ -47,53 +47,11 @@
   .app-nav-pill--ghost,.app-nav-pill--icon{background:transparent!important;border:1px solid var(--hairline)!important;color:var(--paper)!important;font-family:var(--mono);text-transform:uppercase;letter-spacing:.06em;font-size:12px;}
   .app-nav-toggle{color:var(--paper);}
 
-  /* ---- Event hero card ---- */
-  .l-event-hero-card{position:relative;overflow:hidden;background:var(--panel)!important;border:1px solid var(--hairline);color:var(--paper)!important;}
-  .l-event-hero-lockup{position:relative;z-index:2;margin-bottom:14px;}
-  .l-event-hero-lockup .hiai{font-size:34px;}
-  .l-event-hero-eyebrow{position:relative;z-index:2;color:var(--hi)!important;font-family:var(--mono);letter-spacing:.16em;}
-  .l-event-hero-title{position:relative;z-index:2;font-family:var(--display)!important;font-weight:800;letter-spacing:-.02em;color:var(--paper)!important;}
-  .l-event-hero-search{position:relative;z-index:2;background:rgba(234,241,250,.06)!important;border:1px solid rgba(234,241,250,.16)!important;backdrop-filter:blur(2px);}
-  .l-event-hero-search input{background:transparent!important;color:var(--paper)!important;font-family:var(--text);}
-  .l-event-hero-search input::placeholder{color:var(--faint)!important;}
-  .l-event-hero-search-ico{color:var(--mute)!important;}
   .l-event-hero-cta{position:relative;z-index:2;color:var(--signal)!important;font-family:var(--mono);letter-spacing:.04em;background:rgba(234,241,250,.05)!important;border:1px solid rgba(234,241,250,.14)!important;backdrop-filter:blur(2px);}
-  .l-event-hero-meta{position:relative;z-index:2;color:var(--mute)!important;font-family:var(--mono);letter-spacing:.08em;}
-  .l-event-hero-meta .sep{color:var(--hairline)!important;}
-  /* hero decorative visuals */
-  .b26-deco-circuit{position:absolute;top:-16px;right:-8px;height:min(52%,240px);width:auto;opacity:.85;z-index:1;pointer-events:none;}
-  .b26-deco-sky{position:absolute;left:0;right:0;bottom:-2px;width:108%;height:auto;opacity:.20;z-index:0;pointer-events:none;}
 
-  /* ---- Entry cards (same grid, new palette) ---- */
-  .l-entry-card{}
-  .l-entry-cat{font-family:var(--mono)!important;letter-spacing:.12em;text-transform:uppercase;}
-  .l-entry-title{font-family:var(--display)!important;font-weight:800;letter-spacing:-.01em;}
-  .l-entry-sub{font-family:var(--text);}
-  /* Tickets — cream "stub" */
-  .l-entry-card--yellow{background:var(--cream)!important;color:var(--midnight)!important;}
-  .l-entry-card--yellow .ticket-card-eyebrow,.l-entry-card--yellow .ticket-card-cta{color:var(--vermilion)!important;}
-  .l-entry-card--yellow .ticket-card-meta-label,.l-entry-card--yellow .ticket-card-stub-label{color:#7a6f57!important;}
-  .l-entry-card--yellow .ticket-card-stub{border-color:rgba(11,26,46,.25)!important;}
-  .l-entry-card--yellow .ticket-card-barcode{background:repeating-linear-gradient(90deg,#0B1A2E 0 2px,transparent 2px 5px)!important;}
-  /* Apply to speak — vermilion */
-  .l-entry-card--red{background:var(--vermilion)!important;color:#fff!important;}
-  .l-entry-card--red .l-entry-cat{color:rgba(255,255,255,.85)!important;}
-  /* Speakers — signal panel */
-  .l-entry-card--blue{background:var(--panel)!important;border:1px solid var(--signal)!important;color:var(--paper)!important;}
-  .l-entry-card--blue .l-entry-cat,.l-entry-card--blue .l-entry-arrow{color:var(--signal)!important;}
-  /* Partner — outline */
-  .l-entry-card--outline-blue{background:transparent!important;border:1px solid var(--hairline)!important;color:var(--paper)!important;}
-  .l-entry-card--outline-blue .l-entry-cat{color:var(--steppe)!important;}
-  /* Volunteer — steppe-accent panel */
-  .l-entry-card--cream{background:var(--panel-2)!important;border:1px solid var(--hairline)!important;border-top:4px solid var(--steppe)!important;color:var(--paper)!important;}
-  .l-entry-card--cream .l-entry-cat{color:var(--steppe)!important;}
-  /* Partner + Volunteer: force white title/sub/arrow (site.css left them dark → unreadable on the dark theme) */
   .l-entry-card--outline-blue .l-entry-title,.l-entry-card--outline-blue h3,
   .l-entry-card--outline-blue .l-entry-sub,.l-entry-card--outline-blue .l-entry-arrow,
   .l-entry-card--cream .l-entry-title,.l-entry-card--cream h3,
-  .l-entry-card--cream .l-entry-sub,.l-entry-card--cream .l-entry-arrow{color:#FFFFFF!important;}
-  .l-entry-sub{color:var(--mute);}
-  .l-entry-card--red .l-entry-sub,.l-entry-card--yellow .l-entry-sub{color:inherit;}
 
   /* ---- Stat band ---- */
   .l-stats-wrap{position:relative;}
@@ -117,6 +75,111 @@
   .l-footer-newsletter-btn{background:var(--vermilion)!important;color:#fff!important;font-family:var(--mono);}
   .l-footer-social a{border:1px solid var(--hairline)!important;color:var(--paper)!important;}
   .l-footer-social a:hover{border-color:var(--signal)!important;color:var(--signal)!important;}
+
+  /* ============ SUMMIT 2026 · CANVAS DESIGN (hero / program / speakers / venue / close) ============
+     Integrated from the "Summit 2026 Web Page" design canvas. The canvas used
+     Bricolage Grotesque + Archivo + Space Mono; those are mapped onto this
+     site's existing stack instead, so the page keeps the current typeface:
+     --display / --text / --mono all resolve to Montserrat, and Caveat
+     (--script) stays for the handwritten accents. */
+  :root{--b26-pad:clamp(24px,9vw,140px);}
+  .b26-sec{padding:clamp(48px,6vw,76px) var(--b26-pad);}
+  .b26-sec--deep{background:#081221;}
+  .b26-eyebrow{font-family:var(--mono);font-size:clamp(11px,calc(10px + 0.2778vw),14px);font-weight:700;letter-spacing:.24em;text-transform:uppercase;color:var(--vermilion);}
+  /* site.css sets `.page-light h1,h2{color:#0A0A0A}` and uppercases every
+     heading; the design is sentence case on the dark ground, so both are
+     overridden here the same way the rest of this skin does it. */
+  .b26-h2{font-family:var(--display);font-weight:800;font-size:clamp(26px,calc(16.67px + 2.5926vw),54px);line-height:1.05;letter-spacing:-.02em;margin:16px 0 20px;color:var(--paper)!important;text-transform:none;}
+  .b26-h2 .dot{color:var(--vermilion);}
+  .b26-script{font-family:var(--script);font-weight:700;color:var(--hi);display:inline-block;transform:rotate(-2deg);}
+  .b26-lead{font-family:var(--text);font-size:clamp(15px,calc(14px + 0.2778vw),18px);line-height:1.6;color:var(--mute);max-width:560px;margin:0 0 36px;}
+  .b26-lead a{color:var(--signal);}
+  .b26-lead a:hover{color:var(--hi);}
+
+  /* Buy tickets — straight on purpose (the canvas had it rotated) */
+  .b26-btn{background:var(--vermilion);color:#fff!important;font-family:var(--display);font-weight:800;font-size:clamp(15px,calc(13.67px + 0.3704vw),19px);padding:clamp(13px,1.4vw,16px) clamp(24px,2.8vw,32px);border-radius:999px;display:inline-block;box-shadow:0 12px 30px rgba(0,0,0,.45);transition:background .15s ease;}
+  .b26-btn:hover{background:var(--hi);}
+  .b26-btn--lg{font-size:clamp(16px,calc(14.33px + 0.463vw),21px);padding:clamp(15px,1.6vw,18px) clamp(28px,3.4vw,40px);}
+
+  /* ---- hero ---- */
+  .b26-hero{padding:64px var(--b26-pad) clamp(140px,18vw,300px);position:relative;overflow:hidden;}
+  .b26-hero > *{position:relative;z-index:2;}
+  /* skyline sits behind the hero (it used to close the page) */
+  .b26-hero-sky{position:absolute;left:50%;transform:translateX(-50%);bottom:-2px;width:min(1180px,104%);height:auto;pointer-events:none;z-index:1;opacity:.30;}
+  .b26-hero-kicker{font-family:var(--mono);font-size:clamp(11px,calc(9.33px + 0.463vw),16px);font-weight:600;letter-spacing:.24em;text-transform:uppercase;color:var(--mute);}
+  .b26-lockup{display:inline-flex;flex-direction:column;width:fit-content;margin-top:32px;}
+  .b26-lockup .hiai{font-size:clamp(46px,calc(24px + 6.1111vw),112px);}
+  .b26-lockup-sub{display:block;text-align:center;font-family:var(--mono);font-size:clamp(10px,calc(7.67px + 0.6481vw),17px);font-weight:700;letter-spacing:.28em;text-indent:.28em;text-transform:uppercase;color:var(--mute);margin-top:12px;white-space:nowrap;}
+  .b26-hero-title{font-family:var(--display);font-weight:800;font-size:clamp(30px,calc(20px + 2.7778vw),60px);line-height:1.34;letter-spacing:-.02em;margin:48px 0 0;max-width:820px;color:var(--paper)!important;text-transform:none;}
+  .b26-strike{position:relative;display:inline-block;}
+  .b26-strike s{text-decoration:none;opacity:.45;}
+  .b26-strike .rule{position:absolute;left:-4%;top:52%;width:108%;height:6px;background:var(--vermilion);transform:rotate(-4deg);border-radius:4px;}
+  .b26-strike .fix{position:absolute;left:0;right:0;top:-.72em;line-height:1;text-align:center;font-family:var(--script);font-weight:700;color:var(--vermilion);transform:rotate(-4deg);}
+  .b26-cta-row{display:flex;align-items:center;gap:20px;flex-wrap:wrap;margin-top:36px;}
+
+  /* ---- program ---- */
+  .b26-meta{display:flex;align-items:center;gap:10px 24px;flex-wrap:wrap;margin:0 0 40px;font-family:var(--mono);font-size:clamp(12px,calc(11px + 0.2778vw),15px);color:var(--mute);}
+  .b26-meta b{color:var(--paper);font-weight:700;}
+  .b26-meta .sep{color:var(--hairline);}
+  .b26-days{display:grid;grid-template-columns:repeat(auto-fit,minmax(280px,1fr));gap:32px;}
+  .b26-day{background:var(--cream);color:#16130F;padding:clamp(26px,2.8vw,36px) clamp(22px,2.5vw,32px) clamp(30px,3vw,40px);box-shadow:0 18px 44px rgba(0,0,0,.4);}
+  .b26-day:nth-child(1){transform:rotate(-.8deg);}
+  .b26-day:nth-child(2){transform:rotate(.8deg);}
+  .b26-day:nth-child(3){transform:rotate(-.5deg);}
+  .b26-day-pill{display:inline-block;background:var(--vermilion);color:#fff;font-family:var(--display);font-weight:800;font-size:clamp(13px,calc(11.67px + 0.3704vw),17px);padding:clamp(8px,.9vw,10px) clamp(16px,1.9vw,22px);border-radius:999px;transform:rotate(-2deg);}
+  .b26-day:nth-child(2) .b26-day-pill{transform:rotate(1.5deg);}
+  .b26-day:nth-child(3) .b26-day-pill{transform:rotate(-1deg);}
+  .b26-day-title{font-family:var(--display);font-weight:800;font-size:clamp(20px,calc(16.67px + 0.9259vw),30px);margin:24px 0 0;color:#16130F!important;text-transform:none;line-height:1.1;}
+  .b26-day-copy{font-family:var(--text);font-size:clamp(14.5px,calc(13.5px + 0.2778vw),17.5px);line-height:1.6;color:#5E5A4E;margin:12px 0 0;}
+  .b26-day-note{font-family:var(--script);font-weight:700;font-size:clamp(19px,calc(16.33px + 0.7407vw),27px);color:var(--vermilion);transform:rotate(-2deg);display:inline-block;margin-top:20px;}
+  .b26-day-link{display:block;margin-top:16px;font-family:var(--mono);font-size:clamp(11px,calc(10px + 0.2778vw),14px);font-weight:700;letter-spacing:.08em;text-transform:uppercase;color:var(--vermilion);}
+  .b26-day-link:hover{color:#16130F;}
+  .b26-program-cta{margin-top:44px;}
+
+  /* ---- speakers ---- */
+  .b26-cards{display:grid;grid-template-columns:repeat(auto-fit,minmax(200px,1fr));gap:36px;}
+  .b26-polaroid{background:var(--cream);color:#16130F;padding:14px 14px 12px;box-shadow:0 20px 44px rgba(0,0,0,.4);max-width:264px;}
+  .b26-polaroid:nth-child(1){transform:rotate(-2deg);}
+  .b26-polaroid:nth-child(2){transform:rotate(1.5deg);}
+  .b26-polaroid:nth-child(3){transform:rotate(-1deg);}
+  .b26-polaroid:nth-child(4){transform:rotate(2deg);}
+  /* Speaker headshots fill the frame; the "you?" open-seat card still uses
+     .b26-polaroid-slot with a script word instead of a photo. */
+  .b26-polaroid img{display:block;width:100%;aspect-ratio:1/1.05;object-fit:cover;}
+  .b26-polaroid-slot{width:100%;aspect-ratio:1/1.05;display:flex;align-items:center;justify-content:center;background:var(--midnight);}
+  .b26-polaroid-slot .b26-script{font-size:clamp(26px,calc(19.33px + 1.8519vw),46px);transform:rotate(-3deg);}
+  .b26-polaroid-name{font-family:var(--display);font-weight:800;font-size:clamp(15px,calc(13.33px + 0.463vw),20px);padding-top:12px;}
+  .b26-polaroid-role{font-family:var(--mono);font-size:clamp(10px,calc(9px + 0.2778vw),13px);font-weight:600;letter-spacing:.08em;text-transform:uppercase;color:#5E5A4E;padding-top:4px;}
+  .b26-polaroid-role a{color:var(--vermilion);}
+
+  /* ---- venue ---- */
+  .b26-venue{display:grid;grid-template-columns:repeat(auto-fit,minmax(300px,1fr));gap:48px;align-items:center;}
+  .b26-venue p{font-family:var(--text);font-size:clamp(15px,calc(14px + 0.2778vw),18px);line-height:1.65;color:var(--mute);max-width:560px;margin:0;}
+  .b26-venue p b{color:var(--paper);font-weight:700;}
+  .b26-venue-frame{background:var(--cream);padding:18px 18px 14px;margin:0;transform:rotate(1.5deg);box-shadow:0 24px 60px rgba(0,0,0,.45);max-width:520px;width:100%;justify-self:center;}
+  .b26-venue-frame img{display:block;width:100%;object-fit:cover;height:clamp(150px,calc(120px + 8.3333vw),240px);}
+  /* Luma is cropped from the top so it matches Fabrik's height exactly */
+  .b26-venue-img--main{object-position:bottom;}
+  .b26-venue-frame .b26-script + img{margin-top:18px;}
+  .b26-venue-cap{font-family:var(--mono);font-size:clamp(11px,calc(10px + 0.2778vw),14px);font-weight:600;letter-spacing:.1em;text-transform:uppercase;color:#5E5A4E;padding-top:12px;}
+  .b26-venue-frame .b26-script{font-size:clamp(18px,calc(15.33px + 0.7407vw),26px);color:var(--vermilion);padding-top:6px;}
+  .b26-venue-note{margin-top:16px;font-size:clamp(20px,calc(16.67px + 0.9259vw),30px);}
+
+  /* ---- closing tickets CTA ---- */
+  .b26-close{position:relative;padding:clamp(56px,7vw,84px) var(--b26-pad) clamp(64px,8vw,96px);text-align:center;overflow:hidden;}
+  .b26-close > *{position:relative;z-index:2;}
+  .b26-close-title{font-family:var(--display);font-weight:800;font-size:clamp(30px,calc(12px + 5vw),84px);line-height:1.05;letter-spacing:-.03em;margin:24px 0 0;color:var(--paper);}
+  .b26-close-title .b26-script{font-size:1.2em;transform:rotate(-3deg);}
+  .b26-close-meta{font-family:var(--mono);font-size:clamp(11px,calc(10px + 0.2778vw),14px);font-weight:600;letter-spacing:.14em;text-transform:uppercase;color:var(--mute);margin-top:28px;}
+
+  @media(max-width:720px){
+    .b26-day{transform:none!important;}
+    .b26-day-pill{transform:none!important;}
+    .b26-polaroid{max-width:none;}
+    .b26-polaroid:nth-child(n){transform:none;}
+    .b26-venue-frame{transform:none;}
+  }
+
   .l-footer-bot{color:var(--faint)!important;font-family:var(--mono);letter-spacing:.06em;border-top:1px solid var(--hairline);}
 </style>
 </head>
@@ -132,7 +195,7 @@
       <span>VOLUNTEER-RUN</span> · <b>501(C)(3)</b>
     </div>
     <div class="app-nav-right">
-      <a href="tickets.html" class="app-nav-pill app-nav-pill--hot">Buy tickets →</a>
+      <a href="tickets.html" class="app-nav-pill app-nav-pill--hot">Buy tickets</a>
       <a href="schedule.html" class="app-nav-pill app-nav-pill--ghost">Schedule</a>
       <button class="app-nav-pill app-nav-pill--icon" aria-label="Search">⌕</button>
       <button class="app-nav-toggle" aria-label="Menu">≡</button>
@@ -156,113 +219,128 @@
   </div>
 </header>
 
-<!-- ============ EVENT HERO · big rounded card (now Midnight + skyline + circuit) ============ -->
-<section class="l-event-hero">
-  <div class="l-event-hero-card">
-    <img class="b26-deco-circuit" src="assets/brand-2026/corner-signal.svg" alt="" aria-hidden="true" />
-    <img class="b26-deco-sky" src="assets/brand-2026/skyline-cream.png" alt="" aria-hidden="true" />
-    <div class="l-event-hero-lockup"><span class="hiai"><span class="hi">Hi</span><span class="x">×</span><span class="ai">AI</span></span></div>
-    <div class="l-event-hero-eyebrow">MNG SUMMIT 2026 · VOL. X · HUMAN INTELLIGENCE OVER AI</div>
-    <h1 class="l-event-hero-title">Explore speakers, sessions, and the schedule.</h1>
-    <form class="l-event-hero-search" onsubmit="window.location.href='schedule.html'; return false;">
-      <span class="l-event-hero-search-ico" aria-hidden="true">⌕</span>
-      <input type="search" placeholder="Search the schedule" aria-label="Search the schedule" />
-    </form>
-    <a href="schedule.html" class="l-event-hero-cta">Full schedule · coming soon →</a>
-    <div class="l-event-hero-meta">
-      <span>Oct 9–11, 2026</span>
-      <span class="sep">|</span>
-      <span>New York City</span>
-      <span class="sep">|</span>
-      <span>#StayHuman</span>
-    </div>
+<!-- ============ HERO · Hi × AI lockup + staying human ============ -->
+<section class="b26-hero">
+  <img class="b26-hero-sky" src="assets/brand-2026/skyline-cream.png" alt="" aria-hidden="true" />
+  <!-- <div class="b26-hero-kicker">Oct 9–11, 2026 · New York City · Vol. X</div> -->
+  <span class="b26-lockup">
+    <span class="hiai"><span class="hi">Hi</span><span class="x">×</span><span class="ai">AI</span></span>
+    <span class="b26-lockup-sub">MNG Summit 2026</span>
+  </span>
+  <h1 class="b26-hero-title">Three days in New York on valuing <span class="b26-strike"><s aria-hidden="true">artificial</s><span class="rule" aria-hidden="true"></span><span class="fix">human</span></span> intelligence.</h1>
+  <div class="b26-cta-row">
+    <a href="tickets.html" class="b26-btn">Buy tickets →</a>
   </div>
 </section>
 
-<!-- ============ ENTRY GRID · colorful cards ============ -->
-<section class="l-entry">
-  <div class="l-entry-grid">
+<!-- ============ THE PROGRAM · three days, three speeds ============ -->
+<section class="b26-sec" id="program">
+  <div class="b26-eyebrow">The program</div>
+  <h2 class="b26-h2">Three days, three speeds<span class="dot">.</span></h2>
+  <div class="b26-meta">
+    <span><b>Oct 9–11, 2026</b></span><span class="sep">·</span>
+    <span><b>New York City</b></span><span class="sep">·</span>
+    <span><b>Vol. X</b> · A decade of summits</span>
+  </div>
+  <div class="b26-days">
 
-    <!-- ============ TICKETS · XL, styled as a real event ticket (2×2 c1-2 r1-2) ============ -->
-    <a href="tickets.html"
-       class="l-entry-card l-entry-card--yellow l-entry-card--xl ticket-card">
-      <div class="ticket-card-main">
-        <div class="ticket-card-top">
-          <div class="ticket-card-eyebrow">Admit one · Vol. X</div>
-          <div class="ticket-card-number">№ 2026</div>
-        </div>
-        <h3 class="ticket-card-title">Tickets<br/><em>on sale now</em></h3>
-        <div class="ticket-card-meta">
-          <div class="ticket-card-meta-row">
-            <span class="ticket-card-meta-label">Date</span>
-            <span class="ticket-card-meta-value">Oct 9–11 · 2026</span>
-          </div>
-          <div class="ticket-card-meta-row">
-            <span class="ticket-card-meta-label">Venue</span>
-            <span class="ticket-card-meta-value">New York City</span>
-          </div>
-          <div class="ticket-card-meta-row">
-            <span class="ticket-card-meta-label">Theme</span>
-            <span class="ticket-card-meta-value">Human Intelligence over AI</span>
-          </div>
-        </div>
-        <div class="ticket-card-cta">Buy tickets →</div>
-      </div>
-      <div class="ticket-card-stub" aria-hidden="true">
-        <div class="ticket-card-stub-label">Admit one</div>
-        <div class="ticket-card-barcode"></div>
-        <div class="ticket-card-stub-label">MNG · NYC</div>
-      </div>
-    </a>
+    <div class="b26-day">
+      <span class="b26-day-pill">Day 1 · Fri Oct 9</span>
+      <h3 class="b26-day-title">Say Hi before AI</h3>
+      <p class="b26-day-copy">Arrivals, fireside chats, and the opening keynote. Meet the room and hear from creators on how they stay curious.</p>
+      <div class="b26-day-note">#StayHuman</div>
+      <a href="schedule.html#day1" class="b26-day-link">Day 1 schedule →</a>
+    </div>
 
-    <!-- ============ APPLY TO SPEAK · small (c3 r1) ============ -->
-    <a href="#" data-modal="speak" class="l-entry-card l-entry-card--red">
-      <div class="l-entry-cat">Open call</div>
-      <h3 class="l-entry-title">Apply to speak</h3>
-      <div class="l-entry-foot">
-        <span class="l-entry-sub">Open until August 2026</span>
-        <span class="l-entry-arrow" aria-hidden="true">→</span>
-      </div>
-    </a>
+    <div class="b26-day">
+      <span class="b26-day-pill">Day 2 · Sat Oct 10</span>
+      <h3 class="b26-day-title">The main stage</h3>
+      <p class="b26-day-copy">Keynotes, panels, and conversations on the impact of AI. Then a happy hour to solidify new friendships.</p>
+      <div class="b26-day-note">#StayCreative</div>
+      <a href="schedule.html#day2" class="b26-day-link">Day 2 schedule →</a>
+    </div>
 
-    <!-- ============ SPEAKERS · small (c4 r1) ============ -->
-    <a href="schedule.html#speakers" class="l-entry-card l-entry-card--blue">
-      <div class="l-entry-cat">People</div>
-      <h3 class="l-entry-title">Speakers</h3>
-      <div class="l-entry-foot">
-        <span class="l-entry-sub">Headliner + working board · TBA</span>
-        <span class="l-entry-arrow" aria-hidden="true">→</span>
-      </div>
-    </a>
-
-    <!-- ============ PARTNER · outlined (c3 r2) ============ -->
-    <a href="sponsor.html" class="l-entry-card l-entry-card--outline-blue">
-      <div class="l-entry-cat">Sponsorship</div>
-      <h3 class="l-entry-title">Partner with us</h3>
-      <div class="l-entry-foot">
-        <span class="l-entry-sub">2K+ nomads · 8.6K social · Twelve years of brand value.</span>
-        <span class="l-entry-arrow" aria-hidden="true">→</span>
-      </div>
-    </a>
-
-    <!-- ============ VOLUNTEER · small (c4 r2) ============ -->
-    <a href="#" data-modal="volunteer" class="l-entry-card l-entry-card--cream">
-      <div class="l-entry-cat">Get involved</div>
-      <h3 class="l-entry-title">Volunteer with us</h3>
-      <div class="l-entry-foot">
-        <span class="l-entry-sub">Production, content, partnerships, design.</span>
-        <span class="l-entry-arrow" aria-hidden="true">→</span>
-      </div>
-    </a>
+    <div class="b26-day">
+      <span class="b26-day-pill">Day 3 · Sun Oct 11</span>
+      <h3 class="b26-day-title">Get hands-on</h3>
+      <p class="b26-day-copy">Bird-watching in Central Park, followed by workshops on visas, finance, and going home. Closing remarks to reflect on all you gained.</p>
+      <div class="b26-day-note">#StayConnected</div>
+      <a href="schedule.html#day3" class="b26-day-link">Day 3 schedule →</a>
+    </div>
 
   </div>
+  <div class="b26-program-cta">
+    <a href="schedule.html" class="l-event-hero-cta">Full schedule →</a>
+  </div>
+</section>
+
+<!-- ============ SPEAKERS · announcing through the fall ============ -->
+<section class="b26-sec b26-sec--deep" id="speakers">
+  <div class="b26-eyebrow">On stage</div>
+  <h2 class="b26-h2">Speakers<span class="dot">.</span></h2>
+  <p class="b26-lead">Incredible humans from various domains. Want a seat on stage? <a href="get-involved.html#speak">Apply to speak →</a></p>
+  <div class="b26-cards">
+
+    <div class="b26-polaroid">
+      <img src="assets/photos/borgil-enkhbat.jpg" alt="Borgil Enkhbat, keynote speaker, standing in front of the Mongolian flag." />
+      <div class="b26-polaroid-name">Borgil Enkhbat</div>
+      <div class="b26-polaroid-role">Keynote · Iris World</div>
+    </div>
+
+    <div class="b26-polaroid">
+      <img src="assets/photos/khulan-dav.jpeg" alt="Khulan Dav, panel speaker, studio portrait against a deep red backdrop." />
+      <div class="b26-polaroid-name">Khulan Dav</div>
+      <div class="b26-polaroid-role">Panel · Google</div>
+    </div>
+
+    <div class="b26-polaroid">
+      <img src="assets/photos/bolor-amgalan.jpeg" alt="Bolor Amgalan, workshop leader, portrait in glasses against a pale wall." />
+      <div class="b26-polaroid-name">Bolor Amgalan</div>
+      <div class="b26-polaroid-role">Workshop · Northeastern</div>
+    </div>
+
+    <div class="b26-polaroid">
+      <div class="b26-polaroid-slot"><span class="b26-script">you?</span></div>
+      <div class="b26-polaroid-name">Open seat</div>
+      <div class="b26-polaroid-role"><a href="get-involved.html#speak">Apply →</a></div>
+    </div>
+
+  </div>
+</section>
+
+<!-- ============ THE VENUES · Brooklyn, NYC ============ -->
+<section class="b26-sec" id="venue">
+  <div class="b26-venue">
+    <div>
+      <div class="b26-eyebrow">The venues</div>
+      <h2 class="b26-h2">Dumbo, Brooklyn<span class="dot">.</span></h2>
+      <p><b>Fabrik Dumbo</b> kicks off the Summit on Friday with a cozy vibe and the best skyline photo you will take this year.</p>
+      <h2 class="b26-h2">Midtown, Manhattan<span class="dot">.</span></h2>
+      <p><b>Luma Studios</b> takes the main stage on Saturday & Sunday with incredible speakers and tailored workshops just outside of MSG.</p>
+      <div class="b26-script b26-venue-note">directions coming soon</div>
+    </div>
+    <figure class="b26-venue-frame">
+      <img class="b26-venue-img--second" src="assets/photos/venue-fabrik-dumbo-2026.jpg" alt="The lounge at Fabrik Dumbo: teal walls, deep sofas and a checkered rug." />
+      <div class="b26-script">the lounge</div>
+      <img class="b26-venue-img--main" src="assets/photos/venue-luma-studios-2026.jpg" alt="Luma Studios: a bright open floor with blue sofas, long tables and orange chairs by tall windows." />
+      <div class="b26-script">the room</div>
+    </figure>
+  </div>
+</section>
+
+<!-- ============ CLOSING CTA · come say Hi ============ -->
+<section class="b26-close" id="tickets">
+  <div class="b26-eyebrow">See you this October</div>
+  <div class="b26-close-title">Come say <span class="b26-script">Hi</span> in real life<span class="dot" style="color:var(--vermilion);">.</span></div>
+  <div style="margin-top:36px;"><a href="tickets.html" class="b26-btn b26-btn--lg">Buy tickets →</a></div>
+  <div class="b26-close-meta">#StayHuman · Oct 9–11 · NYC</div>
 </section>
 
 <!-- ============ THIS YEAR'S THEME · stat band ============ -->
-<section class="l-stats-wrap" id="venue">
+<section class="l-stats-wrap">
   <p class="l-stats">
-    MNG Summit 2026 is coming to <em>New York City</em>! This year's theme is <b>Human Intelligence over AI</b> and you will hear from industry leaders about how they're using AI tools to level up. Then it's your turn: our <b>Hackathon</b>, a new addition, gives you the chance to build something with AI yourself.
-  <br> So come join us and mingle with bright minds who are eager to learn and connect in this era of digitalization. <br>Grab your tickets now!
+    MNG Summit 2026 is coming to <em>New York City</em>! This year's theme is <b>Human Intelligence over AI</b> and you will hear from industry leaders about how they're using AI tools to level up. We will also have creatives who are staying curious and building something meaningful.
+  <br> So come join us and mingle with bright minds who are eager to learn and connect in this era of digitalization!
   </p>
   <div class="l-stats-cta-row">
     <a href="archive.html" class="l-event-hero-cta">View past summits →</a>
@@ -275,33 +353,6 @@
   Driven by community
   <div class="l-driven-mark">501(c)(3) · VOLUNTEER-RUN · SINCE 2014</div>
 </section>
-
-<!-- ============ MODAL POPUP · waitlist intake ============ -->
-<div class="modal-scrim" id="modal-scrim"></div>
-<aside class="modal" id="involve-modal" role="dialog" aria-modal="true" aria-hidden="true">
-  <button class="modal-close" id="modal-close" aria-label="Close">✕</button>
-
-  <div class="modal-content" data-content="waitlist" hidden>
-    <div class="modal-eyebrow">Tickets · MNG Summit 2026</div>
-    <h2>Get on the early list</h2>
-    <p class="modal-lead">Three days · 100 seats · NYC · Oct 9–11, 2026. We'll send the ticket link to the <b>early list first</b>, before public release.</p>
-    <form class="modal-form" data-subject="MNG Summit 2026 · Early-list signup">
-      <label>Your name <input name="name" required /></label>
-      <label>Email <input name="email" type="email" required /></label>
-      <label>LinkedIn
-        <div class="input-prefixed">
-          <span class="input-prefix">linkedin.com/in/</span>
-          <input name="linkedin" type="text" placeholder="yourhandle" autocomplete="off" required />
-        </div>
-      </label>
-      <label>City <input name="city" placeholder="e.g. New York, San Francisco, Ulaanbaatar" /></label>
-      <label>Industry <input name="industry" placeholder="e.g. Finance, Tech, Design, Policy" /></label>
-      <label>One thing you're hoping to find at the summit (optional) <textarea name="hoping" rows="2" placeholder="e.g. The right co-founder, a job, a community."></textarea></label>
-      <button type="submit" class="modal-submit">Hold my spot →</button>
-    </form>
-    <div class="modal-foot">We send weekly on Wednesdays. Unsubscribe any time.</div>
-  </div>
-</aside>
 
 <!-- ============ FOOTER ============ -->
 <footer class="l-footer">
