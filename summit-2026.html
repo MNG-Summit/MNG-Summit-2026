@@ -265,6 +265,20 @@
   .b26-venue-frame .b26-script{font-size:clamp(18px,calc(15.33px + 0.7407vw),26px);color:var(--vermilion);padding-top:6px;}
   .b26-venue-note{margin-top:16px;font-size:clamp(20px,calc(16.67px + 0.9259vw),30px);}
 
+  /* the '26 cards carry their own frame, name, title and role, so these are
+     just a grid and a tilt — no .b26-polaroid chrome around them. Shared by
+     the speakers grid and the team grid; the tilts match the polaroids'. */
+  .b26-team{display:grid;grid-template-columns:repeat(auto-fit,minmax(200px,1fr));gap:28px;max-width:880px;}
+  .b26-card26{display:block;max-width:264px;}
+  .b26-card26 img{display:block;width:100%;height:auto;}
+  /* only the 'more guests' card is a link — give it something to answer a hover with */
+  a.b26-card26{transition:transform .18s var(--ease),opacity .18s var(--ease);}
+  a.b26-card26:hover{opacity:.88;}
+  .b26-card26:nth-child(1){transform:rotate(-2deg);}
+  .b26-card26:nth-child(2){transform:rotate(1.5deg);}
+  .b26-card26:nth-child(3){transform:rotate(-1deg);}
+  .b26-card26:nth-child(4){transform:rotate(2deg);}
+
   /* ---- closing tickets CTA ---- */
   .b26-close{position:relative;padding:clamp(56px,7vw,84px) var(--b26-pad) clamp(64px,8vw,96px);text-align:center;overflow:hidden;}
   .b26-close > *{position:relative;z-index:2;}
@@ -277,6 +291,8 @@
     .b26-day-pill{transform:none!important;}
     .b26-polaroid{max-width:none;}
     .b26-polaroid:nth-child(n){transform:none;}
+    .b26-card26{max-width:none;}
+    .b26-card26:nth-child(n){transform:none;}
     .b26-venue-frame{transform:none;}
   }
 
@@ -298,7 +314,7 @@
         <a href="index.html" class="app-nav-link">Home</a>
         <a href="summit-2026.html" class="app-nav-link is-active">Overview</a>
         <a href="schedule.html" class="app-nav-link">Schedule</a>
-        <a href="#speakers" class="app-nav-link">Speakers</a>
+        <a href="speakers.html" class="app-nav-link">Speakers</a>
       </nav>
       <div class="app-nav-when">
         <span>Oct 9–11, 2026</span>
@@ -370,32 +386,16 @@
 <section class="b26-sec b26-sec--deep" id="speakers">
   <div class="b26-eyebrow">On stage</div>
   <h2 class="b26-h2">Speakers<span class="dot">.</span></h2>
-  <p class="b26-lead">Incredible humans from various domains. Want a seat on stage? <a href="get-involved.html#speak">Apply to speak →</a></p>
+  <p class="b26-lead">Incredible humans from various domains. The rest of the line-up and everyone's bio are in the <a href="speakers.html">speakers tab</a>.<br />Want a seat on stage? <a href="get-involved.html#speak">Apply to speak →</a></p>
   <div class="b26-cards">
 
-    <div class="b26-polaroid">
-      <img src="assets/photos/borgil-enkhbat.jpg" alt="Borgil Enkhbat, keynote speaker, standing in front of the Mongolian flag." />
-      <div class="b26-polaroid-name">Borgil Enkhbat</div>
-      <div class="b26-polaroid-role">Keynote · Iris World</div>
-    </div>
+    <div class="b26-card26"><img src="assets/photos/Summit-2026/cards-2026/bolor-guest.webp" width="600" height="779" loading="lazy" alt="Bolor A. — Associate Teaching Professor, Northeastern University. Keynote." /></div>
 
-    <div class="b26-polaroid">
-      <img src="assets/photos/khulan-dav.jpeg" alt="Khulan Dav, panel speaker, studio portrait against a deep red backdrop." />
-      <div class="b26-polaroid-name">Khulan Dav</div>
-      <div class="b26-polaroid-role">Panel · Google</div>
-    </div>
+    <div class="b26-card26"><img src="assets/photos/Summit-2026/cards-2026/boki-guest.webp" width="600" height="779" loading="lazy" alt="Boki E. — Executive Director, Iris World. Speaker." /></div>
 
-    <div class="b26-polaroid">
-      <img src="assets/photos/bolor-amgalan.jpeg" alt="Bolor Amgalan, workshop leader, portrait in glasses against a pale wall." />
-      <div class="b26-polaroid-name">Bolor Amgalan</div>
-      <div class="b26-polaroid-role">Workshop · Northeastern</div>
-    </div>
+    <div class="b26-card26"><img src="assets/photos/Summit-2026/cards-2026/khulan-guest.webp" width="600" height="779" loading="lazy" alt="Khulan D. — Creative AI, Google. Workshop." /></div>
 
-    <div class="b26-polaroid">
-      <div class="b26-polaroid-slot"><span class="b26-script">you?</span></div>
-      <div class="b26-polaroid-name">Open seat</div>
-      <div class="b26-polaroid-role"><a href="get-involved.html#speak">Apply →</a></div>
-    </div>
+    <a class="b26-card26" href="speakers.html"><img src="assets/photos/Summit-2026/cards-2026/more.webp" width="600" height="779" loading="lazy" alt="More guests in the speaker tab — see the full line-up." /></a>
 
   </div>
 </section>
@@ -412,11 +412,23 @@
       <div class="b26-script b26-venue-note">directions coming soon</div>
     </div>
     <figure class="b26-venue-frame">
-      <img class="b26-venue-img--second" src="assets/photos/venue-fabrik-dumbo-2026.jpg" alt="The lounge at Fabrik Dumbo: teal walls, deep sofas and a checkered rug." />
+      <img class="b26-venue-img--second" src="assets/photos/Summit-2026/venue-fabrik-dumbo.jpg" alt="The lounge at Fabrik Dumbo: teal walls, deep sofas and a checkered rug." />
       <div class="b26-script">the lounge</div>
-      <img class="b26-venue-img--main" src="assets/photos/venue-luma-studios-2026.jpg" alt="Luma Studios: a bright open floor with blue sofas, long tables and orange chairs by tall windows." />
+      <img class="b26-venue-img--main" src="assets/photos/Summit-2026/venue-luma-studios.jpg" alt="Luma Studios: a bright open floor with blue sofas, long tables and orange chairs by tall windows." />
       <div class="b26-script">the room</div>
     </figure>
+  </div>
+</section>
+
+<!-- ============ THE TEAM · who puts it on ============ -->
+<section class="b26-sec b26-sec--deep" id="team">
+  <div class="b26-eyebrow">Behind it</div>
+  <h2 class="b26-h2">The team<span class="dot">.</span></h2>
+  <p class="b26-lead">MNG Summit has been volunteer-run since 2014. These three are putting the 2026 edition together — say hi to them at the door.</p>
+  <div class="b26-team">
+    <div class="b26-card26"><img src="assets/photos/Summit-2026/cards-2026/yanjaa-team.webp" width="600" height="779" loading="lazy" alt="Yanjaa M. — Co-founder, Vesta. President." /></div>
+    <div class="b26-card26"><img src="assets/photos/Summit-2026/cards-2026/anu-team.webp" width="600" height="779" loading="lazy" alt="Anu G. — Data Scientist. Co-lead." /></div>
+    <div class="b26-card26"><img src="assets/photos/Summit-2026/cards-2026/zana-team.webp" width="600" height="779" loading="lazy" alt="Zana Kh. — Business Project Manager, Creative Nation. Co-lead." /></div>
   </div>
 </section>
 
@@ -468,7 +480,7 @@
       <ul>
         <li><a href="summit-2026.html">Overview</a></li>
         <li><a href="schedule.html">Schedule</a></li>
-        <li><a href="schedule.html#speakers">Speakers</a></li>
+        <li><a href="speakers.html">Speakers</a></li>
         <li><a href="get-involved.html#speak">Apply to speak</a></li>
       </ul>
     </div>
