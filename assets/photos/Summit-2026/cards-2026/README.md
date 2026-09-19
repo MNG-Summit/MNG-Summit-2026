@@ -35,22 +35,6 @@ for f in glob.glob("assets/photos/Summit-2026/people cards '26/*.png"):
 If a future card is composed differently and the crop clips it, check the new
 master's alpha bounding box before trusting `BOX`.
 
-A master can also arrive flattened onto white instead of transparent — the
-September re-export of `bindi-guest.png` did. The frame is `#F1F1F1`, so pure
-white keys out cleanly; flood fill it from a corner before deriving anything,
-and re-save the master transparent so the next run does not have to:
-
-```python
-from PIL import Image, ImageDraw
-import numpy as np
-
-im = Image.open(SRC).convert('RGB')
-key = im.copy()
-ImageDraw.floodfill(key, (0, 0), (255, 0, 255), thresh=8)
-alpha = np.where((np.array(key) == (255, 0, 255)).all(2), 0, 255).astype('uint8')
-Image.fromarray(np.dstack([np.array(im), alpha]), 'RGBA').save(SRC)
-```
-
 ## The schedule thumbnails
 
 `faces-2026/` holds the small round-ish heads on `schedule.html`. They are cut
