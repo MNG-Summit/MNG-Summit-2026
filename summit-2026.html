@@ -176,18 +176,21 @@
     .b26-roster-tag{font-size:14px;}
   }
 
-  /* ---- venue ---- */
-  .b26-venue{display:grid;grid-template-columns:repeat(auto-fit,minmax(300px,1fr));gap:48px;align-items:center;}
-  .b26-venue p{font-family:var(--text);font-size:clamp(15px,calc(14px + 0.2778vw),18px);line-height:1.65;color:var(--mute);max-width:560px;margin:0;}
-  .b26-venue p b{color:var(--paper);font-weight:700;}
-  /* Small framed photo + handwritten neighborhood tag beside it — same
-     language as the speaker/team roster cards, instead of a caption
-     baked into the photo frame (too much visual weight of its own). */
-  .b26-venue-photos{display:flex;flex-direction:column;gap:24px;justify-self:center;}
+  /* ---- venue ----
+     One row, two cards — photo + handwritten neighborhood tag, with
+     the venue's own line directly underneath it. No separate bold
+     "Dumbo, Brooklyn."/"Midtown, Manhattan." headings; the tags and
+     eyebrow carry that now. */
+  .b26-venue-cards{display:grid;grid-template-columns:repeat(2,1fr);gap:32px;margin-top:20px;max-width:760px;}
+  .b26-venue-card p{font-family:var(--text);font-size:clamp(14.5px,calc(13.5px + 0.2778vw),17px);line-height:1.6;color:var(--mute);margin:14px 0 0;}
+  .b26-venue-card p b{color:var(--paper);font-weight:700;}
   .b26-venue-photo-row{display:flex;align-items:center;gap:18px;}
   .b26-venue-photo-frame{background:var(--cream);flex:0 0 auto;width:150px;margin:0;padding:8px 8px 6px;box-shadow:0 16px 36px rgba(0,0,0,.4);}
   .b26-venue-photo-frame img{display:block;width:100%;object-fit:cover;aspect-ratio:4/3;}
   .b26-venue-photo-tag{font-family:var(--script);font-weight:700;font-size:24px;line-height:1.2;display:inline-block;transform-origin:left center;}
+  @media(max-width:640px){
+    .b26-venue-cards{grid-template-columns:1fr;gap:28px;}
+  }
   .b26-venue-note{margin-top:16px;font-size:clamp(20px,calc(16.67px + 0.9259vw),30px);}
   @media(max-width:560px){.b26-venue-photo-frame{width:110px;}.b26-venue-photo-tag{font-size:19px;}}
 
@@ -348,30 +351,28 @@
 
 <!-- ============ THE VENUES · Brooklyn, NYC ============ -->
 <section class="b26-sec" id="venue">
-  <div class="b26-venue">
-    <div>
-      <div class="b26-eyebrow">The venues</div>
-      <h2 class="b26-h2">Dumbo, Brooklyn<span class="dot">.</span></h2>
-      <p><b>Fabrik Dumbo</b> kicks off the Summit on Friday with a cozy vibe and the best skyline photo you will take this year.</p>
-      <h2 class="b26-h2">Midtown, Manhattan<span class="dot">.</span></h2>
-      <p><b>Luma Studios</b> takes the main stage on Saturday & Sunday with incredible speakers and tailored workshops just outside of MSG.</p>
-      <div class="b26-script b26-venue-note">directions coming soon</div>
-    </div>
-    <div class="b26-venue-photos">
+  <div class="b26-eyebrow">The venues</div>
+  <div class="b26-venue-cards">
+    <div class="b26-venue-card">
       <div class="b26-venue-photo-row">
         <figure class="b26-venue-photo-frame" style="transform:rotate(1.5deg);">
           <img src="assets/photos/Summit-2026/venue-fabrik-dumbo.jpg" alt="The lounge at Fabrik Dumbo: teal walls, deep sofas and a checkered rug." />
         </figure>
         <span class="b26-venue-photo-tag" style="color:var(--hi);transform:rotate(-3deg);">Dumbo</span>
       </div>
+      <p><b>Fabrik Dumbo</b> kicks off the Summit on Friday with a cozy vibe and the best skyline photo you will take this year.</p>
+    </div>
+    <div class="b26-venue-card">
       <div class="b26-venue-photo-row">
         <figure class="b26-venue-photo-frame" style="transform:rotate(-2deg);">
           <img src="assets/photos/Summit-2026/venue-luma-studios.jpg" alt="Luma Studios: a bright open floor with blue sofas, long tables and orange chairs by tall windows." />
         </figure>
         <span class="b26-venue-photo-tag" style="color:var(--signal);transform:rotate(2deg);">Midtown</span>
       </div>
+      <p><b>Luma Studios</b> takes the main stage on Saturday & Sunday with incredible speakers and tailored workshops just outside of MSG.</p>
     </div>
   </div>
+  <div class="b26-script b26-venue-note">directions coming soon</div>
 </section>
 
 <!-- ============ THE TEAM · who puts it on ============ -->
