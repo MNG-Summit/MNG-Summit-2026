@@ -163,7 +163,7 @@
      horizontal cards: thumbnail left, handwritten tag right, the whole
      card a direct link out — matching the design canvas's speaker rows.
      Dense enough on mobile to avoid one-per-row scrolling. */
-  .b26-cards{display:grid;grid-template-columns:repeat(auto-fill,minmax(210px,1fr));gap:20px 28px;max-width:980px;}
+  .b26-cards{display:grid;grid-template-columns:repeat(3,1fr);gap:20px 28px;max-width:980px;}
   .b26-roster-label{font-family:var(--mono);font-size:14px;font-weight:700;letter-spacing:.2em;text-transform:uppercase;color:var(--mute);margin:40px 0 20px;}
   .b26-roster{display:flex;align-items:center;gap:14px;text-decoration:none;}
   .b26-roster-shot{flex:0 0 auto;width:88px;display:block;transform:rotate(var(--rot,0deg));transition:opacity .18s var(--ease);}
@@ -192,16 +192,6 @@
   .b26-venue-frame .b26-script{font-size:clamp(18px,calc(15.33px + 0.7407vw),26px);color:var(--vermilion);padding-top:6px;}
   .b26-venue-note{margin-top:16px;font-size:clamp(20px,calc(16.67px + 0.9259vw),30px);}
 
-  /* the '26 cards carry their own frame, name, title and role, so this is
-     just a grid and a tilt — no .b26-polaroid chrome around them. Used by
-     the team grid only now (speakers moved to the .b26-roster layout above). */
-  .b26-team{display:grid;grid-template-columns:repeat(auto-fit,minmax(200px,1fr));gap:28px;max-width:880px;}
-  .b26-card26{display:block;max-width:264px;}
-  .b26-card26 img{display:block;width:100%;height:auto;}
-  .b26-card26:nth-child(1){transform:rotate(-2deg);}
-  .b26-card26:nth-child(2){transform:rotate(1.5deg);}
-  .b26-card26:nth-child(3){transform:rotate(-1deg);}
-
   /* ---- closing tickets CTA ---- */
   .b26-close{position:relative;padding:clamp(56px,7vw,84px) var(--b26-pad) clamp(64px,8vw,96px);text-align:center;overflow:hidden;}
   .b26-close > *{position:relative;z-index:2;}
@@ -212,8 +202,6 @@
   @media(max-width:720px){
     .b26-day{transform:none!important;}
     .b26-day-pill{transform:none!important;}
-    .b26-card26{max-width:none;}
-    .b26-card26:nth-child(n){transform:none;}
     .b26-venue-frame{transform:none;}
   }
 
@@ -385,11 +373,21 @@
   <div class="b26-eyebrow">Behind it</div>
   <h2 class="b26-h2">The team<span class="dot">.</span></h2>
   <p class="b26-lead">MNG Summit has been volunteer-run since 2014. These three are putting the 2026 edition together — say hi to them at the door.</p>
-  <div class="b26-team">
-    <div class="b26-card26"><img src="assets/photos/Summit-2026/cards-2026/yanjaa-team.webp" width="600" height="779" loading="lazy" alt="Yanjaa M. — Co-founder, Vesta. President." /></div>
-    <div class="b26-card26"><img src="assets/photos/Summit-2026/cards-2026/anu-team.webp" width="600" height="779" loading="lazy" alt="Anu G. — Data Scientist. Co-lead." /></div>
-    <div class="b26-card26"><img src="assets/photos/Summit-2026/cards-2026/zana-team.webp" width="600" height="779" loading="lazy" alt="Zana Kh. — Business Project Manager, Creative Nation. Co-lead." /></div>
+  <div class="b26-cards">
+    <div class="b26-roster" style="--rot:-1deg;--tilt:-3deg;--tagc:var(--hi);">
+      <span class="b26-roster-shot"><img src="assets/photos/Summit-2026/cards-2026/yanjaa-team.webp" width="600" height="779" loading="lazy" alt="Yanjaa M. — Co-founder, Vesta. President." /></span>
+      <span class="b26-roster-tag">says yes, then builds it</span>
+    </div>
+    <div class="b26-roster" style="--rot:1.5deg;--tilt:2.5deg;--tagc:var(--signal);">
+      <span class="b26-roster-shot"><img src="assets/photos/Summit-2026/cards-2026/anu-team.webp" width="600" height="779" loading="lazy" alt="Anu G. — Data Scientist. Co-lead." /></span>
+      <span class="b26-roster-tag">every detail, twice</span>
+    </div>
+    <div class="b26-roster" style="--rot:-1.5deg;--tilt:-2deg;--tagc:var(--hi);">
+      <span class="b26-roster-shot"><img src="assets/photos/Summit-2026/cards-2026/zana-team.webp" width="600" height="779" loading="lazy" alt="Zana Kh. — Business Project Manager, Creative Nation. Co-lead." /></span>
+      <span class="b26-roster-tag">makes it look easy</span>
+    </div>
   </div>
+  <div class="b26-script" style="margin-top:28px;display:inline-block;">all volunteers, all year</div>
 </section>
 
 <!-- ============ CLOSING CTA · come say Hi ============ -->

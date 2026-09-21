@@ -86,9 +86,11 @@
   }
 
   .sp-grid{
-    display:grid;grid-template-columns:repeat(auto-fit,minmax(min(340px,100%),1fr));
+    display:grid;grid-template-columns:repeat(3,1fr);
     gap:36px 32px;max-width:1180px;
   }
+  @media(max-width:900px){.sp-grid{grid-template-columns:repeat(2,1fr);}}
+  @media(max-width:560px){.sp-grid{grid-template-columns:1fr;}}
   .sp-card{display:flex;align-items:center;gap:20px;flex-wrap:wrap;}
   /* the whole card is the hit area, but the button inside is what the
      keyboard and a screen reader actually operate */
