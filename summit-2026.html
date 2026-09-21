@@ -181,18 +181,18 @@
      the venue's own line directly underneath it. No separate bold
      "Dumbo, Brooklyn."/"Midtown, Manhattan." headings; the tags and
      eyebrow carry that now. */
-  .b26-venue-cards{display:grid;grid-template-columns:repeat(2,1fr);gap:32px;margin-top:20px;max-width:760px;}
+  .b26-venue-cards{display:grid;grid-template-columns:repeat(2,1fr);gap:40px;margin-top:20px;max-width:960px;}
   .b26-venue-card p{font-family:var(--text);font-size:clamp(14.5px,calc(13.5px + 0.2778vw),17px);line-height:1.6;color:var(--mute);margin:14px 0 0;}
   .b26-venue-card p b{color:var(--paper);font-weight:700;}
-  .b26-venue-photo-row{display:flex;align-items:center;gap:18px;}
-  .b26-venue-photo-frame{background:var(--cream);flex:0 0 auto;width:150px;margin:0;padding:8px 8px 6px;box-shadow:0 16px 36px rgba(0,0,0,.4);}
+  .b26-venue-photo-row{display:flex;align-items:center;gap:20px;}
+  .b26-venue-photo-frame{background:var(--cream);flex:0 0 auto;width:220px;margin:0;padding:10px 10px 8px;box-shadow:0 18px 40px rgba(0,0,0,.4);}
   .b26-venue-photo-frame img{display:block;width:100%;object-fit:cover;aspect-ratio:4/3;}
   .b26-venue-photo-tag{font-family:var(--script);font-weight:700;font-size:24px;line-height:1.2;display:inline-block;transform-origin:left center;}
   @media(max-width:640px){
     .b26-venue-cards{grid-template-columns:1fr;gap:28px;}
   }
   .b26-venue-note{margin-top:16px;font-size:clamp(20px,calc(16.67px + 0.9259vw),30px);}
-  @media(max-width:560px){.b26-venue-photo-frame{width:110px;}.b26-venue-photo-tag{font-size:19px;}}
+  @media(max-width:560px){.b26-venue-photo-frame{width:140px;}.b26-venue-photo-tag{font-size:19px;}}
 
   /* ---- closing tickets CTA ---- */
   .b26-close{position:relative;padding:clamp(56px,7vw,84px) var(--b26-pad) clamp(64px,8vw,96px);text-align:center;overflow:hidden;}
