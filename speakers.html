@@ -31,84 +31,9 @@
   .hiai .x{color:var(--vermilion);font-weight:800;font-size:.6em;margin:0 .04em;}
   .hiai .ai{font-weight:800;color:var(--signal);letter-spacing:-.01em;}
 
-  /* Nav */
-  .app-nav{background:rgba(11,26,46,.92)!important;border-bottom:2px solid var(--hi);}
-  .app-nav-sponsor,.app-nav-when{color:var(--mute)!important;}
-  .app-nav-when .sep{color:var(--hairline);}
-  /* ---- 2026 section nav ------------------------------------------------
-     Height-matched to the home page's two-tier bar so the rule underneath
-     does not jump when you cross from index.html into the 2026 section:
-     site.css is a 72px row + a 44px row + a 2px rule = 118px, so this is
-     one 116px row carrying the same 2px rule. The rule is the 2026 orange
-     where the rest of the site runs gold (--accent).
-     Left: the whole Hi x AI lockup, sized to span both of those rows.
-     Right: the four tabs, Buy tickets and search as one cluster. Tabs keep
-     site.css's metrics (13px / 900 / .06em) and only change colour:
-     signal blue, current page in orange. */
-  /* Flat single-row bar — matches the design canvas's nav proportions:
-     logo left, links + Buy tickets right, no date/location badge (that
-     now lives in the hero kicker) and no search icon. */
-  :root{--nav-h:84px;--nav-tab-pad:clamp(8px,.95vw,16px);}
-  .app-nav-tier1{
-    height:84px;gap:var(--nav-tab-pad);
-    font-family:var(--sans);
-  }
-  .app-nav-logo{margin-right:clamp(14px,2.5vw,32px);}
-  .app-nav-logo{flex:0 1 auto;min-width:0;overflow:hidden;}
-  .app-nav-logo .app-nav-logo-26{
-    height:52px;width:auto;max-width:100%;min-width:0;
-    object-fit:contain;object-position:left center;display:block;
-    transition:opacity .15s var(--ease);
-  }
-  .app-nav-logo:hover .app-nav-logo-26{opacity:.7;}
-  .app-nav-when{display:none!important;}
-  .app-nav-tier2{
-    height:auto;margin:0 0 0 auto;padding:0;max-width:none;
-    border-top:0;overflow:visible;flex:none;align-self:center;
-  }
-  .app-nav-links{gap:0;}
-  .app-nav-link{
-    height:auto;padding:0 var(--nav-tab-pad);color:var(--signal)!important;
-    font-family:var(--mono);font-size:13px;font-weight:700;letter-spacing:.08em;text-transform:uppercase;
-  }
-  .app-nav-link:hover{color:var(--hi)!important;}
-  .app-nav-link.is-active{color:var(--hi)!important;}
-  .app-nav-right{margin-left:0;gap:10px;align-self:center;}
-  .app-nav-pill--hot{
-    border:0!important;background:var(--vermilion)!important;color:#fff!important;
-  }
-  .app-nav-pill--hot:hover{background:var(--hi)!important;}
-  .app-nav-pill--ghost,.app-nav-pill--icon{
-    background:transparent!important;border:1px solid var(--hairline)!important;
-    color:var(--paper)!important;
-  }
-  .app-nav-pill--icon:hover{border-color:var(--signal)!important;color:var(--signal)!important;}
-  /* no search in the design's nav */
-  .app-nav-pill--icon{display:none!important;}
-  /* the U+2315 glyph isn't in Montserrat and fell back to a question mark */
-  .app-nav-search-ico{width:14px;height:14px;flex:none;display:block;}
-  .app-nav-toggle{color:var(--paper);}
-  @media(max-width:720px){
-    /* site.css drops tier2 on phones, so the home bar is a single 72px row
-       plus the 2px rule — match that here so the rule still lands at the
-       same level, and shrink the lockup to suit. site.css pins the drawer
-       at a stale 64px, so re-pin it to the real bar height. */
-    :root{--nav-h:74px;}
-    .app-nav-tier1{height:72px;}
-    /* one short row on phones — nothing to drop to the foot of, so put the
-       pills back on the centre line */
-    .app-nav-right{align-self:center;margin-bottom:0;}
-    .app-nav-tier2{height:auto;}
-    /* 48px keeps it in step with the 46px mark the light pages show
-       here, and leaves the Buy tickets pill room to breathe */
-    .app-nav-logo .app-nav-logo-26{height:48px;}
-    body.nav-open .app-nav-tier2{
-      top:var(--nav-h);background:var(--panel-2);
-      border-top:1px solid var(--hairline);
-    }
-    body.nav-open .app-nav-link{border-bottom:1px solid var(--hairline);}
-    body.nav-open .app-nav-link.is-active{color:var(--hi)!important;}
-  }
+  /* Nav — no page-specific override: this page uses the real site nav as-is
+     (site.css's black/gold .app-nav, same logo, links and pills as
+     index.html) instead of a 2026-only reskin. */
 
   /* ============ SPEAKERS ============================================
      The people cards carry their own name, title and role, so the page
@@ -214,32 +139,32 @@
 </head>
 <body class="page-light">
 
-<!-- ============ APP NAV ============ -->
+<!-- ============ APP NAV · same as index.html ============ -->
 <header class="app-nav">
   <div class="app-nav-tier1">
-    <a href="index.html" class="app-nav-logo" aria-label="MNG Summit 2026 — home">
-      <img src="assets/brand-2026/lockup-hero.png" alt="Hi × AI — MNG Summit 2026" class="app-nav-logo-26" />
+    <a href="index.html" class="app-nav-logo">
+      <img src="assets/mng-summit-logo-white.png" alt="MNG Summit" class="app-nav-logo-full" />
     </a>
-    <!-- keeps the .app-nav-tier2 class: site.js hangs the burger menu off it
-         and site.css turns it into the mobile drawer -->
-    <div class="app-nav-tier2">
-      <nav class="app-nav-links">
-        <a href="index.html" class="app-nav-link">Home</a>
-        <a href="summit-2026.html" class="app-nav-link">Overview</a>
-        <a href="schedule.html" class="app-nav-link">Schedule</a>
-        <a href="speakers.html" class="app-nav-link is-active">Speakers</a>
-      </nav>
-      <div class="app-nav-when">
-        <span>Oct 9–11, 2026</span>
-        <span class="sep">|</span>
-        <span>New York City</span>
-      </div>
+    <div class="app-nav-sponsor">
+      <span>VOLUNTEER-RUN</span> · <b>501(C)(3)</b>
     </div>
     <div class="app-nav-right">
       <a href="tickets.html" class="app-nav-pill app-nav-pill--hot">Buy tickets</a>
-      <button class="app-nav-pill app-nav-pill--icon" aria-label="Search"><svg class="app-nav-search-ico" viewBox="0 0 20 20" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" aria-hidden="true"><circle cx="8.6" cy="8.6" r="5.4"/><path d="M12.7 12.7 17 17"/></svg></button>
+      <a href="schedule.html" class="app-nav-pill app-nav-pill--ghost">Schedule</a>
+      <button class="app-nav-pill app-nav-pill--icon" aria-label="Search">⌕</button>
       <button class="app-nav-toggle" aria-label="Menu">≡</button>
     </div>
+  </div>
+  <div class="app-nav-tier2">
+    <nav class="app-nav-links">
+      <a href="index.html" class="app-nav-link">Home</a>
+      <a href="summit-2026.html" class="app-nav-link is-active">Summit 2026 <span class="app-nav-link-arrow">▾</span></a>
+      <a href="programs.html" class="app-nav-link">Programs <span class="app-nav-link-arrow">▾</span></a>
+      <a href="archive.html" class="app-nav-link">Archive</a>
+      <a href="about.html" class="app-nav-link">About</a>
+      <a href="sponsor.html" class="app-nav-link">Partner</a>
+      <a href="get-involved.html" class="app-nav-link">Get involved</a>
+    </nav>
   </div>
 </header>
 
