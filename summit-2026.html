@@ -183,13 +183,14 @@
   .b26-venue{display:grid;grid-template-columns:repeat(auto-fit,minmax(300px,1fr));gap:48px;align-items:center;}
   .b26-venue p{font-family:var(--text);font-size:clamp(15px,calc(14px + 0.2778vw),18px);line-height:1.65;color:var(--mute);max-width:560px;margin:0;}
   .b26-venue p b{color:var(--paper);font-weight:700;}
-  .b26-venue-frame{background:var(--cream);padding:18px 18px 14px;margin:0;transform:rotate(1.5deg);box-shadow:0 24px 60px rgba(0,0,0,.45);max-width:520px;width:100%;justify-self:center;}
-  .b26-venue-frame img{display:block;width:100%;object-fit:cover;height:clamp(150px,calc(120px + 8.3333vw),240px);}
-  /* Luma is cropped from the top so it matches Fabrik's height exactly */
-  .b26-venue-img--main{object-position:bottom;}
-  .b26-venue-frame .b26-script + img{margin-top:18px;}
+  /* Two separate polaroids, offset and overlapping — matches the design
+     canvas's venue photos instead of one frame stacking both shots. */
+  .b26-venue-frames{position:relative;justify-self:center;width:100%;max-width:520px;}
+  .b26-venue-frame{background:var(--cream);margin:0;padding:14px 14px 12px;box-shadow:0 24px 60px rgba(0,0,0,.45);}
+  .b26-venue-frame img{display:block;width:100%;object-fit:cover;aspect-ratio:4/3;}
+  .b26-venue-frame--a{transform:rotate(-2deg);}
+  .b26-venue-frame--b{position:absolute;right:-6%;bottom:-16%;width:56%;transform:rotate(2deg);z-index:2;}
   .b26-venue-cap{font-family:var(--mono);font-size:clamp(11px,calc(10px + 0.2778vw),14px);font-weight:600;letter-spacing:.1em;text-transform:uppercase;color:#5E5A4E;padding-top:12px;}
-  .b26-venue-frame .b26-script{font-size:clamp(18px,calc(15.33px + 0.7407vw),26px);color:var(--vermilion);padding-top:6px;}
   .b26-venue-note{margin-top:16px;font-size:clamp(20px,calc(16.67px + 0.9259vw),30px);}
 
   /* ---- closing tickets CTA ---- */
@@ -203,6 +204,7 @@
     .b26-day{transform:none!important;}
     .b26-day-pill{transform:none!important;}
     .b26-venue-frame{transform:none;}
+    .b26-venue-frame--b{position:static;width:100%;margin-top:16px;}
   }
 
   .l-footer-bot{color:var(--faint)!important;font-family:var(--mono);letter-spacing:.06em;border-top:1px solid var(--hairline);}
@@ -359,12 +361,16 @@
       <p><b>Luma Studios</b> takes the main stage on Saturday & Sunday with incredible speakers and tailored workshops just outside of MSG.</p>
       <div class="b26-script b26-venue-note">directions coming soon</div>
     </div>
-    <figure class="b26-venue-frame">
-      <img class="b26-venue-img--second" src="assets/photos/Summit-2026/venue-fabrik-dumbo.jpg" alt="The lounge at Fabrik Dumbo: teal walls, deep sofas and a checkered rug." />
-      <div class="b26-script">the lounge</div>
-      <img class="b26-venue-img--main" src="assets/photos/Summit-2026/venue-luma-studios.jpg" alt="Luma Studios: a bright open floor with blue sofas, long tables and orange chairs by tall windows." />
-      <div class="b26-script">the room</div>
-    </figure>
+    <div class="b26-venue-frames">
+      <figure class="b26-venue-frame b26-venue-frame--a">
+        <img src="assets/photos/Summit-2026/venue-luma-studios.jpg" alt="Luma Studios: a bright open floor with blue sofas, long tables and orange chairs by tall windows." />
+        <div class="b26-venue-cap">Luma Studios</div>
+      </figure>
+      <figure class="b26-venue-frame b26-venue-frame--b">
+        <img src="assets/photos/Summit-2026/venue-fabrik-dumbo.jpg" alt="The lounge at Fabrik Dumbo: teal walls, deep sofas and a checkered rug." />
+        <div class="b26-venue-cap">The Fabrik · Dumbo</div>
+      </figure>
+    </div>
   </div>
 </section>
 
