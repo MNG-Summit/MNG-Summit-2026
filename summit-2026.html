@@ -232,21 +232,26 @@
   .b26-program-cta{margin-top:44px;}
   @media(max-width:720px){.b26-day{border-right:0;}}
 
-  /* ---- speakers ---- */
-  .b26-cards{display:grid;grid-template-columns:repeat(auto-fit,minmax(200px,1fr));gap:36px;}
-  .b26-polaroid{background:var(--cream);color:#16130F;padding:14px 14px 12px;box-shadow:0 20px 44px rgba(0,0,0,.4);max-width:264px;}
-  .b26-polaroid:nth-child(1){transform:rotate(-2deg);}
-  .b26-polaroid:nth-child(2){transform:rotate(1.5deg);}
-  .b26-polaroid:nth-child(3){transform:rotate(-1deg);}
-  .b26-polaroid:nth-child(4){transform:rotate(2deg);}
-  /* Speaker headshots fill the frame; the "you?" open-seat card still uses
-     .b26-polaroid-slot with a script word instead of a photo. */
-  .b26-polaroid img{display:block;width:100%;aspect-ratio:1/1.05;object-fit:cover;}
-  .b26-polaroid-slot{width:100%;aspect-ratio:1/1.05;display:flex;align-items:center;justify-content:center;background:var(--midnight);}
-  .b26-polaroid-slot .b26-script{font-size:clamp(26px,calc(19.33px + 1.8519vw),46px);transform:rotate(-3deg);}
-  .b26-polaroid-name{font-family:var(--display);font-weight:800;font-size:clamp(15px,calc(13.33px + 0.463vw),20px);padding-top:12px;}
-  .b26-polaroid-role{font-family:var(--mono);font-size:clamp(10px,calc(9px + 0.2778vw),13px);font-weight:600;letter-spacing:.08em;text-transform:uppercase;color:#5E5A4E;padding-top:4px;}
-  .b26-polaroid-role a{color:var(--vermilion);}
+  /* ---- speakers + moderators ----
+     Full roster inline (no separate teaser/full-page split) as small
+     horizontal cards: thumbnail left, handwritten tag right, the whole
+     card a direct link out — matching the design canvas's speaker rows.
+     Dense enough on mobile to avoid one-per-row scrolling. */
+  .b26-cards{display:grid;grid-template-columns:repeat(auto-fill,minmax(210px,1fr));gap:20px 28px;max-width:980px;}
+  .b26-roster-label{font-family:var(--mono);font-size:14px;font-weight:700;letter-spacing:.2em;text-transform:uppercase;color:var(--mute);margin:40px 0 20px;}
+  .b26-roster{display:flex;align-items:center;gap:14px;text-decoration:none;}
+  .b26-roster-shot{flex:0 0 auto;width:88px;display:block;transform:rotate(var(--rot,0deg));transition:opacity .18s var(--ease);}
+  .b26-roster-shot img{display:block;width:100%;height:auto;}
+  a.b26-roster:hover .b26-roster-shot{opacity:.8;}
+  .b26-roster-tag{flex:1 1 auto;min-width:0;font-family:var(--script);font-weight:700;font-size:17px;line-height:1.25;color:var(--tagc,var(--hi));transform:rotate(var(--tilt,0deg));display:inline-block;transform-origin:left center;}
+  /* the not-yet-announced slot: same shape, no link */
+  .b26-roster-slot{width:88px;aspect-ratio:1/1.05;flex:0 0 auto;display:flex;align-items:center;justify-content:center;background:var(--cream);}
+  .b26-roster-slot span{font-family:var(--script);font-weight:700;font-size:13px;line-height:1.15;color:#16130F;text-align:center;transform:rotate(-3deg);display:inline-block;}
+  @media(max-width:560px){
+    .b26-cards{grid-template-columns:repeat(2,1fr);gap:18px 14px;max-width:none;}
+    .b26-roster-shot,.b26-roster-slot{width:60px;}
+    .b26-roster-tag{font-size:14px;}
+  }
 
   /* ---- venue ---- */
   .b26-venue{display:grid;grid-template-columns:repeat(auto-fit,minmax(300px,1fr));gap:48px;align-items:center;}
@@ -261,25 +266,15 @@
   .b26-venue-frame .b26-script{font-size:clamp(18px,calc(15.33px + 0.7407vw),26px);color:var(--vermilion);padding-top:6px;}
   .b26-venue-note{margin-top:16px;font-size:clamp(20px,calc(16.67px + 0.9259vw),30px);}
 
-  /* the '26 cards carry their own frame, name, title and role, so these are
-     just a grid and a tilt — no .b26-polaroid chrome around them. Shared by
-     the speakers grid and the team grid; the tilts match the polaroids'. */
+  /* the '26 cards carry their own frame, name, title and role, so this is
+     just a grid and a tilt — no .b26-polaroid chrome around them. Used by
+     the team grid only now (speakers moved to the .b26-roster layout above). */
   .b26-team{display:grid;grid-template-columns:repeat(auto-fit,minmax(200px,1fr));gap:28px;max-width:880px;}
   .b26-card26{display:block;max-width:264px;}
   .b26-card26 img{display:block;width:100%;height:auto;}
-  /* only the 'more guests' card is a link — give it something to answer a hover with */
-  a.b26-card26{transition:transform .18s var(--ease),opacity .18s var(--ease);}
-  a.b26-card26:hover{opacity:.88;}
   .b26-card26:nth-child(1){transform:rotate(-2deg);}
   .b26-card26:nth-child(2){transform:rotate(1.5deg);}
   .b26-card26:nth-child(3){transform:rotate(-1deg);}
-  .b26-card26:nth-child(4){transform:rotate(2deg);}
-  /* the handwritten tag line under each teaser photo — same treatment as
-     the full speakers grid's .sp-tag, so the two pages read as one system */
-  .b26-card26-tag{
-    font-family:var(--script);font-weight:700;font-size:20px;line-height:1.2;
-    display:inline-block;margin-top:12px;transform-origin:left center;
-  }
 
   /* ---- closing tickets CTA ---- */
   .b26-close{position:relative;padding:clamp(56px,7vw,84px) var(--b26-pad) clamp(64px,8vw,96px);text-align:center;overflow:hidden;}
@@ -291,8 +286,6 @@
   @media(max-width:720px){
     .b26-day{transform:none!important;}
     .b26-day-pill{transform:none!important;}
-    .b26-polaroid{max-width:none;}
-    .b26-polaroid:nth-child(n){transform:none;}
     .b26-card26{max-width:none;}
     .b26-card26:nth-child(n){transform:none;}
     .b26-venue-frame{transform:none;}
@@ -384,20 +377,62 @@
   </div>
 </section>
 
-<!-- ============ SPEAKERS · announcing through the fall ============ -->
+<!-- ============ SPEAKERS + MODERATORS · full roster, one page ============ -->
 <section class="b26-sec b26-sec--deep" id="speakers">
   <div class="b26-eyebrow">On stage</div>
   <h2 class="b26-h2">Speakers<span class="dot">.</span></h2>
   <p class="b26-lead">Incredible humans from various domains. The rest of the line-up and everyone's bio are in the <a href="speakers.html">speakers tab</a>.<br />Want a seat on stage? <a href="get-involved.html#speak">Apply to speak →</a></p>
   <div class="b26-cards">
 
-    <div class="b26-card26"><img src="assets/photos/Summit-2026/cards-2026/bolor-guest.webp" width="600" height="779" loading="lazy" alt="Bolor A. — Associate Teaching Professor, Northeastern University. Keynote." /><span class="b26-card26-tag" style="color:var(--hi);transform:rotate(-3deg);">human intelligence, first</span></div>
+    <a class="b26-roster" href="https://www.linkedin.com/in/bolor-amgalan-designer" target="_blank" rel="noopener" style="--rot:-1.2deg;--tilt:-3deg;--tagc:var(--hi);">
+      <span class="b26-roster-shot"><img src="assets/photos/Summit-2026/cards-2026/bolor-guest.webp" width="600" height="779" loading="lazy" alt="Bolor A. — Associate Teaching Professor, Northeastern University. Keynote." /></span>
+      <span class="b26-roster-tag">human intelligence, first</span>
+    </a>
 
-    <div class="b26-card26"><img src="assets/photos/Summit-2026/cards-2026/boki-guest.webp" width="600" height="779" loading="lazy" alt="Boki E. — Executive Director, Iris World. Speaker." /><span class="b26-card26-tag" style="color:var(--signal);transform:rotate(2.5deg);">builds what others debate</span></div>
+    <a class="b26-roster" href="https://www.facebook.com/borgil.enkhbat/" target="_blank" rel="noopener" style="--rot:1.2deg;--tilt:2.5deg;--tagc:var(--signal);">
+      <span class="b26-roster-shot"><img src="assets/photos/Summit-2026/cards-2026/boki-guest.webp" width="600" height="779" loading="lazy" alt="Boki E. — Executive Director, Iris World. Speaker." /></span>
+      <span class="b26-roster-tag">builds what others debate</span>
+    </a>
 
-    <div class="b26-card26"><img src="assets/photos/Summit-2026/cards-2026/khulan-guest.webp" width="600" height="779" loading="lazy" alt="Khulan D. — Creative AI, Google. Workshop." /><span class="b26-card26-tag" style="color:var(--hi);transform:rotate(-2deg);">AI can't give you an audience</span></div>
+    <a class="b26-roster" href="https://www.linkedin.com/in/khulandav" target="_blank" rel="noopener" style="--rot:-1.2deg;--tilt:-2deg;--tagc:var(--hi);">
+      <span class="b26-roster-shot"><img src="assets/photos/Summit-2026/cards-2026/khulan-guest.webp" width="600" height="779" loading="lazy" alt="Khulan D. — Creative AI, Google. Workshop." /></span>
+      <span class="b26-roster-tag">AI can't give you an audience</span>
+    </a>
 
-    <a class="b26-card26" href="speakers.html"><img src="assets/photos/Summit-2026/cards-2026/more.webp" width="600" height="779" loading="lazy" alt="More guests in the speaker tab — see the full line-up." /></a>
+    <a class="b26-roster" href="https://www.tsegtslawgroup.com/" target="_blank" rel="noopener" style="--rot:1.2deg;--tilt:3deg;--tagc:var(--signal);">
+      <span class="b26-roster-shot"><img src="assets/photos/Summit-2026/cards-2026/bayarjargal-guest.webp" width="600" height="779" loading="lazy" alt="Bayarjargal S. — Attorney, Tsegts Law Group. Workshop." /></span>
+      <span class="b26-roster-tag">the law, in plain words</span>
+    </a>
+
+    <a class="b26-roster" href="https://www.linkedin.com/in/binderiyabyambasuren" target="_blank" rel="noopener" style="--rot:-1.2deg;--tilt:-2.5deg;--tagc:var(--hi);">
+      <span class="b26-roster-shot"><img src="assets/photos/Summit-2026/cards-2026/bindi-guest.webp" width="600" height="779" loading="lazy" alt="Bindi B. — Economist, World Bank. Panelist." /></span>
+      <span class="b26-roster-tag">design with a spine</span>
+    </a>
+
+    <div class="b26-roster">
+      <span class="b26-roster-slot"><span>more<br />on the way</span></span>
+      <span class="b26-roster-tag" style="--tilt:2deg;--tagc:var(--signal);">bios + headshots coming in</span>
+    </div>
+
+  </div>
+
+  <div class="b26-roster-label">Moderators + MC</div>
+  <div class="b26-cards">
+
+    <a class="b26-roster" href="https://www.linkedin.com/in/namuunp" target="_blank" rel="noopener" style="--rot:-1deg;--tilt:-3deg;--tagc:var(--hi);">
+      <span class="b26-roster-shot"><img src="assets/photos/Summit-2026/cards-2026/namuun-mod.webp" width="600" height="779" loading="lazy" alt="Namuun P. — Category Strategy, Amazon. Moderator." /></span>
+      <span class="b26-roster-tag">keeps the panel honest</span>
+    </a>
+
+    <a class="b26-roster" href="https://www.linkedin.com/in/enkhjargal-enjar-lkhagvajav" target="_blank" rel="noopener" style="--rot:1.5deg;--tilt:2.5deg;--tagc:var(--signal);">
+      <span class="b26-roster-shot"><img src="assets/photos/Summit-2026/cards-2026/enjar-mod.webp" width="600" height="779" loading="lazy" alt="Enjar L. — Economist, Moody's Analytics. Moderator." /></span>
+      <span class="b26-roster-tag">asks the second question</span>
+    </a>
+
+    <a class="b26-roster" href="https://www.linkedin.com/in/enkhmaa-byambaa" target="_blank" rel="noopener" style="--rot:-1.5deg;--tilt:-2deg;--tagc:var(--hi);">
+      <span class="b26-roster-shot"><img src="assets/photos/Summit-2026/cards-2026/enkhmaa-mod.webp" width="600" height="779" loading="lazy" alt="Enkhmaa B. — MS student, Columbia SIPA. MC." /></span>
+      <span class="b26-roster-tag">holds the whole room</span>
+    </a>
 
   </div>
 </section>
