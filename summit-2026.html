@@ -217,24 +217,24 @@
   .b26-strike .fix{position:absolute;left:0;right:0;top:-.72em;line-height:1;text-align:center;font-family:var(--script);font-weight:700;color:var(--vermilion);transform:rotate(-4deg);}
   .b26-cta-row{display:flex;align-items:center;gap:20px;flex-wrap:wrap;margin-top:36px;}
 
-  /* ---- program ---- */
+  /* ---- program ----
+     Flat, hairline-divided editorial treatment — matches the schedule's
+     session rows in the design canvas (Space Mono labels, thin dividers,
+     no card chrome) instead of the old cream/shadow "photo card" look. */
   .b26-meta{display:flex;align-items:center;gap:10px 24px;flex-wrap:wrap;margin:0 0 40px;font-family:var(--mono);font-size:clamp(12px,calc(11px + 0.2778vw),15px);color:var(--mute);}
   .b26-meta b{color:var(--paper);font-weight:700;}
   .b26-meta .sep{color:var(--hairline);}
-  .b26-days{display:grid;grid-template-columns:repeat(auto-fit,minmax(280px,1fr));gap:32px;}
-  .b26-day{background:var(--cream);color:#16130F;padding:clamp(26px,2.8vw,36px) clamp(22px,2.5vw,32px) clamp(30px,3vw,40px);box-shadow:0 18px 44px rgba(0,0,0,.4);}
-  .b26-day:nth-child(1){transform:rotate(-.8deg);}
-  .b26-day:nth-child(2){transform:rotate(.8deg);}
-  .b26-day:nth-child(3){transform:rotate(-.5deg);}
-  .b26-day-pill{display:inline-block;background:var(--vermilion);color:#fff;font-family:var(--display);font-weight:800;font-size:clamp(13px,calc(11.67px + 0.3704vw),17px);padding:clamp(8px,.9vw,10px) clamp(16px,1.9vw,22px);border-radius:999px;transform:rotate(-2deg);}
-  .b26-day:nth-child(2) .b26-day-pill{transform:rotate(1.5deg);}
-  .b26-day:nth-child(3) .b26-day-pill{transform:rotate(-1deg);}
-  .b26-day-title{font-family:var(--display);font-weight:800;font-size:clamp(20px,calc(16.67px + 0.9259vw),30px);margin:24px 0 0;color:#16130F!important;text-transform:none;line-height:1.1;}
-  .b26-day-copy{font-family:var(--text);font-size:clamp(14.5px,calc(13.5px + 0.2778vw),17.5px);line-height:1.6;color:#5E5A4E;margin:12px 0 0;}
+  .b26-days{display:grid;grid-template-columns:repeat(auto-fit,minmax(280px,1fr));gap:0;border-top:1px solid var(--hairline);}
+  .b26-day{background:transparent;color:var(--paper);padding:clamp(26px,2.8vw,36px) clamp(22px,2.5vw,32px) clamp(30px,3vw,40px);box-shadow:none;transform:none!important;border-bottom:1px solid var(--hairline);border-right:1px solid var(--hairline);}
+  .b26-day:last-child{border-right:0;}
+  .b26-day-pill{display:inline-block;background:0;color:var(--vermilion);font-family:var(--mono);font-weight:700;font-size:clamp(12px,calc(11px + 0.2778vw),15px);letter-spacing:.14em;text-transform:uppercase;padding:0;border-radius:0;transform:none;}
+  .b26-day-title{font-family:var(--display);font-weight:800;font-size:clamp(20px,calc(16.67px + 0.9259vw),30px);margin:20px 0 0;color:var(--paper)!important;text-transform:none;line-height:1.1;}
+  .b26-day-copy{font-family:var(--text);font-size:clamp(14.5px,calc(13.5px + 0.2778vw),17.5px);line-height:1.6;color:var(--mute);margin:12px 0 0;}
   .b26-day-note{font-family:var(--script);font-weight:700;font-size:clamp(19px,calc(16.33px + 0.7407vw),27px);color:var(--vermilion);transform:rotate(-2deg);display:inline-block;margin-top:20px;}
   .b26-day-link{display:block;margin-top:16px;font-family:var(--mono);font-size:clamp(11px,calc(10px + 0.2778vw),14px);font-weight:700;letter-spacing:.08em;text-transform:uppercase;color:var(--vermilion);}
-  .b26-day-link:hover{color:#16130F;}
+  .b26-day-link:hover{color:var(--hi);}
   .b26-program-cta{margin-top:44px;}
+  @media(max-width:720px){.b26-day{border-right:0;}}
 
   /* ---- speakers ---- */
   .b26-cards{display:grid;grid-template-columns:repeat(auto-fit,minmax(200px,1fr));gap:36px;}
@@ -278,6 +278,12 @@
   .b26-card26:nth-child(2){transform:rotate(1.5deg);}
   .b26-card26:nth-child(3){transform:rotate(-1deg);}
   .b26-card26:nth-child(4){transform:rotate(2deg);}
+  /* the handwritten tag line under each teaser photo — same treatment as
+     the full speakers grid's .sp-tag, so the two pages read as one system */
+  .b26-card26-tag{
+    font-family:var(--script);font-weight:700;font-size:20px;line-height:1.2;
+    display:inline-block;margin-top:12px;transform-origin:left center;
+  }
 
   /* ---- closing tickets CTA ---- */
   .b26-close{position:relative;padding:clamp(56px,7vw,84px) var(--b26-pad) clamp(64px,8vw,96px);text-align:center;overflow:hidden;}
@@ -389,11 +395,11 @@
   <p class="b26-lead">Incredible humans from various domains. The rest of the line-up and everyone's bio are in the <a href="speakers.html">speakers tab</a>.<br />Want a seat on stage? <a href="get-involved.html#speak">Apply to speak →</a></p>
   <div class="b26-cards">
 
-    <div class="b26-card26"><img src="assets/photos/Summit-2026/cards-2026/bolor-guest.webp" width="600" height="779" loading="lazy" alt="Bolor A. — Associate Teaching Professor, Northeastern University. Keynote." /></div>
+    <div class="b26-card26"><img src="assets/photos/Summit-2026/cards-2026/bolor-guest.webp" width="600" height="779" loading="lazy" alt="Bolor A. — Associate Teaching Professor, Northeastern University. Keynote." /><span class="b26-card26-tag" style="color:var(--hi);transform:rotate(-3deg);">human intelligence, first</span></div>
 
-    <div class="b26-card26"><img src="assets/photos/Summit-2026/cards-2026/boki-guest.webp" width="600" height="779" loading="lazy" alt="Boki E. — Executive Director, Iris World. Speaker." /></div>
+    <div class="b26-card26"><img src="assets/photos/Summit-2026/cards-2026/boki-guest.webp" width="600" height="779" loading="lazy" alt="Boki E. — Executive Director, Iris World. Speaker." /><span class="b26-card26-tag" style="color:var(--signal);transform:rotate(2.5deg);">builds what others debate</span></div>
 
-    <div class="b26-card26"><img src="assets/photos/Summit-2026/cards-2026/khulan-guest.webp" width="600" height="779" loading="lazy" alt="Khulan D. — Creative AI, Google. Workshop." /></div>
+    <div class="b26-card26"><img src="assets/photos/Summit-2026/cards-2026/khulan-guest.webp" width="600" height="779" loading="lazy" alt="Khulan D. — Creative AI, Google. Workshop." /><span class="b26-card26-tag" style="color:var(--hi);transform:rotate(-2deg);">AI can't give you an audience</span></div>
 
     <a class="b26-card26" href="speakers.html"><img src="assets/photos/Summit-2026/cards-2026/more.webp" width="600" height="779" loading="lazy" alt="More guests in the speaker tab — see the full line-up." /></a>
 
