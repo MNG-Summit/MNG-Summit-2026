@@ -31,9 +31,23 @@
   .hiai .x{color:var(--vermilion);font-weight:800;font-size:.6em;margin:0 .04em;}
   .hiai .ai{font-weight:800;color:var(--signal);letter-spacing:-.01em;}
 
-  /* Nav — no page-specific override: this page uses the real site nav as-is
-     (site.css's black/gold .app-nav, same logo, links and pills as
-     index.html) instead of a 2026-only reskin. */
+  /* Nav — same structure/markup as the real site nav (index.html),
+     recoloured to the page's navy/orange/blue palette instead of
+     black/gold so it reads as one page with the sections below it. */
+  .app-nav{background:var(--midnight)!important;border-bottom:2px solid var(--hi);}
+  .app-nav-sponsor{color:var(--mute)!important;border-left-color:var(--hairline)!important;}
+  .app-nav-sponsor b{color:var(--paper)!important;}
+  .app-nav-link{color:var(--signal)!important;}
+  .app-nav-link:hover,.app-nav-link.is-active{color:var(--hi)!important;}
+  .app-nav-link-arrow{color:var(--mute)!important;}
+  .app-nav-link:hover .app-nav-link-arrow,.app-nav-link.is-active .app-nav-link-arrow{color:var(--hi)!important;}
+  .app-nav-pill--hot{background:var(--vermilion)!important;color:#fff!important;}
+  .app-nav-pill--hot:hover{background:var(--hi)!important;}
+  .app-nav-pill--ghost{background:transparent!important;border:1px solid var(--hairline)!important;color:var(--paper)!important;}
+  .app-nav-pill--ghost:hover{background:transparent!important;border-color:var(--signal)!important;color:var(--signal)!important;}
+  .app-nav-pill--icon{background:transparent!important;border:1px solid var(--hairline)!important;color:var(--paper)!important;}
+  .app-nav-pill--icon:hover{border-color:var(--signal)!important;color:var(--signal)!important;}
+  .app-nav-toggle{color:var(--paper)!important;}
 
   /* ============ SPEAKERS ============================================
      The people cards carry their own name, title and role, so the page
@@ -158,12 +172,9 @@
   <div class="app-nav-tier2">
     <nav class="app-nav-links">
       <a href="index.html" class="app-nav-link">Home</a>
-      <a href="summit-2026.html" class="app-nav-link is-active">Summit 2026 <span class="app-nav-link-arrow">▾</span></a>
-      <a href="programs.html" class="app-nav-link">Programs <span class="app-nav-link-arrow">▾</span></a>
-      <a href="archive.html" class="app-nav-link">Archive</a>
-      <a href="about.html" class="app-nav-link">About</a>
-      <a href="sponsor.html" class="app-nav-link">Partner</a>
-      <a href="get-involved.html" class="app-nav-link">Get involved</a>
+      <a href="summit-2026.html" class="app-nav-link">Overview</a>
+      <a href="schedule.html" class="app-nav-link">Schedule</a>
+      <a href="speakers.html" class="app-nav-link is-active">Speakers</a>
     </nav>
   </div>
 </header>
