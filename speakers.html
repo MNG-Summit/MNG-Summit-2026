@@ -45,42 +45,35 @@
      Right: the four tabs, Buy tickets and search as one cluster. Tabs keep
      site.css's metrics (13px / 900 / .06em) and only change colour:
      signal blue, current page in orange. */
-  :root{--nav-h:118px;--nav-tab-pad:clamp(8px,.95vw,16px);}
-  /* one value drives the whole right-hand rhythm: each tab carries it as
-     side padding and the row carries it as its flex gap, so tab-to-tab
-     (pad + pad) and last-tab-to-pill (pad + gap) come out identical. */
+  /* Flat single-row bar — matches the design canvas's nav proportions:
+     logo left, links + Buy tickets right, no date/location badge (that
+     now lives in the hero kicker) and no search icon. */
+  :root{--nav-h:84px;--nav-tab-pad:clamp(8px,.95vw,16px);}
   .app-nav-tier1{
-    height:116px;gap:var(--nav-tab-pad);
+    height:84px;gap:var(--nav-tab-pad);
     font-family:var(--sans);
   }
-  /* the lockup keeps its own clearance — the row gap is now tuned for the
-     tabs, and the auto margin on .app-nav-tier2 does the real separating */
   .app-nav-logo{margin-right:clamp(14px,2.5vw,32px);}
-  /* the lockup is a ~1.58:1 block, so it is sized by height and allowed to
-     shrink; object-fit keeps it proportional instead of squashing when the
-     row runs out of room. The selector has to out-specify site.css's
-     .app-nav-logo img{height:40px}. */
   .app-nav-logo{flex:0 1 auto;min-width:0;overflow:hidden;}
   .app-nav-logo .app-nav-logo-26{
-    height:104px;width:auto;max-width:100%;min-width:0;
+    height:52px;width:auto;max-width:100%;min-width:0;
     object-fit:contain;object-position:left center;display:block;
     transition:opacity .15s var(--ease);
   }
   .app-nav-logo:hover .app-nav-logo-26{opacity:.7;}
-  /* tabs, Buy tickets and search all ride the same line low in the bar:
-     both clusters are 38px tall (the pill's height) and bottom-aligned
-     6px off the rule, so their centres coincide no matter what the tab
-     type does. 6px is the gap the 104px lockup leaves under itself in the
-     116px row, so the foot of the pill lands on the foot of the lockup. */
+  .app-nav-when{display:none!important;}
   .app-nav-tier2{
-    height:38px;margin:0 0 6px auto;padding:0;max-width:none;
-    border-top:0;overflow:visible;flex:none;align-self:flex-end;
+    height:auto;margin:0 0 0 auto;padding:0;max-width:none;
+    border-top:0;overflow:visible;flex:none;align-self:center;
   }
   .app-nav-links{gap:0;}
-  .app-nav-link{height:auto;padding:0 var(--nav-tab-pad);color:var(--signal)!important;}
+  .app-nav-link{
+    height:auto;padding:0 var(--nav-tab-pad);color:var(--signal)!important;
+    font-family:var(--mono);font-size:13px;font-weight:700;letter-spacing:.08em;text-transform:uppercase;
+  }
   .app-nav-link:hover{color:var(--hi)!important;}
   .app-nav-link.is-active{color:var(--hi)!important;}
-  .app-nav-right{margin-left:0;gap:10px;align-self:flex-end;margin-bottom:6px;}
+  .app-nav-right{margin-left:0;gap:10px;align-self:center;}
   .app-nav-pill--hot{
     border:0!important;background:var(--vermilion)!important;color:#fff!important;
   }
@@ -90,6 +83,8 @@
     color:var(--paper)!important;
   }
   .app-nav-pill--icon:hover{border-color:var(--signal)!important;color:var(--signal)!important;}
+  /* no search in the design's nav */
+  .app-nav-pill--icon{display:none!important;}
   /* the U+2315 glyph isn't in Montserrat and fell back to a question mark */
   .app-nav-search-ico{width:14px;height:14px;flex:none;display:block;}
   .app-nav-toggle{color:var(--paper);}
