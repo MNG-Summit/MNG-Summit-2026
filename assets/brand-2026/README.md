@@ -6,13 +6,17 @@ changes needed.
 
 | File | Status | Used for | Suggested export |
 | --- | --- | --- | --- |
+| `lockup-transparent.png` | ✅ Final (yours) | Master Hi × AI lockup — source for the crops below | — (1818×1248 transparent PNG) |
+| `lockup-hero.png` | ✅ Final | Section nav + summit-2026 hero | — (1268×802, master cropped to the artwork) |
 | `skyline-cream.png` | ✅ Final (yours) | Hero fold + footer band | — (2038×771 transparent PNG, cream) |
 | `corner-signal.svg` | ⚠️ Placeholder | Hero top-right + hackathon card | "Traced circuit — signal" mark, transparent SVG, cyan→ultraviolet (#9FE8FF→#3D3AFF) |
 | `corner-warm.svg` | ⚠️ Placeholder | Hero bottom-left | "Traced circuit — warm" mark, transparent SVG, steppe→sky (#F2A65B→#2E6FB8) |
 | `script-khumuun-bileg.svg` | ⚠️ Placeholder | Theme quote (cream section) | Brushed Mongol script "Хүмүүн билэг", cream (#EAF1FA) on transparent |
 
-Rendered live from fonts (no file needed): the **Hi × AI lockup** and wordmark
-(Caveat for "Hi" in orange, Bricolage for "AI" in signal blue, vermilion ×).
+The **Hi × AI lockup** is now the artwork above, not type: `lockup-hero.png`
+is `lockup-transparent.png` cropped to the ink, so it hangs flush in the nav
+and the hero with no dead space over it. Re-crop from the master rather than
+trimming the hero file if the artwork ever changes.
 
 ## Palette (V2)
 Midnight `#0B1A2E` · Paper `#EAF1FA` · Vermilion `#DC3F1B` · Hi orange `#F0793F` ·

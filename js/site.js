@@ -118,6 +118,19 @@
         });
       });
     });
+
+    // Deep links — summit-2026.html's program cards point at #day1/#day2/#day3,
+    // so open that day instead of always landing on Day 1.
+    var openDayFromHash = function () {
+      var m = (location.hash || '').match(/^#day([1-3])$/);
+      if (!m) return;
+      var wanted = Array.prototype.filter.call(dayTabs, function (t) {
+        return t.getAttribute('data-day') === m[1];
+      })[0];
+      if (wanted) wanted.click();
+    };
+    openDayFromHash();
+    window.addEventListener('hashchange', openDayFromHash);
   }
 
   // ---------- filter chips (track filter) ----------
@@ -131,6 +144,21 @@
     }
   };
 
+  // A part-of-day header rules off the block under it, so once a filter empties
+  // that block the header has to go too — otherwise you get "Evening · Fabrik
+  // Dumbo" with nothing beneath it.
+  var syncParts = function () {
+    document.querySelectorAll('.sch-part').forEach(function (part) {
+      var any = false;
+      var n = part.nextElementSibling;
+      while (n && !n.classList.contains('sch-part')) {
+        if (n.classList.contains('session') && n.style.display !== 'none') { any = true; break; }
+        n = n.nextElementSibling;
+      }
+      part.style.display = any ? '' : 'none';
+    });
+  };
+
   var chips = document.querySelectorAll('.app-filterbar .chip');
   var sessions = document.querySelectorAll('.session');
   if (chips.length) {
@@ -141,6 +169,7 @@
         sessions.forEach(function (s) {
           setSessionVisible(s, track === 'all' || s.classList.contains(track));
         });
+        syncParts();
       });
     });
   }
@@ -155,6 +184,7 @@
         var hay = s.textContent.toLowerCase();
         setSessionVisible(s, hay.indexOf(q) > -1);
       });
+      syncParts();
     });
   }
 
@@ -201,14 +231,15 @@
     s.addEventListener('click', function (e) {
       e.preventDefault();
       var title = s.querySelector('.session-title') ? s.querySelector('.session-title').textContent.trim() : '';
-      var track = s.querySelector('.session-track') ? s.querySelector('.session-track').textContent.trim() : 'Session';
-      var time = s.querySelector('.session-top span:last-child') ? s.querySelector('.session-top span:last-child').textContent.trim() : '';
+      var track = s.getAttribute('data-track') || 'Session';
+      // The row no longer prints its time range — it lives on data-time, so the
+      // drawer still has the full span even though the card only shows a start.
+      var time = s.getAttribute('data-time') || '';
       var speakers = s.querySelector('.session-speakers') ? s.querySelector('.session-speakers').innerHTML : '';
-      var metaSpans = s.querySelectorAll('.session-meta span');
-      var meta = [['Time', time]];
-      metaSpans.forEach(function (m, i) {
-        meta.push([i === 0 ? 'Venue / Format' : 'Notes', m.textContent.trim()]);
-      });
+      var names = s.querySelector('.session-names');
+      var meta = [];
+      if (time) meta.push(['Time', time]);
+      if (names) meta.push(['With', names.textContent.trim()]);
       openDrawer({
         track: track,
         title: title,
@@ -310,7 +341,7 @@
       'speak': ''
         + '<div class="modal-eyebrow">Speak on a panel</div>'
         + '<h2>Apply to speak</h2>'
-        + '<p class="modal-lead">Keynote 20 min · Panel 60 min · Workshop 90 min. We close the call <b>by August 2026</b>.</p>'
+        + '<p class="modal-lead">Keynote 20 min · Panel 60 min · Workshop 90 min. We close the call <b>by September 2026</b>.</p>'
         + '<form class="modal-form">'
         +   '<label>Your name <input name="name" required /></label>'
         +   '<label>Email <input name="email" type="email" required /></label>'

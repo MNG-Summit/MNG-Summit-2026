@@ -1,0 +1,464 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1" />
+<title>Speakers · MNG Summit 2026 · Oct 9–11, NYC</title>
+<meta name="description" content="Who is on stage at MNG Summit 2026 — keynote, panels, workshops, moderators and MC. Three days in New York City, October 9–11. Human Intelligence over AI." />
+<link rel="preconnect" href="https://fonts.googleapis.com" />
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+<link href="https://fonts.googleapis.com/css2?family=Montserrat:ital,wght@0,400;0,500;0,600;0,700;0,800;0,900;1,500;1,700;1,900&display=swap" rel="stylesheet" />
+<link href="https://fonts.googleapis.com/css2?family=Caveat:wght@700&display=swap" rel="stylesheet" />
+<link rel="stylesheet" href="css/site.css?v=exp50" />
+<link rel="icon" type="image/x-icon" href="assets/favicons/favicon.ico" />
+<meta name="theme-color" content="#0B1A2E" />
+
+<!-- ============ MNG SUMMIT 2026 · BRAND V2 SKIN ============ -->
+<style>
+  :root{
+    --midnight:#0B1A2E; --panel:#10233C; --panel-2:#0E1E33;
+    --paper:#EAF1FA; --cream:#F4ECD8; --mute:rgba(234,241,250,.60); --faint:rgba(234,241,250,.40);
+    --vermilion:#DC3F1B; --hi:#F0793F; --signal:#4DB1FF; --steppe:#F2A65B;
+    --hairline:#16304F; --script:'Caveat',cursive;
+    --display:'Montserrat',sans-serif; --text:'Montserrat',sans-serif; --mono:'Montserrat',sans-serif;
+  }
+  body.page-light{background:var(--midnight);color:var(--paper);font-family:var(--text);}
+  body.page-light ::selection{background:var(--vermilion);color:#fff;}
+
+  /* Hi × AI lockup */
+  .hiai{display:inline-flex;align-items:center;gap:.14em;line-height:1;white-space:nowrap;}
+  .hiai .hi{font-family:var(--script);font-weight:700;color:var(--hi);transform:rotate(-3deg);display:inline-block;}
+  .hiai .x{color:var(--vermilion);font-weight:800;font-size:.6em;margin:0 .04em;}
+  .hiai .ai{font-weight:800;color:var(--signal);letter-spacing:-.01em;}
+
+  /* Nav */
+  .app-nav{background:rgba(11,26,46,.92)!important;border-bottom:2px solid var(--hi);}
+  .app-nav-sponsor,.app-nav-when{color:var(--mute)!important;}
+  .app-nav-when .sep{color:var(--hairline);}
+  /* ---- 2026 section nav ------------------------------------------------
+     Height-matched to the home page's two-tier bar so the rule underneath
+     does not jump when you cross from index.html into the 2026 section:
+     site.css is a 72px row + a 44px row + a 2px rule = 118px, so this is
+     one 116px row carrying the same 2px rule. The rule is the 2026 orange
+     where the rest of the site runs gold (--accent).
+     Left: the whole Hi x AI lockup, sized to span both of those rows.
+     Right: the four tabs, Buy tickets and search as one cluster. Tabs keep
+     site.css's metrics (13px / 900 / .06em) and only change colour:
+     signal blue, current page in orange. */
+  :root{--nav-h:118px;--nav-tab-pad:clamp(8px,.95vw,16px);}
+  /* one value drives the whole right-hand rhythm: each tab carries it as
+     side padding and the row carries it as its flex gap, so tab-to-tab
+     (pad + pad) and last-tab-to-pill (pad + gap) come out identical. */
+  .app-nav-tier1{
+    height:116px;gap:var(--nav-tab-pad);
+    font-family:var(--sans);
+  }
+  /* the lockup keeps its own clearance — the row gap is now tuned for the
+     tabs, and the auto margin on .app-nav-tier2 does the real separating */
+  .app-nav-logo{margin-right:clamp(14px,2.5vw,32px);}
+  /* the lockup is a ~1.58:1 block, so it is sized by height and allowed to
+     shrink; object-fit keeps it proportional instead of squashing when the
+     row runs out of room. The selector has to out-specify site.css's
+     .app-nav-logo img{height:40px}. */
+  .app-nav-logo{flex:0 1 auto;min-width:0;overflow:hidden;}
+  .app-nav-logo .app-nav-logo-26{
+    height:104px;width:auto;max-width:100%;min-width:0;
+    object-fit:contain;object-position:left center;display:block;
+    transition:opacity .15s var(--ease);
+  }
+  .app-nav-logo:hover .app-nav-logo-26{opacity:.7;}
+  /* tabs, Buy tickets and search all ride the same line low in the bar:
+     both clusters are 38px tall (the pill's height) and bottom-aligned
+     6px off the rule, so their centres coincide no matter what the tab
+     type does. 6px is the gap the 104px lockup leaves under itself in the
+     116px row, so the foot of the pill lands on the foot of the lockup. */
+  .app-nav-tier2{
+    height:38px;margin:0 0 6px auto;padding:0;max-width:none;
+    border-top:0;overflow:visible;flex:none;align-self:flex-end;
+  }
+  .app-nav-links{gap:0;}
+  .app-nav-link{height:auto;padding:0 var(--nav-tab-pad);color:var(--signal)!important;}
+  .app-nav-link:hover{color:var(--hi)!important;}
+  .app-nav-link.is-active{color:var(--hi)!important;}
+  .app-nav-right{margin-left:0;gap:10px;align-self:flex-end;margin-bottom:6px;}
+  .app-nav-pill--hot{
+    border:0!important;background:var(--vermilion)!important;color:#fff!important;
+  }
+  .app-nav-pill--hot:hover{background:var(--hi)!important;}
+  .app-nav-pill--ghost,.app-nav-pill--icon{
+    background:transparent!important;border:1px solid var(--hairline)!important;
+    color:var(--paper)!important;
+  }
+  .app-nav-pill--icon:hover{border-color:var(--signal)!important;color:var(--signal)!important;}
+  /* the U+2315 glyph isn't in Montserrat and fell back to a question mark */
+  .app-nav-search-ico{width:14px;height:14px;flex:none;display:block;}
+  .app-nav-toggle{color:var(--paper);}
+  @media(max-width:720px){
+    /* site.css drops tier2 on phones, so the home bar is a single 72px row
+       plus the 2px rule — match that here so the rule still lands at the
+       same level, and shrink the lockup to suit. site.css pins the drawer
+       at a stale 64px, so re-pin it to the real bar height. */
+    :root{--nav-h:74px;}
+    .app-nav-tier1{height:72px;}
+    /* one short row on phones — nothing to drop to the foot of, so put the
+       pills back on the centre line */
+    .app-nav-right{align-self:center;margin-bottom:0;}
+    .app-nav-tier2{height:auto;}
+    /* 48px keeps it in step with the 46px mark the light pages show
+       here, and leaves the Buy tickets pill room to breathe */
+    .app-nav-logo .app-nav-logo-26{height:48px;}
+    body.nav-open .app-nav-tier2{
+      top:var(--nav-h);background:var(--panel-2);
+      border-top:1px solid var(--hairline);
+    }
+    body.nav-open .app-nav-link{border-bottom:1px solid var(--hairline);}
+    body.nav-open .app-nav-link.is-active{color:var(--hi)!important;}
+  }
+
+  /* ============ SPEAKERS ============================================
+     The people cards carry their own name, title and role, so the page
+     adds only the handwritten line; the rest waits behind a click. Each
+     card sets its own --rot (the card's tilt) and --tilt (the script
+     line's), the way the design hand-placed them. */
+  .sp{padding:72px var(--sp-pad,clamp(24px,9vw,140px)) 56px;}
+  .sp--mods{padding-top:16px;padding-bottom:72px;}
+  .sp-eyebrow{
+    font-family:var(--mono);font-size:clamp(12px,1.2vw,15px);font-weight:700;
+    letter-spacing:.24em;text-transform:uppercase;color:var(--hi);
+  }
+  /* site.css colours headings dark on .page-light, so the 2026 pages all
+     have to shout over it — same !important the tickets/overview titles use */
+  .sp-title{
+    font-family:var(--display)!important;font-weight:800;
+    font-size:clamp(32px,4vw,52px);line-height:1.05;letter-spacing:-.02em;
+    margin:20px 0 12px;color:var(--paper)!important;text-transform:none;
+  }
+  .sp-title .dot{color:var(--hi);}
+  .sp-lead{font-size:clamp(16px,1.5vw,18px);line-height:1.6;color:var(--mute);max-width:560px;margin:0 0 36px;}
+  .sp-lead a{color:var(--signal);font-weight:600;}
+  .sp-lead a:hover{color:var(--hi);}
+  .sp-label{
+    font-family:var(--mono);font-size:14px;font-weight:700;
+    letter-spacing:.2em;text-transform:uppercase;color:var(--mute);margin:0 0 24px;
+  }
+
+  .sp-grid{
+    display:grid;grid-template-columns:repeat(auto-fit,minmax(min(340px,100%),1fr));
+    gap:36px 32px;max-width:1180px;
+  }
+  .sp-card{display:flex;align-items:center;gap:20px;flex-wrap:wrap;}
+  /* the whole card is the hit area, but the button inside is what the
+     keyboard and a screen reader actually operate */
+  .sp-card--open .sp-shot{transform:rotate(0deg);}
+  .sp-shot{
+    flex:1 1 130px;max-width:170px;min-width:0;
+    transform:rotate(var(--rot,0deg));transition:transform .2s var(--ease);
+  }
+  .sp-shot img{display:block;width:100%;height:auto;}
+  .sp-body{flex:1 1 150px;min-width:0;}
+  /* a bare button: no chrome, just the script line + a caret */
+  /* inline-flex, not 100% wide: the caret hugs the script line instead of
+     drifting out to the column edge. The card itself carries the big hit area. */
+  .sp-toggle{
+    display:inline-flex;align-items:flex-start;gap:10px;
+    background:0;border:0;padding:0;margin:0;cursor:pointer;text-align:left;color:inherit;
+  }
+  .sp-tag{
+    font-family:var(--script);font-weight:700;font-size:26px;line-height:1.2;
+    color:var(--tagc,var(--hi));transform:rotate(var(--tilt,0deg));
+    display:inline-block;transform-origin:left center;
+  }
+  .sp-caret{
+    flex:none;margin-top:7px;width:9px;height:9px;border-right:2px solid var(--mute);
+    border-bottom:2px solid var(--mute);transform:rotate(45deg);
+    transition:transform .2s var(--ease),border-color .2s var(--ease);
+  }
+  .sp-toggle:hover .sp-caret,.sp-toggle:focus-visible .sp-caret{border-color:var(--signal);}
+  .sp-card--open .sp-caret{transform:rotate(-135deg);border-color:var(--signal);}
+  .sp-toggle:focus-visible{outline:2px solid var(--signal);outline-offset:4px;}
+  .sp-bio{font-size:14px;line-height:1.5;color:var(--mute);margin-top:10px;}
+  .sp-bio[hidden]{display:none;}
+  .sp-link{
+    display:inline-block;margin-top:10px;
+    font-family:var(--mono);font-size:12px;font-weight:700;letter-spacing:.1em;
+    text-transform:uppercase;color:var(--midnight);background:var(--signal);padding:7px 14px;
+  }
+  .sp-link:hover{background:var(--hi);color:#fff;}
+
+  /* the placeholder card: a blank of the same polaroid, waiting to be filled */
+  .sp-slot{
+    box-sizing:border-box;flex:1 1 130px;max-width:170px;min-width:0;
+    aspect-ratio:682/886;background:var(--cream);color:#16130F;
+    transform:rotate(1.2deg);display:flex;flex-direction:column;padding:10px;
+  }
+  .sp-slot-win{
+    flex:1 1 auto;display:flex;align-items:center;justify-content:center;
+    background:var(--hi);padding:10px;text-align:center;
+  }
+  .sp-slot-win span{font-family:var(--script);font-weight:700;font-size:21px;line-height:1.15;color:var(--midnight);}
+  .sp-slot-name{font-family:var(--display);font-weight:800;font-size:14px;padding:8px 0 0;}
+
+  @media(max-width:560px){
+    .sp-shot,.sp-slot{max-width:150px;}
+    .sp-tag{font-size:23px;}
+  }
+
+  /* Footer */
+  .l-footer{background:var(--midnight)!important;color:var(--paper)!important;border-top:1px solid var(--hairline);}
+  .l-footer-brand-mark{color:var(--paper)!important;}
+  .l-footer h4{color:var(--mute)!important;}
+  .l-footer-col a{color:var(--paper)!important;opacity:.85;}
+  .l-footer-col a:hover{color:var(--signal)!important;opacity:1;}
+  .l-footer-newsletter label{color:var(--mute)!important;}
+  .l-footer-newsletter input{background:var(--panel)!important;border:1px solid var(--hairline)!important;color:var(--paper)!important;}
+  .l-footer-newsletter-btn{background:var(--vermilion)!important;color:#fff!important;}
+  .l-footer-social a{border:1px solid var(--hairline)!important;color:var(--paper)!important;}
+  .l-footer-social a:hover{border-color:var(--signal)!important;color:var(--signal)!important;}
+  .l-footer-bot{color:var(--faint)!important;border-top:1px solid var(--hairline);}
+</style>
+</head>
+<body class="page-light">
+
+<!-- ============ APP NAV ============ -->
+<header class="app-nav">
+  <div class="app-nav-tier1">
+    <a href="index.html" class="app-nav-logo" aria-label="MNG Summit 2026 — home">
+      <img src="assets/brand-2026/lockup-hero.png" alt="Hi × AI — MNG Summit 2026" class="app-nav-logo-26" />
+    </a>
+    <!-- keeps the .app-nav-tier2 class: site.js hangs the burger menu off it
+         and site.css turns it into the mobile drawer -->
+    <div class="app-nav-tier2">
+      <nav class="app-nav-links">
+        <a href="index.html" class="app-nav-link">Home</a>
+        <a href="summit-2026.html" class="app-nav-link">Overview</a>
+        <a href="schedule.html" class="app-nav-link">Schedule</a>
+        <a href="speakers.html" class="app-nav-link is-active">Speakers</a>
+      </nav>
+      <div class="app-nav-when">
+        <span>Oct 9–11, 2026</span>
+        <span class="sep">|</span>
+        <span>New York City</span>
+      </div>
+    </div>
+    <div class="app-nav-right">
+      <a href="tickets.html" class="app-nav-pill app-nav-pill--hot">Buy tickets</a>
+      <button class="app-nav-pill app-nav-pill--icon" aria-label="Search"><svg class="app-nav-search-ico" viewBox="0 0 20 20" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" aria-hidden="true"><circle cx="8.6" cy="8.6" r="5.4"/><path d="M12.7 12.7 17 17"/></svg></button>
+      <button class="app-nav-toggle" aria-label="Menu">≡</button>
+    </div>
+  </div>
+</header>
+
+<!-- ============ SPEAKERS ============ -->
+<section class="sp" id="speakers">
+  <div class="sp-eyebrow">On stage</div>
+  <h1 class="sp-title">Speakers<span class="dot">.</span></h1>
+  <p class="sp-lead">Meet the amazing humans that are going to take the stage this year. We have a great line-up of professionals from tech and creative industries working on the intersection of <span class="hiai"><span class="hi">Hi</span><span class="x">×</span><span class="ai">AI</span></span>.</p>
+
+  <div class="sp-grid">
+
+    <div class="sp-card" style="--rot:-1.2deg;--tilt:-3deg;--tagc:var(--hi);">
+      <div class="sp-shot"><img src="assets/photos/Summit-2026/cards-2026/bolor-guest.webp" width="600" height="779" alt="Bolor A. — Associate Teaching Professor, Northeastern University. Keynote." /></div>
+      <div class="sp-body">
+        <button class="sp-toggle" type="button" aria-expanded="false" aria-controls="bio-bolor">
+          <span class="sp-tag">human intelligence, first</span><span class="sp-caret" aria-hidden="true"></span>
+        </button>
+        <div class="sp-bio" id="bio-bolor">
+          Associate Teaching Professor at Northeastern University. Opens the summit with the keynote on human intelligence.
+          <br /><a class="sp-link" href="https://www.linkedin.com/in/bolor-amgalan-designer" target="_blank" rel="noopener">LinkedIn →</a>
+        </div>
+      </div>
+    </div>
+
+    <div class="sp-card" style="--rot:1.2deg;--tilt:2.5deg;--tagc:var(--signal);">
+      <div class="sp-shot"><img src="assets/photos/Summit-2026/cards-2026/boki-guest.webp" width="600" height="779" loading="lazy" alt="Boki E. — Executive Director, Iris World. Speaker." /></div>
+      <div class="sp-body">
+        <button class="sp-toggle" type="button" aria-expanded="false" aria-controls="bio-boki">
+          <span class="sp-tag">builds what others debate</span><span class="sp-caret" aria-hidden="true"></span>
+        </button>
+        <div class="sp-bio" id="bio-boki">
+          Physical Asia and Iris World. Speaks Saturday on what you can actually build in Mongolia.
+          <br /><a class="sp-link" href="https://www.facebook.com/borgil.enkhbat/" target="_blank" rel="noopener">Facebook →</a>
+        </div>
+      </div>
+    </div>
+
+    <div class="sp-card" style="--rot:-1.2deg;--tilt:-2deg;--tagc:var(--hi);">
+      <div class="sp-shot"><img src="assets/photos/Summit-2026/cards-2026/khulan-guest.webp" width="600" height="779" loading="lazy" alt="Khulan D. — Creative AI, Google. Workshop." /></div>
+      <div class="sp-body">
+        <button class="sp-toggle" type="button" aria-expanded="false" aria-controls="bio-khulan">
+          <span class="sp-tag">AI can't give you an audience</span><span class="sp-caret" aria-hidden="true"></span>
+        </button>
+        <div class="sp-bio" id="bio-khulan">
+          Creative AI at Google. Runs the Saturday workshop on standing out on LinkedIn with AI.
+          <br /><a class="sp-link" href="https://www.linkedin.com/in/khulandav" target="_blank" rel="noopener">LinkedIn →</a>
+        </div>
+      </div>
+    </div>
+
+    <div class="sp-card" style="--rot:1.2deg;--tilt:3deg;--tagc:var(--signal);">
+      <div class="sp-shot"><img src="assets/photos/Summit-2026/cards-2026/bayarjargal-guest.webp" width="600" height="779" loading="lazy" alt="Bayarjargal S. — Attorney, Tsegts Law Group. Workshop." /></div>
+      <div class="sp-body">
+        <button class="sp-toggle" type="button" aria-expanded="false" aria-controls="bio-bayarjargal">
+          <span class="sp-tag">the law, in plain words</span><span class="sp-caret" aria-hidden="true"></span>
+        </button>
+        <div class="sp-bio" id="bio-bayarjargal">
+          Tsegts Law Group. Runs the Friday workshop on visas, status, and staying.
+          <br /><a class="sp-link" href="https://www.tsegtslawgroup.com/" target="_blank" rel="noopener">Website →</a>
+        </div>
+      </div>
+    </div>
+
+    <div class="sp-card" style="--rot:-1.2deg;--tilt:-2.5deg;--tagc:var(--hi);">
+      <div class="sp-shot"><img src="assets/photos/Summit-2026/cards-2026/bindi-guest.webp" width="600" height="779" loading="lazy" alt="Bindi B. — Economist, World Bank. Panelist." /></div>
+      <div class="sp-body">
+        <button class="sp-toggle" type="button" aria-expanded="false" aria-controls="bio-bindi">
+          <span class="sp-tag">design with a spine</span><span class="sp-caret" aria-hidden="true"></span>
+        </button>
+        <div class="sp-bio" id="bio-bindi">
+          World Bank. On the Friday panel on tech and the immigrant experience.
+          <br /><a class="sp-link" href="https://www.linkedin.com/in/binderiyabyambasuren" target="_blank" rel="noopener">LinkedIn →</a>
+        </div>
+      </div>
+    </div>
+
+    <!-- not a person yet: the blank keeps the grid honest about what's still coming -->
+    <div class="sp-card">
+      <div class="sp-slot" aria-hidden="true">
+        <div class="sp-slot-win"><span>more<br />on the way</span></div>
+        <div class="sp-slot-name">Bare with us</div>
+      </div>
+      <div class="sp-body">
+        <span class="sp-tag" style="--tilt:2deg;--tagc:var(--signal);">bios + headshots<br />coming in</span>
+      </div>
+    </div>
+
+  </div>
+</section>
+
+<!-- ============ MODERATORS + MC ============ -->
+<section class="sp sp--mods" id="moderators">
+  <div class="sp-label">Moderators + MC</div>
+  <div class="sp-grid">
+
+    <div class="sp-card" style="--rot:-1deg;--tilt:-3deg;--tagc:var(--hi);">
+      <div class="sp-shot"><img src="assets/photos/Summit-2026/cards-2026/namuun-mod.webp" width="600" height="779" loading="lazy" alt="Namuun P. — Category Strategy, Amazon. Moderator." /></div>
+      <div class="sp-body">
+        <button class="sp-toggle" type="button" aria-expanded="false" aria-controls="bio-namuun">
+          <span class="sp-tag">keeps the panel honest</span><span class="sp-caret" aria-hidden="true"></span>
+        </button>
+        <div class="sp-bio" id="bio-namuun">
+          Category Strategy at Amazon. Moderates the Friday panel.
+          <br /><a class="sp-link" href="https://www.linkedin.com/in/namuunp" target="_blank" rel="noopener">LinkedIn →</a>
+        </div>
+      </div>
+    </div>
+
+    <div class="sp-card" style="--rot:1.5deg;--tilt:2.5deg;--tagc:var(--signal);">
+      <div class="sp-shot"><img src="assets/photos/Summit-2026/cards-2026/enjar-mod.webp" width="600" height="779" loading="lazy" alt="Enjar L. — Economist, Moody's Analytics. Moderator." /></div>
+      <div class="sp-body">
+        <button class="sp-toggle" type="button" aria-expanded="false" aria-controls="bio-enjar">
+          <span class="sp-tag">asks the second question</span><span class="sp-caret" aria-hidden="true"></span>
+        </button>
+        <div class="sp-bio" id="bio-enjar">
+          Moody's Analytics. Moderates on the main stage.
+          <br /><a class="sp-link" href="https://www.linkedin.com/in/enkhjargal-enjar-lkhagvajav" target="_blank" rel="noopener">LinkedIn →</a>
+        </div>
+      </div>
+    </div>
+
+    <div class="sp-card" style="--rot:-1.5deg;--tilt:-2deg;--tagc:var(--hi);">
+      <div class="sp-shot"><img src="assets/photos/Summit-2026/cards-2026/enkhmaa-mod.webp" width="600" height="779" loading="lazy" alt="Enkhmaa B. — MS student, Columbia SIPA. MC." /></div>
+      <div class="sp-body">
+        <button class="sp-toggle" type="button" aria-expanded="false" aria-controls="bio-enkhmaa">
+          <span class="sp-tag">holds the whole room</span><span class="sp-caret" aria-hidden="true"></span>
+        </button>
+        <div class="sp-bio" id="bio-enkhmaa">
+          Columbia SIPA. MC across all three days.
+          <br /><a class="sp-link" href="https://www.linkedin.com/in/enkhmaa-byambaa" target="_blank" rel="noopener">LinkedIn →</a>
+        </div>
+      </div>
+    </div>
+
+  </div>
+</section>
+
+<!-- ============ FOOTER ============ -->
+<footer class="l-footer">
+  <div class="l-footer-grid">
+    <div class="l-footer-brand">
+      <div class="l-footer-brand-mark">MNG Summit ↗</div>
+      <div style="font-size:13px;color:var(--mute);margin-top:8px;max-width:280px;line-height:1.5;">A community of programs for the global Mongolian diaspora. Volunteer-run, 501(c)(3) non-profit, since 2014.</div>
+      <form class="l-footer-newsletter" id="footer-newsletter" novalidate>
+        <label for="ml">Sign up for our newsletter</label>
+        <div class="l-footer-newsletter-row">
+          <input id="ml" name="email" type="email" placeholder="your@email.com" autocomplete="email" required />
+          <button type="submit" class="l-footer-newsletter-btn" disabled aria-label="Subscribe">Subscribe →</button>
+        </div>
+      </form>
+      <div class="l-footer-social" aria-label="Follow us on social media">
+        <a href="https://www.linkedin.com/company/mng-summit" target="_blank" rel="noopener" aria-label="LinkedIn">in</a>
+        <a href="https://www.instagram.com/mngsummit" target="_blank" rel="noopener" aria-label="Instagram">IG</a>
+        <a href="https://www.facebook.com/mngsummit" target="_blank" rel="noopener" aria-label="Facebook">f</a>
+        <a href="https://www.youtube.com/@mngsummit" target="_blank" rel="noopener" aria-label="YouTube">YT</a>
+        <a href="https://mngsummit.beehiiv.com" target="_blank" rel="noopener" aria-label="Beehiiv newsletter">bee</a>
+      </div>
+    </div>
+    <div class="l-footer-col">
+      <h4>Summit 2026</h4>
+      <ul>
+        <li><a href="tickets.html">Tickets</a></li>
+        <li><a href="summit-2026.html">Overview</a></li>
+        <li><a href="schedule.html">Schedule</a></li>
+        <li><a href="speakers.html">Speakers</a></li>
+        <li><a href="get-involved.html#speak">Apply to speak</a></li>
+      </ul>
+    </div>
+    <div class="l-footer-col">
+      <h4>Organization</h4>
+      <ul>
+        <li><a href="about.html">About</a></li>
+        <li><a href="archive.html">Archive</a></li>
+        <li><a href="sponsor.html">Partner</a></li>
+        <li><a href="mailto:contact@mngsummit.org">Contact</a></li>
+      </ul>
+    </div>
+  </div>
+  <div class="l-footer-bot">
+    <span>© 2014–2026 MNG Summit · 501(c)(3) non-profit · Volunteer-run</span>
+    <span>#StayHuman · Oct 9–11, 2026 · New York City</span>
+  </div>
+</footer>
+
+<script src="js/site.js?v=exp50"></script>
+<script>
+/* Bios open on click, and the whole card is the target — but the markup
+   ships them visible, so a reader with no JS still gets every bio. The
+   collapse happens here, on load. */
+(function () {
+  var cards = document.querySelectorAll('.sp-card');
+  Array.prototype.forEach.call(cards, function (card) {
+    var btn = card.querySelector('.sp-toggle');
+    var bio = card.querySelector('.sp-bio');
+    if (!btn || !bio) return;
+
+    bio.hidden = true;
+
+    function toggle() {
+      var open = bio.hidden;
+      bio.hidden = !open;
+      btn.setAttribute('aria-expanded', String(open));
+      card.classList.toggle('sp-card--open', open);
+    }
+
+    btn.addEventListener('click', function (e) { e.stopPropagation(); toggle(); });
+    card.addEventListener('click', function (e) {
+      /* let the LinkedIn/Website button do its own job */
+      if (e.target.closest('a')) return;
+      toggle();
+    });
+    card.style.cursor = 'pointer';
+  });
+})();
+</script>
+</body>
+</html>

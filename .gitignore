@@ -8,3 +8,6 @@ proposal/
 # committed .xlsx would be downloadable at mngsummit.org/<name>.xlsx.
 *.xlsx
 _to_delete/
+
+# Preview renders saved by the desktop app — never published
+Claude outputs/
