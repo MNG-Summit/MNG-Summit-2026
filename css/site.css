@@ -151,6 +151,11 @@ strong,b{font-weight:800;}
 .app-nav-tier2::-webkit-scrollbar{display:none;}
 .app-nav-links{
   display:flex;align-items:center;gap:0;flex:none;
+  /* .app-nav-link carries its own 16px side padding for a comfortable
+     hit area, which otherwise reads as a stray gap between the logo
+     above and the first link's text — pull the row back so the text
+     lines up with the logo's left edge instead of the padding box. */
+  margin-left:-16px;
 }
 .app-nav-link{
   display:inline-flex;align-items:center;gap:4px;

@@ -42,11 +42,6 @@
      the page's navy/orange/blue palette instead of black/gold so it reads
      as one page with the hero below it. */
   .app-nav{background:var(--midnight)!important;border-bottom:2px solid var(--hi);}
-  /* .app-nav-link carries its own 16px side padding (site.css) for a
-     comfortable hit area, which otherwise reads as a stray gap between
-     the logo above and "Home" below — pull the row back so the text
-     lines up with the logo's left edge instead of the padding box. */
-  .app-nav-links{margin-left:-16px;}
   .app-nav-sponsor{color:var(--mute)!important;border-left-color:var(--hairline)!important;}
   .app-nav-sponsor b{color:var(--paper)!important;}
   .app-nav-link{color:var(--signal)!important;}
@@ -188,8 +183,8 @@
   .b26-venue-frames{position:relative;justify-self:center;width:100%;max-width:520px;}
   .b26-venue-frame{background:var(--cream);margin:0;padding:14px 14px 12px;box-shadow:0 24px 60px rgba(0,0,0,.45);}
   .b26-venue-frame img{display:block;width:100%;object-fit:cover;aspect-ratio:4/3;}
-  .b26-venue-frame--a{transform:rotate(-2deg);}
-  .b26-venue-frame--b{position:absolute;right:-6%;bottom:-16%;width:56%;transform:rotate(2deg);z-index:2;}
+  .b26-venue-frame--a{width:60%;transform:rotate(-2deg);}
+  .b26-venue-frame--b{position:absolute;right:0;bottom:-16%;width:60%;transform:rotate(2deg);z-index:2;}
   .b26-venue-cap{font-family:var(--mono);font-size:clamp(11px,calc(10px + 0.2778vw),14px);font-weight:600;letter-spacing:.1em;text-transform:uppercase;color:#5E5A4E;padding-top:12px;}
   .b26-venue-note{margin-top:16px;font-size:clamp(20px,calc(16.67px + 0.9259vw),30px);}
 
