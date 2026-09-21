@@ -80,7 +80,14 @@
   .page-schedule .schedule-head{position:relative;overflow:hidden;padding-top:56px;}
   .b26-lockup{display:block;width:auto;height:clamp(56px,calc(28px + 6vw),110px);margin-bottom:20px;position:relative;z-index:1;}
   .schedule-head-title{color:var(--paper)!important;}
-  .schedule-head-title em{color:var(--hi)!important;font-style:normal;}
+  /* doodle treatment instead of the base site's yellow highlighter box —
+     same hand-drawn accent language as the rest of the 2026 pages */
+  .schedule-head-title em{
+    font-family:var(--script)!important;font-style:normal;font-weight:700;
+    text-transform:none!important;letter-spacing:normal;
+    color:var(--vermilion)!important;background:none!important;padding:0;
+    display:inline-block;transform:rotate(-2deg);
+  }
   .schedule-head-meta{color:var(--mute)!important;}
   .schedule-head-meta b{color:var(--paper)!important;}
   .sch-circuit{position:absolute;top:-24px;right:-12px;height:min(46vw,200px);width:auto;opacity:.5;z-index:0;pointer-events:none;}
