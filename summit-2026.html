@@ -42,6 +42,11 @@
      the page's navy/orange/blue palette instead of black/gold so it reads
      as one page with the hero below it. */
   .app-nav{background:var(--midnight)!important;border-bottom:2px solid var(--hi);}
+  /* .app-nav-link carries its own 16px side padding (site.css) for a
+     comfortable hit area, which otherwise reads as a stray gap between
+     the logo above and "Home" below — pull the row back so the text
+     lines up with the logo's left edge instead of the padding box. */
+  .app-nav-links{margin-left:-16px;}
   .app-nav-sponsor{color:var(--mute)!important;border-left-color:var(--hairline)!important;}
   .app-nav-sponsor b{color:var(--paper)!important;}
   .app-nav-link{color:var(--signal)!important;}
@@ -91,7 +96,13 @@
      site's existing stack instead, so the page keeps the current typeface:
      --display / --text / --mono all resolve to Montserrat, and Caveat
      (--script) stays for the handwritten accents. */
-  :root{--b26-pad:clamp(24px,9vw,140px);}
+  /* Match the real nav's horizontal margin exactly: site.css centers
+     .app-nav-tier1/tier2 as `padding:var(--pad); max-width:var(--max);
+     margin:auto`. Reproducing that as pure padding (rather than adding
+     max-width+margin:auto directly on .b26-sec) keeps the full-bleed
+     dark backgrounds on .b26-sec--deep etc. intact while still matching
+     the nav's edge at every viewport width, including above --max. */
+  :root{--b26-pad:max(var(--pad),calc((100% - var(--max)) / 2 + var(--pad)));}
   .b26-sec{padding:clamp(48px,6vw,76px) var(--b26-pad);}
   .b26-sec--deep{background:#081221;}
   .b26-eyebrow{font-family:var(--mono);font-size:clamp(11px,calc(10px + 0.2778vw),14px);font-weight:700;letter-spacing:.24em;text-transform:uppercase;color:var(--vermilion);}

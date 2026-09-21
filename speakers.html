@@ -35,6 +35,11 @@
      recoloured to the page's navy/orange/blue palette instead of
      black/gold so it reads as one page with the sections below it. */
   .app-nav{background:var(--midnight)!important;border-bottom:2px solid var(--hi);}
+  /* .app-nav-link carries its own 16px side padding (site.css) for a
+     comfortable hit area, which otherwise reads as a stray gap between
+     the logo above and "Home" below — pull the row back so the text
+     lines up with the logo's left edge instead of the padding box. */
+  .app-nav-links{margin-left:-16px;}
   .app-nav-sponsor{color:var(--mute)!important;border-left-color:var(--hairline)!important;}
   .app-nav-sponsor b{color:var(--paper)!important;}
   .app-nav-link{color:var(--signal)!important;}
@@ -54,7 +59,11 @@
      adds only the handwritten line; the rest waits behind a click. Each
      card sets its own --rot (the card's tilt) and --tilt (the script
      line's), the way the design hand-placed them. */
-  .sp{padding:72px var(--sp-pad,clamp(24px,9vw,140px)) 56px;}
+  /* Same horizontal margin as the nav and schedule.html: --pad, capped
+     at --max and centered, reproduced as pure padding (see summit-2026's
+     --b26-pad) so this section's own background/box stays full-bleed. */
+  :root{--sp-pad:max(var(--pad),calc((100% - var(--max)) / 2 + var(--pad)));}
+  .sp{padding:72px var(--sp-pad) 56px;}
   .sp--mods{padding-top:16px;padding-bottom:72px;}
   .sp-eyebrow{
     font-family:var(--mono);font-size:clamp(12px,1.2vw,15px);font-weight:700;
