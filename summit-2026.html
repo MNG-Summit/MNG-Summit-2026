@@ -147,13 +147,19 @@
   .b26-day:nth-child(1){transform:rotate(-.8deg);}
   .b26-day:nth-child(2){transform:rotate(.8deg);}
   .b26-day:nth-child(3){transform:rotate(-.5deg);}
+  /* one accent color per card instead of vermilion on every card — reads
+     as too much of the same coral repeated three times in a row */
   .b26-day-pill{display:inline-block;background:var(--vermilion);color:#fff;font-family:var(--display);font-weight:800;font-size:clamp(13px,calc(11.67px + 0.3704vw),17px);padding:clamp(8px,.9vw,10px) clamp(16px,1.9vw,22px);border-radius:999px;transform:rotate(-2deg);}
-  .b26-day:nth-child(2) .b26-day-pill{transform:rotate(1.5deg);}
-  .b26-day:nth-child(3) .b26-day-pill{transform:rotate(-1deg);}
+  .b26-day:nth-child(2) .b26-day-pill{background:var(--signal);transform:rotate(1.5deg);}
+  .b26-day:nth-child(3) .b26-day-pill{background:var(--hi);transform:rotate(-1deg);}
   .b26-day-title{font-family:var(--display);font-weight:800;font-size:clamp(20px,calc(16.67px + 0.9259vw),30px);margin:24px 0 0;color:#16130F!important;text-transform:none;line-height:1.1;}
   .b26-day-copy{font-family:var(--text);font-size:clamp(14.5px,calc(13.5px + 0.2778vw),17.5px);line-height:1.6;color:#5E5A4E;margin:12px 0 0;}
   .b26-day-note{font-family:var(--script);font-weight:700;font-size:clamp(19px,calc(16.33px + 0.7407vw),27px);color:var(--vermilion);transform:rotate(-2deg);display:inline-block;margin-top:20px;}
+  .b26-day:nth-child(2) .b26-day-note{color:var(--signal);}
+  .b26-day:nth-child(3) .b26-day-note{color:var(--hi);}
   .b26-day-link{display:block;margin-top:16px;font-family:var(--mono);font-size:clamp(11px,calc(10px + 0.2778vw),14px);font-weight:700;letter-spacing:.08em;text-transform:uppercase;color:var(--vermilion);}
+  .b26-day:nth-child(2) .b26-day-link{color:var(--signal);}
+  .b26-day:nth-child(3) .b26-day-link{color:var(--hi);}
   .b26-day-link:hover{color:#16130F;}
   .b26-program-cta{margin-top:28px;}
   @media(max-width:720px){
