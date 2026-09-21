@@ -120,7 +120,7 @@
   .b26-hero{padding:64px var(--b26-pad) clamp(140px,18vw,300px);position:relative;overflow:hidden;}
   .b26-hero > *{position:relative;z-index:2;}
   /* skyline sits behind the hero (it used to close the page) */
-  .b26-hero-sky{position:absolute;left:0;bottom:-2px;width:100%;height:auto;pointer-events:none;z-index:1;opacity:.29;}
+  .b26-hero-sky{position:absolute;left:50%;transform:translateX(-50%);bottom:-2px;width:88%;height:auto;pointer-events:none;z-index:1;opacity:.29;}
   .b26-hero-kicker{font-family:var(--mono);font-size:clamp(11px,calc(9.33px + 0.463vw),16px);font-weight:600;letter-spacing:.24em;text-transform:uppercase;color:var(--mute);}
   /* image lockup: intrinsic aspect ratio 1268x802 (~1.58:1), height-driven so
      it scales with the same viewport curve the old text lockup used; width
@@ -171,9 +171,11 @@
   .b26-roster-slot{width:88px;aspect-ratio:1/1.05;flex:0 0 auto;display:flex;align-items:center;justify-content:center;background:var(--cream);}
   .b26-roster-slot span{font-family:var(--script);font-weight:700;font-size:13px;line-height:1.15;color:#16130F;text-align:center;transform:rotate(-3deg);display:inline-block;}
   @media(max-width:560px){
-    .b26-cards{grid-template-columns:repeat(2,1fr);gap:18px 14px;max-width:none;}
-    .b26-roster-shot,.b26-roster-slot{width:60px;}
-    .b26-roster-tag{font-size:14px;}
+    /* just rows of photos on mobile — the handwritten tags read as
+       clutter at this size and everyone's card links out anyway */
+    .b26-cards{grid-template-columns:repeat(3,1fr);gap:12px;max-width:none;}
+    .b26-roster-tag{display:none;}
+    .b26-roster-shot,.b26-roster-slot{width:100%;}
   }
 
   /* ---- venue ----
