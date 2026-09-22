@@ -35,6 +35,21 @@ for f in glob.glob("assets/photos/Summit-2026/people cards '26/*.png"):
 If a future card is composed differently and the crop clips it, check the new
 master's alpha bounding box before trusting `BOX`.
 
+## The schedule thumbnails
+
+`faces-2026/` holds the small round-ish heads on `schedule.html`. They are cut
+from the 600px card, not from the master: box **(0, 40, 600, 640)**, resized to
+**180×180**, WebP quality 86. That keeps a sliver of the cream frame down each
+side and the head still breaking out of its top edge, which is what makes them
+read as the same object as the big cards. Whenever a card is regenerated, redo
+its face too:
+
+```python
+face = card.crop((0, 40, 600, 640)).resize((180, 180), Image.LANCZOS)
+face.save('assets/photos/Summit-2026/faces-2026/' + name + '.webp',
+          'WEBP', quality=86, method=6)
+```
+
 ## Where each one is used
 
 `speakers.html` uses the five `-guest` and three `-mod` cards. The three
