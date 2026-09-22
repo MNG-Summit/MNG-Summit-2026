@@ -182,12 +182,12 @@
   .b26-cards{display:grid;grid-template-columns:repeat(3,1fr);gap:20px 28px;}
   .b26-roster-label{font-family:var(--mono);font-size:14px;font-weight:700;letter-spacing:.2em;text-transform:uppercase;color:var(--mute);margin:40px 0 20px;}
   .b26-roster{display:flex;align-items:center;gap:14px;text-decoration:none;}
-  .b26-roster-shot{flex:0 0 auto;width:88px;display:block;transform:rotate(var(--rot,0deg));transition:opacity .18s var(--ease);}
+  .b26-roster-shot{flex:0 0 auto;width:clamp(88px,9vw,132px);display:block;transform:rotate(var(--rot,0deg));transition:opacity .18s var(--ease);}
   .b26-roster-shot img{display:block;width:100%;height:auto;}
   a.b26-roster:hover .b26-roster-shot{opacity:.8;}
-  .b26-roster-tag{flex:1 1 auto;min-width:0;font-family:var(--script);font-weight:700;font-size:17px;line-height:1.25;color:var(--tagc,var(--hi));transform:rotate(var(--tilt,0deg));display:inline-block;transform-origin:left center;}
+  .b26-roster-tag{flex:1 1 auto;min-width:0;font-family:var(--script);font-weight:700;font-size:clamp(17px,1.6vw,21px);line-height:1.25;color:var(--tagc,var(--hi));transform:rotate(var(--tilt,0deg));display:inline-block;transform-origin:left center;}
   /* the not-yet-announced slot: same shape, no link */
-  .b26-roster-slot{width:88px;aspect-ratio:1/1.05;flex:0 0 auto;display:flex;align-items:center;justify-content:center;background:var(--cream);}
+  .b26-roster-slot{width:clamp(88px,9vw,132px);aspect-ratio:1/1.05;flex:0 0 auto;display:flex;align-items:center;justify-content:center;background:var(--cream);}
   .b26-roster-slot span{font-family:var(--script);font-weight:700;font-size:13px;line-height:1.15;color:#16130F;text-align:center;transform:rotate(-3deg);display:inline-block;}
   @media(max-width:560px){
     /* just rows of photos on mobile — the handwritten tags read as
