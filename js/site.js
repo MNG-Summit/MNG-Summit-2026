@@ -196,6 +196,11 @@
   var drawerTitle = document.getElementById('drawer-title');
   var drawerMeta = document.getElementById('drawer-meta');
   var drawerBody = document.getElementById('drawer-body');
+  var drawerCta = document.getElementById('drawer-cta');
+  // the schedule's own "Buy tickets / Apply to speak" pair, ships as static
+  // HTML in the page — snapshot it once so a bio drawer's per-person CTA
+  // (see speakers.html/summit-2026.html) can restore it on the next open
+  var drawerCtaDefaultHTML = drawerCta ? drawerCta.innerHTML : '';
 
   var openDrawer = function (data) {
     if (!drawer) return;
@@ -208,6 +213,7 @@
       drawerMeta.appendChild(dt); drawerMeta.appendChild(dd);
     });
     drawerBody.innerHTML = data.body || '';
+    if (drawerCta) drawerCta.innerHTML = data.cta != null ? data.cta : drawerCtaDefaultHTML;
     drawer.classList.add('is-open');
     scrim.classList.add('is-open');
     drawer.setAttribute('aria-hidden', 'false');

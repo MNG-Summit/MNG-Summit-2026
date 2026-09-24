@@ -549,7 +549,7 @@
   <h2 class="drawer-title" id="drawer-title">Speaker</h2>
   <dl class="drawer-meta" id="drawer-meta"></dl>
   <div class="drawer-body" id="drawer-body"></div>
-  <div class="drawer-cta">
+  <div class="drawer-cta" id="drawer-cta">
     <a href="tickets.html" class="btn btn--hot">Buy tickets →</a>
     <a href="speakers.html" class="btn btn--ghost">See full lineup</a>
   </div>
@@ -582,11 +582,26 @@
     }
 
     card.addEventListener('click', function () {
+      // the bio's own outbound link (LinkedIn/Facebook/Website) becomes the
+      // drawer's primary button instead of "Buy tickets" — pull it out of
+      // the body so it isn't shown twice
+      var temp = document.createElement('div');
+      temp.innerHTML = bio.innerHTML;
+      var link = temp.querySelector('a');
+      var cta;
+      if (link && temp.lastElementChild === link) {
+        link.classList.add('btn', 'btn--hot');
+        cta = link.outerHTML + '<a href="speakers.html" class="btn btn--ghost">See full lineup</a>';
+        var prev = link.previousSibling;
+        link.remove();
+        if (prev && ((prev.nodeType === 1 && prev.tagName === 'BR') || (prev.nodeType === 3 && !prev.textContent.trim()))) prev.remove();
+      }
       window.openDrawer({
         track: category || 'Speaker',
         title: name,
         meta: role ? [['Role', role]] : [],
-        body: bio.innerHTML
+        body: temp.innerHTML,
+        cta: cta
       });
     });
     card.style.cursor = 'pointer';
