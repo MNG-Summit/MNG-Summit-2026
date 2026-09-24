@@ -179,22 +179,24 @@
      horizontal cards: thumbnail left, handwritten tag right, the whole
      card a direct link out — matching the design canvas's speaker rows.
      Dense enough on mobile to avoid one-per-row scrolling. */
-  .b26-cards{display:grid;grid-template-columns:repeat(3,1fr);gap:20px 28px;}
+  .b26-cards{display:grid;grid-template-columns:repeat(3,1fr);gap:32px 36px;}
   .b26-roster-label{font-family:var(--mono);font-size:14px;font-weight:700;letter-spacing:.2em;text-transform:uppercase;color:var(--mute);margin:40px 0 20px;}
-  .b26-roster{display:flex;align-items:center;gap:14px;text-decoration:none;}
-  .b26-roster-shot{flex:0 0 auto;width:clamp(88px,9vw,132px);display:block;transform:rotate(var(--rot,0deg));transition:opacity .18s var(--ease);}
+  .b26-roster{display:flex;align-items:center;gap:20px;flex-wrap:wrap;text-decoration:none;}
+  .b26-roster-shot{flex:1 1 130px;max-width:190px;min-width:0;display:block;transform:rotate(var(--rot,0deg));transition:opacity .18s var(--ease);}
   .b26-roster-shot img{display:block;width:100%;height:auto;}
   a.b26-roster:hover .b26-roster-shot{opacity:.8;}
-  .b26-roster-tag{flex:1 1 auto;min-width:0;font-family:var(--script);font-weight:700;font-size:clamp(17px,1.6vw,21px);line-height:1.25;color:var(--tagc,var(--hi));transform:rotate(var(--tilt,0deg));display:inline-block;transform-origin:left center;}
+  .b26-roster-body{flex:1 1 150px;min-width:0;display:flex;align-items:flex-start;gap:10px;}
+  .b26-roster-tag{min-width:0;font-family:var(--script);font-weight:700;font-size:clamp(20px,2.2vw,26px);line-height:1.25;color:var(--tagc,var(--hi));transform:rotate(var(--tilt,0deg));display:inline-block;transform-origin:left center;}
+  .b26-roster-caret{flex:none;margin-top:9px;width:9px;height:9px;border-right:2px solid var(--mute);border-bottom:2px solid var(--mute);transform:rotate(45deg);}
   /* the not-yet-announced slot: same shape, no link */
-  .b26-roster-slot{width:clamp(88px,9vw,132px);aspect-ratio:1/1.05;flex:0 0 auto;display:flex;align-items:center;justify-content:center;background:var(--cream);}
+  .b26-roster-slot{flex:1 1 130px;max-width:190px;min-width:0;aspect-ratio:1/1.05;display:flex;align-items:center;justify-content:center;background:var(--cream);}
   .b26-roster-slot span{font-family:var(--script);font-weight:700;font-size:13px;line-height:1.15;color:#16130F;text-align:center;transform:rotate(-3deg);display:inline-block;}
   @media(max-width:560px){
     /* just rows of photos on mobile — the handwritten tags read as
        clutter at this size and everyone's card links out anyway */
     .b26-cards{grid-template-columns:repeat(3,1fr);gap:12px;max-width:none;}
-    .b26-roster-tag{display:none;}
-    .b26-roster-shot,.b26-roster-slot{width:100%;}
+    .b26-roster-body{display:none;}
+    .b26-roster-shot,.b26-roster-slot{width:100%;max-width:none;}
   }
 
   /* ---- venue ----
@@ -319,47 +321,47 @@
 
     <a class="b26-roster" href="https://www.linkedin.com/in/bolor-amgalan-designer" target="_blank" rel="noopener" style="--rot:-1.2deg;--tilt:-3deg;--tagc:var(--hi);">
       <span class="b26-roster-shot"><img src="assets/photos/Summit-2026/cards-2026/bolor-guest.webp" width="600" height="779" loading="lazy" alt="Bolor A. — Associate Teaching Professor, Northeastern University. Keynote." /></span>
-      <span class="b26-roster-tag">human intelligence, first</span>
+      <span class="b26-roster-body"><span class="b26-roster-tag">human intelligence, first</span><span class="b26-roster-caret"></span></span>
     </a>
 
     <a class="b26-roster" href="https://www.facebook.com/borgil.enkhbat/" target="_blank" rel="noopener" style="--rot:1.2deg;--tilt:2.5deg;--tagc:var(--signal);">
       <span class="b26-roster-shot"><img src="assets/photos/Summit-2026/cards-2026/boki-guest.webp" width="600" height="779" loading="lazy" alt="Boki E. — Executive Director, Iris World. Speaker." /></span>
-      <span class="b26-roster-tag">builds what others debate</span>
+      <span class="b26-roster-body"><span class="b26-roster-tag">builds what others debate</span><span class="b26-roster-caret"></span></span>
     </a>
 
     <a class="b26-roster" href="https://www.linkedin.com/in/khulandav" target="_blank" rel="noopener" style="--rot:-1.2deg;--tilt:-2deg;--tagc:var(--hi);">
       <span class="b26-roster-shot"><img src="assets/photos/Summit-2026/cards-2026/khulan-guest.webp" width="600" height="779" loading="lazy" alt="Khulan D. — Creative AI, Google. Workshop." /></span>
-      <span class="b26-roster-tag">AI can't give you an audience</span>
+      <span class="b26-roster-body"><span class="b26-roster-tag">AI can't give you an audience</span><span class="b26-roster-caret"></span></span>
     </a>
 
     <a class="b26-roster" href="https://www.tsegtslawgroup.com/" target="_blank" rel="noopener" style="--rot:1.2deg;--tilt:3deg;--tagc:var(--signal);">
       <span class="b26-roster-shot"><img src="assets/photos/Summit-2026/cards-2026/bayarjargal-guest.webp" width="600" height="779" loading="lazy" alt="Bayarjargal S. — Attorney, Tsegts Law Group. Workshop." /></span>
-      <span class="b26-roster-tag">the law, in plain words</span>
+      <span class="b26-roster-body"><span class="b26-roster-tag">the law, in plain words</span><span class="b26-roster-caret"></span></span>
     </a>
 
     <a class="b26-roster" href="https://www.linkedin.com/in/binderiyabyambasuren" target="_blank" rel="noopener" style="--rot:-1.2deg;--tilt:-2.5deg;--tagc:var(--hi);">
       <span class="b26-roster-shot"><img src="assets/photos/Summit-2026/cards-2026/bindi-guest.webp" width="600" height="779" loading="lazy" alt="Binderiya B. — Consultant Economist, World Bank. Panelist." /></span>
-      <span class="b26-roster-tag">design with a spine</span>
+      <span class="b26-roster-body"><span class="b26-roster-tag">design with a spine</span><span class="b26-roster-caret"></span></span>
     </a>
 
     <div class="b26-roster" style="--rot:1.2deg;--tilt:2deg;--tagc:var(--signal);">
       <span class="b26-roster-shot"><img src="assets/photos/Summit-2026/cards-2026/bayasgalan-guest.webp" width="600" height="779" loading="lazy" alt="Bayasgalan B. — Founder, Tagtaa Publishing. Workshop." /></span>
-      <span class="b26-roster-tag">prints what others just write</span>
+      <span class="b26-roster-body"><span class="b26-roster-tag">prints what others just write</span><span class="b26-roster-caret"></span></span>
     </div>
 
     <div class="b26-roster" style="--rot:-1.2deg;--tilt:-3deg;--tagc:var(--hi);">
       <span class="b26-roster-shot"><img src="assets/photos/Summit-2026/cards-2026/ogo-guest.webp" width="600" height="779" loading="lazy" alt="Ogo B. — Staff Product Designer, Remote. Panelist." /></span>
-      <span class="b26-roster-tag">builds the product, from anywhere</span>
+      <span class="b26-roster-body"><span class="b26-roster-tag">builds the product, from anywhere</span><span class="b26-roster-caret"></span></span>
     </div>
 
     <div class="b26-roster" style="--rot:1deg;--tilt:2.5deg;--tagc:var(--signal);">
       <span class="b26-roster-shot"><img src="assets/photos/Summit-2026/cards-2026/yulkendy-guest.webp" width="600" height="779" loading="lazy" alt="Yulkendy V. — Co-Founder, Healers Health. Workshop." /></span>
-      <span class="b26-roster-tag">puts AI to work for you</span>
+      <span class="b26-roster-body"><span class="b26-roster-tag">puts AI to work for you</span><span class="b26-roster-caret"></span></span>
     </div>
 
     <div class="b26-roster">
       <span class="b26-roster-slot"><span>more<br />on the way</span></span>
-      <span class="b26-roster-tag" style="--tilt:2deg;--tagc:var(--signal);">bios + headshots coming in</span>
+      <span class="b26-roster-body"><span class="b26-roster-tag" style="--tilt:2deg;--tagc:var(--signal);">bios + headshots coming in</span><span class="b26-roster-caret"></span></span>
     </div>
 
   </div>
@@ -369,17 +371,17 @@
 
     <a class="b26-roster" href="https://www.linkedin.com/in/namuunp" target="_blank" rel="noopener" style="--rot:-1deg;--tilt:-3deg;--tagc:var(--hi);">
       <span class="b26-roster-shot"><img src="assets/photos/Summit-2026/cards-2026/namuun-mod.webp" width="600" height="779" loading="lazy" alt="Namuun P. — Category Strategy, Amazon. Moderator." /></span>
-      <span class="b26-roster-tag">keeps the panel honest</span>
+      <span class="b26-roster-body"><span class="b26-roster-tag">keeps the panel honest</span><span class="b26-roster-caret"></span></span>
     </a>
 
     <a class="b26-roster" href="https://www.linkedin.com/in/enkhjargal-enjar-lkhagvajav" target="_blank" rel="noopener" style="--rot:1.5deg;--tilt:2.5deg;--tagc:var(--signal);">
       <span class="b26-roster-shot"><img src="assets/photos/Summit-2026/cards-2026/enjar-mod.webp" width="600" height="779" loading="lazy" alt="Enjar L. — Economist, Moody's Analytics. Moderator." /></span>
-      <span class="b26-roster-tag">asks the second question</span>
+      <span class="b26-roster-body"><span class="b26-roster-tag">asks the second question</span><span class="b26-roster-caret"></span></span>
     </a>
 
     <a class="b26-roster" href="https://www.linkedin.com/in/enkhmaa-byambaa" target="_blank" rel="noopener" style="--rot:-1.5deg;--tilt:-2deg;--tagc:var(--hi);">
       <span class="b26-roster-shot"><img src="assets/photos/Summit-2026/cards-2026/enkhmaa-mod.webp" width="600" height="779" loading="lazy" alt="Enkhmaa B. — MS student, Columbia SIPA. MC." /></span>
-      <span class="b26-roster-tag">holds the whole room</span>
+      <span class="b26-roster-body"><span class="b26-roster-tag">holds the whole room</span><span class="b26-roster-caret"></span></span>
     </a>
 
   </div>
@@ -419,15 +421,15 @@
   <div class="b26-cards">
     <div class="b26-roster" style="--rot:-1deg;--tilt:-3deg;--tagc:var(--hi);">
       <span class="b26-roster-shot"><img src="assets/photos/Summit-2026/cards-2026/yanjaa-team.webp" width="600" height="779" loading="lazy" alt="Yanjaa M. — Co-founder, Vesta. President." /></span>
-      <span class="b26-roster-tag">says yes, then builds it</span>
+      <span class="b26-roster-body"><span class="b26-roster-tag">says yes, then builds it</span><span class="b26-roster-caret"></span></span>
     </div>
     <div class="b26-roster" style="--rot:1.5deg;--tilt:2.5deg;--tagc:var(--signal);">
       <span class="b26-roster-shot"><img src="assets/photos/Summit-2026/cards-2026/anu-team.webp" width="600" height="779" loading="lazy" alt="Anu G. — Data Scientist. Co-lead." /></span>
-      <span class="b26-roster-tag">every detail, twice</span>
+      <span class="b26-roster-body"><span class="b26-roster-tag">every detail, twice</span><span class="b26-roster-caret"></span></span>
     </div>
     <div class="b26-roster" style="--rot:-1.5deg;--tilt:-2deg;--tagc:var(--hi);">
       <span class="b26-roster-shot"><img src="assets/photos/Summit-2026/cards-2026/zana-team.webp" width="600" height="779" loading="lazy" alt="Zana Kh. — Business Project Manager, Creative Nation. Co-lead." /></span>
-      <span class="b26-roster-tag">makes it look easy</span>
+      <span class="b26-roster-body"><span class="b26-roster-tag">makes it look easy</span><span class="b26-roster-caret"></span></span>
     </div>
   </div>
   <div class="b26-script" style="margin-top:28px;display:inline-block;">all volunteers, all year</div>
