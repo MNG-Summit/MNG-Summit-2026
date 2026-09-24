@@ -225,6 +225,10 @@
   document.addEventListener('keydown', function (e) {
     if (e.key === 'Escape') closeDrawer();
   });
+  // exposed so other pages (e.g. speakers.html's bio drawer) can reuse this
+  // same drawer instance instead of building a second one
+  window.openDrawer = openDrawer;
+  window.closeDrawer = closeDrawer;
 
   // Wire sessions to the drawer
   sessions.forEach(function (s) {

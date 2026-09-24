@@ -49,6 +49,18 @@
   .app-nav-pill--icon:hover{border-color:var(--signal)!important;color:var(--signal)!important;}
   .app-nav-toggle{color:var(--paper)!important;}
 
+  /* Bio drawer — same component schedule.html uses for session detail,
+     recoloured to this page's palette (site.css has the shared shell:
+     position, width, transition, etc). */
+  .drawer{background:var(--panel)!important;color:var(--paper)!important;border-left:1px solid var(--hairline);}
+  .drawer-top{color:var(--hi)!important;}
+  .drawer-title{color:var(--paper)!important;}
+  .drawer-meta dt{color:var(--mute)!important;} .drawer-meta dd{color:var(--paper)!important;}
+  .drawer-body{color:var(--mute)!important;}
+  .drawer-body b{color:var(--paper);}
+  .btn--hot{background:var(--vermilion)!important;color:#fff!important;}
+  .btn--ghost{background:transparent!important;border:1px solid var(--hairline)!important;color:var(--paper)!important;}
+
   /* ============ SPEAKERS ============================================
      The people cards carry their own name, title and role, so the page
      adds only the handwritten line; the rest waits behind a click. Each
@@ -294,7 +306,7 @@
       </div>
     </div>
 
-    <div class="sp-card" style="--rot:-1deg;--tilt:-2.5deg;--tagc:var(--hi);">
+    <div class="sp-card" data-role="Chef &amp; Owner, Mongolian Momo King" data-category="Guest Speaker" style="--rot:-1deg;--tilt:-2.5deg;--tagc:var(--hi);">
       <div class="sp-slot">
         <div class="sp-slot-win"><span>photo<br />coming</span></div>
         <div class="sp-slot-name">Khurelbaatar O.</div>
@@ -417,32 +429,67 @@
   </div>
 </footer>
 
+<!-- ============ DRAWER (bio detail) ============ -->
+<div class="drawer-scrim" id="drawer-scrim"></div>
+<aside class="drawer" id="drawer" aria-hidden="true">
+  <button class="drawer-close" id="drawer-close" aria-label="Close">✕</button>
+  <div class="drawer-top" id="drawer-top">Speaker</div>
+  <h2 class="drawer-title" id="drawer-title">Speaker</h2>
+  <dl class="drawer-meta" id="drawer-meta"></dl>
+  <div class="drawer-body" id="drawer-body"></div>
+  <div class="drawer-cta">
+    <a href="tickets.html" class="btn btn--hot">Buy tickets →</a>
+    <a href="get-involved.html#speak" class="btn btn--ghost">Apply to speak</a>
+  </div>
+</aside>
+
 <script src="js/site.js?v=exp50"></script>
 <script>
-/* Bios open on click, and the whole card is the target — but the markup
-   ships them visible, so a reader with no JS still gets every bio. The
-   collapse happens here, on load. */
+/* Bios open in the same slide-out drawer schedule.html uses for session
+   detail (window.openDrawer, exposed by site.js) instead of expanding
+   in place, so the card grid stays a fixed height as you click through
+   speakers. The markup ships bios visible so a reader with no JS still
+   gets every bio inline. */
 (function () {
   var cards = document.querySelectorAll('.sp-card');
   Array.prototype.forEach.call(cards, function (card) {
     var btn = card.querySelector('.sp-toggle');
     var bio = card.querySelector('.sp-bio');
-    if (!btn || !bio) return;
+    if (!btn || !bio || typeof window.openDrawer !== 'function') return;
 
     bio.hidden = true;
 
-    function toggle() {
-      var open = bio.hidden;
-      bio.hidden = !open;
-      btn.setAttribute('aria-expanded', String(open));
-      card.classList.toggle('sp-card--open', open);
+    var img = card.querySelector('.sp-shot img');
+    var name, role, category;
+    if (img) {
+      var alt = img.getAttribute('alt') || '';
+      var afterDash = alt.split('—')[1] || '';
+      var bits = afterDash.split('.').map(function (s) { return s.trim(); }).filter(Boolean);
+      name = (alt.split('—')[0] || '').trim();
+      role = bits[0] || '';
+      category = bits[1] || '';
+    } else {
+      var slotName = card.querySelector('.sp-slot-name');
+      name = card.getAttribute('data-name') || (slotName ? slotName.textContent.trim() : '');
+      role = card.getAttribute('data-role') || '';
+      category = card.getAttribute('data-category') || '';
     }
 
-    btn.addEventListener('click', function (e) { e.stopPropagation(); toggle(); });
+    function open() {
+      window.openDrawer({
+        track: category || 'Speaker',
+        title: name,
+        meta: role ? [['Role', role]] : [],
+        body: bio.innerHTML
+      });
+      btn.setAttribute('aria-expanded', 'true');
+    }
+
+    btn.addEventListener('click', function (e) { e.stopPropagation(); open(); });
     card.addEventListener('click', function (e) {
       /* let the LinkedIn/Website button do its own job */
       if (e.target.closest('a')) return;
-      toggle();
+      open();
     });
     card.style.cursor = 'pointer';
   });

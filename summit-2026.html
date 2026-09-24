@@ -56,6 +56,17 @@
   .app-nav-pill--icon:hover{border-color:var(--signal)!important;color:var(--signal)!important;}
   .app-nav-toggle{color:var(--paper)!important;}
 
+  /* Bio drawer — same component schedule.html/speakers.html use, recoloured
+     to this page's palette (site.css has the shared shell). */
+  .drawer{background:var(--panel)!important;color:var(--paper)!important;border-left:1px solid var(--hairline);}
+  .drawer-top{color:var(--hi)!important;}
+  .drawer-title{color:var(--paper)!important;}
+  .drawer-meta dt{color:var(--mute)!important;} .drawer-meta dd{color:var(--paper)!important;}
+  .drawer-body{color:var(--mute)!important;}
+  .drawer-body b{color:var(--paper);}
+  .btn--hot{background:var(--vermilion)!important;color:#fff!important;}
+  .btn--ghost{background:transparent!important;border:1px solid var(--hairline)!important;color:var(--paper)!important;}
+
   .l-event-hero-cta{position:relative;z-index:2;color:var(--signal)!important;font-family:var(--mono);letter-spacing:.04em;background:rgba(234,241,250,.05)!important;border:1px solid rgba(234,241,250,.14)!important;backdrop-filter:blur(2px);}
 
   .l-entry-card--outline-blue .l-entry-title,.l-entry-card--outline-blue h3,
@@ -319,49 +330,58 @@
   <p class="b26-lead">Incredible humans from various domains. The rest of the line-up and everyone's bio are in the <a href="speakers.html">speakers tab</a>.<br />Want a seat on stage? <a href="get-involved.html#speak">Apply to speak →</a></p>
   <div class="b26-cards">
 
-    <a class="b26-roster" href="https://www.linkedin.com/in/bolor-amgalan-designer" target="_blank" rel="noopener" style="--rot:-1.2deg;--tilt:-3deg;--tagc:var(--hi);">
+    <div class="b26-roster" style="--rot:-1.2deg;--tilt:-3deg;--tagc:var(--hi);">
       <span class="b26-roster-shot"><img src="assets/photos/Summit-2026/cards-2026/bolor-guest.webp" width="600" height="779" loading="lazy" alt="Bolor A. — Associate Teaching Professor, Northeastern University. Keynote." /></span>
       <span class="b26-roster-body"><span class="b26-roster-tag">human intelligence, first</span><span class="b26-roster-caret"></span></span>
-    </a>
+      <span class="b26-roster-bio" hidden>Associate Teaching Professor at Northeastern University. Opens the summit with the keynote on human intelligence.<br /><a href="https://www.linkedin.com/in/bolor-amgalan-designer" target="_blank" rel="noopener">LinkedIn →</a></span>
+    </div>
 
-    <a class="b26-roster" href="https://www.facebook.com/borgil.enkhbat/" target="_blank" rel="noopener" style="--rot:1.2deg;--tilt:2.5deg;--tagc:var(--signal);">
+    <div class="b26-roster" style="--rot:1.2deg;--tilt:2.5deg;--tagc:var(--signal);">
       <span class="b26-roster-shot"><img src="assets/photos/Summit-2026/cards-2026/boki-guest.webp" width="600" height="779" loading="lazy" alt="Boki E. — Executive Director, Iris World. Speaker." /></span>
       <span class="b26-roster-body"><span class="b26-roster-tag">builds what others debate</span><span class="b26-roster-caret"></span></span>
-    </a>
+      <span class="b26-roster-bio" hidden>Physical Asia and Iris World. Speaks Saturday on what you can actually build in Mongolia.<br /><a href="https://www.facebook.com/borgil.enkhbat/" target="_blank" rel="noopener">Facebook →</a></span>
+    </div>
 
-    <a class="b26-roster" href="https://www.linkedin.com/in/khulandav" target="_blank" rel="noopener" style="--rot:-1.2deg;--tilt:-2deg;--tagc:var(--hi);">
+    <div class="b26-roster" style="--rot:-1.2deg;--tilt:-2deg;--tagc:var(--hi);">
       <span class="b26-roster-shot"><img src="assets/photos/Summit-2026/cards-2026/khulan-guest.webp" width="600" height="779" loading="lazy" alt="Khulan D. — Creative AI, Google. Workshop." /></span>
       <span class="b26-roster-body"><span class="b26-roster-tag">AI can't give you an audience</span><span class="b26-roster-caret"></span></span>
-    </a>
+      <span class="b26-roster-bio" hidden>Creative AI at Google. Runs the Saturday workshop on standing out on LinkedIn with AI.<br /><a href="https://www.linkedin.com/in/khulandav" target="_blank" rel="noopener">LinkedIn →</a></span>
+    </div>
 
-    <a class="b26-roster" href="https://www.tsegtslawgroup.com/" target="_blank" rel="noopener" style="--rot:1.2deg;--tilt:3deg;--tagc:var(--signal);">
+    <div class="b26-roster" style="--rot:1.2deg;--tilt:3deg;--tagc:var(--signal);">
       <span class="b26-roster-shot"><img src="assets/photos/Summit-2026/cards-2026/bayarjargal-guest.webp" width="600" height="779" loading="lazy" alt="Bayarjargal S. — Attorney, Tsegts Law Group. Workshop." /></span>
       <span class="b26-roster-body"><span class="b26-roster-tag">the law, in plain words</span><span class="b26-roster-caret"></span></span>
-    </a>
+      <span class="b26-roster-bio" hidden><b>Understanding your legal rights.</b> Bayarjargal helps our community navigate the legal system with confidence, especially as immigration policy keeps shifting. Licensed in Illinois since 2013 and admitted to federal court and the USPTO Bar, he covers immigration, criminal defense, real estate, estate planning, personal injury, and patent/trademark law. His Saturday workshop walks through common visa issues and paths.<br /><a href="https://www.tsegtslawgroup.com/" target="_blank" rel="noopener">Website →</a></span>
+    </div>
 
-    <a class="b26-roster" href="https://www.linkedin.com/in/binderiyabyambasuren" target="_blank" rel="noopener" style="--rot:-1.2deg;--tilt:-2.5deg;--tagc:var(--hi);">
+    <div class="b26-roster" style="--rot:-1.2deg;--tilt:-2.5deg;--tagc:var(--hi);">
       <span class="b26-roster-shot"><img src="assets/photos/Summit-2026/cards-2026/bindi-guest.webp" width="600" height="779" loading="lazy" alt="Binderiya B. — Consultant Economist, World Bank. Panelist." /></span>
       <span class="b26-roster-body"><span class="b26-roster-tag">design with a spine</span><span class="b26-roster-caret"></span></span>
-    </a>
+      <span class="b26-roster-bio" hidden><b>Work &amp; academia in the US.</b> Bindi founded Structura Economics, modeling how energy and climate shocks ripple through markets and households; at the World Bank she co-developed MINDSET, a global simulation model used by governments and researchers. On the Saturday panel she'll cover AI in academic research and policy analysis, plus her path through US academia as an immigrant. She's also a DC-based stand-up comedian — catch her set at the Happy Hour.<br /><a href="https://www.linkedin.com/in/binderiyabyambasuren" target="_blank" rel="noopener">LinkedIn →</a></span>
+    </div>
 
     <div class="b26-roster" style="--rot:1.2deg;--tilt:2deg;--tagc:var(--signal);">
       <span class="b26-roster-shot"><img src="assets/photos/Summit-2026/cards-2026/bayasgalan-guest.webp" width="600" height="779" loading="lazy" alt="Bayasgalan B. — Founder, Tagtaa Publishing. Workshop." /></span>
       <span class="b26-roster-body"><span class="b26-roster-tag">prints what others just write</span><span class="b26-roster-caret"></span></span>
+      <span class="b26-roster-bio" hidden><b>Finding your voice on the page.</b> Bayasgalan is a writer, poet, and translator pursuing an MFA in Creative Writing at Columbia. She founded Tagtaa Publishing, one of Mongolia's leading publishing houses, and is one of the country's most prominent literary translators — an International Writing Program alum (Iowa, 2018), a Frankfurt Book Fair Fellow (2019), and translation editor of Columbia Journal. Her Sunday workshop covers finding your voice, shaping a story, and building a practice that lasts. Bring a notebook.</span>
     </div>
 
     <div class="b26-roster" style="--rot:-1.2deg;--tilt:-3deg;--tagc:var(--hi);">
       <span class="b26-roster-shot"><img src="assets/photos/Summit-2026/cards-2026/ogo-guest.webp" width="600" height="779" loading="lazy" alt="Ogo B. — Staff Product Designer, Remote. Panelist." /></span>
       <span class="b26-roster-body"><span class="b26-roster-tag">builds the product, from anywhere</span><span class="b26-roster-caret"></span></span>
+      <span class="b26-roster-bio" hidden><b>Finding your own path.</b> Ogo is a Staff Product Designer at Remote, a global HR platform for hiring and managing teams anywhere in the world, and turns complex systems into simple, human-centered experiences while exploring how AI is reshaping design and work. On the Saturday panel, she'll share how she built a career in the US without a roadmap — and why it comes down to owning your story, asking for help, and choosing work that supports the life you want.</span>
     </div>
 
     <div class="b26-roster" style="--rot:1deg;--tilt:2.5deg;--tagc:var(--signal);">
       <span class="b26-roster-shot"><img src="assets/photos/Summit-2026/cards-2026/yulkendy-guest.webp" width="600" height="779" loading="lazy" alt="Yulkendy V. — Co-Founder, Healers Health. Workshop." /></span>
       <span class="b26-roster-body"><span class="b26-roster-tag">puts AI to work for you</span><span class="b26-roster-caret"></span></span>
+      <span class="b26-roster-bio" hidden><b>Making AI work for you.</b> Yulkendy is a Forbes 30 Under 30 social entrepreneur, TED speaker, and co-founder of Healers Health, building tech infrastructure for the social care of youth and families. A certified Google Coach, her Saturday workshop shows you how to put AI to work on the tasks that eat up your time — drafting, research, reports — using free, practical tools anyone can pick up, no experience required.</span>
     </div>
 
     <div class="b26-roster" style="--rot:-1deg;--tilt:-2.5deg;--tagc:var(--hi);">
       <span class="b26-roster-slot"><span>photo<br />coming</span></span>
       <span class="b26-roster-body"><span class="b26-roster-tag">brings buuz to the Big Apple</span><span class="b26-roster-caret"></span></span>
+      <span class="b26-roster-bio" hidden data-name="Khurelbaatar O." data-role="Chef &amp; Owner, Mongolian Momo King" data-category="Guest Speaker"><b>Bringing buuz to the Big Apple.</b> "Kai" is the chef and owner of Mongolian Momo King, which he and his wife Franka started as a food cart in early 2024 before graduating to a restaurant this year. He spent two decades in NYC's bar and restaurant scene before bringing Mongolian food to the East Village — buuz, khuushuur, tsuivan, shul, and suutei tsai. As a Saturday guest speaker, he'll share how he turned a personal mission into a business with a cult following, and he'll bring his own boortsog to the Summit.</span>
     </div>
 
     <div class="b26-roster">
@@ -374,20 +394,23 @@
   <div class="b26-roster-label">Moderators + MC</div>
   <div class="b26-cards">
 
-    <a class="b26-roster" href="https://www.linkedin.com/in/namuunp" target="_blank" rel="noopener" style="--rot:-1deg;--tilt:-3deg;--tagc:var(--hi);">
+    <div class="b26-roster" style="--rot:-1deg;--tilt:-3deg;--tagc:var(--hi);">
       <span class="b26-roster-shot"><img src="assets/photos/Summit-2026/cards-2026/namuun-mod.webp" width="600" height="779" loading="lazy" alt="Namuun P. — Category Strategy, Amazon. Moderator." /></span>
       <span class="b26-roster-body"><span class="b26-roster-tag">keeps the panel honest</span><span class="b26-roster-caret"></span></span>
-    </a>
+      <span class="b26-roster-bio" hidden>Category Strategy at Amazon. Moderates the Friday panel.<br /><a href="https://www.linkedin.com/in/namuunp" target="_blank" rel="noopener">LinkedIn →</a></span>
+    </div>
 
-    <a class="b26-roster" href="https://www.linkedin.com/in/enkhjargal-enjar-lkhagvajav" target="_blank" rel="noopener" style="--rot:1.5deg;--tilt:2.5deg;--tagc:var(--signal);">
+    <div class="b26-roster" style="--rot:1.5deg;--tilt:2.5deg;--tagc:var(--signal);">
       <span class="b26-roster-shot"><img src="assets/photos/Summit-2026/cards-2026/enjar-mod.webp" width="600" height="779" loading="lazy" alt="Enjar L. — Economist, Moody's Analytics. Moderator." /></span>
       <span class="b26-roster-body"><span class="b26-roster-tag">asks the second question</span><span class="b26-roster-caret"></span></span>
-    </a>
+      <span class="b26-roster-bio" hidden>Moody's Analytics. Moderates on the main stage.<br /><a href="https://www.linkedin.com/in/enkhjargal-enjar-lkhagvajav" target="_blank" rel="noopener">LinkedIn →</a></span>
+    </div>
 
-    <a class="b26-roster" href="https://www.linkedin.com/in/enkhmaa-byambaa" target="_blank" rel="noopener" style="--rot:-1.5deg;--tilt:-2deg;--tagc:var(--hi);">
+    <div class="b26-roster" style="--rot:-1.5deg;--tilt:-2deg;--tagc:var(--hi);">
       <span class="b26-roster-shot"><img src="assets/photos/Summit-2026/cards-2026/enkhmaa-mod.webp" width="600" height="779" loading="lazy" alt="Enkhmaa B. — MS student, Columbia SIPA. MC." /></span>
       <span class="b26-roster-body"><span class="b26-roster-tag">holds the whole room</span><span class="b26-roster-caret"></span></span>
-    </a>
+      <span class="b26-roster-bio" hidden>Columbia SIPA. MC across all three days.<br /><a href="https://www.linkedin.com/in/enkhmaa-byambaa" target="_blank" rel="noopener">LinkedIn →</a></span>
+    </div>
 
   </div>
 </section>
@@ -518,6 +541,57 @@
   </div>
 </footer>
 
+<!-- ============ DRAWER (bio detail) ============ -->
+<div class="drawer-scrim" id="drawer-scrim"></div>
+<aside class="drawer" id="drawer" aria-hidden="true">
+  <button class="drawer-close" id="drawer-close" aria-label="Close">✕</button>
+  <div class="drawer-top" id="drawer-top">Speaker</div>
+  <h2 class="drawer-title" id="drawer-title">Speaker</h2>
+  <dl class="drawer-meta" id="drawer-meta"></dl>
+  <div class="drawer-body" id="drawer-body"></div>
+  <div class="drawer-cta">
+    <a href="tickets.html" class="btn btn--hot">Buy tickets →</a>
+    <a href="speakers.html" class="btn btn--ghost">See full lineup</a>
+  </div>
+</aside>
+
 <script src="js/site.js?v=exp50"></script>
+<script>
+/* Roster cards open the same bio drawer schedule.html/speakers.html use
+   (window.openDrawer, exposed by site.js) instead of linking straight out
+   to LinkedIn — the outbound link now lives inside the drawer body. */
+(function () {
+  var cards = document.querySelectorAll('.b26-roster');
+  Array.prototype.forEach.call(cards, function (card) {
+    var bio = card.querySelector('.b26-roster-bio');
+    if (!bio || typeof window.openDrawer !== 'function') return;
+
+    var img = card.querySelector('.b26-roster-shot img');
+    var name, role, category;
+    if (img) {
+      var alt = img.getAttribute('alt') || '';
+      var afterDash = alt.split('—')[1] || '';
+      var bits = afterDash.split('.').map(function (s) { return s.trim(); }).filter(Boolean);
+      name = (alt.split('—')[0] || '').trim();
+      role = bits[0] || '';
+      category = bits[1] || '';
+    } else {
+      name = bio.getAttribute('data-name') || '';
+      role = bio.getAttribute('data-role') || '';
+      category = bio.getAttribute('data-category') || '';
+    }
+
+    card.addEventListener('click', function () {
+      window.openDrawer({
+        track: category || 'Speaker',
+        title: name,
+        meta: role ? [['Role', role]] : [],
+        body: bio.innerHTML
+      });
+    });
+    card.style.cursor = 'pointer';
+  });
+})();
+</script>
 </body>
 </html>
