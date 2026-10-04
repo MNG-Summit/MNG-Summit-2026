@@ -145,7 +145,11 @@
     padding:20px 14px 0!important;white-space:nowrap;
   }
   /* the rail has to grow with the type — 88px wrapped "12:00 PM" onto two lines */
-  .schedule{grid-template-columns:clamp(96px,9vw,124px) 1fr!important;}
+  /* minmax(0,1fr), not 1fr: a grid track's automatic minimum is its
+     content's min-content width, so the reserved face gutter plus the
+     longest word pushed the column wider than the viewport on phones and
+     the right-hand faces were clipped by the body's overflow:hidden. */
+  .schedule{grid-template-columns:clamp(96px,9vw,124px) minmax(0,1fr)!important;}
   /* the old 120px floor was sized for a four-line card; three lines need less */
   .session{min-height:92px!important;}
   /* a part of the day — spans both grid columns and rules off the block
@@ -191,30 +195,46 @@
   .session{flex-direction:column!important;}
   .session-main{
     flex:1 1 auto;min-width:0;display:flex;flex-direction:column;gap:6px;
-    padding-right:calc(var(--n,0) * (var(--face-w) + 8px));
   }
-  :root{--face-w:clamp(70px,7vw,104px);}
+  /* --face-step is how far each extra face advances, so one number drives both
+     the gutter the text reserves and where the faces actually land. Gutter =
+     (n-1) steps + one whole face + 8px of air. */
+  .session:has(.session-faces) .session-main{
+    padding-right:calc((var(--n,1) - 1) * var(--face-step) + var(--face-w) + 8px);
+  }
+  :root{--face-w:clamp(70px,7vw,104px);--face-step:calc(var(--face-w) + 8px);}
   .session-names{
     font-size:12px;font-weight:700;letter-spacing:.06em;
     text-transform:uppercase;color:var(--mute);margin-top:auto;padding-top:8px;
   }
   .session-names b{color:var(--paper);font-weight:800;}
   .session-faces{
-    position:absolute;right:20px;top:16px;bottom:16px;
-    display:flex;gap:8px;align-items:stretch;
+    position:absolute;right:20px;top:16px;
+    display:flex;gap:0;align-items:flex-start;
   }
+  .session-face + .session-face{margin-left:calc(var(--face-step) - var(--face-w));}
   /* a square slice of the person's card — frame and all — so the head breaks
-     out of it here the same way it does on the speakers page. Height comes from
-     the text column; the card is square, so the width follows. */
+     out of it here the same way it does on the speakers page.
+
+     The WIDTH is the fixed end, not the height. Sizing off the row height
+     meant the face grew with however much the description happened to wrap,
+     while .session-main reserved its gutter from --face-w, so the two
+     disagreed: dead space on wide screens, and the face sitting on top of the
+     text wherever a row wrapped to three lines. Driving both from --face-w
+     makes the reservation exact — n faces plus (n-1) gaps, with the 8px per
+     face in the padding formula leaving one gap of breathing room. */
   .session-face{
-    height:100%;width:auto;display:block;flex:none;
+    width:var(--face-w);height:auto;aspect-ratio:1;display:block;flex:none;
   }
+  /* the row still has to be tall enough to hold a face that no longer
+     stretches to fit it */
+  .session:has(.session-faces){min-height:calc(var(--face-w) + 32px)!important;}
   @media(max-width:560px){
     .sch-part,.sch-daylead,.sch-note{padding-left:16px;padding-right:16px;}
-    /* no room to run them full height next to a narrow text column */
-    :root{--face-w:46px;}
-    .session-faces{top:auto;bottom:16px;align-items:flex-end;gap:6px;}
-    .session-face{height:auto;width:46px;}
+    /* no room for a big face next to a narrow text column. A step shorter than
+       the face makes them shingle, so three people cost 106px of the row
+       instead of 162 and the description still gets a readable column. */
+    :root{--face-w:46px;--face-step:30px;}
   }
   .session-meta{color:var(--mute)!important;}
   .session-meta span{border-color:var(--hairline)!important;}
@@ -313,7 +333,7 @@
     </div>
   </a>
   <div class="schedule-time">3:00 PM</div>
-  <a href="#" class="session t-network" data-time="3:00–4:00 PM" data-track="Network · Walk">
+  <a href="#" class="session t-network" data-time="3:00–4:40 PM" data-track="Network · Walk">
     <span class="session-strip"></span>
     <div class="session-main">
       <div class="session-title">Neighborhood tour</div>
@@ -339,6 +359,7 @@
     </div>
     <div class="session-faces"><img class="session-face" src="assets/photos/Summit-2026/faces-2026/anu-team.webp" width="180" height="180" loading="lazy" alt="Anu G." /><img class="session-face" src="assets/photos/Summit-2026/faces-2026/zana-team.webp" width="180" height="180" loading="lazy" alt="Zana Kh." /></div>
   </a>
+  <!-- dropped from the run of show; kept in case it comes back
   <div class="schedule-time">6:15 PM</div>
   <a href="#" class="session t-network" data-time="6:15–6:45 PM" data-track="Network · Game">
     <span class="session-strip"></span>
@@ -347,13 +368,24 @@
       <div class="session-speakers">Find your people by Mongolia travel, work or student status, industry, and NYC residency.</div>
     </div>
   </a>
-  <div class="schedule-time">6:45 PM</div>
-  <a href="#" class="session t-social" data-time="6:45–7:00 PM" data-track="Social · Music">
+  -->
+  <div class="schedule-time">6:15 PM</div>
+  <a href="#" class="session t-social" data-time="6:15–6:30 PM" data-track="Social · Music">
     <span class="session-strip"></span>
     <div class="session-main">
       <div class="session-title">Music</div>
       <div class="session-speakers">Live set into the evening.</div>
     </div>
+  </a>
+  <div class="schedule-time">6:30 PM</div>
+  <a href="#" style="--n:1" class="session t-social" data-time="6:30–7:00 PM" data-track="Social · Comedy">
+    <span class="session-strip"></span>
+    <div class="session-main">
+      <div class="session-title">Comedy set</div>
+      <div class="session-speakers">Stand-up to open the evening.</div>
+      <div class="session-names"><b>Binderiya B.</b></div>
+    </div>
+    <div class="session-faces"><img class="session-face" src="assets/photos/Summit-2026/faces-2026/bindi-guest.webp" width="180" height="180" loading="lazy" alt="Binderiya B." /></div>
   </a>
   <div class="schedule-time">7:00 PM</div>
   <a href="#" style="--n:3" class="session t-panel" data-time="7:00–8:00 PM" data-track="Panel">
@@ -388,7 +420,7 @@
     <span class="session-strip"></span>
     <div class="session-main">
       <div class="session-title">Breakfast and check-in</div>
-      <div class="session-speakers">Bagels, boortsog, and coffee.</div>
+      <div class="session-speakers">Bagels and coffee.</div>
     </div>
   </a>
   <div class="schedule-time">10:30 AM</div>
@@ -469,14 +501,12 @@
   </a>
   <div class="sch-part sch-part--warm">Evening · Community Hour · Midtown</div>
   <div class="schedule-time">6:00 PM</div>
-  <a href="#" style="--n:1" class="session t-social" data-time="6:00–7:45 PM" data-track="Social · Community Hour">
+  <a href="#" class="session t-social" data-time="6:00–7:45 PM" data-track="Social · Community Hour">
     <span class="session-strip"></span>
     <div class="session-main">
       <div class="session-title">Community Hour · Midtown</div>
-      <div class="session-speakers">Open to all — plus a comedy set by Binderiya B.</div>
-      <div class="session-names"><b>Binderiya B.</b></div>
+      <div class="session-speakers">Optional happy hour at a midtown bar — venue to be announced.</div>
     </div>
-    <div class="session-faces"><img class="session-face" src="assets/photos/Summit-2026/faces-2026/bindi-guest.webp" width="180" height="180" loading="lazy" alt="Binderiya B." /></div>
   </a>
   <div class="sch-note">bring a card</div>
 </section>
@@ -503,7 +533,7 @@
     <span class="session-strip"></span>
     <div class="session-main">
       <div class="session-title">Breakfast and check-in</div>
-      <div class="session-speakers">Boortsog, coffee, and cookies.</div>
+      <div class="session-speakers">Coffee and cookies.</div>
     </div>
   </a>
   <div class="schedule-time">12:20 PM</div>
