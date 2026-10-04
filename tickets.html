@@ -67,6 +67,22 @@
   .l-tickets-note b{color:var(--paper);font-weight:800;}
   .l-tickets-note q{color:var(--paper);font-style:italic;}
   .l-tickets-embed-wrap{max-width:1000px;margin:0 auto;padding:0 24px 40px;}
+  /* two campaigns on one page, so each embed gets a label above it */
+  .l-tickets-pass{
+    display:flex;flex-wrap:wrap;align-items:baseline;gap:6px 14px;
+    padding-top:8px;margin-bottom:14px;
+    border-top:1px solid var(--hairline);
+  }
+  .l-tickets-pass:first-of-type{border-top:0;padding-top:0;}
+  .l-tickets-pass h2{
+    font-family:var(--display)!important;font-weight:800;letter-spacing:-.01em;
+    font-size:clamp(20px,2.4vw,27px);color:var(--paper)!important;margin:0;line-height:1.1;
+  }
+  .l-tickets-pass span{
+    font-size:12px;font-weight:700;letter-spacing:.08em;text-transform:uppercase;
+    color:var(--mute);
+  }
+  .l-tickets-embed + .l-tickets-pass{margin-top:36px;}
   /* Seamless: the embed sits directly on the page ground, no white card */
   .l-tickets-embed{background:transparent;padding:0;overflow:hidden;min-height:460px;color:var(--paper);}
   .l-tickets-embed iframe{background:transparent;}
@@ -139,21 +155,41 @@
   </p>
 </div>
 
-<!-- ============ ZEFFY EMBED ============ -->
+<!-- ============ ZEFFY EMBEDS · full pass, then Friday only ============ -->
 <div class="l-tickets-embed-wrap">
+
+  <div class="l-tickets-pass">
+    <h2>All three days</h2><span>Oct 9–11 · the full summit</span>
+  </div>
   <div class="l-tickets-embed">
-    <!-- Zeffy ticketing embed -->
+    <!-- Zeffy ticketing embed · mng-summit--2026 -->
     <div>
       <div data-zeffy-embed data-form-url="/embed/ticketing/mng-summit--2026"></div>
       <div data-zeffy-embed-fallback style="display:none;">
-        <div style="position:relative;overflow:hidden;height:450px;width:100%;padding-top:450px;"><iframe title='Donation form powered by Zeffy' style='position: absolute; border: 0; top:0;left:0;bottom:0;right:0;width:100%;height:100%' data-zeffy-embed-src='https://www.zeffy.com/embed/ticketing/mng-summit--2026' allowpaymentrequest allowTransparency="true"></iframe></div>
+        <div style="position:relative;overflow:hidden;height:450px;width:100%;padding-top:450px;"><iframe title='Ticketing form powered by Zeffy — all three days' style='position: absolute; border: 0; top:0;left:0;bottom:0;right:0;width:100%;height:100%' data-zeffy-embed-src='https://www.zeffy.com/embed/ticketing/mng-summit--2026' allowpaymentrequest allowTransparency="true"></iframe></div>
       </div>
-      <script
-        src="https://www.zeffy.com/embed/v2/zeffy-embed.js"
-        onerror="document.querySelectorAll('[data-zeffy-embed-fallback]').forEach(function(el){el.style.display='block';el.querySelectorAll('iframe[data-zeffy-embed-src]').forEach(function(f){f.src=f.getAttribute('data-zeffy-embed-src');});});">
-      </script>
     </div>
   </div>
+
+  <div class="l-tickets-pass">
+    <h2>Friday only</h2><span>Oct 9 · opening night in DUMBO</span>
+  </div>
+  <div class="l-tickets-embed">
+    <!-- Zeffy ticketing embed · mng-summit-2026-day--1 -->
+    <div>
+      <div data-zeffy-embed data-form-url="/embed/ticketing/mng-summit-2026-day--1"></div>
+      <div data-zeffy-embed-fallback style="display:none;">
+        <div style="position:relative;overflow:hidden;height:450px;width:100%;padding-top:450px;"><iframe title='Ticketing form powered by Zeffy — Friday only' style='position: absolute; border: 0; top:0;left:0;bottom:0;right:0;width:100%;height:100%' data-zeffy-embed-src='https://www.zeffy.com/embed/ticketing/mng-summit-2026-day--1' allowpaymentrequest allowTransparency="true"></iframe></div>
+      </div>
+    </div>
+  </div>
+
+  <!-- one loader for both embeds; it has to come after both so it finds them,
+       and the fallback handler reveals every plain iframe on the page -->
+  <script
+    src="https://www.zeffy.com/embed/v2/zeffy-embed.js"
+    onerror="document.querySelectorAll('[data-zeffy-embed-fallback]').forEach(function(el){el.style.display='block';el.querySelectorAll('iframe[data-zeffy-embed-src]').forEach(function(f){f.src=f.getAttribute('data-zeffy-embed-src');});});">
+  </script>
 </div>
 
 <!-- ============ HELP NOTE ============ -->
