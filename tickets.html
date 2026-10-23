@@ -67,6 +67,22 @@
   .l-tickets-note b{color:var(--paper);font-weight:800;}
   .l-tickets-note q{color:var(--paper);font-style:italic;}
   .l-tickets-embed-wrap{max-width:1000px;margin:0 auto;padding:0 24px 40px;}
+  /* two campaigns on one page, so each embed gets a label above it */
+  .l-tickets-pass{
+    display:flex;flex-wrap:wrap;align-items:baseline;gap:6px 14px;
+    padding-top:8px;margin-bottom:14px;
+    border-top:1px solid var(--hairline);
+  }
+  .l-tickets-pass:first-of-type{border-top:0;padding-top:0;}
+  .l-tickets-pass h2{
+    font-family:var(--display)!important;font-weight:800;letter-spacing:-.01em;
+    font-size:clamp(20px,2.4vw,27px);color:var(--paper)!important;margin:0;line-height:1.1;
+  }
+  .l-tickets-pass span{
+    font-size:12px;font-weight:700;letter-spacing:.08em;text-transform:uppercase;
+    color:var(--mute);
+  }
+  .l-tickets-embed + .l-tickets-pass{margin-top:36px;}
   /* Seamless: the embed sits directly on the page ground, no white card */
   .l-tickets-embed{background:transparent;padding:0;overflow:hidden;min-height:460px;color:var(--paper);}
   .l-tickets-embed iframe{background:transparent;}
@@ -128,7 +144,7 @@
   </div>
 </section>
 
-<!-- ============ WRAP-UP CTA (ticketing closed; Zeffy embed removed) ============ -->
+<!-- ============ WRAP-UP CTA (ticketing closed; Zeffy embeds removed) ============ -->
 <div class="l-tickets-embed-wrap">
   <div class="l-tickets-embed" style="min-height:0;display:flex;flex-wrap:wrap;gap:12px;">
     <a href="https://photos.google.com/share/AF1QipMrtTVbPtKX6DsNo5XV8S-5KzDFxcIIsYBNYIiXMeuto3KmseFfQhvOOlCzFTdvNQ?key=YXZvN0RIN2tJck5mSFRkR2xCRUlYenJBZ056Znhn" class="b26-btn" target="_blank" rel="noopener">View photos →</a>
