@@ -70,9 +70,9 @@ const FORM_CONFIG = {
   },
   community: {
     label: 'community interest signup',
-    confirmSubject: "Thanks for sharing your ideas — MNG Summit",
+    confirmSubject: "Thanks for sharing your ideas, MNG Summit",
     confirmTitle: 'Thanks for helping <em>shape what\'s next.</em>',
-    confirmBody: "We're exploring new ways for our community to connect, learn, and support one another throughout the year — a mix of ongoing membership and short-term, goal-focused cohorts — and what you just shared helps us build it right.\n\nThis was just a pulse check. There's no commitment here, and nothing is final yet. As soon as there's something concrete, you'll be the first to know.\n\nThanks for sharing your ideas,\nThe MNG Summit team",
+    confirmBody: "We're exploring new ways for our community to connect, learn, and support one another throughout the year, from ongoing membership to short-term, goal-focused cohorts, and what you just shared helps us build it right.\n\nThis was just a pulse check. There's no commitment here, and nothing is final yet. As soon as there's something concrete, you'll be the first to know.\n\nThanks for sharing your ideas,\nThe MNG Summit team",
     teamSubject: function (n) { return 'Community interest: ' + n; }
   }
 };
