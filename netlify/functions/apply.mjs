@@ -67,6 +67,13 @@ const FORM_CONFIG = {
     confirmTitle: 'Message <em>received.</em>',
     confirmBody: "We saw it, and a real person on the working board will reply — usually within 48 hours.\n\nIf this is time-sensitive (sponsorship deadline, venue logistics, press request), reply to this email and flag it in the subject.\n\nThanks for reaching out,\nThe MNG Summit team",
     teamSubject: function (n) { return 'Inquiry: ' + n; }
+  },
+  community: {
+    label: 'community interest signup',
+    confirmSubject: "Thanks for sharing your ideas — MNG Summit",
+    confirmTitle: 'Thanks for helping <em>shape what\'s next.</em>',
+    confirmBody: "We're exploring new ways for our community to connect, learn, and support one another throughout the year — a mix of ongoing membership and short-term, goal-focused cohorts — and what you just shared helps us build it right.\n\nThis was just a pulse check. There's no commitment here, and nothing is final yet. As soon as there's something concrete, you'll be the first to know.\n\nThanks for sharing your ideas,\nThe MNG Summit team",
+    teamSubject: function (n) { return 'Community interest: ' + n; }
   }
 };
 
@@ -88,7 +95,10 @@ const FIELD_LABELS = {
   notes: 'Notes',
   message: 'Message',
   role: 'Role',
-  area: 'Area'
+  area: 'Area',
+  interests: 'Interested in',
+  goal: 'Hoping to get',
+  topics: 'Topics / activities'
 };
 
 // ===== Email shell — shared branded chrome for all confirmations =====

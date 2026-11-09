@@ -684,6 +684,72 @@
     });
   }
 
+  // ---------- community interest form (shape-whats-next.html) ----------
+  // A standalone-page intake, not inside the #involve-modal overlay — this
+  // page is meant to be linked/shared directly. POSTs to apply.mjs with
+  // form:'community' (generic FORM_CONFIG-driven handler, same as the
+  // get-involved modals). Checkbox values sharing a name are joined into a
+  // single comma-separated field.
+  var ciForm = document.getElementById('community-form');
+  if (ciForm) {
+    var ciStatus = ciForm.querySelector('.modal-form-status');
+    if (!ciStatus) {
+      ciStatus = document.createElement('div');
+      ciStatus.className = 'modal-form-status';
+      ciStatus.setAttribute('role', 'status');
+      ciStatus.setAttribute('aria-live', 'polite');
+      ciForm.appendChild(ciStatus);
+    }
+    ciForm.addEventListener('submit', function (e) {
+      e.preventDefault();
+      var fd = new FormData(ciForm);
+      var data = { form: 'community' };
+      fd.forEach(function (value, key) {
+        var v = String(value || '').trim();
+        if (!v) return;
+        data[key] = data[key] ? (data[key] + ', ' + v) : v;
+      });
+      data.referrer = document.referrer || '';
+      data.source = 'community interest · ' + (document.title || location.pathname);
+
+      if (!data.email) {
+        var emailIn = ciForm.querySelector('input[type="email"]');
+        if (emailIn) emailIn.focus();
+        return;
+      }
+
+      var submitBtn = ciForm.querySelector('.modal-submit');
+      var originalText = submitBtn ? submitBtn.textContent : '';
+      if (submitBtn) { submitBtn.disabled = true; submitBtn.textContent = 'Sending…'; }
+      ciStatus.textContent = '';
+      ciStatus.classList.remove('is-ok', 'is-err');
+
+      fetch('/.netlify/functions/apply', {
+        method: 'POST',
+        headers: { 'Content-Type': 'application/json' },
+        body: JSON.stringify(data)
+      })
+        .then(function (r) { return r.json().catch(function () { return { ok: r.ok }; }); })
+        .then(function (res) {
+          if (res && res.ok) {
+            ciStatus.textContent = "Thanks for sharing your ideas. We'll keep you posted as this takes shape.";
+            ciStatus.classList.add('is-ok');
+            ciForm.reset();
+            if (submitBtn) { submitBtn.textContent = 'Sent ✓'; submitBtn.disabled = true; }
+          } else {
+            ciStatus.textContent = (res && res.error) || 'Could not submit right now. Please try again.';
+            ciStatus.classList.add('is-err');
+            if (submitBtn) { submitBtn.disabled = false; submitBtn.textContent = originalText; }
+          }
+        })
+        .catch(function () {
+          ciStatus.textContent = 'Network error. Please try again.';
+          ciStatus.classList.add('is-err');
+          if (submitBtn) { submitBtn.disabled = false; submitBtn.textContent = originalText; }
+        });
+    });
+  }
+
   // ---------- mobile nav toggle ----------
   var navToggle = document.querySelector('.app-nav-toggle');
   var navTier2 = document.querySelector('.app-nav-tier2');
